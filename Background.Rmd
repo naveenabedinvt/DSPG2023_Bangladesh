@@ -2,20 +2,22 @@
 title: "Bangladesh Project"
 author: "Sotaire Kwizera,..."
 date: "`r format(Sys.time(), '%b %d %Y')`"
-header-includes:
-  - \usepackage{titling,xfrac,amsmath,amsthm,amssymb,bm}
 output:
+  html_document:
+    toc: yes
+    df_print: paged
   learnr::tutorial:
-    number_sections: FALSE
-    toc: TRUE
-    smart: FALSE
+    number_sections: no
+    toc: yes
+    smart: no
     pandoc_args:
-      - --number-sections
-      - --number-offset=0
-    progressive: FALSE
-    allow_skip: FALSE
+    - "--number-sections"
+    - "--number-offset=0"
+    progressive: no
+    allow_skip: no
     theme: cerulean
     highlight: breezedark
+header-includes: \usepackage{titling,xfrac,amsmath,amsthm,amssymb,bm}
 runtime: shiny_prerendered
 ---
 
@@ -29,7 +31,7 @@ knitr::opts_chunk$set(echo = TRUE, include = F, warning = FALSE, message = FALSE
 ## Setting
 ### Country profile:
 
-Bangladesh is a country located in South Asia. It is bordered by India in its West, North, and East regions, and Myanmar to its Southeast regions. The country has a flat geography with over 700 rivers and tributaries that originate from three main river systems: the Brahmaputra-Jamuna, Ganges-Padma, and Surma-Meghna (. As of 2020, Bangladesh was the ninth most densely populated country in the world; its present day population is 169,469,771. In 2016, 13.47% of the population in Bangladesh lived below the international poverty line of $2.15 per day. However, by 2022, the poverty rate had declined to 10.44% which shows improvement however it is important to recognize that a little over 10% of the population still lives below the national poverty line. Agriculture is the country's primary economic sector, which makes up 37.6% of the total work force and 13.1% of the GDP. 
+Bangladesh is a country located in South Asia. It is bordered by India in its West, North, and East regions, and Myanmar to its Southeast regions. The country has a flat geography with over 700 rivers and tributaries that originate from three main river systems: the Brahmaputra-Jamuna, Ganges-Padma, and Surma-Meghna. As of 2020, Bangladesh was the ninth most densely populated country in the world; its present day population is 169,469,771. In 2016, 13.47% of the population in Bangladesh lived below the international poverty line of $2.15 per day. However, by 2022, the poverty rate had declined to 10.44% which shows improvement however it is important to recognize that a little over 10% of the population still lives below the national poverty line. Agriculture is the country's primary economic sector, which makes up 37.6% of the total work force and 13.1% of the GDP. 
 
 The country is characterized by a multi-tiered administrative structure that helps in governing the country effectively. This structure encompasses several levels, including divisions, districts, upazilas (sub-districts), unions, and villages. The country has 8 divisions: Barisal, Chittagong, Dhaka, Khulna, Mymensingh, Rajshahi, Rangpur, and Sylhet, which serve as the highest level of administrative units. Each division is further divided into 64 districts, comparable to counties in the USA. Within the divisions, multiple upazilas (sub-districts) play a crucial role in implementing government policies. The number of upazilas varies based on population density and administrative requirements, with a recorded count of 544 upazilas until 2022. These upazilas are divided into unions, which are composed of several villages and are responsible for local government functions and community well-being. Villages are the smallest unit of administration and are primarily located in rural areas. They accommodate the majority of the population and play a significant role in the socio-economic role of Bangladesh. 
 
