@@ -71,6 +71,8 @@ library(plotly)
 
 data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta"))
 
+#Age by Gender
+
 g <- data_mem %>%
   count(gender) %>%
   rename(Gender = gender, Total = n) %>%
@@ -93,25 +95,44 @@ avg <- data_mem %>%
 
 avg$Gender <- factor(avg$Gender, levels = c("Male", "Female"))
 
+#Male Age Distribution 
+age_div_male <- data_mem %>% 
+  filter(gender == 0) %>% 
+  rename("Division" = div_name, "Gender" = gender, "Age_range" = age_categorical) %>% 
+  group_by(Division) %>% 
+  count(Age_range) %>% 
+  mutate(Total = sum(n),
+         Percentage = round(n/Total * 100, 2)) %>%
+  ungroup() %>%
+  mutate(Age_range = as.character(haven::zap_labels(Age_range)),
+         Age_range = recode(Age_range, "0" =  "0-5 yrs",
+                            "1" = "6-10 yrs",
+                            "2" = "11-17 yrs",
+                            "3" = "18-30 yrs",
+                            "4" = "31-65 yrs",
+                            
+                            "5" = "65-80 yrs",
+                            "6" = "80+ yrs"))
 
-#-----------Diagrams-------------------------------------------
+#Female Age Distribution 
 
-pgg <- ggplot(avg, aes(Division, Mean_age, fill = Gender))+
-  geom_bar(position="dodge", stat="identity")+
-  theme_classic()+
-  labs(title = "Average Age by Division and Gender",
-       x= "Division",
-       y = "Mean age")+
-  scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
-  easy_y_axis_title_size(size = 15)+
-  easy_x_axis_title_size(size = 15)+
-  easy_plot_title_size(size = 16)+
-  easy_center_title()+
-  ylim(0, 35)
-
-ggplotly(pgg)
-
-
+age_div_female<-data_mem%>% 
+  filter(gender == 1) %>% 
+  rename("Division" = div_name, "Gender" = gender, "Age_range" = age_categorical) %>% 
+  group_by(Division) %>% 
+  count(Age_range) %>% 
+  mutate(Total = sum(n),
+         Percentage = round(n/Total * 100, 2)) %>%
+  ungroup() %>%
+  mutate(Age_range = as.character(haven::zap_labels(Age_range)),
+         Age_range = recode(Age_range, "0" =  "0-5 yrs",
+                            "1" = "6-10 yrs",
+                            "2" = "11-17 yrs",
+                            "3" = "18-30 yrs",
+                            "4" = "31-65 yrs",
+                            
+                            "5" = "65-80 yrs",
+                            "6" = "80+ yrs"))
 
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
@@ -154,7 +175,7 @@ jscode <- "function getUrlVars() {
 
 # user -------------------------------------------------------------
 ui <- navbarPage(title = "DSPG Bangladesh 2023",
-                 selected = "overview",
+                 selected = "Overview",
                  theme = shinytheme("lumen"),
                  tags$head(tags$style('.selectize-dropdown {z-index: 10000}')),
                  useShinyjs(),
@@ -169,7 +190,7 @@ ui <- navbarPage(title = "DSPG Bangladesh 2023",
                                    h1(strong("Effects of prenatal exposure to flooding on birth outcomes: Evidence from Bangladesh"),
                                       #h2("") ,
                                       br(""),
-                                      h4("Data Science for the Public Good Program"),
+                                      h4("Data Science for the Public Good Program 2023"),
                                       h4("Virginia Polytechnic Institute and State University"),
                                       #h4("[updat this]"),
                                       br()
@@ -216,8 +237,10 @@ For example,  the 2021 paper by Oskorouchi, et al t, suggest that exposure to fl
                                           p("In our research, we will use the Bangladesh Integrated Household Survey (BIHS) data collected by IFPRI. We will utilize cross-sectional data for the year 2018-2019,  from round 3 of the BIHS survey, which is the most recent available household survey.  The sample design had two main objectives: capturing the rural areas of Bangladesh (national representation) and including all seven administrative divisions in Bangladesh, divisional representation. The BIHS sample also included observations from the Feed The Future (FTF) zone of influence, which we are going to discard from our sample to avoid over-sampling issues
 To determine the sample size meeting the above-mentioned conditions, the IFPRI survey team used a careful 2-stage stratified statistical sampling method to satisfy the above mentioned conditions. In the first stage, they selected Primary Sampling Units (PSUs), which are villages in this context, using probability proportional to size based on the number of households in each stratum or division. The allocation of PSUs resulted in the following distribution: 21 PSUs in Barisal, 48 in Chittagong, 87 in Dhaka, 27 in Khulna, 29 in Rajshahi, 27 in Rangpur, and 36 in Sylhet, and 50 in the FTF zone. In the second stage, 20 households were randomly selected from each PSU. The IFPRI sample size was 6,500 households across 325 PSUs. Our sample size, however,  is a bit smaller than the 6,500 households because we excluded 1000  households from the FTF Zone of Influence. Also, it is important to note that, since we are using the data from the 3rd round of the survey,  several changes happened within households between 2011-12 and 2018-19: households from the first round have either merged, or split. After making  all those adjustments our sample size turns out to be 5604 households.", align = "justify"),  
 p("In addition to the survey data we will use Sentinel-1 data to assess  the flood extent 
-Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses radar to gather data information from the earth's surface and generates high-resolution images as radar sensors are not sensitive to atmospheric conditions. There are a few steps we followed to gather our flood data. First we chose our study area: this is setting a buffer zone around each sampled household so that we examine how much it was affected by the flood.  Second, we chose the timeframe based on when the mother was pregnant so that we can birth outcomes based on the mother’s flood exposure ", align = "justify")
-                                          #p(""),
+Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses radar to gather data information from the earth's surface and generates high-resolution images as radar sensors are not sensitive to atmospheric conditions. There are a few steps we followed to gather our flood data. First we chose our study area: this is setting a buffer zone around each sampled household so that we examine how much it was affected by the flood.  Second, we chose the timeframe based on when the mother was pregnant so that we can birth outcomes based on the mother’s flood exposure ", align = "justify"),
+                                          h2(strong("Survey")),
+                                          p("To gather more information about the health and living conditions of Bangladesh, we will be using the BIHS, conducted by our stakeholders, IFPRI, stationed in Bangladesh. The survey is composed of multiple modules. However, in our study we will focus mainly on modules A, B, W, and Y. Module A will provide insight on the sample households and identification; this includes information on coordinates of the household and the total number of members in the household. Coordinates of the household will be used to locate the proximity of these households to the affected flooded areas. Module B covers the Household Composition and Education. THis module entails the education levels, occupation, and source of income for individuals of the household. Module W focuses on the anthropometry, health, and illnesses of each individual of the household. Module Y has sectional portions containing survey data on child and antenatal care, Infant and child feeding practices, immunization and health of children younger than the age of two and service use.
+", align="justify")
                                           #p("")
                                    )
                           ),
@@ -225,35 +248,53 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                           # p(tags$small(em('Last updated: August 2021'))))
                  ),
                  
-                 ## Sterling Area--------------------------------------------
+                 ## Overview--------------------------------------------
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 6px;",
                                    p("", style = "padding-top:10px;"),
-                                   column(12, align = "center",h4(strong("Map of Sterling")),
-                                          p("This map shows the Sterling area and the 6 schools."),
+                                   column(12, align = "center",h4(strong("Flooding in Bangladesh")),
+                                          p(""),
                                           br("")
                                           
                                           
                                           
-                                   )),
-                          
-                          fluidPage(
-                            column(12, align = "center", plotlyOutput("age_by_gender", width = "60%")
-                                   #fluidRow(align = "center",
-                                   #    p(tags$small(em('Last updated: August 2021'))))
-                            ) 
-                          )
+                                   ))
                  ), 
-                  tabPanel("Sociodemographics", value = "overview",
+                  tabPanel("Household Profile", value = "overview",
                             fluidRow(style = "margin: 6px;",
                              p("", style = "padding-top:10px;"),
-                             column(12, align = "center",h4(strong("")),
+                             column(12, align = "center",h4(strong("Household Profile")),
                                p(""),
                                 br("")
                          
                          
                          
+                  )),
+         
+         fluidPage(
+           column(6, align = "left", 
+                  selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                    "Age by Gender" = "age_by_gender",
+                    "Male Age Distribution" = "male_age", 
+                    "Female Age Distribution" = "female_age"
+                  )),
+                  br(""), 
+                  withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                  column(12, align = "right",
+                         p("Source:", style = "font-size:12px;")
+                  #fluidRow(align = "center",
+                  #    p(tags$small(em('Last updated: August 2021'))))
+           ) 
+         )
+)), 
+                  tabPanel("Mother and Child", value = "overview",
+                  fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h4(strong("Mother and Child Profile")),
+                         p(""),
+                         br("")
                   ))
+      
 )
 )
 
@@ -265,24 +306,77 @@ server <- function(input, output, session) {
   # Run JavaScript Code
   runjs(jscode)
   
-  # Render map 
-  output$age_by_gender <- renderPlotly({
-    pgg <- ggplot(avg, aes(Division, Mean_age, fill = Gender))+
-      geom_bar(position="dodge", stat="identity")+
-      theme_classic()+
-      labs(title = "Average Age by Division and Gender",
-           x= "Division",
-           y = "Mean age")+
-      scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
-      easy_y_axis_title_size(size = 15)+
-      easy_x_axis_title_size(size = 15)+
-      easy_plot_title_size(size = 16)+
-      easy_center_title()+
-      ylim(0, 35)
-    
-    ggplotly(pgg)
+  Var3 <- reactive({
+    input$demos1drop
   })
   
+  output$demo1 <- renderPlotly({
+    
+    if (Var3() == "age_by_gender") {
+      
+      pgg <- ggplot(avg, aes(Division, Mean_age, fill = Gender))+
+        geom_bar(position="dodge", stat="identity")+
+        theme_classic()+
+        labs(title = "Average Age by Division and Gender",
+             x= "Division",
+             y = "Mean age")+
+        scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
+        ylim(0, 35)
+      
+      ggplotly(pgg)
+      
+    }
+    
+    else if (Var3() == "male_age") {
+      
+      p_ma<- ggplot(age_div_male, 
+                    aes(Division, Percentage, fill = Age_range))+
+        geom_bar(position="dodge", stat="identity")+
+        scale_fill_viridis_d() +
+        theme_classic()+
+        scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
+                                     "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
+                                     "31-65 yrs" = "#ff7f00","65-80 yrs" = "#bd93f5", 
+                                     "#5ec962", "#cc4778",
+                                     "80+ yrs" = "#f6c2f8"))+
+        labs(title = "Age Distribution of Male by Division",
+             x= "Division",
+             y = "Percentage")+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
+        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        ylim(0,50)
+      ggplotly(p_ma)
+    }
+    
+    else if (Var3() == "female_age") {
+      
+      p_fe <- ggplot(age_div_female, aes(Division, Percentage, fill = Age_range)) +
+        geom_bar(position = "dodge", stat = "identity") +
+        scale_fill_viridis_d() +  # Set colors to viridis defaults
+        theme_classic() +
+        scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
+                                     "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
+                                     "31-65 yrs" = "#ff7f00","65-80 yrs" = "#bd93f5", 
+                                     "#5ec962", "#cc4778",
+                                     "80+ yrs" = "#f6c2f8"))+
+        # easy_all_text_colour("#630031") +
+        labs(title = "Age Distribution of Female by Division", x = "Division", y = "Percentage") +
+        easy_plot_title_size(size = 16) +
+        easy_center_title() +
+        ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        ylim(0, 50)
+      ggplotly(p_fe)
+    }
+    
+  })
+  
+  # Render map 
+
 }
 
 #sociodemo tabset ----------------------------------------------------
