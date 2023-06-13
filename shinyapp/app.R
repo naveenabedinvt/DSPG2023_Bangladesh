@@ -193,7 +193,7 @@ ui <- navbarPage(title = "DSPG Bangladesh 2023",
                                       h4("Data Science for the Public Good Program 2023"),
                                       h4("Virginia Polytechnic Institute and State University"),
                                       #h4("[updat this]"),
-                                      br()
+                                      br("")
                                    )
                           ),
                           fluidRow(style = "margin: 6px;",
@@ -271,8 +271,8 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                          
                   )),
          
-         fluidPage(
-           column(6, align = "left", 
+                    fluidPage(
+                    column(6, align = "left", 
                   selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
                     "Age by Gender" = "age_by_gender",
                     "Male Age Distribution" = "male_age", 
@@ -285,8 +285,11 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                   #fluidRow(align = "center",
                   #    p(tags$small(em('Last updated: August 2021'))))
            ) 
-         )
-)), 
+         ), column(6, align = "justify",
+                   p("shgfweyf"))
+)
+
+), 
                   tabPanel("Mother and Child", value = "overview",
                   fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
