@@ -260,36 +260,135 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                                           
                                    ))
                  ), 
-                  tabPanel("Household Profile", value = "overview",
-                            fluidRow(style = "margin: 6px;",
-                             p("", style = "padding-top:10px;"),
-                             column(12, align = "center",h4(strong("Household Profile")),
-                               p(""),
-                                br("")
-                         
-                         
-                         
-                  )),
-         
-                    fluidPage(
-                    column(6, align = "left", 
-                  selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                    "Age by Gender" = "age_by_gender",
-                    "Male Age Distribution" = "male_age", 
-                    "Female Age Distribution" = "female_age"
-                  )),
-                  br(""), 
-                  withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
-                  column(12, align = "right",
-                         p("Source:", style = "font-size:12px;")
-                  #fluidRow(align = "center",
-                  #    p(tags$small(em('Last updated: August 2021'))))
-           ) 
-         ), column(6, align = "justify",
-                   p("shgfweyf"))
-)
+tabPanel("Household Profile",
+                             fluidRow(style = "margin: 4px;",
+                                      h1(strong("Household Profile"), align = "center"),
+                                      p("", style = "padding-top:10px;"), 
+                                      
+                                      
+                                      
+                                      column(7, 
+                                             tabsetPanel(
+                                               
+                                               tabPanel("HH Formation",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                                                 column(12, align = "left",
+                                                                        selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                          "Household size by Division " = "household_size_division",
+                                                                          "Dependency Ratio by Division " = "dependency_ratio_division", 
+                                                                          "Household Headship by Division" = "household_headship_division"
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                                                                        column(12, align = "right",
+                                                                               p("Source: ", style = "font-size:12px;"),
+                                                                               withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                        )),
+                                               
+                                               tabPanel("Age",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                                                 column(12, align = "left",
+                                                                        selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                                              "Age by Gender" = "age_by_gender",
+                                                                                              "Male Age Distribution" = "male_age", 
+                                                                                              "Female Age Distribution" = "female_age"
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                                                                        column(12, align = "right",
+                                                                               p("Source: ", style = "font-size:12px;"),
+                                                                               withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                        )),
+                                               tabPanel("Education",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                                                 column(12, align = "left",
+                                                                        selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                          "Male Education by Division" = "male_education_division",
+                                                                          "Female Education by Division" = "female_education_division", 
+                                                                          "HH Highest Education" = "hh_highest_education",
+                                                                          "HH Head Education" = "hh_ head_education"
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                                                                        column(12, align = "right",
+                                                                               p("Source: ", style = "font-size:12px;"),
+                                                                               withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                        )),
+                                               tabPanel("Economic Status",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                                                 column(12, align = "left",
+                                                                        selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                          "Households Below Poverty Line" = "households_below_poverty_line",
+                                                                          "Households in Farming Activities" = "households_farming_activities", 
+                                                                          "Cultivable Land Holding" = "cultivable_land",
+                                                                          "Electricity Accessibility " = "electricity_eccessibility ",
+                                                                          "Water Treatment" = "water_treatment",
+                                                                          "Water Improvement" = "water_improvement",
+                                                                          "HH head Main Occupation" = "hhh _ occupation"
+                                                                          
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                                                                        column(12, align = "right",
+                                                                               p("Source: ", style = "font-size:12px;"),
+                                                                               withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                        )))))),
 
-), 
+
+
+#                   tabPanel("Household Profile", value = "overview",
+#                             fluidRow(style = "margin: 6px;",
+#                              p("", style = "padding-top:10px;"),
+#                              column(12, align = "center",h4(strong("Household Profile")),
+#                                p(""),
+#                                 br("")
+#                          
+#                          
+#                          
+#                   )),
+#          
+#                     fluidPage(
+#                     column(8, align = "left", 
+#                   selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+#                     "Age by Gender" = "age_by_gender",
+#                     "Male Age Distribution" = "male_age", 
+#                     "Female Age Distribution" = "female_age"
+#                   )),
+#                   br(""), 
+#                   withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+#                   column(12, align = "right",
+#                          p("Source:", style = "font-size:12px;")
+#                   #fluidRow(align = "center",
+#                   #    p(tags$small(em('Last updated: August 2021'))))
+#            ) 
+#          ), column(4, align = "justify",
+#                    br(""),
+#                    br(""),
+#                    br(""),
+#                    p("There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years, while for females, it is 31.77 years, making it the city with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years and females averaging 27.79 years."))
+# )
+# 
+# ), 
                   tabPanel("Mother and Child", value = "overview",
                   fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
@@ -298,8 +397,8 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                          br("")
                   ))
       
-)
-)
+))
+
 
 
 ## Sundarbans Region--------------------------------------------
@@ -328,6 +427,7 @@ server <- function(input, output, session) {
         easy_x_axis_title_size(size = 15)+
         easy_plot_title_size(size = 16)+
         easy_center_title()+
+        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 35)
       
       ggplotly(pgg)
