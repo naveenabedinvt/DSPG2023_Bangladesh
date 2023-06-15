@@ -560,7 +560,7 @@ Sentinel-1 is a satellite by the European Space Agency launched in 2014. It uses
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 6px;",
                                    p("", style = "padding-top:10px;"),
-                                   column(12, align = "center",h4(strong("Flooding in Bangladesh")),
+                                   column(12, align = "center",h1(strong("Flooding in Bangladesh")),
                                           p(""),
                                           br("")
                                           
@@ -596,12 +596,17 @@ tabPanel("Household Profile",
                                                                         withSpinner(plotlyOutput("hhform", height = "500px", width ="100%")),
                                                                         column(12, align = "center",
                                                                                p("Source: ", style = "font-size:12px;")
-                                                                               # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                               # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
                                                                  
-                                                                column(width = 4,
-                                                                               h4("Description"),
+                                                                column(4,
+                                                                               h4(strong("Description")),
                                                                                textOutput("desc1"))
                                                                   
                                                         )
@@ -629,8 +634,13 @@ tabPanel("Household Profile",
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
                                                                  column(width = 4,
-                                                                        h4("Description"),
+                                                                        h4(strong("Description")),
                                                                         textOutput("desc2"))
                                                         )),
                                                tabPanel("Education",
@@ -652,8 +662,13 @@ tabPanel("Household Profile",
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
                                                                  column(width = 4,
-                                                                        h4("Description"),
+                                                                        h4(strong("Description")),
                                                                         textOutput("desc3"))
                                                         )),
                                                tabPanel("Economic Status",
@@ -679,8 +694,13 @@ tabPanel("Household Profile",
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
                                                                  column(width = 4,
-                                                                        h4("Description"),
+                                                                        h4(strong("Description")),
                                                                         textOutput("desc4"))
                                                                  
                                                         )))))),
@@ -688,12 +708,189 @@ tabPanel("Household Profile",
 tabPanel("Mother and Child", value = "overview",
                   fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h4(strong("Mother and Child Profile")),
+                  column(12, align = "center",h1(strong("Mother and Child Profile")),
                          p(""),
-                         br("")
+                         br("")))),
+tabPanel("Results", value = "overview",
+         fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h1(strong("Multivariate Analysis")),
+                         p(""),
+                         br(""),
+                          column(12, 
+                                             tabsetPanel(
+                                               
+                                               tabPanel("ANOVA",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                  
+                                                                 column(8, align = "left",
+                                                                        selectInput("anovadrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                          "A " = "a",
+                                                                          "B " = "b", 
+                                                                          "C" = "c"
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        
+                                                                    
+                                                                        withSpinner(plotlyOutput("anova", height = "500px", width ="100%")),
+                                                                        column(12, align = "center",
+                                                                               p("Source: ", style = "font-size:12px;")
+                                                                               # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 
+                                                                column(4,
+                                                                               h4(strong("Description")),
+                                                                               textOutput("desc5"))
+                                                                  
+                                                        )
+                                                        ),
+                                               
+                                               
+                                               
+                                               
+                                               tabPanel("Regressions",
+                                                        fluidRow(style = "margin: 4px;",
+                                                                 p("", style = "padding-top:10px;"),
+                                                                 column(8, align = "left",
+                                                                        selectInput("regressiondrop", "Select Model:", width = "100%", choices = c(
+                                                                                              "D" = "d",
+                                                                                              "E" = "e", 
+                                                                                              "F" = "f",
+                                                                                              "G" = "g"
+                                                                          
+                                                                        ),
+                                                                        ),   
+                                                                        br(""),
+                                                                        withSpinner(plotlyOutput("regression", height = "500px", width ="100%")),
+                                                                        column(12, align = "center",
+                                                                               p("Source: ", style = "font-size:12px;")
+                                                                               # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                        )
+                                                                 ),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 column(width = 4,
+                                                                        h4(strong("Description")),
+                                                                        textOutput("desc6"))
+                                                        ))))))),
 
-                  
-                  ))))
+tabPanel("Discussion/Conclusion", value = "overview",
+         fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h1(strong("Discussion/Conclusion")),
+                         p(""),
+                         br("")))),
+tabPanel("References", value = "overview",
+         fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h1(strong("References"))),
+                  column(12, align = "left",
+                         p("Aggarwal, Shilpa. “The Long Road to Health: Healthcare Utilization Impacts of a Road Pavement Policy in Rural India.” Journal of Development Economics, vol. 151, Elsevier BV, June 2021, p. 102667, doi:10.1016/j.jdeveco.2021.102667."),
+                         p("Del Ninno, Carlo, and Mattias Lundberg. “Treading Water.” Economics and Human Biology, vol. 3, no. 1, Elsevier BV, Mar. 2005, pp. 67–96, doi:10.1016/j.ehb.2004.12.002."),
+                         p("Guiteras, R., Jina, A., & Mobarak, A. M. (2015). Satellites, Self-reports, and Submersion: Exposure to Floods in Bangladesh. The American Economic Review, 105(5), 232–236. https://doi.org/10.1257/aer.p20151095 "),
+                         p("Mallett, Lea H., and Ruth A. Etzel. “Flooding: What Is the Impact on Pregnancy and Child Health?” Disasters, vol. 42, no. 3, Wiley-Blackwell, July 2018, pp. 432–58, doi:10.1111/disa.12256."),
+                         p(""),
+                         p(""),
+                         p(""),
+                         p(""),
+                         p(""),
+                         p(""),
+                         br("")))),
+                         
+tabPanel("Our Team", value = "overview",
+         fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h1(strong("Meet the Team")),
+                         p(""),
+                         br(""),
+                         h4(strong("VT Data Science for the Public Good"), align = "center"),
+                         p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
+                           "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics'), 
+                           "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
+                                     around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to 
+                                     determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, 
+                                     how to apply, and our annual symposium, please visit", 
+                           a(href = 'https://aaec.vt.edu/content/aaec_vt_edu/en/academics/undergraduate/beyond-classroom/dspg.html#select=1.html', 'the official VT DSPG website.', target = "_blank")),
+                         p("", style = "padding-top:10px;")
+                  ),
+                  fluidRow(style = "margin-left: 100px; margin-right: 100px;",
+                           column(4, align = "center",
+                                  h4(strong("DSPG Graduate Fellow Member")),
+                                  img(src = "Nandini Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  p("", style = "padding-top:10px;"), 
+                                  p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), "(Bio);"),
+                                  
+                                  
+                                  p("", style = "padding-top:10px;"), 
+                                  img(src = "Nandini_Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  
+                                  p("", style = "padding-top:10px;"), 
+                                  p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), "(Bio)"),
+                                  
+                                  
+                                  p("", style = "padding-top:10px;") 
+                           ),
+                           column(4, align = "center",
+                                  h4(strong("DSPG Undergraduate Members")),
+                                  img(src = "Sotaire_Kwizera (1).jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  p(a(href = 'https://www.linkedin.com/in/sotairekwizera', 'Sotaire Kwizera', target = '_blank'), "(Bio);"),
+                                  img(src = "Jade_Nguyen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  p(a(href = 'https://www.linkedin.com/in/ngoc-anh-nguyen-a8a590219', 'Jade Nguyen', target = '_blank'), "(Bio) ;"),
+                                  img(src = "Riya_Pulla.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "200px"),
+                                  p(a(href = 'https://www.linkedin.com/in/riyapulla', 'Riya Pulla', target = '_blank'), "(Bio)."),
+                                  
+                           ),
+                           column(4, align = "center",
+                                  h4(strong("Faculty Advisor")),
+                                  img(src = "faculty-chanita.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  
+                                  p("", style = "padding-top:10px;"), 
+                                  p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), "(Bio)") , 
+                                  
+                                  p("", style = "padding-top:10px;")
+                           )) ,
+                  fluidRow(style = "margin-left: 100px; margin-right: 100px;",
+                           h4(strong("Project Stakeholder")),
+                           p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
+                          
+                           p("", style = "padding-top:10px;"),
+                           h4(strong("Acknowledgments")) ,
+                           p("We would like to thank (---) officials for providing us with data for our project. "),
+                           p("", style = "padding-top:10px;")
+                  )
+         )
+         
+))
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                    
 
 
 
@@ -776,26 +973,26 @@ server <- function(input, output, session) {
   
   
   output$desc1 <- renderText({
-        "This is the description for Tab 1."
+        " Description"
       })
   
   
   output$desc1 <- renderText({
     if (Var_hhform() == "household_size_division") {
       
-      "This is the description for household_size_division ."
+      "The average hiusehold size is around 4.2 people accross all divisions. Sylhet has relatively large households with an average household size of 4.93 members."
       
     }
     
     else if (Var_hhform() == "dependency_ratio_division") {
       
-      "dependency_ratio_division"
+      "The dependency is below 40 percent across all divisions, meaning that in most households have a higher share of independent household members"
       
     }
     
     else if (Var_hhform() == "household_headship_division") {
       
-      "household_headship_division"
+      "Males are household heads in most of the families and across all divisions. Chittagong has the highest percentage (33.57%) of female household heads."
       
     }  
   })
@@ -898,23 +1095,23 @@ server <- function(input, output, session) {
   output$desc2 <- renderText({
     if (Var3() == "age_by_gender") {
       
-      "age_by_gender"
+      "There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years, while for females, it is 31.77 years, making it the city with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years and females averaging 27.79 years."
       
     }
     
     else if (Var3() == "male_age") {
       
-      "male_age"
+      "Across all divisions, the age range with the highest male population is 31-65 years Khulna has the highest percent of people in that category(40.76%). It is also important to note that around 15 percent of the male population consists of children under the age of 5 across all divisions."
       
     }
     
     else if (Var3() == "female_age") {
       
-      "female_age"
+      "Similary to their male counterpart, the 31-65 years age range holds big chunk of female population. Again Khulna is leading with 43.74 % of falling under the 31-65 age category. Also childeren the age of 5 account for around 10 percent aacross all divisions."
       
     }
     else if(Var3() == "head_age"){
-      "head_age" 
+      "The most frequent household age across all of the divisions is “31-65 yrs”. The least frequent household age is “80+ yrs”. ’ Some factors that contribute to this could be that people under 31 have migrated to cities or more developed areas in search of better educational and employment opportunities." 
     }
   }) 
   
@@ -1016,23 +1213,23 @@ server <- function(input, output, session) {
   output$desc3 <- renderText({
     if (hedu() == "male_education_division") {
       
-      "male_education_division"
+      "Although there are more males with no education than females, we observe that a higher percentage of males than females making it higher education.However, Sylhet still has the has the lowest percentage (4.16 %) of males in higher education."
       
     }
     
     else if (hedu() == "female_education_division") {
       
-      "female_education_division"
+      "In general, most female have no formal education or only completed primary education across all divisions. Rangpur has the highest percentage of no educated female(42.55 %). The percent of female who manage to go past secondary school is between 2.83 to 5.15 %."
       
     }
     
     else if (hedu() == "hh_highest_education") {
       
-      "hh_highest_education"
+      "In this graph, we see that more than half of the sampled households report completed primary as their highest household educational attainment across all divisions. We also see that Rangpur has the highest percentage (10.84 %)of households whose members have no formal education."
       
     }
     else if(hedu() == "hh_ head_education"){
-      "hh_ head_education" 
+      "The highest Household Head Education all the divisions except Chittagong is “No Education”. In Chittagong, the highest is “Completed Primary”. The least frequence education level amoung all of the divisions is “Completed Secondary” and “Higher”." 
     }
   }) 
   
@@ -1193,35 +1390,87 @@ server <- function(input, output, session) {
   output$desc4 <- renderText({
     if (hheco() == "households_below_poverty_line") {
       
-      "households_below_poverty_line"
+      "Rangpur (17.13%) and Rajshahi(10.06%) stand out with their highest percentages of households living below the poverty line. Note: We are using the international poverty line of $ 1.96, adjusted for the 2011 purchasing power parity."
       
     }
     
     else if (hheco() == "households_farming_activities") {
       
-      "households_farming_activities"
+      "Most households primarily engage in farming activities, with approximately 90% of them relying on subsistence farming. Livestock farming is the prevalent agricultural pursuit, and Rangpur has the highest proportion of households (89.51%) involved in this sector."
       
     }
     
     else if (hheco() == "cultivable_land") {
       
-      "cultivable_land"
+      "Chittagong has the highest percent (44.97%) of households without cultivable land. It is followed by Sylhet (43.09%)"
       
     }
     else if(hheco() == "electricity_accessibility"){
-      "electricity_accessibility" 
+      "Barisal (29.61%) and Rangpur (26.40) have the highest percentage of households without electricity." 
     }
     else if(hheco() == "water_treatment"){
-      "water_treatment" 
+      "Across all the divisions in Bangladesh, an average of 95.06% of households that took the survey reported that they do not filter drinking water. The division with the highest percentage of people who do not filter their drinking water is Rangpur and the division with the lowest percentage of households that do not filter their drinking water is Sylhet." 
     }
     else if(hheco() == "water_improvement"){
-      "water_improvement" 
+      "Across all the divisions in Bangladesh, an average of 97.05% of households that took the survey reported to not have acess to improved water." 
     }
     else if(hheco() == "hhh_occupation"){
-      "hhh_occupation" 
+      "In each division, farming is the most frequent occupation, with the largest number of farmers residing in Khulna. The second most frequent occupation in most divisions is non-earning occupations, primarily made up of mothers, nannies, and others. The occupation with the least frequency is livestock-related work, adding up to less than 1 percent combined across the seven divisions. This could be caused by the majority of agricultural land being used for crops and risk of damage caused by natural disasters to livestock." 
     }
     
   }) 
+  Var_regress <- reactive({
+    input$regressiondrop
+  })
+  
+  output$regression<- renderPlotly({
+    if (Var_regress() == "D") {
+      
+      
+    }
+    
+    else if (Var_regress() == "E") {
+      
+    }
+    
+    else if (Var_regress() == "F") {
+      
+    } 
+    else if (Var_regress() == "F") {
+      
+    }  
+  })
+  
+  
+  output$desc6 <- renderText({
+    " Description"
+  })
+  
+  
+  output$desc6 <- renderText({
+    if (Var_regress() == "D") {
+      
+      " "
+      
+    }
+    
+    else if (Var_regress() == "E") {
+      
+      ""
+      
+    }
+    
+    else if (Var_regress() == "F") {
+      
+      ""
+      
+    } 
+    else if (Var_regress() == "G") {
+      
+      ""
+      
+    }
+  })
   }
 
 shinyApp(ui = ui, server = server)
