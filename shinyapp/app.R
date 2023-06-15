@@ -575,13 +575,14 @@ tabPanel("Household Profile",
                                       
                                       
                                       
-                                      column(7, 
+                                      column(12, 
                                              tabsetPanel(
                                                
                                                tabPanel("HH Formation",
                                                         fluidRow(style = "margin: 4px;",
                                                                  p("", style = "padding-top:10px;"),
-                                                                 column(12, align = "left",
+                                  
+                                                                 column(8, align = "left",
                                                                         selectInput("hhformdrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
                                                                           "Household size by Division " = "household_size_division",
                                                                           "Dependency Ratio by Division " = "dependency_ratio_division", 
@@ -590,12 +591,19 @@ tabPanel("Household Profile",
                                                                         ),
                                                                         ),   
                                                                         br(""),
+                                                                        
+                                                                    
                                                                         withSpinner(plotlyOutput("hhform", height = "500px", width ="100%")),
-                                                                        column(12, align = "right",
+                                                                        column(12, align = "center",
                                                                                p("Source: ", style = "font-size:12px;")
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 
+                                                                column(width = 4,
+                                                                               h4("Description"),
+                                                                               textOutput("desc1"))
+                                                                  
                                                         )
                                                         ),
                                                
@@ -605,7 +613,7 @@ tabPanel("Household Profile",
                                                tabPanel("Age",
                                                         fluidRow(style = "margin: 4px;",
                                                                  p("", style = "padding-top:10px;"),
-                                                                 column(12, align = "left",
+                                                                 column(8, align = "left",
                                                                         selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
                                                                                               "Age by Gender" = "age_by_gender",
                                                                                               "Male Age Distribution" = "male_age", 
@@ -616,16 +624,19 @@ tabPanel("Household Profile",
                                                                         ),   
                                                                         br(""),
                                                                         withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
-                                                                        column(12, align = "right",
+                                                                        column(12, align = "center",
                                                                                p("Source: ", style = "font-size:12px;")
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 column(width = 4,
+                                                                        h4("Description"),
+                                                                        textOutput("desc2"))
                                                         )),
                                                tabPanel("Education",
                                                         fluidRow(style = "margin: 4px;",
                                                                  p("", style = "padding-top:10px;"),
-                                                                 column(12, align = "left",
+                                                                 column(8, align = "left",
                                                                         selectInput("edudrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
                                                                           "Male Education by Division" = "male_education_division",
                                                                           "Female Education by Division" = "female_education_division", 
@@ -636,16 +647,19 @@ tabPanel("Household Profile",
                                                                         ),   
                                                                         br(""),
                                                                         withSpinner(plotlyOutput("edu", height = "500px", width ="100%")),
-                                                                        column(12, align = "right",
+                                                                        column(12, align = "center",
                                                                                p("Source: ", style = "font-size:12px;")
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 column(width = 4,
+                                                                        h4("Description"),
+                                                                        textOutput("desc3"))
                                                         )),
                                                tabPanel("Economic Status",
                                                         fluidRow(style = "margin: 4px;",
                                                                  p("", style = "padding-top:10px;"),
-                                                                 column(12, align = "left",
+                                                                 column(8, align = "left",
                                                                         selectInput("ecodrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
                                                                           "Households Below Poverty Line" = "households_below_poverty_line",
                                                                           "Households in Farming Activities" = "households_farming_activities", 
@@ -660,22 +674,16 @@ tabPanel("Household Profile",
                                                                         ),   
                                                                         br(""),
                                                                         withSpinner(plotlyOutput("eco", height = "500px", width ="100%")),
-                                                                        column(12, align = "right",
+                                                                        column(12, align = "center",
                                                                                p("Source: ", style = "font-size:12px;")
                                                                                # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
                                                                         )
                                                                  ),
+                                                                 column(width = 4,
+                                                                        h4("Description"),
+                                                                        textOutput("desc4"))
                                                                  
-                                                        )))),
-                                      column(5, align = "justify",
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             h4(strong("Who Makes Up Sterling, Virginia?")), 
-                                             
-                                             p("We used the American Community Survey (ACS) 5-year 2016 - 2020 data to understand the socioeconomic demographics of the Sterling Census Designated Place (CDP). The ACS is administered by the U.S. Census Bureau which gathers information on American households, including sociodemographic variables such as gender, race/ethnicity, income, and employment. "),
-                                      ))),
-
+                                                        )))))),
 
 tabPanel("Mother and Child", value = "overview",
                   fluidRow(style = "margin: 6px;",
@@ -742,6 +750,7 @@ server <- function(input, output, session) {
         ylim(0, 0.5)
       
       ggplotly(p_depr)
+      
     }
     
     else if (Var_hhform() == "household_headship_division") {
@@ -761,8 +770,36 @@ server <- function(input, output, session) {
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0,100)
       ggplotly(p_h2o)
+      
     }  
   })
+  
+  
+  output$desc1 <- renderText({
+        "This is the description for Tab 1."
+      })
+  
+  
+  output$desc1 <- renderText({
+    if (Var_hhform() == "household_size_division") {
+      
+      "This is the description for household_size_division ."
+      
+    }
+    
+    else if (Var_hhform() == "dependency_ratio_division") {
+      
+      "dependency_ratio_division"
+      
+    }
+    
+    else if (Var_hhform() == "household_headship_division") {
+      
+      "household_headship_division"
+      
+    }  
+  })
+  
   
   Var3 <- reactive({
     input$demos1drop
@@ -858,6 +895,30 @@ server <- function(input, output, session) {
 
   })
   
+  output$desc2 <- renderText({
+    if (Var3() == "age_by_gender") {
+      
+      "age_by_gender"
+      
+    }
+    
+    else if (Var3() == "male_age") {
+      
+      "male_age"
+      
+    }
+    
+    else if (Var3() == "female_age") {
+      
+      "female_age"
+      
+    }
+    else if(Var3() == "head_age"){
+      "head_age" 
+    }
+  }) 
+  
+  
   hedu <- reactive({
     input$edudrop
   })
@@ -951,6 +1012,31 @@ server <- function(input, output, session) {
       ggplotly(p_hh)}
     }
   )
+  
+  output$desc3 <- renderText({
+    if (hedu() == "male_education_division") {
+      
+      "male_education_division"
+      
+    }
+    
+    else if (hedu() == "female_education_division") {
+      
+      "female_education_division"
+      
+    }
+    
+    else if (hedu() == "hh_highest_education") {
+      
+      "hh_highest_education"
+      
+    }
+    else if(hedu() == "hh_ head_education"){
+      "hh_ head_education" 
+    }
+  }) 
+  
+  
   hheco <- reactive({
     input$ecodrop
   })
@@ -1102,7 +1188,41 @@ server <- function(input, output, session) {
     }
     
   }
-  )}
+  )
+ 
+  output$desc4 <- renderText({
+    if (hheco() == "households_below_poverty_line") {
+      
+      "households_below_poverty_line"
+      
+    }
+    
+    else if (hheco() == "households_farming_activities") {
+      
+      "households_farming_activities"
+      
+    }
+    
+    else if (hheco() == "cultivable_land") {
+      
+      "cultivable_land"
+      
+    }
+    else if(hheco() == "electricity_accessibility"){
+      "electricity_accessibility" 
+    }
+    else if(hheco() == "water_treatment"){
+      "water_treatment" 
+    }
+    else if(hheco() == "water_improvement"){
+      "water_improvement" 
+    }
+    else if(hheco() == "hhh_occupation"){
+      "hhh_occupation" 
+    }
+    
+  }) 
+  }
 
 shinyApp(ui = ui, server = server)
 
