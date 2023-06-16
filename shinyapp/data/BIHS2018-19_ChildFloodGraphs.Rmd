@@ -1,0 +1,203 @@
+```{r setup, message = FALSE, warning=FALSE, fig.align='center'}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(foreign)
+library(haven)
+```
+
+```{r}
+setwd("C:/Users/jadena/Documents/DSPG2023_Bangladesh")
+```
+
+```{r, echo=TRUE}
+data <- read_dta("BIHS2018-19Children_FloodExtent_MatchedJun15.dta")
+```
+
+
+```{r stunt tri1}
+data_stunted1 <- data %>%
+  group_by(div_name, tertile_firsttrim_flood) %>%
+  summarise(Percentage_Stunted = mean(stunted_all) * 100) %>%
+  filter(!is.na(tertile_firsttrim_flood))
+
+# Generate the graph
+ggplot(data_stunted1, aes(x = div_name, y = Percentage_Stunted, fill = factor(tertile_firsttrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Stunted Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Stunted Children by Flood Intensity during the First Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+```{r}
+data_stunted2 <- data %>%
+  group_by(div_name, tertile_secondtrim_flood) %>%
+  summarise(Percentage_Stunted = mean(stunted_all) * 100) %>%
+  filter(!is.na(tertile_secondtrim_flood))
+
+# Generate the graph
+ggplot(data_stunted2, aes(x = div_name, y = Percentage_Stunted, fill = factor(tertile_secondtrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Stunted Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Stunted Children by Flood Intensity during the Second Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+
+```{r}
+data_stunted3 <- data %>%
+  group_by(div_name, tertile_thirdtrim_flood) %>%
+  summarise(Percentage_Stunted = mean(stunted_all) * 100) %>%
+  filter(!is.na(tertile_thirdtrim_flood))
+
+# Generate the graph
+ggplot(data_stunted3, aes(x = div_name, y = Percentage_Stunted, fill = factor(tertile_thirdtrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Stunted Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Stunted Children by Flood Intensity during the Third Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+```{r}
+data_underwgt1 <- data %>%
+  group_by(div_name, tertile_firsttrim_flood) %>%
+  summarise(Percentage_Underweight = mean(underweight_all) * 100) %>%
+  filter(!is.na(tertile_firsttrim_flood))
+
+# Generate the graph
+ggplot(data_underwgt1, aes(x = div_name, y = Percentage_Underweight, fill = factor(tertile_firsttrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Underweight Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Underweight Children by Flood Intensity during the First Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+```{r}
+data_underwgt1 <- data %>%
+  group_by(div_name, tertile_secondtrim_flood) %>%
+  summarise(Percentage_Underweight = mean(underweight_all) * 100) %>%
+  filter(!is.na(tertile_secondtrim_flood))
+
+# Generate the graph
+ggplot(data_underwgt1, aes(x = div_name, y = Percentage_Underweight, fill = factor(tertile_secondtrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Underweight Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Underweight Children by Flood Intensity during the Second Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+```{r}
+data_underwgt1 <- data %>%
+  group_by(div_name, tertile_thirdtrim_flood) %>%
+  summarise(Percentage_Underweight = mean(underweight_all) * 100) %>%
+  filter(!is.na(tertile_thirdtrim_flood))
+
+# Generate the graph
+ggplot(data_underwgt1, aes(x = div_name, y = Percentage_Underweight, fill = factor(tertile_thirdtrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x = "Division", y = "% of Underweight Children, under 5 years", fill = "Flood Intensity") +
+  scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Underweight Children by Flood Intensity during the Third Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 70))
+```
+
+
+
+
+```{r}
+data_stunted_all <- data %>%
+  group_by(tertile_firsttrim_flood) %>%
+  summarise(Percentage_Stunted = mean(stunted_all) * 100) %>%
+  filter(!is.na(tertile_firsttrim_flood))
+
+# Generate the graph with colors from the viridis palette, modified title font size, and adjusted y-axis scale
+ggplot(data_stunted_all, aes(x = factor(tertile_firsttrim_flood), y = Percentage_Stunted, fill = factor(tertile_firsttrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(Percentage_Stunted, 1), "%")), 
+            position = position_dodge(width = 0.9),
+            vjust = -0.5, 
+            color = "black",
+            size = 4) +
+  labs(x = "Flood Intensity", y = "Percentage Stunted", fill = "Flood Intensity") +
+ scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Stunted Children by Flood Intensity during First Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 35))  # Set y-axis scale from 0 to 100
+
+```
+
+
+
+
+
+
+```{r}
+data_underweight_all <- data %>%
+  group_by(tertile_firsttrim_flood) %>%
+  summarise(Percentage_Underweight = mean(underweight_all) * 100) %>%
+  filter(!is.na(tertile_firsttrim_flood))
+
+# Generate the graph with colors from the viridis palette, modified title font size, and adjusted y-axis scale
+ggplot(data_underweight_all, aes(x = factor(tertile_firsttrim_flood), y = Percentage_Underweight, fill = factor(tertile_firsttrim_flood))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = paste0(round(Percentage_Underweight, 1), "%")), 
+            position = position_dodge(width = 0.9),
+            vjust = -0.5, 
+            color = "black",
+            size = 4) +
+  labs(x = "Flood Intensity", y = "Percentage Underweight", fill = "Flood Intensity") +
+ scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778"),
+                    labels = c("Low", "Medium", "High"),
+                    breaks = c(1, 2, 3)) +
+  ggtitle("Percentage of Underweight Children by Flood Intensity during First Trimester") +
+  theme(plot.title = element_text(size = 12)) +
+  coord_cartesian(ylim = c(0, 30))  # Set y-axis scale from 0 to 100
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
