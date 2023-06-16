@@ -366,7 +366,7 @@ hhh_gender$Gender <- factor(hhh_gender$Gender,
 ## HH_head age distribution
 
 hhh_age<-data_h%>% 
-  rename("Division" = div_name, "Gender" = gender, "Age_category" = headagecat) %>% 
+  rename("Division" = div_name, "Gender" = headgender, "Age_category" = headagecat) %>% 
   group_by(Division) %>% 
   count(Age_category) %>% 
   mutate(Total = sum(n),
@@ -779,7 +779,7 @@ p("To gather more information about the health and living conditions of Banglade
                  ),
 
 ## Overview--------------------------------------------
-tabPanel("Overview", value = "overview",
+tabPanel("Flood Conditions", value = "Flood Conditions",
          fluidRow(
            style = "margin: 6px;",
            column(
