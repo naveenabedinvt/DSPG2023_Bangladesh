@@ -88,7 +88,7 @@ avg <- data_mem %>%
   group_by(Division, Gender) %>%
   summarize(Mean_age = round(mean(age), 2),
             std_dev = round(sd(age), 2),
-            count = n())
+            count = n(), .groups = "drop")
 
 
 
@@ -1839,37 +1839,37 @@ server <- function(input, output, session) {
     if (Var_FT() == "2013") { 
       
       # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2013.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2013.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2014") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2014.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2014.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2015") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2015.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2015.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2016") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2016.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2016.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2017") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2017.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2017.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2018") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2017.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2017.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
     else if (Var_FT() == "2019") {    # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2019.png"), align = 'center', width = "650px", height = "320px")
+      list(src = paste0(getwd(),"/www/2019.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
