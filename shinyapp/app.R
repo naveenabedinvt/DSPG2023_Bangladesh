@@ -67,15 +67,9 @@ library(patchwork)
 library (mice)
 library(plotly)
 
-#--------------------------- Loading datasets ---------------------------------------------------------------------
-
-data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta"))
+#---------------------------data1: Household Memebers---------------------------------------------------------------------
+data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta")) 
 data <- read_dta(paste0(getwd(),"/data/BIHS2018-19MC_Jun4.dta"))
-data_h <- read_dta(paste0(getwd(),"/data/BIHS2018-19HH_Jun3.dta"))
-#-------------------------------------------------------------------------------------------------------------------
-
-
-getwd()
 #Age by Gender
 
 g <- data_mem %>%
@@ -185,6 +179,11 @@ edu_div_female$Education_level <- factor(edu_div_female$Education_level,
                                                     "Completed primary",
                                                     "Less than primary",
                                                     "No education"))
+
+#-----------------------Data: About households ---------------------------------
+data_h <- read_dta(paste0(getwd(),"/data/BIHS2018-19HH_Jun3.dta"))
+attach(data_h)
+#-------------------------------------------------------------------------------
 
 ## Household size by division
 
@@ -367,7 +366,7 @@ hhh_gender$Gender <- factor(hhh_gender$Gender,
 ## HH_head age distribution
 
 hhh_age<-data_h%>% 
-  rename("Division" = div_name, "Gender" = gender, "Age_category" = headagecat) %>% 
+  rename("Division" = div_name, "Gender" = headgender, "Age_category" = headagecat) %>% 
   group_by(Division) %>% 
   count(Age_category) %>% 
   mutate(Total = sum(n),
