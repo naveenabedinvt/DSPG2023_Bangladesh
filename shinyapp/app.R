@@ -701,7 +701,7 @@ jscode <- "function getUrlVars() {
             }
           var x = document.getElementsByClassName('navbar-brand');
                var dspgLink = 'https://dspg.aaec.vt.edu/';
-    var githubLink = 'https://github.com/VT-Data-Science-for-the-Public-Good';
+    var githubLink = 'https://github.com/naveenabedinvt/DSPG2023_Bangladesh';
     var dspgLogoHTML = \"<a href='\" + dspgLink + \"'><img src='DSPG_black-01.png' alt='VT DSPG' style='height:42px;'></a>\";
     var githubLogoHTML = \"<a href='\" + githubLink + \"'><img src='github_logo.png' alt='GitHub' style='max-height: 30px; max-width: 100%;'></a>\";
     var logosHTML = dspgLogoHTML + githubLogoHTML;
