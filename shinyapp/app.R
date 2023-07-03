@@ -1123,7 +1123,7 @@ navbarMenu("Results",
                     # Content for sub-tab 2
                     p("This is sub-tab 2.")
            ),
-           tabPanel("Wasting",
+           tabPanel("Mechanisms",
                     # Content for sub-tab 2
                     p("This is sub-tab 3.")
            )
