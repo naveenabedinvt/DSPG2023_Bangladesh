@@ -701,7 +701,7 @@ jscode <- "function getUrlVars() {
             }
           var x = document.getElementsByClassName('navbar-brand');
                var dspgLink = 'https://dspg.aaec.vt.edu/';
-    var githubLink = 'https://github.com/VT-Data-Science-for-the-Public-Good';
+    var githubLink = 'https://github.com/naveenabedinvt/DSPG2023_Bangladesh';
     var dspgLogoHTML = \"<a href='\" + dspgLink + \"'><img src='DSPG_black-01.png' alt='VT DSPG' style='height:42px;'></a>\";
     var githubLogoHTML = \"<a href='\" + githubLink + \"'><img src='github_logo.png' alt='GitHub' style='max-height: 30px; max-width: 100%;'></a>\";
     var logosHTML = dspgLogoHTML + githubLogoHTML;
@@ -788,390 +788,346 @@ p("To gather more information about the health and living conditions of Banglade
 
 ## Overview--------------------------------------------
 
-tabPanel("Flood Conditions", value = "Flood Conditions",
-         fluidRow(
-           style = "margin: 6px;",
-           column(
-             12,
-             align = "justify",
-             h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
-             p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
-             p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003).")
-           )
-         ),
-         fluidRow(
-           column(
-             6,
-             align = "justify",
-             h5(strong("Barisal Division")),
-             p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal.")
-           ),
-           column(
-             6,
-             align = "justify",
-             h5(strong("Chittagong Division")),
-             p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours.")
-           )
-         ),
-         fluidRow(
-           column(
-             6,
-             align = "justify",
-             h5(strong("Dhaka Division")),
-             p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak.")
-           ),
-           column(
-             6,
-             align = "justify",
-             h5(strong("Khulna Division")),
-             p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding.")
-           )
-         ),
-         fluidRow(
-           column(
-             6,
-             align = "justify",
-             h5(strong("Rajshahi Division")),
-             p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas.")
-           ),
-           column(
-             6,
-             align = "justify",
-             h5(strong("Rangpur Division")),
-             p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India.")
-           )
-         ),
-         fluidRow(
-           column(
-             6,
-             align = "justify",
-             h5(strong("Sylhet Division")),
-             p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall.")
-           ),
-           column(
-             6,
-             align = "justify",
-             h5(strong("Map of Bangladesh by Division")),
-             h2(strong("")),
-             img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
-           ),
-         ),
-         fluidRow(
-           column(6,
-                  align = "justify",
-                  selectInput(
-                    "floodTimeline", 
-                    label = HTML("<strong>Select Flood Timeline:</strong>"), 
-                    choices = c(
-                      "2013" = "2013",
-                      "2014" = "2014",
-                      "2015" = "2015",
-                      "2016" = "2016",
-                      "2017" = "2017",
-                      "2018" = "2018",
-                      "2019" = "2019"
+navbarMenu("Background",
+           
+        tabPanel("Flood Conditions", value = "Flood Conditions",
+                    fluidRow(
+                      style = "margin: 6px;",
+                      column(
+                        12,
+                        align = "justify",
+                        h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
+                        p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
+                        p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003).")
+                      )
                     ),
-                  ),
-                  #withSpinner(img(src="timeline", height = "500px", width = "100"))
-                  withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
-                  #div(id = "year_timeline")
+                    fluidRow(
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Barisal Division")),
+                        p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal.")
+                      ),
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Chittagong Division")),
+                        p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours.")
+                      )
+                    ),
+                    fluidRow(
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Dhaka Division")),
+                        p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak.")
+                      ),
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Khulna Division")),
+                        p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding.")
+                      )
+                    ),
+                    fluidRow(
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Rajshahi Division")),
+                        p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas.")
+                      ),
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Rangpur Division")),
+                        p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India.")
+                      )
+                    ),
+                    fluidRow(
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Sylhet Division")),
+                        p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall.")
+                      ),
+                      column(
+                        6,
+                        align = "justify",
+                        h5(strong("Map of Bangladesh by Division")),
+                        h2(strong("")),
+                        img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
+                      ),
+                    ),
+                    fluidRow(
+                      column(6,
+                             align = "justify",
+                             selectInput(
+                               "floodTimeline", 
+                               label = HTML("<strong>Select Flood Timeline:</strong>"), 
+                               choices = c(
+                                 "2013" = "2013",
+                                 "2014" = "2014",
+                                 "2015" = "2015",
+                                 "2016" = "2016",
+                                 "2017" = "2017",
+                                 "2018" = "2018",
+                                 "2019" = "2019"
+                               ),
+                             ),
+                             #withSpinner(img(src="timeline", height = "500px", width = "100"))
+                             withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
+                             #div(id = "year_timeline")
+                      ),
+                      
+                      column(
+                        width = 6,
+                        align = "justify",
+                        h5(strong("Flood Disasters in Bangladesh (2013-2019)")),
+                        p("The susceptibility to flooding varies across the different divisions of Bangladesh, reflecting the diverse geographic and climatic conditions of the country. There have been several disasters that occurred from 2013-2019. Some notable examples include:"),
+                        tags$ul(
+                          tags$li("In 2013, the cyclone MAHASEN hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
+                          tags$li("In 2014, severe flooding affected 46 districts and 16 million people, making it the most severe flooding since the “mega-flood” of 2007 (CARE, 2014)."),
+                          tags$li("In 2016, tropical storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
+                          tags$li("In 2017, the cyclone storm Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
+                          tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
+                        ),
+                        p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
+                      )),
+                    
+                    fluidRow(
+                      column(
+                        12,
+                        style = "padding: 30px;",
+                        align = "justify",
+                        h5(strong("Flood Write Up and Methodology")),
+                        p("Gathering an accurate assessment of flood impacts is essential for determining the devastating consequences of flooding in Bangladesh. However, relying solely on self-reported data collected through the BIHS survey creates challenges due to underreporting and subjective interpretations of flood shocks and impacts. The variability in individual definitions of “shock” and different acceptance levels of the severity of flood events complicates the accuracy of self-reported data."),
+                        p("To increase consistency, this research paper proposes the use of Sentinel-1 data, a powerful remote sensing satellite that uses synthetic aperture radar (SAR). Unlike self-reported data, which is prone to human errors and cognitive biases, Sentinel-1 data provides an unbiased and measurable representation of flood extents and duration."),
+                        p("In a study done by Guiteras, Jina, and Mobarak in 2015, it was revealed that households reporting being affected by floods actually experienced higher objective flood exposure than what they reported. The team was able to determine this by comparing self-reported data with measurements from satellite data."),
+                        p("There are multiple ways to use Sentinel-1 data for generating precise flood maps. The RGB method takes images before and after a flood event and combines them to create a visual representation of temporal changes. A study done by Conde and Muñoz in 2019 used Sentinel-1 (SAR) images to focus on mapping floods that occurred in the Ebro River in Spain in April 2018. They concluded that Sentinel-1 data should be utilized as a new source of input to enhance the precision of flood mapping, especially in weather conditions where floods occur.")
+                      ),
+                      
+                    ),
            ),
-           
-           column(
-             width = 6,
-             align = "justify",
-             h5(strong("Flood Disasters in Bangladesh (2013-2019)")),
-             p("The susceptibility to flooding varies across the different divisions of Bangladesh, reflecting the diverse geographic and climatic conditions of the country. There have been several disasters that occurred from 2013-2019. Some notable examples include:"),
-             tags$ul(
-               tags$li("In 2013, the cyclone MAHASEN hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
-               tags$li("In 2014, severe flooding affected 46 districts and 16 million people, making it the most severe flooding since the “mega-flood” of 2007 (CARE, 2014)."),
-               tags$li("In 2016, tropical storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
-               tags$li("In 2017, the cyclone storm Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
-               tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
-             ),
-             p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
+           tabPanel("Household Profile",
+                    fluidRow(style = "margin: 4px;",
+                             h1(strong("Household Profile"), align = "center"),
+                             p("", style = "padding-top:10px;"), 
+                             
+                             
+                             
+                             column( 12, 
+                                     tabsetPanel(
+                                       
+                                       tabPanel("HH Formation",
+                                                fluidRow(style = "margin: 4px;",
+                                                         p("", style = "padding-top:10px;"),
+                                                         
+                                                         column(8, align = "left",
+                                                                selectInput("hhformdrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                  "Household size by Division " = "household_size_division",
+                                                                  "Dependency Ratio by Division " = "dependency_ratio_division", 
+                                                                  "Household Headship by Division" = "household_headship_division"
+                                                                  
+                                                                ),
+                                                                ),   
+                                                                br(""),
+                                                                
+                                                                
+                                                                withSpinner(plotlyOutput("hhform", height = "500px", width ="100%")),
+                                                                column(12, align = "center",
+                                                                       p("Source: ", style = "font-size:12px;")
+                                                                       # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                )
+                                                         ),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         
+                                                         column(4,
+                                                                h4(strong("Description")),
+                                                                textOutput("desc1"))
+                                                         
+                                                )
+                                       ),
+                                       
+                                       
+                                       
+                                       
+                                       tabPanel("Age",
+                                                fluidRow(style = "margin: 4px;",
+                                                         p("", style = "padding-top:10px;"),
+                                                         column(8, align = "left",
+                                                                selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                  "Age by Gender" = "age_by_gender",
+                                                                  "Male Age Distribution" = "male_age", 
+                                                                  "Female Age Distribution" = "female_age",
+                                                                  "HH Head Age Distribution " = "head_age"
+                                                                  
+                                                                ),
+                                                                ),   
+                                                                br(""),
+                                                                withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
+                                                                column(12, align = "center",
+                                                                       p("Source: ", style = "font-size:12px;")
+                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                )
+                                                         ),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         column(width = 4,
+                                                                h4(strong("Description")),
+                                                                textOutput("desc2"))
+                                                )),
+                                       tabPanel("Education",
+                                                fluidRow(style = "margin: 4px;",
+                                                         p("", style = "padding-top:10px;"),
+                                                         column(8, align = "left",
+                                                                selectInput("edudrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                  "Male Education by Division" = "male_education_division",
+                                                                  "Female Education by Division" = "female_education_division", 
+                                                                  "HH Highest Education" = "hh_highest_education",
+                                                                  "HH Head Education" = "hh_ head_education"
+                                                                  
+                                                                ),
+                                                                ),   
+                                                                br(""),
+                                                                withSpinner(plotlyOutput("edu", height = "500px", width ="100%")),
+                                                                column(12, align = "center",
+                                                                       p("Source: ", style = "font-size:12px;")
+                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                )
+                                                         ),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         column(width = 4,
+                                                                h4(strong("Description")),
+                                                                textOutput("desc3"))
+                                                )),
+                                       tabPanel("Economic Status",
+                                                fluidRow(style = "margin: 4px;",
+                                                         p("", style = "padding-top:10px;"),
+                                                         column(8, align = "left",
+                                                                selectInput("ecodrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                  "Households Below Poverty Line" = "households_below_poverty_line",
+                                                                  "Households in Farming Activities" = "households_farming_activities", 
+                                                                  "Cultivable Land Holding" = "cultivable_land",
+                                                                  "Electricity Accessibility " = "electricity_accessibility",
+                                                                  "Water Treatment" = "water_treatment",
+                                                                  "Water Improvement" = "water_improvement",
+                                                                  "HH head Main Occupation" = "hhh_occupation"
+                                                                  
+                                                                  
+                                                                ),
+                                                                ),   
+                                                                br(""),
+                                                                withSpinner(plotlyOutput("eco", height = "500px", width ="100%")),
+                                                                column(12, align = "center",
+                                                                       p("Source: ", style = "font-size:12px;")
+                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
+                                                                )
+                                                         ),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         br(""),
+                                                         column(width = 4,
+                                                                h4(strong("Description")),
+                                                                textOutput("desc4"))
+                                                         
+                                                )))))),
+           tabPanel("Mother and Child", value = "overview",
+                    fluidRow(style = "margin: 6px;",
+                             p("", style = "padding-top:10px;"),
+                             column(12, align = "center",h1(strong("Mother and Child Profile")),
+                                    p(""),
+                                    br("")),
+                             #creating the tab within tab on the left side 
+                             column(12,
+                                    #setting up the tabs
+                                    tabsetPanel(
+                                      #first tab panel child profile
+                                      tabPanel("Child Profile",
+                                               #setting the stuff under the child profile tab
+                                               fluidRow(style = "margin: 4px;",
+                                                        p("", style = "padding-top:10px;"),
+                                                        column(8,
+                                                               selectInput("mcdrop1", "Select Birth Outcome characteristic:", width = "100%",
+                                                                           choices = c("Stunting by Divsion" = "stunt_div",
+                                                                                       "Underweight by Division" = "underweight_div",
+                                                                                       "Average Birth Weight by Division" = "avgbw_div",
+                                                                                       "Wasting by Division " = "wasting_div")),
+                                                               br(""),
+                                                               withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
+                                                        column(4,
+                                                               br(""),
+                                                               br(""),
+                                                               br(""),
+                                                               br(""),
+                                                               h4(strong("Description")),
+                                                               textOutput("mctext1")))),
+                                      tabPanel("Mother Profile",
+                                               #setting the-tbh i dont really know
+                                               fluidRow(style = "margin: 4px;",
+                                                        p("", style = "padding-top:10px;"),
+                                                        column(8,
+                                                               selectInput("mcdrop2", "Select Mother Socioeconomic characteristic:", width = "100%",
+                                                                           choices = c("Age Distribution" = "age_dist",
+                                                                                       "Education" = "edu_dist", 
+                                                                                       "Occupations " = "occu_dist")),
+                                                               br(""),
+                                                               withSpinner(plotlyOutput("mc2", height = "500px", width ="100%"))),
+                                                        column(4,
+                                                               br(""),
+                                                               br(""),
+                                                               br(""),
+                                                               br(""),
+                                                               h4(strong("Description")),
+                                                               textOutput("mctext2")
+                                                        )))
+                                    ))),
+                    fluidPage(column(12, align = "right",
+                                     p("Source:",style = "font-size:12px;"))
+                    )
            )),
-         
-         fluidRow(
-           column(
-             12,
-             style = "padding: 30px;",
-             align = "justify",
-             h5(strong("Flood Write Up and Methodology")),
-             p("Gathering an accurate assessment of flood impacts is essential for determining the devastating consequences of flooding in Bangladesh. However, relying solely on self-reported data collected through the BIHS survey creates challenges due to underreporting and subjective interpretations of flood shocks and impacts. The variability in individual definitions of “shock” and different acceptance levels of the severity of flood events complicates the accuracy of self-reported data."),
-             p("To increase consistency, this research paper proposes the use of Sentinel-1 data, a powerful remote sensing satellite that uses synthetic aperture radar (SAR). Unlike self-reported data, which is prone to human errors and cognitive biases, Sentinel-1 data provides an unbiased and measurable representation of flood extents and duration."),
-             p("In a study done by Guiteras, Jina, and Mobarak in 2015, it was revealed that households reporting being affected by floods actually experienced higher objective flood exposure than what they reported. The team was able to determine this by comparing self-reported data with measurements from satellite data."),
-             p("There are multiple ways to use Sentinel-1 data for generating precise flood maps. The RGB method takes images before and after a flood event and combines them to create a visual representation of temporal changes. A study done by Conde and Muñoz in 2019 used Sentinel-1 (SAR) images to focus on mapping floods that occurred in the Ebro River in Spain in April 2018. They concluded that Sentinel-1 data should be utilized as a new source of input to enhance the precision of flood mapping, especially in weather conditions where floods occur.")
+navbarMenu("Methodology",
+           tabPanel("Global Food Database",
+                    # Content for sub-tab 1
+                    p("")
            ),
+           tabPanel("CHIRPS",
+                    # Content for sub-tab 2
+                    p("This is sub-tab 2.")
+           ),
+           tabPanel("Sentinel 1",
+                    # Content for sub-tab 2
+                    p("This is sub-tab 3.")
+           )
            
-         ),
-), 
-tabPanel("Household Profile",
-         fluidRow(style = "margin: 4px;",
-                  h1(strong("Household Profile"), align = "center"),
-                  p("", style = "padding-top:10px;"), 
-                  
-                  
-                  
-                  column(12, 
-                         tabsetPanel(
-                           
-                           tabPanel("HH Formation",
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             
-                                             column(8, align = "left",
-                                                    selectInput("hhformdrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                      "Household size by Division " = "household_size_division",
-                                                      "Dependency Ratio by Division " = "dependency_ratio_division", 
-                                                      "Household Headship by Division" = "household_headship_division"
-                                                      
-                                                    ),
-                                                    ),   
-                                                    br(""),
-                                                    
-                                                    
-                                                    withSpinner(plotlyOutput("hhform", height = "500px", width ="100%")),
-                                                    column(12, align = "center",
-                                                           p("Source: ", style = "font-size:12px;")
-                                                           # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
-                                                    )
-                                             ),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             
-                                             column(4,
-                                                    h4(strong("Description")),
-                                                    textOutput("desc1"))
-                                             
-                                    )
-                           ),
-                           
-                           
-                           
-                           
-                           tabPanel("Age",
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             column(8, align = "left",
-                                                    selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                      "Age by Gender" = "age_by_gender",
-                                                      "Male Age Distribution" = "male_age", 
-                                                      "Female Age Distribution" = "female_age",
-                                                      "HH Head Age Distribution " = "head_age"
-                                                      
-                                                    ),
-                                                    ),   
-                                                    br(""),
-                                                    withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
-                                                    column(12, align = "center",
-                                                           p("Source: ", style = "font-size:12px;")
-                                                           # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                    )
-                                             ),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             column(width = 4,
-                                                    h4(strong("Description")),
-                                                    textOutput("desc2"))
-                                    )),
-                           tabPanel("Education",
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             column(8, align = "left",
-                                                    selectInput("edudrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                      "Male Education by Division" = "male_education_division",
-                                                      "Female Education by Division" = "female_education_division", 
-                                                      "HH Highest Education" = "hh_highest_education",
-                                                      "HH Head Education" = "hh_ head_education"
-                                                      
-                                                    ),
-                                                    ),   
-                                                    br(""),
-                                                    withSpinner(plotlyOutput("edu", height = "500px", width ="100%")),
-                                                    column(12, align = "center",
-                                                           p("Source: ", style = "font-size:12px;")
-                                                           # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                    )
-                                             ),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             column(width = 4,
-                                                    h4(strong("Description")),
-                                                    textOutput("desc3"))
-                                    )),
-                           tabPanel("Economic Status",
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             column(8, align = "left",
-                                                    selectInput("ecodrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                      "Households Below Poverty Line" = "households_below_poverty_line",
-                                                      "Households in Farming Activities" = "households_farming_activities", 
-                                                      "Cultivable Land Holding" = "cultivable_land",
-                                                      "Electricity Accessibility " = "electricity_accessibility",
-                                                      "Water Treatment" = "water_treatment",
-                                                      "Water Improvement" = "water_improvement",
-                                                      "HH head Main Occupation" = "hhh_occupation"
-                                                      
-                                                      
-                                                    ),
-                                                    ),   
-                                                    br(""),
-                                                    withSpinner(plotlyOutput("eco", height = "500px", width ="100%")),
-                                                    column(12, align = "center",
-                                                           p("Source: ", style = "font-size:12px;")
-                                                           # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                    )
-                                             ),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             br(""),
-                                             column(width = 4,
-                                                    h4(strong("Description")),
-                                                    textOutput("desc4"))
-                                             
-                                    )))))),
-
-tabPanel("Mother and Child", value = "overview",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("Mother and Child Profile")),
-                         p(""),
-                         br("")),
-                  #creating the tab within tab on the left side 
-                  column(12,
-                         #setting up the tabs
-                         tabsetPanel(
-                           #first tab panel child profile
-                           tabPanel("Child Profile",
-                                    #setting the stuff under the child profile tab
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             column(8,
-                                                    selectInput("mcdrop1", "Select Birth Outcome characteristic:", width = "100%",
-                                                                choices = c("Stunting by Divsion" = "stunt_div",
-                                                                            "Underweight by Division" = "underweight_div",
-                                                                            "Average Birth Weight by Division" = "avgbw_div",
-                                                                            "Wasting by Division " = "wasting_div")),
-                                                    br(""),
-                                                    withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
-                                             column(4,
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    h4(strong("Description")),
-                                                    textOutput("mctext1")))),
-                           tabPanel("Mother Profile",
-                                    #setting the-tbh i dont really know
-                                    fluidRow(style = "margin: 4px;",
-                                             p("", style = "padding-top:10px;"),
-                                             column(8,
-                                                    selectInput("mcdrop2", "Select Mother Socioeconomic characteristic:", width = "100%",
-                                                                choices = c("Age Distribution" = "age_dist",
-                                                                            "Education" = "edu_dist", 
-                                                                            "Occupations " = "occu_dist")),
-                                                    br(""),
-                                                    withSpinner(plotlyOutput("mc2", height = "500px", width ="100%"))),
-                                             column(4,
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    h4(strong("Description")),
-                                                    textOutput("mctext2")
-                                             )))
-                         ))),
-         fluidPage(column(12, align = "right",
-                          p("Source:",style = "font-size:12px;"))
-         )
+         
 ),
-tabPanel("Results", value = "overview",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("Multivariate Analysis")),
-                         p(""),
-                         br(""),
-                         column(12, 
-                                tabsetPanel(
-                                  
-                                  tabPanel("ANOVA",
-                                           fluidRow(style = "margin: 4px;",
-                                                    p("", style = "padding-top:10px;"),
-                                                    
-                                                    column(8, align = "left",
-                                                           selectInput("anovadrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                             "A " = "a",
-                                                             "B " = "b", 
-                                                             "C" = "c"
-                                                             
-                                                           ),
-                                                           ),   
-                                                           br(""),
-                                                           
-                                                           
-                                                           withSpinner(plotlyOutput("anova", height = "500px", width ="100%")),
-                                                           column(12, align = "center",
-                                                                  p("Source: ", style = "font-size:12px;")
-                                                                  # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
-                                                           )
-                                                    ),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    
-                                                    column(4,
-                                                           h4(strong("Description")),
-                                                           textOutput("desc5"))
-                                                    
-                                           )
-                                  ),
-                                  
-                                  
-                                  
-                                  
-                                  tabPanel("Regressions",
-                                           fluidRow(style = "margin: 4px;",
-                                                    p("", style = "padding-top:10px;"),
-                                                    column(8, align = "left",
-                                                           selectInput("regressiondrop", "Select Model:", width = "100%", choices = c(
-                                                             "D" = "d",
-                                                             "E" = "e", 
-                                                             "F" = "f",
-                                                             "G" = "g"
-                                                             
-                                                           ),
-                                                           ),   
-                                                           br(""),
-                                                           withSpinner(plotlyOutput("regression", height = "500px", width ="100%")),
-                                                           column(12, align = "center",
-                                                                  p("Source: ", style = "font-size:12px;")
-                                                                  # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                           )
-                                                    ),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    br(""),
-                                                    column(width = 4,
-                                                           h4(strong("Description")),
-                                                           textOutput("desc6"))
-                                           ))))))),
-
+navbarMenu("Results",
+           tabPanel("Stunting",
+                    # Content for sub-tab 1
+                    p("This is sub-tab 1.")
+           ),
+           tabPanel("Underweight",
+                    # Content for sub-tab 2
+                    p("This is sub-tab 2.")
+           ),
+           tabPanel("Wasting",
+                    # Content for sub-tab 2
+                    p("This is sub-tab 3.")
+           )
+),
 tabPanel("Discussion/Conclusion", value = "overview",
          fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
@@ -1194,7 +1150,6 @@ tabPanel("References", value = "overview",
                          p(""),
                          p(""),
                          br("")))),
-
 tabPanel("Our Team", value = "overview",
          fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
@@ -1258,7 +1213,10 @@ tabPanel("Our Team", value = "overview",
                   )
          )
          
-))
+)
+
+)
+
 
 # server -----------------------------------------------------------
 server <- function(input, output, session) {
