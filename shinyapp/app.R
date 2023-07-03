@@ -1098,8 +1098,7 @@ navbarMenu("Background",
                                      p("Source:",style = "font-size:12px;"))
                     )
            )),
-tabPanel("Methodology",
-         tabsetPanel(
+navbarMenu("Methodology",
            tabPanel("Global Food Database",
                     # Content for sub-tab 1
                     p("")
@@ -1113,10 +1112,9 @@ tabPanel("Methodology",
                     p("This is sub-tab 3.")
            )
            
-         )
+         
 ),
-tabPanel("Results",
-         tabsetPanel(
+navbarMenu("Results",
            tabPanel("Stunting",
                     # Content for sub-tab 1
                     p("This is sub-tab 1.")
@@ -1128,7 +1126,7 @@ tabPanel("Results",
            tabPanel("Wasting",
                     # Content for sub-tab 2
                     p("This is sub-tab 3.")
-           ))
+           )
 ),
 tabPanel("Discussion/Conclusion", value = "overview",
          fluidRow(style = "margin: 6px;",
