@@ -788,9 +788,9 @@ p("To gather more information about the health and living conditions of Banglade
 
 ## Overview--------------------------------------------
 
-tabPanel("Background",
-         tabsetPanel(
-           tabPanel("Flood Conditions", value = "Flood Conditions",
+navbarMenu("Background",
+           
+        tabPanel("Flood Conditions", value = "Flood Conditions",
                     fluidRow(
                       style = "margin: 6px;",
                       column(
@@ -1097,8 +1097,7 @@ tabPanel("Background",
                     fluidPage(column(12, align = "right",
                                      p("Source:",style = "font-size:12px;"))
                     )
-           ))
-),
+           )),
 tabPanel("Methodology",
          tabsetPanel(
            tabPanel("Global Food Database",
