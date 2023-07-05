@@ -1255,7 +1255,7 @@ server <- function(input, output, session) {
       
       p_ma<- p_depr<- ggplot(dep_r, 
                              aes(Division, Dependency_ratio, fill = Division))+
-        geom_bar(position="dodge", stat="identity")+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Dependency Ratio: ", Dependency_ratio, "\n", "Division: ", Division)))+
         theme_classic()+
         labs(title = "Dependency Ratio by Division",
              x= "Division",
@@ -1270,7 +1270,7 @@ server <- function(input, output, session) {
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 0.5)
       
-      ggplotly(p_depr)
+      ggplotly(p_depr,  tooltip = c("text"))
       
     }
     
