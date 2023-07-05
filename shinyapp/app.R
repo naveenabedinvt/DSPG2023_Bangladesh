@@ -110,7 +110,7 @@ age_div_male <- data_mem %>%
                             "3" = "18-30 yrs",
                             "4" = "31-65 yrs",
                             
-                            "5" = "65-80 yrs",
+                            "5" = "66-80 yrs",
                             "6" = "80+ yrs"))
 
 #Female Age Distribution 
@@ -130,7 +130,7 @@ age_div_female<-data_mem%>%
                             "3" = "18-30 yrs",
                             "4" = "31-65 yrs",
                             
-                            "5" = "65-80 yrs",
+                            "5" = "66-80 yrs",
                             "6" = "80+ yrs"))
 
 
@@ -190,7 +190,7 @@ attach(data_h)
 HH_size <- data_h %>% 
   rename("Division" = div_name,  "HH_size" = hhsize) %>% 
   group_by(Division) %>% 
-  summarise("Mean_HH_size" = round(mean(HH_size), 2),
+  summarise("Average_Household_size" = round(mean(HH_size), 2),
             "std_dev" = round(sd(HH_size), 2),
             count = n())
 
@@ -199,7 +199,7 @@ HH_size <- data_h %>%
 dep_r <- data_h %>% 
   rename("Division" = div_name,  "Dependency_ratio" = depratio) %>% 
   group_by(Division) %>% 
-  summarise("Dependency_ratio" = round(mean(Dependency_ratio), 2),
+  summarise("Dependency_Ratio" = round(mean(Dependency_ratio), 2),
             "std_dev" = round(sd(Dependency_ratio, na.rm = FALSE), 2),
             count = n()) 
 
@@ -247,13 +247,13 @@ hh_rfarm <- data_h %>%
                                   "Rice_Farming" = "Rice Farming",
                                   "Livestock_Farming" = "Livestock Farming",
                                   "Fish_Farming" = "Fish Farming",
-                                  "Farm_HH" = "HHs in Farming")) %>%
+                                  "Farm_HH" = "Households in Farming")) %>%
   filter(Value != 0)
 
 
 
 
-hh_rfarm$Activity <- factor(hh_rfarm$Activity, levels = c("HHs in Farming", "Crop Farming", "Rice Farming", "Livestock Farming", "Fish Farming"))
+hh_rfarm$Activity <- factor(hh_rfarm$Activity, levels = c("Households in Farming", "Crop Farming", "Rice Farming", "Livestock Farming", "Fish Farming"))
 
 ## distribution of cultivable land holding, by division
 
@@ -270,13 +270,13 @@ cult_land_div <- data_h %>%
          Farm_size = dplyr::recode(Farm_size,
                                    "0" = "No cultivable land",
                                    
-                                   "1" =  "marginal: <0.5 acres",  
+                                   "1" =  "Marginal: <0.5 acres",  
                                    
-                                   "2" = "small: 0.5 to <1.5 acres",  
+                                   "2" = "Small: 0.5-1.5 acres",  
                                    
-                                   "3" = "medium: 1.5 to <2.5 acres",  
+                                   "3" = "Medium: 1.5-2.5 acres",  
                                    
-                                   "4" = "large: >= 2.5 acres"
+                                   "4" = "Large: 2.5+ acres"
                                    
                                    
          ))
@@ -379,7 +379,7 @@ hhh_age<-data_h%>%
                                "3" = "18-30 yrs",
                                "4" = "31-65 yrs",
                                
-                               "5" = "65-80 yrs",
+                               "5" = "66-80 yrs",
                                "6" = "80+ yrs"))
 
 ## HH head education attainment
@@ -918,26 +918,22 @@ navbarMenu("Background",
                              column( 12, 
                                      tabsetPanel(
                                        
-                                       tabPanel("HH Formation",
+                                       tabPanel("Household Formation",
                                                 fluidRow(style = "margin: 4px;",
                                                          p("", style = "padding-top:10px;"),
                                                          
                                                          column(8, align = "left",
-                                                                selectInput("hhformdrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                                  "Household size by Division " = "household_size_division",
-                                                                  "Dependency Ratio by Division " = "dependency_ratio_division", 
-                                                                  "Household Headship by Division" = "household_headship_division"
+                                                                selectInput("hhformdrop", "Select Household Formation Characteristic:", width = "100%", choices = c(
+                                                                  "Average Household Size" = "household_size_division",
+                                                                  "Dependency Ratio" = "dependency_ratio_division", 
+                                                                  "Household Headship Distribution by Gender" = "household_headship_division"
                                                                   
                                                                 ),
                                                                 ),   
                                                                 br(""),
                                                                 
                                                                 
-                                                                withSpinner(plotlyOutput("hhform", height = "500px", width ="100%")),
-                                                                column(12, align = "center",
-                                                                       p("Source: ", style = "font-size:12px;")
-                                                                       # withSpinner(outputting("demoHispanicPIE", height = "500px", width = "100%")),
-                                                                )
+                                                                withSpinner(plotlyOutput("hhform", height = "500px", width ="100%"))
                                                          ),
                                                          br(""),
                                                          br(""),
@@ -959,20 +955,16 @@ navbarMenu("Background",
                                                 fluidRow(style = "margin: 4px;",
                                                          p("", style = "padding-top:10px;"),
                                                          column(8, align = "left",
-                                                                selectInput("demos1drop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                                  "Age by Gender" = "age_by_gender",
+                                                                selectInput("demos1drop", "Select Age Characteristic:", width = "100%", choices = c(
+                                                                  "Average Age by Gender" = "age_by_gender",
                                                                   "Male Age Distribution" = "male_age", 
                                                                   "Female Age Distribution" = "female_age",
-                                                                  "HH Head Age Distribution " = "head_age"
+                                                                  "Household Head Age Distribution" = "head_age"
                                                                   
                                                                 ),
                                                                 ),   
                                                                 br(""),
-                                                                withSpinner(plotlyOutput("demo1", height = "500px", width ="100%")),
-                                                                column(12, align = "center",
-                                                                       p("Source: ", style = "font-size:12px;")
-                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                                )
+                                                                withSpinner(plotlyOutput("demo1", height = "500px", width ="100%"))
                                                          ),
                                                          br(""),
                                                          br(""),
@@ -987,20 +979,16 @@ navbarMenu("Background",
                                                 fluidRow(style = "margin: 4px;",
                                                          p("", style = "padding-top:10px;"),
                                                          column(8, align = "left",
-                                                                selectInput("edudrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
-                                                                  "Male Education by Division" = "male_education_division",
-                                                                  "Female Education by Division" = "female_education_division", 
-                                                                  "HH Highest Education" = "hh_highest_education",
-                                                                  "HH Head Education" = "hh_ head_education"
+                                                                selectInput("edudrop", "Select Educational Characteristic:", width = "100%", choices = c(
+                                                                  "Male Education Distribution" = "male_education_division",
+                                                                  "Female Education Distribution" = "female_education_division", 
+                                                                  "Highest Household Education Distribution" = "hh_highest_education",
+                                                                  "Household Head Education Distribution" = "hh_ head_education"
                                                                   
                                                                 ),
                                                                 ),   
                                                                 br(""),
-                                                                withSpinner(plotlyOutput("edu", height = "500px", width ="100%")),
-                                                                column(12, align = "center",
-                                                                       p("Source: ", style = "font-size:12px;")
-                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                                )
+                                                                withSpinner(plotlyOutput("edu", height = "500px", width ="100%"))
                                                          ),
                                                          br(""),
                                                          br(""),
@@ -1015,9 +1003,9 @@ navbarMenu("Background",
                                                 fluidRow(style = "margin: 4px;",
                                                          p("", style = "padding-top:10px;"),
                                                          column(8, align = "left",
-                                                                selectInput("ecodrop", "Select Socioeconomic Characteristic:", width = "100%", choices = c(
+                                                                selectInput("ecodrop", "Select Economic Status Characteristic:", width = "100%", choices = c(
                                                                   "Households Below Poverty Line" = "households_below_poverty_line",
-                                                                  "Households in Farming Activities" = "households_farming_activities", 
+                                                                  "Household Farming Activity Distribution" = "households_farming_activities", 
                                                                   "Cultivable Land Holding" = "cultivable_land",
                                                                   "Electricity Accessibility " = "electricity_accessibility",
                                                                   "Water Treatment" = "water_treatment",
@@ -1028,11 +1016,7 @@ navbarMenu("Background",
                                                                 ),
                                                                 ),   
                                                                 br(""),
-                                                                withSpinner(plotlyOutput("eco", height = "500px", width ="100%")),
-                                                                column(12, align = "center",
-                                                                       p("Source: ", style = "font-size:12px;")
-                                                                       # withSpinner(plotlyOutput("demoHispanicPIE", height = "500px", width = "100%")),
-                                                                )
+                                                                withSpinner(plotlyOutput("eco", height = "500px", width ="100%"))
                                                          ),
                                                          br(""),
                                                          br(""),
@@ -1043,7 +1027,10 @@ navbarMenu("Background",
                                                                 h4(strong("Description")),
                                                                 textOutput("desc4"))
                                                          
-                                                )))))),
+                                                ))))),
+                    fluidPage(column(12, align = "right",
+                                     p("Source:",style = "font-size:12px;"))
+                    )),
            tabPanel("Mother and Child", value = "overview",
                     fluidRow(style = "margin: 6px;",
                              p("", style = "padding-top:10px;"),
@@ -1123,7 +1110,7 @@ navbarMenu("Results",
                     # Content for sub-tab 2
                     p("This is sub-tab 2.")
            ),
-           tabPanel("Wasting",
+           tabPanel("Mechanisms",
                     # Content for sub-tab 2
                     p("This is sub-tab 3.")
            )
@@ -1231,12 +1218,12 @@ server <- function(input, output, session) {
     if (Var_hhform() == "household_size_division") {
       
       p_hh<- ggplot(HH_size, 
-                    aes(Division, Mean_HH_size, fill = Division))+
-        geom_bar(position="dodge", stat="identity")+
+                    aes(Division, Average_Household_size, fill = Division))+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Average Household Size: ", Average_Household_size)))+
         theme_classic()+
         labs(title = "Average Household Size by Division",
              x= "Division",
-             y = "Mean_HH_size")+
+             y = "Average Household Size")+
         easy_remove_legend()+
         scale_fill_viridis_d() + 
         easy_plot_title_size(size = 14)+
@@ -1245,21 +1232,22 @@ server <- function(input, output, session) {
         easy_center_title()+
         # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        
         ylim(0,7)
-      
-      ggplotly(p_hh)
+        
+        ggplotly(p_hh, tooltip = c("text"))
       
     }
     
     else if (Var_hhform() == "dependency_ratio_division") {
       
       p_ma<- p_depr<- ggplot(dep_r, 
-                             aes(Division, Dependency_ratio, fill = Division))+
-        geom_bar(position="dodge", stat="identity")+
+                             aes(Division, Dependency_Ratio, fill = Division))+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Dependency Ratio: ", Dependency_Ratio)))+
         theme_classic()+
         labs(title = "Dependency Ratio by Division",
              x= "Division",
-             y = "Dependency_ratio")+
+             y = "Dependency Ratio")+
         scale_fill_viridis_d() + 
         easy_remove_legend()+
         easy_plot_title_size(size = 14)+
@@ -1269,8 +1257,8 @@ server <- function(input, output, session) {
         # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 0.5)
-      
-      ggplotly(p_depr)
+    
+      ggplotly(p_depr, tooltip = c("text"))
       
     }
     
@@ -1280,7 +1268,7 @@ server <- function(input, output, session) {
                      aes(Division, Percentage, fill = Gender))+
         geom_bar(position="dodge", stat="identity")+
         theme_classic()+
-        labs(title = "Household Headship by Division",
+        labs(title = "Household Headship by Division by Gender",
              x= "Division",
              y = "Percentage")+
         scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) + 
@@ -1304,19 +1292,19 @@ server <- function(input, output, session) {
   output$desc1 <- renderText({
     if (Var_hhform() == "household_size_division") {
       
-      "The average hiusehold size is around 4.2 people accross all divisions. Sylhet has relatively large households with an average household size of 4.93 members."
+      "The average household size is around 4.2 people across all divisions. Sylhet has relatively large households with an average household size of 4.93 members."
       
     }
     
     else if (Var_hhform() == "dependency_ratio_division") {
       
-      "The dependency is below 40 percent across all divisions, meaning that in most households have a higher share of independent household members"
+      "The dependency ratio is a demographic measure that compares the working-age population to the non-working-age population. A higher dependency ratio indicates a greater number of dependents per working-age person who may require support. It is important to note that dependency ratios can vary across different regions or divisions. In our analysis, the dependency ratio is below 40% across all divisions, indicating a relatively lower proportion of dependents. However, it's essential to consider other factors that may affect household composition and the level of independence of household members."
       
     }
     
     else if (Var_hhform() == "household_headship_division") {
       
-      "Males are household heads in most of the families and across all divisions. Chittagong has the highest percentage (33.57%) of female household heads."
+      "The predominance of male household heads in rural Bangladesh reflects traditional gender roles and cultural norms, where men are often perceived as the primary decision-makers and main income generators. This gender disparity may have significant implications for women's empowerment and access to resources, as female-headed households might face additional challenges in accessing economic opportunities and social support. It is important to consider gender-specific interventions to promote inclusivity and socioeconomic equality in rural communities. However, it is worth noting that Chittagong stands out with a relatively higher percentage (33.57%) of female household heads, suggesting some regional variation in household leadership dynamics."
       
     }  
   })
@@ -1333,9 +1321,9 @@ server <- function(input, output, session) {
       pgg <- ggplot(avg, aes(Division, Mean_age, fill = Gender))+
         geom_bar(position="dodge", stat="identity")+
         theme_classic()+
-        labs(title = "Average Age by Division and Gender",
+        labs(title = "Average Age by Division by Gender",
              x= "Division",
-             y = "Mean age")+
+             y = "Average Age")+
         scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
         # easy_y_axis_title_size(size = 15)+
         # easy_x_axis_title_size(size = 15)+
@@ -1357,15 +1345,16 @@ server <- function(input, output, session) {
         theme_classic()+
         scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
-                                     "31-65 yrs" = "#ff7f00","65-80 yrs" = "#bd93f5", 
+                                     "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
                                      "#5ec962", "#cc4778",
                                      "80+ yrs" = "#f6c2f8"))+
-        labs(title = "Age Distribution of Male by Division",
+        labs(title = "Male Age Distribution by Division",
              x= "Division",
              y = "Percentage")+
         easy_plot_title_size(size = 14)+
         easy_center_title()+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,50)
       ggplotly(p_ma)
     }
@@ -1378,36 +1367,35 @@ server <- function(input, output, session) {
         theme_classic() +
         scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
-                                     "31-65 yrs" = "#ff7f00","65-80 yrs" = "#bd93f5", 
-                                     "#5ec962", "#cc4778",
-                                     "80+ yrs" = "#f6c2f8"))+
+                                     "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
+                                     "#5ec962", "80+ yrs" = "#f6c2f8"))+
         # easy_all_text_colour("#630031") +
-        labs(title = "Age Distribution of Female by Division", x = "Division", y = "Percentage") +
+        labs(title = "Female Age Distribution by Division", x = "Division", y = "Percentage") +
         easy_plot_title_size(size = 14) +
         easy_center_title() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        ggeasy::easy_add_legend_title("Age Range")+
         ylim(0, 50)
       ggplotly(p_fe)
     }
     else if (Var3() == "head_age") {
-      p_hhh<-ggplot (hhh_age,
-                     aes(reorder(Division, Percentage), Percentage, fill = Age_category))+
+      p_hhh<-ggplot (hhh_age,aes(Division, Percentage, fill = Age_category))+
         geom_bar(position="dodge", stat="identity")+
         theme_classic()+
-        labs(title = "Household head age distribution, by division",
+        labs(title = "Household Head Age Distribution by Division",
              x= "Division",
              y = "Percentage")+
         scale_fill_viridis_d() + 
-        scale_fill_manual(values = c("#440154", "#fde725",
-                                     "#3a528b", "#21918c", 
-                                     "#ff7f00","#bd93f5", 
-                                     "#5ec962", "#cc4778",
-                                     "#f6c2f8", "#b26600"))+
+        scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
+                                     "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
+                                     "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
+                                     "#5ec962", "80+ yrs" = "#f6c2f8"))+
         easy_plot_title_size(size = 14)+
         # easy_all_text_colour("#630031")+
         easy_center_title()+
         # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,100)
       ggplotly(p_hhh)
       
@@ -1419,23 +1407,23 @@ server <- function(input, output, session) {
   output$desc2 <- renderText({
     if (Var3() == "age_by_gender") {
       
-      "There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years, while for females, it is 31.77 years, making it the city with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years and females averaging 27.79 years."
+      "There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years old old, while for females, it is 31.77 years old, making it the division with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years old and females averaging 27.79 years old."
       
     }
     
     else if (Var3() == "male_age") {
       
-      "Across all divisions, the age range with the highest male population is 31-65 years Khulna has the highest percent of people in that category(40.76%). It is also important to note that around 15 percent of the male population consists of children under the age of 5 across all divisions."
+      "Across all divisions, the age range with the highest male population is 31-65 years. Khulna has the highest percent of people in that category at 40.76%. It is also important to note that around 15% of the male population consists of children under the age of 5 across all divisions."
       
     }
     
     else if (Var3() == "female_age") {
       
-      "Similary to their male counterpart, the 31-65 years age range holds big chunk of female population. Again Khulna is leading with 43.74 % of falling under the 31-65 age category. Also childeren the age of 5 account for around 10 percent aacross all divisions."
+      "Similar to their male counterparts, a significant proportion of the female population in rural Bangladesh falls within the 31-65 years age range. Khulna division stands out with the highest percentage (43.74%) of females falling within this age category. Additionally, children aged 5 years constitute approximately 10% of the population across all divisions."
       
     }
     else if(Var3() == "head_age"){
-      "The most frequent household age across all of the divisions is “31-65 yrs”. The least frequent household age is “80+ yrs”. ’ Some factors that contribute to this could be that people under 31 have migrated to cities or more developed areas in search of better educational and employment opportunities." 
+      "The most frequent household age across all of the divisions is “31-65 yrs”. The least frequent household age is “80+ yrs”. ’ Some factors that contribute to this could be that people under 31 years old migrate to cities or more developed areas in search of better educational and employment opportunities." 
     }
   }) 
   
@@ -1465,7 +1453,8 @@ server <- function(input, output, session) {
         easy_center_title() +
         # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ylim(0, 100) +
-        coord_flip()
+        coord_flip()+
+        ggeasy::easy_add_legend_title("Education Level")
       
       ggplotly(p_m)
       
@@ -1485,7 +1474,8 @@ server <- function(input, output, session) {
              x = "Division",
              y = "Percentage") +
         easy_plot_title_size(size = 14) +
-        coord_flip()
+        coord_flip()+
+        ggeasy::easy_add_legend_title("Education Level")
       
       ggplotly(p_f)
     }
@@ -1494,7 +1484,7 @@ server <- function(input, output, session) {
       
       p_h <- ggplot(hh_edu_div, aes(Division, Percentage, fill = Education_level)) +
         geom_bar(stat = "identity", position = "dodge") + #, aes(text = paste0(Percentage, "%"))
-        labs(title = "Highest HH Education Level by Division",
+        labs(title = "Highest Household Education Level by Division",
              x = "Division",
              y = "Percentage") +
         scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
@@ -1505,6 +1495,7 @@ server <- function(input, output, session) {
         easy_plot_title_size(size = 14) +
         
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 70)
       
       ggplotly(p_h)
@@ -1514,20 +1505,19 @@ server <- function(input, output, session) {
         geom_bar(position = "dodge", stat = "identity") +
         theme_classic() +
         labs(
-          title = "HH Head Education Attainment by Division",
+          title = "Household Head Educational Attainment by Division",
           x = "Division",
           y = "Percentage"
         ) +
         scale_fill_viridis_d() +
-        scale_fill_manual(values = c("#440154", "#fde725",
-                                     "#3a528b", "#21918c", 
-                                     "#ff7f00","#bd93f5", 
-                                     "#5ec962", "#cc4778",
-                                     "#f6c2f8", "#b26600"))+
+        scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
+                                     "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
+                                     "Higher" = "#ff7f00"))+
         easy_plot_title_size(size = 14) +
         # easy_all_text_colour("#630031") +
         easy_center_title() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 50)  
       
       ggplotly(p_hh)}
@@ -1537,23 +1527,23 @@ server <- function(input, output, session) {
   output$desc3 <- renderText({
     if (hedu() == "male_education_division") {
       
-      "Although there are more males with no education than females, we observe that a higher percentage of males than females making it higher education.However, Sylhet still has the has the lowest percentage (4.16 %) of males in higher education."
+      "In general, there are more males with no education than females. Despite this, a higher percentage of males attain higher education when compared to females. Sylhet, a more flood-prone division, has the lowest percentage of males in higher education at 4.16%."
       
     }
     
     else if (hedu() == "female_education_division") {
       
-      "In general, most female have no formal education or only completed primary education across all divisions. Rangpur has the highest percentage of no educated female(42.55 %). The percent of female who manage to go past secondary school is between 2.83 to 5.15 %."
+      "In general across all divisions, most females have no formal education or only completed primary education across. Rangpur has the highest percentage of uneducated females with 42.55%. The percentage range of females who manage to go past secondary school is between 2.83% to 5.15%."
       
     }
     
     else if (hedu() == "hh_highest_education") {
       
-      "In this graph, we see that more than half of the sampled households report completed primary as their highest household educational attainment across all divisions. We also see that Rangpur has the highest percentage (10.84 %)of households whose members have no formal education."
+      "In this graph, more than half of the sampled households report “Completed primary” as their highest household educational attainment across all divisions. Rangpur, one of the more flood prone divisions, has the highest percentage of households whose members have no formal education."
       
     }
     else if(hedu() == "hh_ head_education"){
-      "The highest Household Head Education all the divisions except Chittagong is “No Education”. In Chittagong, the highest is “Completed Primary”. The least frequence education level amoung all of the divisions is “Completed Secondary” and “Higher”." 
+      "Household heads are primarily responsible for making income for the family and big decisions, but based on the Household educational attainment by division, it is evident that a majority of household heads across all divisions either do not have education or discontinued their education after primary school which is equivalent to the fifth grade in the US.  These low levels of education could potentially have negative impacts on household members." 
     }
   }) 
   
@@ -1592,11 +1582,12 @@ server <- function(input, output, session) {
         geom_bar(position = position_dodge(width = 0.7), width = 0.7, stat = "identity") +
         xlab("Division") +
         ylab("Percentage") +
-        ggtitle(" HHs in Agricultural Activities by Division") +
+        ggtitle("Household Agricultural Activities by Division") +
         theme_minimal() + 
         easy_plot_title_size(size = 14) +
         easy_center_title()+
-        scale_fill_viridis_d() +coord_flip()
+        scale_fill_viridis_d() +
+        coord_flip()
       ggplotly(ag)
     }
     
@@ -1611,13 +1602,14 @@ server <- function(input, output, session) {
           y = "Percentage"
         ) +
         # scale_fill_viridis_d() + 
-        scale_fill_manual(values = c("No cultivable land" = "#440154", "marginal: <0.5 acres" = "#fde725",
-                                     "small: 0.5 to <1.5 acres" = "#3a528b", "medium: 1.5 to <2.5 acres" = "#21918c", 
-                                     "large: >= 2.5 acres" = "#ff7f00"))+
+        scale_fill_manual(values = c("No cultivable land" = "#440154", "Marginal: <0.5 acres" = "#fde725",
+                                     "Small: 0.5-1.5 acres" = "#3a528b", "Medium: 1.5-2.5 acres" = "#21918c", 
+                                     "Large: 2.5+ acres" = "#ff7f00"))+
         # coord_flip()+
         easy_plot_title_size(size = 14) +
         # easy_all_text_colour("#630031") +
         easy_center_title() +
+        ggeasy::easy_add_legend_title("Farm Size")+
         # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ylim(0, 50)  
       
@@ -1714,19 +1706,20 @@ server <- function(input, output, session) {
   output$desc4 <- renderText({
     if (hheco() == "households_below_poverty_line") {
       
-      "Rangpur (17.13%) and Rajshahi(10.06%) stand out with their highest percentages of households living below the poverty line. Note: We are using the international poverty line of $ 1.96, adjusted for the 2011 purchasing power parity."
+      "Using the international poverty line of $1.96 adjusted for 2011 purchasing power parity, our graph shows more flood prone divisions have a higher percentage of households that live below the poverty line in Bangladesh. For example, Rangpur, known to be a more flood prone region, had 17.13% of households surveyed living under the poverty line whereas Chittagong, a less flood prone division, had 3.29% of households surveyed living under the poverty line."
       
     }
     
     else if (hheco() == "households_farming_activities") {
       
-      "Most households primarily engage in farming activities, with approximately 90% of them relying on subsistence farming. Livestock farming is the prevalent agricultural pursuit, and Rangpur has the highest proportion of households (89.51%) involved in this sector."
+      "Most households primarily engage in farming activities with approximately 90% of them relying on subsistence farming. Livestock farming is the most prevalent agricultural activity compared to the other agricultural activities listed. Note that some households will participate in more than one agricultural activity.
+"
       
     }
     
     else if (hheco() == "cultivable_land") {
       
-      "Chittagong has the highest percent (44.97%) of households without cultivable land. It is followed by Sylhet (43.09%)"
+      "Across divisions, the most relative farm size categories are the “Marginal” and “No cultivable land” categories. Chittagong has the highest percent (44.97%) of households without cultivable land. It is followed by Sylhet at 43.09% without cultivable land."
       
     }
     else if(hheco() == "electricity_accessibility"){
