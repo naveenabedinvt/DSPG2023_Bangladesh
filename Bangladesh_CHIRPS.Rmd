@@ -1,0 +1,496 @@
+```{r setup, echo = FALSE, include=FALSE,message = FALSE, warning=FALSE, comment = FALSE, fig.align='center'}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r warning=FALSE, comment=FALSE}
+library(dplyr)
+library(moderndive)
+library(readr)
+library(tidyr)
+library(lubridate)
+library(stringr)
+library(sf)
+library(tidyverse)
+library(zoo)
+library(scales)
+library(ggplot2)
+library(viridis)
+library(ggeasy)
+rm(list = ls())
+```
+
+
+```{r}
+setwd("C:/Users/kwizeras/Downloads") #when you copy the path, change "\" to "/"
+getwd()
+```
+#Precipitation: CHIRPS, 2006
+
+
+```{r}
+precip2006_long <- gather(as.data.frame(read_csv("PRECIP_bufferzones_2006.csv")), Date, Precipitation, '20060101_precipitation': '20061226_precipitation') %>%
+  dplyr::select(Date, Precipitation, id) %>%
+  dplyr::rename(a01 = id) %>%
+  separate( col=Date, into=c('Date', 'useless'), sep='_') %>%
+  dplyr::select(-useless)
+```
+
+```{r}
+precip2006_long$newDate <- as.Date(precip2006_long$Date, "%Y%m%d")
+precip2006_long$month <- format(precip2006_long$newDate, "%m")
+```
+
+```{r}
+sumprecip2006_long <- precip2006_long %>% group_by(month, a01) %>% summarise(MonthPRECIP = sum(Precipitation, na.rm = TRUE))
+```
+
+```{r}
+write.csv(sumprecip2006_long, "BIHS_precipitation_2006.csv", row.names = F)
+
+```
+
+
+#Precipitation: CHIRPS, 2007
+
+
+```{r}
+precip2007_long <- gather(as.data.frame(read_csv("PRECIP_bufferzones_2007.csv")), Date, Precipitation, '20070101_precipitation': '20071226_precipitation') %>%
+  dplyr::select(Date, Precipitation, id) %>%
+  dplyr::rename(a01 = id) %>%
+  separate( col=Date, into=c('Date', 'useless'), sep='_') %>%
+  dplyr::select(-useless)
+```
+
+```{r}
+precip2007_long$newDate <- as.Date(precip2007_long$Date, "%Y%m%d")
+precip2007_long$month <- format(precip2007_long$newDate, "%m")
+```
+
+```{r}
+sumprecip2007_long <- precip2007_long %>% group_by(month, a01) %>% summarise(MonthPRECIP = sum(Precipitation, na.rm = TRUE))
+```
+
+```{r}
+#write.csv(sumprecip2007_long, "BIHS_precipitation_2007.csv", row.names = F)
+
+```
+
+```{r}
+library(readxl)
+PRECIP <- read_excel("2000-22_BIHS_PRECIP.xlsx")
+
+names(PRECIP)
+
+PRECIP <- PRECIP %>% 
+  mutate(std_rain = sd(MonthPRECIP))%>% 
+  mutate(Z_score = (MonthPRECIP-mean)/std_rain)
+PRECIP
+  hist <- ggplot(PRECIP, aes(Z_score ))+
+  geom_histogram(fill = "lightblue")+
+  labs(title = "Z_score Distribution of Rain Distribution")+
+  theme(plot.title = element_text(size = 22, face = "bold"))+
+  theme(axis.text = element_text(size = 15, face = "bold"))+
+  theme(axis.text.x = element_text(size = 15, face = "bold"))+
+  theme(axis.title.x = element_text(size = 20, face = "bold"))+
+  easy_remove_y_axis()+
+  theme(plot.subtitle = element_text(size = 13, face = "bold"))+
+  easy_remove_legend()+
+  easy_center_title()+
+  easy_all_text_size(20)
+hist
+
+```
+
+
+```{r}
+PRECIP2 <- PRECIP %>% 
+  filter(year >= 2013, year <= 2019 ) %>% 
+  mutate(std_rain = sd(MonthPRECIP))%>% 
+  mutate(Z_score = (MonthPRECIP-mean)/std_rain) 
+
+
+sliced_PRECIPa <- PRECIP2[-(1:7708), ]
+sliced_PRECIPb <- sliced_PRECIPa[1:(nrow(sliced_PRECIPa) -19270), ]
+
+# write.csv(sliced_PRECIPb, "longpivoted_data.csv", row.names = F)
+
+
+hist2 <- ggplot(sliced_PRECIPb, aes(Z_score))+
+geom_histogram(fill = "lightblue")+
+  labs(title = "Z_score Distribution of Rain Distribution")+
+  theme(plot.title = element_text(size = 22, face = "bold"))+
+  theme(axis.text = element_text(size = 15, face = "bold"))+
+  theme(axis.text.x = element_text(size = 15, face = "bold"))+
+  theme(axis.title.x = element_text(size = 20, face = "bold"))+
+  easy_remove_y_axis()+
+  theme(plot.subtitle = element_text(size = 13, face = "bold"))+
+  easy_remove_legend()+
+  easy_center_title()+
+  easy_all_text_size(20)
+hist2
+
+```
+
+
+# Pivot wider
+
+```{r}
+pivoted_data <- pivot_wider(
+  sliced_PRECIPb,
+  id_cols = a01,       
+  names_from = c(year, month),  
+  values_from = c(Z_score, MonthPRECIP)    
+)
+
+# write.csv(pivoted_data, "widepivoted_data.csv", row.names = F)
+
+```
+
+
+<!-- ```{r} -->
+<!-- library(haven) -->
+
+<!-- data_mc <- read_dta("BIHS2018-19MC_Jun4_IDFormatted.dta") %>%  -->
+<!--   filter(w2_05 >= 2014 & w2_04 >= 3 ) %>%  -->
+<!--   filter(w2_05 <= 2019 & w2_04 <= 2) -->
+
+<!-- ``` -->
+
+
+
+```{r}
+library(haven)
+
+data_mc <- read_dta("BIHS2018-19MC_Jun22.dta")
+
+
+```
+
+```{r}
+
+merged_table <- full_join(data_mc, pivoted_data, by = "a01")
+
+# Filter the data frame to remove children born after Feb 2019
+data_filtered1 <- merged_table[!(merged_table$w2_05 == "2019" & merged_table$w2_04 > 2), ]
+
+# Filter the data frame to remove children born before Mar 2014
+data_filtered2 <- data_filtered1[!(data_filtered1$w2_05 == "2014" & data_filtered1$w2_04 < 3), ]
+
+# write.csv(data_filtered2, "mc_piv_data.csv", row.names = F)
+
+# filtering for children under 2 years old
+
+under2_children <- data_filtered2 %>% 
+  filter(agemonth <= 24)
+
+above2_under_5 <-  data_filtered2 %>% 
+  filter(agemonth > 24)
+
+```
+
+## code from Nandini
+
+```{r percentage stunted boys by tri}
+male_stunted <- data.frame(
+
+ z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+
+ Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+
+ Percentage_stunted = c(31.28, 31.77, 33.25, 30.13, 28.28, 29.07, 35.31, 36.9, 34.35)
+
+)
+
+ 
+
+male_stunted$z_score_tertile <- factor(male_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+ 
+
+stunt_male_by_Rainfall <- ggplot(male_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
+
+ geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+
+ geom_text(aes(label = paste0(Percentage_stunted, "%")), 
+
+           position = position_dodge(width = 0.91),
+
+           vjust = -0.5, 
+
+           color = "black",
+
+           size = 3) +
+
+ labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
+
+      x = "Trimesters", 
+
+      y = "% of Stunted Boys < 5 y/o") +
+
+ theme(plot.title = element_text(size = 14)) +
+
+ guides(fill = guide_legend(title = "Precipitation Intensity")) +
+
+scale_fill_viridis_d() +
+
+ theme_classic() +
+  easy_y_axis_title_size(size = 13)+
+  scale_y_continuous(limits = c(0, 100))+
+  easy_x_axis_title_size(size = 13)+
+  easy_plot_legend_title_size(size = 13)+
+  easy_plot_legend_size(size = 10)+
+  easy_plot_title_size(size = 15)+
+  # easy_center_title()+easy_center_title()+
+  easy_plot_legend_size(size = 13)+
+
+
+ coord_cartesian(ylim = c(0, 40))
+stunt_male_by_Rainfall
+```
+ 
+
+stunt_male_by_Rainfall
+
+ 
+
+#############################################################################
+
+```{r stunted girls by trimester} 
+
+female_stunted <- data.frame(
+
+ z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+
+ Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+
+ Percentage_stunted = c(33.24, 30.97, 29.44, 30.97, 29.6, 33.15, 35.71, 34.44, 37.5)
+
+)
+
+ 
+
+female_stunted$z_score_tertile <- factor(female_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+ 
+
+stunt_female_by_Rainfall <- ggplot(female_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
+
+ geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+
+ geom_text(aes(label = paste0(Percentage_stunted, "%")), 
+
+           position = position_dodge(width = 0.91),
+
+           vjust = -0.5, 
+
+           color = "black",
+
+           size = 3) +
+
+ labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
+
+      x = "Trimesters", 
+
+      y = "% of Stunted Girls < 5 y/o") +
+
+ theme(plot.title = element_text(size = 14)) +
+
+ guides(fill = guide_legend(title = "Precipitation Intensity")) +
+
+scale_fill_viridis_d() +
+
+ theme_classic() +
+  easy_y_axis_title_size(size = 13)+
+  scale_y_continuous(limits = c(0, 100))+
+  easy_x_axis_title_size(size = 13)+
+  easy_plot_legend_title_size(size = 13)+
+  easy_plot_legend_size(size = 10)+
+  easy_plot_title_size(size = 15)+
+  # easy_center_title()+
+    coord_cartesian(ylim = c(0, 40))
+stunt_female_by_Rainfall
+```
+ 
+
+
+
+ 
+
+#########################################################################################
+
+```{r underweight boys by intensity} 
+
+male_underweight <- data.frame(
+
+ z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+
+ Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+
+Percentage_underweight = c(24.60, 21.41, 25.07, 19.22, 19.54, 19.52, 24.03, 27.01, 23.16)
+
+)
+
+ 
+
+male_underweight$z_score_tertile <- factor(male_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+ 
+
+underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
+
+ geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+
+ geom_text(aes(label = paste0(Percentage_underweight, "%")), 
+
+           position = position_dodge(width = 0.91),
+
+           vjust = -0.5, 
+
+           color = "black",
+
+           size = 3) +
+
+ labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
+
+      x = "Trimesters", 
+
+      y = "% of Underweight Boys < 5 y/o") +
+
+ theme(plot.title = element_text(size = 14)) +
+
+ guides(fill = guide_legend(title = "Precipitation Intensity")) +
+
+scale_fill_viridis_d() +
+
+  theme_classic() +
+  easy_y_axis_title_size(size = 13)+
+  scale_y_continuous(limits = c(0, 100))+
+  easy_x_axis_title_size(size = 13)+
+  easy_plot_legend_title_size(size = 13)+
+  easy_plot_legend_size(size = 10)+
+  easy_plot_title_size(size = 15)+
+
+ coord_cartesian(ylim = c(0, 30))
+underw_male_by_Rainfall
+
+
+``` 
+
+
+
+ 
+
+#########################################################################################################
+
+ 
+```{r underweight girls}
+female_underweight <- data.frame(
+
+ z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+
+ Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+
+Percentage_underweight = c(24.93, 26.48, 21.67, 22.95, 20.63, 22.04, 25.01, 25.82, 29.57)
+
+)
+
+ 
+
+female_underweight$z_score_tertile <- factor(female_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+ 
+
+underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
+
+ geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+
+ geom_text(aes(label = paste0(Percentage_underweight, "%")), 
+
+           position = position_dodge(width = 0.91),
+
+           vjust = -0.5, 
+
+           color = "black",
+
+           size = 3) +
+
+ labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
+
+      x = "Trimesters", 
+
+      y = "% of Underweight Girls < 5 y/o") +
+
+ theme(plot.title = element_text(size = 14)) +
+
+ guides(fill = guide_legend(title = "Precipitation Intensity")) +
+
+scale_fill_viridis_d() +
+
+ theme_classic() +
+  easy_y_axis_title_size(size = 13)+
+  scale_y_continuous(limits = c(0, 100))+
+  easy_x_axis_title_size(size = 13)+
+  easy_plot_legend_title_size(size = 13)+
+  easy_plot_legend_size(size = 10)+
+  easy_plot_title_size(size = 15)+
+  # easy_center_title()+
+
+ coord_cartesian(ylim = c(0, 30))
+underw_female_by_Rainfall
+
+``` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

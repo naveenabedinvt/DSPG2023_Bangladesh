@@ -662,8 +662,59 @@ ocudiv <- data %>%
 
 ocudiv$Ocucategory <- factor(ocudiv$Ocucategory, levels = c("non-earning occupations", "farming","livestock-related work","production business","business/trade","self-employed","rickshaw/van puller","salaried","non-agricultural day labor","agricultural day labor"))
 
+female_stunted <- data.frame(
+    
+    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+    
+    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+    
+    Percentage_stunted = c(33.24, 30.97, 29.44, 30.97, 29.6, 33.15, 35.71, 34.44, 37.5)
+    
+  )
+  
+  
+  
+  female_stunted$z_score_tertile <- factor(female_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+  
+  male_stunted <- data.frame(
+    
+    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+    
+    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+    
+    Percentage_stunted = c(31.28, 31.77, 33.25, 30.13, 28.28, 29.07, 35.31, 36.9, 34.35)
+    
+  )
+  
+  
+  
+  male_stunted$z_score_tertile <- factor(male_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+  
+  female_underweight <- data.frame(
+    
+    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+    
+    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+    
+    Percentage_underweight = c(24.93, 26.48, 21.67, 22.95, 20.63, 22.04, 25.01, 25.82, 29.57)
+    
+  )
+  
+  
+  female_underweight$z_score_tertile <- factor(female_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
 
-
+  male_underweight <- data.frame(
+    
+    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+    
+    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+    
+    Percentage_underweight = c(24.60, 21.41, 25.07, 19.22, 19.54, 19.52, 24.03, 27.01, 23.16)
+    
+  )
+  
+  male_underweight$z_score_tertile <- factor(male_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+  
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
  # jscode <- '
@@ -1103,16 +1154,124 @@ navbarMenu("Methodology",
 ),
 navbarMenu("Results",
            tabPanel("Stunting",
-                    # Content for sub-tab 1
-                    p("This is sub-tab 1.")
+                    tabsetPanel(
+                      tabPanel("GFD Results",
+                               fluidRow(style = "margin: 2px;",
+                                        br(""),
+                                        column(
+                                          8,
+                                          p(h5("Gender Disaggregation")),
+                               plotlyOutput("graph1"),
+                               plotlyOutput("graph2"),
+                              ),
+                              
+                               br(""),
+                          
+                               br(""),
+                               br(""),
+                               br(""),
+                               br(""),
+                               br(""),
+                      
+                    
+                               column(
+                                 4,
+                                 p(h4(strong("Description"))),
+                                 p("Stunting refers to when individuals have low height for their age which can have long-lasting effects even into adulthood. The graphs depict gender-disaggregated data for the percentage of children under five years old who are stunted on the y axis. We look at whether a flood event occurred during each trimester of the mother’s pregnancy given in the x-axis. Stunting prevalence differs across trimesters, with higher rates for children whose mothers experienced flooding during the third trimester. Additionally, the graphs highlight the vulnerability of girls to stunting, as their percentages surpass those of boys. This vulnerability may stem from neglect in rural Bangladesh due to patriarchal societal norms.
+"), 
+                               ),align = "Justify"
+                      )),
+                      tabPanel("CHIRPS Results",
+                               fluidRow(style = "margin: 2px;",
+                                        br(""),
+                                        column(
+                                          8,
+                                          p(h5("Gender Disaggregation")),
+                                          plotlyOutput("graph3"),
+                                          plotlyOutput("graph4"),
+                                        ),
+                                        br(""),
+                                        br(""),
+                                        br(""),
+                                        br(""),
+                                        br(""),
+                                        br(""),
+                                        column(
+                                          4,
+                                          p(h4(strong("Description"))),
+                                          p(" we observed a positive correlation between precipitation intensity and stunting. In each trimester, higher rainfall intensities during pregnancy were associated with increased stunting after birth for both genders."), 
+                                        ),align = "Justify"
+                               )),
+                      tabPanel("Regression",
+                               p("This is sub-tab 2.2.")
+                      )
+                    )
            ),
            tabPanel("Underweight",
-                    # Content for sub-tab 2
-                    p("This is sub-tab 2.")
+                    tabsetPanel(
+                      tabPanel("GFD Results",
+                               fluidRow(style = "margin: 2px;",
+                                        br(""),
+                                        column(
+                                          8,
+                                          p(h5("Gender Disaggregation")),
+                                          plotlyOutput("graph5"),
+                                          plotlyOutput("graph6"),
+                                        ),
+                                        column(
+                                          4,
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          p(h4(strong("Description"))),
+                                          p("Underweight refers to having a lower weight for their age. The data do not reveal a clear trend in children being underweight based on flood exposure during specific trimesters. The mixed results are expected, as literature suggests, since weight is a short-term indicator of health which can be recovered with proper nutrition over time
+"), 
+                                        ),align = "Justify"
+                               )),
+                      tabPanel("CHIRPS Results",
+                               fluidRow(style = "margin: 2px;",
+                                        br(""),
+                                        column(
+                                          8,
+                                          p(h5("Gender Disaggregation")),
+                                          plotlyOutput("graph7"),
+                                          plotlyOutput("graph8"),
+                                        ),
+                                        column(
+                                          4,
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          p(h4(strong("Description"))),
+                                          p("When examining the graphs depicting percentages of underweight boys and girls per trimester based on rainfall intensity, no clear trend was evident, except that girls generally exhibited higher levels of underweight.
+"), 
+                                        ),align = "Justify"
+                               )),
+                      tabPanel("Regression",
+                               p("This is sub-tab 2.2.")
+                      )
+                      
+                      
+                    )
            ),
            tabPanel("Mechanisms",
-                    # Content for sub-tab 2
-                    p("This is sub-tab 3.")
+                    tabsetPanel(
+                      tabPanel("Sub-tab 3.1",
+                               p("This is sub-tab 3.1.")
+                      ),
+                      tabPanel("Sub-tab 3.2",
+                               p("This is sub-tab 3.2.")
+                      ),
+                      tabPanel("Sub-tab 2.2",
+                               p("This is sub-tab 2.2.")
+                      )
+                    )
            )
 ),
 tabPanel("Discussion/Conclusion", value = "overview",
@@ -1993,6 +2152,208 @@ server <- function(input, output, session) {
     else if (var5() == "occu_dist") {
       "\\This graph shows the percentage distribution of occupations mothers in Bangladesh participate in. Among all divisions, the non-earning occupations category is the highest percentage. Non-earning occupations consist of roles such as primary care givers, maids, street vendors, subsistence farmers, and nannies. The level of education a woman receives and the societal culture will also affect a mother's ability to participate in an occupation that will allow her to earn income for the household.\""}
   })
+  
+  output$graph1 <- renderPlotly({
+    stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+      geom_bar(stat = "identity", position = "dodge") +
+
+      labs(title = "Percentage of Stunted Girls < 5 y/o by Incidence of Flood Event",
+           x = "Trimesters", 
+           y = "% of Stunted Girls < 5 y/o") +
+      easy_add_legend_title("Flood Events")+
+      theme(plot.title = element_text(size = 15)) +
+      scale_fill_viridis_d()+
+      theme_classic()+ 
+      easy_y_axis_title_size(size = 13)+
+      scale_y_continuous(limits = c(0, 100))+
+      easy_x_axis_title_size(size = 13)+
+      easy_plot_legend_title_size(size = 13)+
+      easy_plot_legend_size(size = 10)+
+      easy_plot_title_size(size = 15)+
+      coord_cartesian(ylim = c(0, 40))
+      
+    ggplotly(stunt_g)})
+  
+  output$graph2 <- renderPlotly({
+    stunt_b <- ggplot(read.csv("data/stunt_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+      geom_bar(stat = "identity", position = "dodge") +
+      
+      labs(title = "Percentage of Stunted Boys < 5 y/o by Incidence of Flood Event",
+           x = "Trimesters", 
+           y = "% of Stunted Boys < 5 y/o") +
+      easy_add_legend_title("Flood Events")+
+      theme(plot.title = element_text(size = 15)) +
+      scale_fill_viridis_d()+
+      theme_classic()+ 
+      easy_y_axis_title_size(size = 13)+
+      scale_y_continuous(limits = c(0, 100))+
+      easy_x_axis_title_size(size = 13)+
+      easy_plot_legend_title_size(size = 13)+
+      easy_plot_legend_size(size = 10)+
+      easy_plot_title_size(size = 15)+
+      coord_cartesian(ylim = c(0, 40))
+    
+    ggplotly(stunt_b)})
+  
+  output$graph5 <- renderPlotly({ underw_g <- ggplot(read.csv("data/underwe_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Underweight Girls < 5 y/o by Incidence of Flood Event",
+         x = "Trimesters", 
+         y = "% of Underweight Girls < 5 y/o") +
+    easy_add_legend_title("Flood Events")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    coord_cartesian(ylim = c(0, 30))
+  
+  ggplotly(underw_g)})
+  
+  ## underweight boys
+  
+  output$graph6 <- renderPlotly({underw_b <- ggplot(read.csv("data/underwe_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Underweight Boys < 5 y/o by Incidence of Flood Event",
+         x = "Trimesters", 
+         y = "% of Underweight Boys < 5 y/o") +
+    easy_add_legend_title("Flood Events")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+
+    # easy_center_title()+
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    coord_cartesian(ylim = c(0, 30))
+  
+  ggplotly(underw_b)})
+  
+  
+  
+  
+  output$graph3 <- renderPlotly({stunt_female_by_Rainfall <- ggplot(female_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Stunted Girls < 5 y/o") +
+    
+    theme(plot.title = element_text(size = 14)) +
+    
+    guides(fill = guide_legend(title = "Precipitation Intensity")) +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    coord_cartesian(ylim = c(0, 40))
+  ggplotly(stunt_female_by_Rainfall)})
+  
+  output$graph4 <- renderPlotly({stunt_male_by_Rainfall <- ggplot(male_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Stunted Boys < 5 y/o") +
+    
+    theme(plot.title = element_text(size = 14)) +
+    
+    guides(fill = guide_legend(title = "Precipitation Intensity")) +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+easy_center_title()+
+    easy_plot_legend_size(size = 13)+
+    
+    
+    coord_cartesian(ylim = c(0, 40))
+  ggplotly(stunt_male_by_Rainfall)})
+  
+  
+  output$graph7 <- renderPlotly({underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Underweight Girls < 5 y/o") +
+    
+    theme(plot.title = element_text(size = 14)) +
+    
+    guides(fill = guide_legend(title = "Precipitation Intensity")) +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    
+    coord_cartesian(ylim = c(0, 30))
+  ggplotly(underw_female_by_Rainfall)})
+  
+  output$graph8 <- renderPlotly({underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Underweight Boys < 5 y/o") +
+    
+    theme(plot.title = element_text(size = 14)) +
+    
+    guides(fill = guide_legend(title = "Precipitation Intensity")) +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    
+    coord_cartesian(ylim = c(0, 30))
+  ggplotly(underw_male_by_Rainfall)})
+
+    
 }
 
 shinyApp(ui = ui, server = server)
