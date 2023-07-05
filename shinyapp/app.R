@@ -1082,7 +1082,7 @@ navbarMenu("Background",
                     fluidPage(column(12, align = "right",
                                      p("Source:",style = "font-size:12px;"))
                     )),
-           tabPanel("Mother and Child", value = "overview",
+           tabPanel("Mother and Child Profile", value = "overview",
                     fluidRow(style = "margin: 6px;",
                              p("", style = "padding-top:10px;"),
                              column(12, align = "center",h1(strong("Mother and Child Profile")),
