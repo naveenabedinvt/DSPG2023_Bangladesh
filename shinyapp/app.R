@@ -310,10 +310,10 @@ eletri<-data_h%>%
   ungroup() %>%
   
   mutate(Electricity = as.character(haven::zap_labels(Electricity)),
-         Electricity = recode(Electricity, "1" =  "W/ electricity",
-                              "0" = "W/o electricity",
+         Electricity = recode(Electricity, "1" =  "With electricity",
+                              "0" = "Without electricity",
          )) %>% 
-  filter(Electricity == "W/o electricity")
+  filter(Electricity == "Without electricity")
 
 ## Household access to improved drinking water source
 
@@ -421,25 +421,25 @@ hhh_main_occup <- data_h %>%
   ungroup() %>%
   mutate(Occupations = as.character(Occupations),  # Convert to character
          Occupations = dplyr::recode(Occupations,
-                                     "1" =  "agricultural day labor",
+                                     "1" =  "Agricultural day labor",
                                      
-                                     "2" = "non-agricultural day labor",
+                                     "2" = "Non-agricultural day labor",
                                      
-                                     "3" = "salaried",
+                                     "3" = "Salaried",
                                      
-                                     "4" = "rickshaw/van puller",
+                                     "4" = "Rickshaw/van puller",
                                      
-                                     "5" =  "self-employed",
+                                     "5" =  "Self-employed",
                                      
-                                     "6" = "business/trade",
+                                     "6" = "Business/trade",
                                      
-                                     "7" = "production business",
+                                     "7" = "Production business",
                                      
-                                     "8" = "livestock-related work",
+                                     "8" = "Livestock-related work",
                                      
-                                     "9" = "farming",
+                                     "9" = "Farming",
                                      
-                                     "10" = "non-earning occupations"))
+                                     "10" = "Non-earning occupations"))
 
 #stunting by division by gender
 #create data frame with total percentage of those stunted
@@ -648,19 +648,19 @@ ocudiv <- data %>%
   mutate(Total = sum(n), Percentage = round(n/Total * 100, 2)) %>% 
   ungroup() %>%
   mutate(Ocucategory = as.character(haven::zap_labels(Ocucategory)),
-         Ocucategory = recode(Ocucategory, "1" = "agricultural day labor",
-                              "2" = "non-agricultural day labor",
-                              "3" = "salaried",
-                              "4" = "rickshaw/van puller",
-                              "5" = "self-employed",
-                              "6" = "business/trade",
-                              "7" = "production business",
-                              "8" = "livestock-related work",
-                              "9" = "farming",
-                              "10" = "non-earning occupations"))
+         Ocucategory = recode(Ocucategory, "1" = "Agricultural day labor",
+                              "2" = "Non-agricultural day labor",
+                              "3" = "Salaried",
+                              "4" = "Rickshaw/van puller",
+                              "5" = "Self-employed",
+                              "6" = "Business/trade",
+                              "7" = "Production business",
+                              "8" = "Livestock-related work",
+                              "9" = "Farming",
+                              "10" = "Non-earning occupations"))
 # ocudiv
 
-ocudiv$Ocucategory <- factor(ocudiv$Ocucategory, levels = c("non-earning occupations", "farming","livestock-related work","production business","business/trade","self-employed","rickshaw/van puller","salaried","non-agricultural day labor","agricultural day labor"))
+ocudiv$Ocucategory <- factor(ocudiv$Ocucategory, levels = c("Non-earning occupations", "Farming","Livestock-related work","Production business","Business/trade","Self-employed","Rickshaw/van puller","Salaried","Non-agricultural day labor","Agricultural day labor"))
 
 female_stunted <- data.frame(
     
@@ -1085,8 +1085,8 @@ navbarMenu("Background",
                                                                   "Cultivable Land Holding" = "cultivable_land",
                                                                   "Electricity Accessibility " = "electricity_accessibility",
                                                                   "Water Treatment" = "water_treatment",
-                                                                  "Water Improvement" = "water_improvement",
-                                                                  "HH head Main Occupation" = "hhh_occupation"
+                                                                  "Improved Water Accessibility" = "water_improvement",
+                                                                  "Household Head Occupation" = "hhh_occupation"
                                                                   
                                                                   
                                                                 ),
@@ -1107,7 +1107,7 @@ navbarMenu("Background",
                     fluidPage(column(12, align = "right",
                                      p("Source:",style = "font-size:12px;"))
                     )),
-           tabPanel("Mother and Child", value = "overview",
+           tabPanel("Mother and Child Profile", value = "overview",
                     fluidRow(style = "margin: 6px;",
                              p("", style = "padding-top:10px;"),
                              column(12, align = "center",h1(strong("Mother and Child Profile")),
@@ -1123,11 +1123,11 @@ navbarMenu("Background",
                                                fluidRow(style = "margin: 4px;",
                                                         p("", style = "padding-top:10px;"),
                                                         column(8,
-                                                               selectInput("mcdrop1", "Select Birth Outcome characteristic:", width = "100%",
-                                                                           choices = c("Stunting by Divsion" = "stunt_div",
-                                                                                       "Underweight by Division" = "underweight_div",
-                                                                                       "Average Birth Weight by Division" = "avgbw_div",
-                                                                                       "Wasting by Division " = "wasting_div")),
+                                                               selectInput("mcdrop1", "Select Child Health Outcome Characteristic:", width = "100%",
+                                                                           choices = c("Stunting" = "stunt_div",
+                                                                                       "Underweight" = "underweight_div",
+                                                                                       "Average Birth Weight" = "avgbw_div",
+                                                                                       "Wasting" = "wasting_div")),
                                                                br(""),
                                                                withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
                                                         column(4,
@@ -1145,7 +1145,7 @@ navbarMenu("Background",
                                                                selectInput("mcdrop2", "Select Mother Socioeconomic characteristic:", width = "100%",
                                                                            choices = c("Age Distribution" = "age_dist",
                                                                                        "Education" = "edu_dist", 
-                                                                                       "Occupations " = "occu_dist")),
+                                                                                       "Mother Occupations " = "occu_dist")),
                                                                br(""),
                                                                withSpinner(plotlyOutput("mc2", height = "500px", width ="100%"))),
                                                         column(4,
@@ -1478,16 +1478,15 @@ server <- function(input, output, session) {
                     aes(Division, Average_Household_size, fill = Division))+
         geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Average Household Size: ", Average_Household_size)))+
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Average Household Size by Division",
              x= "Division",
              y = "Average Household Size")+
         easy_remove_legend()+
-        scale_fill_viridis_d() + 
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_size(size = 13)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
+        scale_fill_viridis_d() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         
         ylim(0,7)
@@ -1502,16 +1501,15 @@ server <- function(input, output, session) {
                              aes(Division, Dependency_Ratio, fill = Division))+
         geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Dependency Ratio: ", Dependency_Ratio)))+
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Dependency Ratio by Division",
              x= "Division",
              y = "Dependency Ratio")+
         scale_fill_viridis_d() + 
         easy_remove_legend()+
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_size(size = 13)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 0.5)
     
@@ -1525,14 +1523,14 @@ server <- function(input, output, session) {
                      aes(Division, Percentage, fill = Gender))+
         geom_bar(position="dodge", stat="identity")+
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Household Headship by Division by Gender",
              x= "Division",
              y = "Percentage")+
-        scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) + 
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
+        scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0,100)
       ggplotly(p_h2o)
@@ -1576,20 +1574,20 @@ server <- function(input, output, session) {
     if (Var3() == "age_by_gender") {
       
       pgg <- ggplot(avg, aes(Division, Mean_age, fill = Gender))+
-        geom_bar(position="dodge", stat="identity")+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Average Age: ", Mean_age)))+
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Average Age by Division by Gender",
              x= "Division",
              y = "Average Age")+
         scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
-        # easy_y_axis_title_size(size = 15)+
-        # easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 14)+
-        easy_center_title()+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 35)
       
-      ggplotly(pgg)
+      ggplotly(pgg, tooltip = c("text"))
       
     }
     
@@ -1597,9 +1595,13 @@ server <- function(input, output, session) {
       
       p_ma<- ggplot(age_div_male, 
                     aes(Division, Percentage, fill = Age_range))+
-        geom_bar(position="dodge", stat="identity")+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Average Range: ", Age_range, "\n", "Percentage: ", Percentage)))+
         scale_fill_viridis_d() +
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
                                      "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
@@ -1608,37 +1610,41 @@ server <- function(input, output, session) {
         labs(title = "Male Age Distribution by Division",
              x= "Division",
              y = "Percentage")+
-        easy_plot_title_size(size = 14)+
-        easy_center_title()+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,50)
-      ggplotly(p_ma)
+      ggplotly(p_ma, tooltip = c("text"))
     }
     
     else if (Var3() == "female_age") {
       
       p_fe <- ggplot(age_div_female, aes(Division, Percentage, fill = Age_range)) +
-        geom_bar(position = "dodge", stat = "identity") +
+        geom_bar(position = "dodge", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Average Range: ", Age_range, "\n", "Percentage: ", Percentage))) +
         scale_fill_viridis_d() +  # Set colors to viridis defaults
-        theme_classic() +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         scale_fill_manual(values = c("0-5 yrs" = "#440154", "6-10 yrs" = "#fde725",
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
                                      "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
                                      "#5ec962", "80+ yrs" = "#f6c2f8"))+
         # easy_all_text_colour("#630031") +
         labs(title = "Female Age Distribution by Division", x = "Division", y = "Percentage") +
-        easy_plot_title_size(size = 14) +
-        easy_center_title() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0, 50)
-      ggplotly(p_fe)
+      ggplotly(p_fe, tooltip = c("text"))
     }
     else if (Var3() == "head_age") {
       p_hhh<-ggplot (hhh_age,aes(Division, Percentage, fill = Age_category))+
-        geom_bar(position="dodge", stat="identity")+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Average Range: ", Age_category, "\n", "Percentage: ", Percentage)))+
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Household Head Age Distribution by Division",
              x= "Division",
              y = "Percentage")+
@@ -1647,14 +1653,10 @@ server <- function(input, output, session) {
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
                                      "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
                                      "#5ec962", "80+ yrs" = "#f6c2f8"))+
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,100)
-      ggplotly(p_hhh)
+      ggplotly(p_hhh, tooltip = c("text"))
       
     }
     
@@ -1694,8 +1696,12 @@ server <- function(input, output, session) {
     if (hedu() == "male_education_division") {
       
       p_m <- ggplot(edu_div_male, aes(Division, Percentage, fill = Education_level)) +
-        geom_bar(position = "stack", stat = "identity") + #, aes(text = paste0(Percentage, "%"))
-        theme_classic() +
+        geom_bar(position = "stack", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Education Level: ", Education_level, "\n", "Percentage: ", Percentage))) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         scale_fill_viridis_d() +
         scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
                                      "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
@@ -1703,26 +1709,25 @@ server <- function(input, output, session) {
         labs(
           title = "Educational Attainment of Males by Division",
           x = "Division",
-          y = "Percentage"
-        ) +
-        easy_plot_title_size(size = 14) +
-        # easy_all_text_colour("#630031") +
-        easy_center_title() +
-        # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+          y = "Percentage") +
         ylim(0, 100) +
         coord_flip()+
         ggeasy::easy_add_legend_title("Education Level")
       
-      ggplotly(p_m)
+      ggplotly(p_m, tooltip = c("text"))
       
     }
     
     else if (hedu() == "female_education_division") {
       
       p_f <- ggplot(edu_div_female, aes(Division, Percentage, fill = Education_level)) +
-        geom_bar(position = "stack", stat = "identity") + #, aes(text = paste0(Percentage, "%"))
+        geom_bar(position = "stack", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Education Level: ", Education_level, "\n", "Percentage: ", Percentage))) + 
         scale_fill_viridis_d() +
-        theme_classic() +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         scale_fill_manual(values = c("No education" = "#440154" , "Less than primary" = "#fde725",
                                      "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
                                      "Higher" = "#ff7f00"))+
@@ -1730,37 +1735,41 @@ server <- function(input, output, session) {
         labs(title = "Educational Attainment of Females by Division",
              x = "Division",
              y = "Percentage") +
-        easy_plot_title_size(size = 14) +
         coord_flip()+
         ggeasy::easy_add_legend_title("Education Level")
       
-      ggplotly(p_f)
+      ggplotly(p_f, tooltip = c("text"))
     }
     
     else if (hedu() == "hh_highest_education") {
       
       p_h <- ggplot(hh_edu_div, aes(Division, Percentage, fill = Education_level)) +
-        geom_bar(stat = "identity", position = "dodge") + #, aes(text = paste0(Percentage, "%"))
+        geom_bar(stat = "identity", position = "dodge", aes(text = paste0("Division: ", Division, "\n", "Education Level: ", Education_level, "\n", "Percentage: ", Percentage))) +
         labs(title = "Highest Household Education Level by Division",
              x = "Division",
              y = "Percentage") +
         scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
                                      "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
                                      "Higher" = "#ff7f00"))+
-        easy_center_title() +
-        theme_classic() +
-        easy_plot_title_size(size = 14) +
-        
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 70)
       
-      ggplotly(p_h)
+      ggplotly(p_h, tooltip = c("text"))
     }
     else if (hedu() == "hh_ head_education") {
       p_hh <- ggplot(hhh_edu_div, aes(Division, Percentage, fill = Education_level)) +
-        geom_bar(position = "dodge", stat = "identity") +
-        theme_classic() +
+        geom_bar(position = "dodge", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Education Level: ", Education_level, "\n", "Percentage: ", Percentage))) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(
           title = "Household Head Educational Attainment by Division",
           x = "Division",
@@ -1770,14 +1779,11 @@ server <- function(input, output, session) {
         scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
                                      "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
                                      "Higher" = "#ff7f00"))+
-        easy_plot_title_size(size = 14) +
-        # easy_all_text_colour("#630031") +
-        easy_center_title() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 50)  
       
-      ggplotly(p_hh)}
+      ggplotly(p_hh, tooltip = c("text"))}
   }
   )
   
@@ -1815,20 +1821,20 @@ server <- function(input, output, session) {
       
       p_ppp<-ggplot (under_ppp,
                      aes(Division, Percentage, fill = Categories))+
-        geom_bar(position="dodge", stat="identity")+ #, aes(text = paste0(Percentage, "%"))
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "Percentage: ", Percentage)))+ 
         theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(title = "Households Living Below Poverty Line by Division",
              x= "Division",
              y = "Percentage")+
-        scale_fill_viridis_d() + 
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
+        scale_fill_viridis_d() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         easy_remove_legend()+
         ylim(0,20)
-      ggplotly(p_ppp) 
+      ggplotly(p_ppp, tooltip = c("text")) 
       
       
     }
@@ -1836,23 +1842,30 @@ server <- function(input, output, session) {
     else if (hheco() == "households_farming_activities") {
       
       ag <- ggplot(hh_rfarm, aes(x = Division, y = Percentage, fill = Activity)) +
-        geom_bar(position = position_dodge(width = 0.7), width = 0.7, stat = "identity") +
+        geom_bar(position = position_dodge(width = 0.7), width = 0.7, stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Agricultural Activity: ", Activity, "\n", "Percentage: ", Percentage))) +
         xlab("Division") +
         ylab("Percentage") +
         ggtitle("Household Agricultural Activities by Division") +
-        theme_minimal() + 
-        easy_plot_title_size(size = 14) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
         easy_center_title()+
         scale_fill_viridis_d() +
+        ggeasy::easy_add_legend_title("Agricultural Activities")+
         coord_flip()
-      ggplotly(ag)
+      ggplotly(ag, tooltip = c("text"))
     }
     
     else if (hheco() == "cultivable_land") {
       
       p_land <- ggplot(cult_land_div, aes(Division, Percentage, fill = Farm_size)) +
-        geom_bar(position = "dodge", stat = "identity") +
-        theme_classic() +
+        geom_bar(position = "dodge", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Farm Size: ", Farm_size, "\n", "Percentage: ", Percentage))) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(
           title = "Cultivable Land Holding by Division",
           x = "Division",
@@ -1862,30 +1875,26 @@ server <- function(input, output, session) {
         scale_fill_manual(values = c("No cultivable land" = "#440154", "Marginal: <0.5 acres" = "#fde725",
                                      "Small: 0.5-1.5 acres" = "#3a528b", "Medium: 1.5-2.5 acres" = "#21918c", 
                                      "Large: 2.5+ acres" = "#ff7f00"))+
-        # coord_flip()+
-        easy_plot_title_size(size = 14) +
-        # easy_all_text_colour("#630031") +
-        easy_center_title() +
         ggeasy::easy_add_legend_title("Farm Size")+
         # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
-        ylim(0, 50)  
+        ylim(0, 50, tooltip = c("text"))  
       
       ggplotly(p_land)
     }
     else if (hheco() == "electricity_accessibility") {
       p_el<-ggplot (eletri,
                     aes(Division, Percentage, fill = Electricity))+
-        geom_bar(position="dodge", stat="identity")+ #, aes(text = paste0(Percentage, "%"))
+        geom_bar(position="dodge", stat="identity")+
         theme_classic()+
-        labs(title = "Household Without Electricity by Division",
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
+        labs(title = "Households Without Electricity by Division",
              x= "Division",
              y = "Percentage")+
         
-        scale_fill_viridis_d() + 
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
+        scale_fill_viridis_d() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         easy_remove_legend()+
         ylim(0,30)
@@ -1896,64 +1905,64 @@ server <- function(input, output, session) {
       
       p_h2o<-ggplot (filt_h2o,
                      aes(Division, Percentage, fill = Untreated_water))+
-        geom_bar(position="dodge", stat="identity", aes(text = paste0(Percentage, "%")))+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Water Treatment: ", Untreated_water, "\n", "Percentage: ", Percentage)))+
         theme_classic()+
-        labs(title = "Households W/o Treated Drinking Water by Division",
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
+        labs(title = "Households Without Treated Drinking Water by Division",
              x= "Division",
              y = "Percentage")+
-        scale_fill_viridis_d() + 
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
+        scale_fill_viridis_d() +
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         easy_remove_legend()+
         ylim(0,100)
-      ggplotly(p_h2o)
+      ggplotly(p_h2o, tooltip = c("text"))
     }
     
     else if (hheco() == "water_improvement") {
       
       p_ih2o<-ggplot (imp_h2o,
                       aes(Division, Percentage, fill = Improved_water))+
-        geom_bar(position="dodge", stat="identity", aes(text = paste0(Percentage, " ")))+
+        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Water Source: ", Improved_water, "\n", "Percentage: ", Percentage)))+
         scale_fill_viridis_d() + 
         theme_classic()+
-        labs(title = "Household access to Improved_water, by division",
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
+        labs(title = "Unimproved Water Usage by Division",
              x= "Division",
              y = "Percentage")+
-        easy_plot_title_size(size = 14)+
-        # easy_all_text_colour("#630031")+
-        easy_center_title()+
         easy_remove_legend()+
-        # geom_text(aes(label = round(Percentage, 1)), size = 4, vjust = -4, face = "bold")+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0,100)
-      ggplotly(p_ih2o)
+      ggplotly(p_ih2o, tooltip = c("text"))
     }
     else if (hheco() == "hhh_occupation") {
       p_hm <- ggplot(hhh_main_occup, aes(Division, Percentage, fill = Occupations)) +
-        geom_bar(position = "stack", stat = "identity") + #, aes(text = paste0(Percentage, "%"))
-        theme_classic() +
+        geom_bar(position = "stack", stat = "identity", aes(text = paste0("Division: ", Division, "\n", "Occupation: ", Occupations, "\n", "Percentage: ", Percentage))) + #, aes(text = paste0(Percentage, "%"))
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        easy_center_title()+
         labs(
-          title = "HH Head Occupation by Division",
+          title = "Household Head Occupation by Division",
           x = "Division",
           y = "Percentage"
         ) +
         scale_fill_viridis_d() +
-        scale_fill_manual(values = c("agricultural day labor" = "#440154", "non-agricultural day labor" = "#fde725",
-                                     "salaried" = "#3a528b", "rickshaw/van puller" = "#21918c", 
-                                     "self-employed" = "#ff7f00", "business/trade" = "#bd93f5", 
-                                     "production business" = "#5ec962", "livestock-related work" = "#cc4778",
-                                     "farming" = "#f6c2f8", "non-earning occupations" = "#b26600"))+
+        scale_fill_manual(values = c("Agricultural day labor" = "#440154", "Non-agricultural day labor" = "#fde725",
+                                     "Salaried" = "#3a528b", "Rickshaw/van puller" = "#21918c", 
+                                     "Self-employed" = "#ff7f00", "Business/trade" = "#bd93f5", 
+                                     "Production business" = "#5ec962", "Livestock-related work" = "#cc4778",
+                                     "Farming" = "#f6c2f8", "Non-earning occupations" = "#b26600"))+
         coord_flip()+
-        easy_plot_title_size(size = 14) +
-        # easy_all_text_colour("#630031") +
-        easy_center_title() +
-        # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ylim(0, 110)
       
-      ggplotly(p_hm)
+      ggplotly(p_hm, tooltip = c("text"))
       
     }
     
@@ -1980,16 +1989,16 @@ server <- function(input, output, session) {
       
     }
     else if(hheco() == "electricity_accessibility"){
-      "Barisal (29.61%) and Rangpur (26.40) have the highest percentage of households without electricity." 
+      "This graph shows that the more flood prone divisions, Barisal and Rangpur have a higher percentage of surveyed households that do not have access to electricity within their household. Specifically, Barisal with 29.61% and Rangpur with 26.40%."
     }
     else if(hheco() == "water_treatment"){
-      "Across all the divisions in Bangladesh, an average of 95.06% of households that took the survey reported that they do not filter drinking water. The division with the highest percentage of people who do not filter their drinking water is Rangpur and the division with the lowest percentage of households that do not filter their drinking water is Sylhet." 
+      "In Bangladesh, 95.06% of surveyed households across divisions do not filter their drinking water. Water filtration is crucial in rural areas without access to improved water sources. During floods, available drinking water sources become contaminated with chemicals and waterborne pathogens. Filtering water is important to eliminate these pollutants. Rangpur and Barisal have the highest percentage of households not filtering water, while Sylhet has the lowest percentage." 
     }
     else if(hheco() == "water_improvement"){
-      "Across all the divisions in Bangladesh, an average of 97.05% of households that took the survey reported to not have acess to improved water." 
+      "The graph shows that a majority of surveyed households lack access to improved water sources, relying instead on hand pump tube wells that tap into groundwater. However, during flooding, these water sources become unreliable and unsafe for consumption without proper precautions. In Bangladesh, an average of 97.05% of surveyed households reported not having access to improved water sources across all divisions." 
     }
     else if(hheco() == "hhh_occupation"){
-      "In each division, farming is the most frequent occupation, with the largest number of farmers residing in Khulna. The second most frequent occupation in most divisions is non-earning occupations, primarily made up of mothers, nannies, and others. The occupation with the least frequency is livestock-related work, adding up to less than 1 percent combined across the seven divisions. This could be caused by the majority of agricultural land being used for crops and risk of damage caused by natural disasters to livestock." 
+      "In each division, farming is the dominant occupation, with the highest concentration of farmers in Khulna. Non-earning occupations, including subsistence farming, household chores, unpaid family labor, and others, are the second most common occupations across most divisions. Livestock-related work has the lowest frequency, accounting for less than 1% combined across all seven divisions. This is likely due to the prioritization of crop cultivation and the vulnerability of livestock to natural disasters."
     }
     
   }) 
@@ -2131,11 +2140,11 @@ server <- function(input, output, session) {
     else if (var4() == "avgbw_div") {
       # Create the bar plot using ggplot
       bwplot <- ggplot(bwdiv_combined, aes(x = Division, y = Mean_bw, fill = Gender)) +
-        geom_bar(stat = "identity", position = "dodge") +
+        geom_bar(stat = "identity", position = "dodge", aes(text = paste0("Division: ", Division, "\n", "Gender: ", Gender, "\n", "Average Birth Weight: ", Mean_bw))) +
         labs(title = "Average Birth Weight by Division by Gender",
              x = "Division",
              y = "Birth Weight (kg)",
-             fill = "Gender") + 
+             fill = "Gender") +
         scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778")) +
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
@@ -2143,7 +2152,7 @@ server <- function(input, output, session) {
         easy_plot_title_size(size = 16)+
         easy_center_title()
       
-      bw_gender_div <- ggplotly(bwplot)}
+      bw_gender_div <- ggplotly(bwplot, tooltip = c("text"))}
     else if (var4() == "wasting_div") {
       # Create the bar plot using ggplot
       wasteplot <- ggplot(wastediv_combined, aes(x = Division, y = Percentage, fill = Gender)) +
@@ -2161,17 +2170,17 @@ server <- function(input, output, session) {
       
       waste_gender_div <- ggplotly(wasteplot)}
   })
-  #TEXT OUPUT PER GRAPH work on this tomorrow
+  #TEXT OUPUT PER GRAPH
   
   output$mctext1 <- renderText({
     if (var4() == "stunt_div") {
-      "This graph looks at the percentage of stunting among children under the age of five in Bangladesh by division by gender. Among the divisions, Sylhet has the highest percentage of stunting at 42.12%. Barisal, following Sylhet, has the second highest percentage of stunting at 33.33%. Rajshahi has the lowest at 27.04%. "}
+      "The graph shows the percentage of stunting among children under the age of five in Bangladesh by division and gender. Stunting refers to individuals having low height for their age, which can have long-lasting effects. Sylhet has the highest percentage of stunting at 42.12%, followed by Barisal at 33.33%. Rajshahi has the lowest percentage of stunting at 27.04%."}
     else if (var4() == "underweight_div") {
-      "This graph looks at the percentage of children < 5 years old that are underweight by gender and division. Among the divisions, Sylhet has the highest percentage of underweight children at 32.27%  and Chittagong being the second highest percentage at 24.19%. Rajshahi has the lowest at 16.84%. "}
+      "The graph depicts the percentage of children under the age of five who are underweight by gender and division in Bangladesh. Underweight refers to individuals having a low weight for their age. Sylhet has the highest percentage of underweight children at 32.27%, followed by Chittagong at 24.19%. Rajshahi has the lowest percentage of underweight children at 16.84%."}
     else if (var4() == "avgbw_div") {
       "This graph shows the average birth weight of children born by Division and Gender. Rajshahi has the highest birth weight among the divisions at 3.25kg and Chittagong being the lowest at 2.7kg. Referring back to the percentage of children underweight, Rajshahi has the lowest percentage among the divisions reflected in this graph as it has the highest average birth weight. Similarly, Sylhet has a lower relative birth weight when compared to the other divisions. "}
     else if (var4() == "wasting_div") {
-      "This graph looks at the percentage of children < 5 years old that are wasted by gender and division. Among the divisions, Sylhet has the highest percentage of wasted children at 10.59%  and Chittagong being the second highest percentage at 10.58%. Barisal has the lowest at 7.14%. "}
+      "The graph examines the percentage of children under the age of five who are wasted, categorized by gender and division in Bangladesh. Wasting, as defined by the World Health Organization (WHO), indicates a condition where a person's weight is significantly low for their height, indicating acute malnutrition. Sylhet has the highest percentage of wasted children at 10.59%, followed by Chittagong at 10.58%. Barisal has the lowest percentage at 7.14%."}
   })
   
   # Render maps for mother profile 
@@ -2181,7 +2190,7 @@ server <- function(input, output, session) {
     if (var5() == "age_dist") {
       # Create the bar plot using ggplot
       ageplot <- ggplot(agediv, aes(x = Percentage, y = Division, fill = Agecategory)) +
-        geom_bar(stat = "identity", position = "stack") +
+        geom_bar(stat = "identity", position = "stack", aes(text = paste0("Division: ", Division, "\n", "Age Category: ", Agecategory, "\n", "Percentage: ", Percentage))) +
         labs(title = "Age Distribution of Mothers by Division",
              x = "Percentage",
              y = "Division",
@@ -2191,15 +2200,16 @@ server <- function(input, output, session) {
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
         easy_plot_title_size(size = 20)+
+        easy_add_legend_title("Age Category")+
         easy_center_title()
       
       # ageplot
       
-      agedist_div <- ggplotly(ageplot)}
+      agedist_div <- ggplotly(ageplot, tooltip = c("text"))}
     else if (var5() == "edu_dist") {
       # Create the bar plot using ggplot
       eduplot <- ggplot(edudiv, aes(x = Percentage, y = Division, fill = Educategory)) +
-        geom_bar(stat = "identity", position = "stack") +
+        geom_bar(stat = "identity", position = "stack", aes(text = paste0("Division: ", Division, "\n", "Education Category: ", Educategory, "\n", "Percentage: ", Percentage))) +
         labs(title = "Educational Attainment of Mothers by Division",
              x = "Percentage",
              y = "Division",
@@ -2211,44 +2221,46 @@ server <- function(input, output, session) {
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
         easy_plot_title_size(size = 16)+
+        easy_add_legend_title("Education Category")+
         easy_center_title()
       
       # eduplot
       
-      edudist_div <- ggplotly(eduplot)}
+      edudist_div <- ggplotly(eduplot, tooltip = c("text"))}
     else if (var5() == "occu_dist") {
       # Create the bar plot using ggplot
       ocuplot <- ggplot(ocudiv, aes(x = Percentage, y = Division, fill = Ocucategory)) +
-        geom_bar(stat = "identity", position = "stack") +
+        geom_bar(stat = "identity", position = "stack", aes(text = paste0("Division: ", Division, "\n", "Occupation Category: ", Ocucategory, "\n", "Percentage: ", Percentage))) +
         labs(title = "Occupation of Mothers by Division",
              x = "Percentage",
              y = "Division",
              fill = "Occupation category") +
-        scale_fill_manual(values = c("agricultural day labor" = "#440154", "non-agricultural day labor" = "#fde725",
-                                     "salaried" = "#3a528b", "rickshaw/van puller" = "#21918c", 
-                                     "self-employed" = "#ff7f00", "business/trade" = "#bd93f5", 
-                                     "production business" = "#5ec962", "livestock-related work" = "#cc4778",
-                                     "farming" = "#f6c2f8", "non-earning occupations" = "#b26600"))+
+        scale_fill_manual(values = c("Agricultural day labor" = "#440154", "Non-agricultural day labor" = "#fde725",
+                                     "Salaried" = "#3a528b", "Rickshaw/van puller" = "#21918c", 
+                                     "Self-employed" = "#ff7f00", "Business/trade" = "#bd93f5", 
+                                     "Production business" = "#5ec962", "Livestock-related work" = "#cc4778",
+                                     "Farming" = "#f6c2f8", "Non-earning occupations" = "#b26600"))+
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
         easy_plot_title_size(size = 16)+
+        easy_add_legend_title("Occupation Category")+
         easy_center_title()
       
       # ocuplot
       
-      ocudist_div <- ggplotly(ocuplot)}
+      ocudist_div <- ggplotly(ocuplot, tooltip = c("text"))}
     
   })
   
   #TEXT OUTPUT FOR MOTHER GRAPHS
   output$mctext2 <- renderText({
     if (var5() == "age_dist") {
-      "This graph shows the average distribution of mothers' ages across the seven divisions. In general, the modal age is between 18-30 years old. Though the percentage of mothers aged 11-17 years old are low, a younger pregnancy is a possible determinant to birth outcomes. The younger a mother is, the less voice and empowerment she will have to take care of own and her child's health. At this stage of growth, having enough nutrients becomes a risk for the mother and child. Without receiving a proper amount of nutrients, the mother and/or the child's growth will be affected."}
+      "The graph displays the average distribution of mothers' ages across the seven divisions in Bangladesh. Generally, the modal age falls within the range of 18-30 years old. While the percentage of mothers aged 11-17 years old is low, early pregnancy can impact birth outcomes. Younger mothers may face challenges in terms of empowerment and health care for themselves and their children. Insufficient nutrient intake during this stage can pose risks to both the mother and child's growth and development."}
     else if (var5() == "edu_dist") {
       "Education is an indicator of empowerment and knowledge. Therefore, the more education a woman has, the more likely she will be able to provide for her own and child's health. This graph shows the educational attainment levels among the mothers within the Divisions. In general, the modal category of education is completing primary school. In Bangladesh, primary school ends at the fifth grade in the US. This means that most mothers discontinue their education after achieving fifth grade knowledge."}
     else if (var5() == "occu_dist") {
-      "\\This graph shows the percentage distribution of occupations mothers in Bangladesh participate in. Among all divisions, the non-earning occupations category is the highest percentage. Non-earning occupations consist of roles such as primary care givers, maids, street vendors, subsistence farmers, and nannies. The level of education a woman receives and the societal culture will also affect a mother's ability to participate in an occupation that will allow her to earn income for the household.\""}
+      "The graph displays the distribution of occupations among mothers in Bangladesh. Non-earning occupations, including roles such as primary caregivers, maids, street vendors, subsistence farmers, and nannies, comprise the largest percentage across all divisions. A mother's level of education and societal norms greatly influence her ability to engage in income-generating occupations that support the household."}
   })
   
   output$graph1 <- renderPlotly({
