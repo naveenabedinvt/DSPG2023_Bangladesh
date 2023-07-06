@@ -1240,7 +1240,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                     
                     h3("Utilization in Research"),
                     p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.
-")
+"),
+          img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
            ),
 
            tabPanel("Sentinel 1",
@@ -1402,7 +1403,7 @@ tabPanel("Our Team", value = "overview",
                          br(""),
                          h4(strong("VT Data Science for the Public Good"), align = "center"),
                          p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
-                           "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics'), 
+                           "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics. '), 
                            "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
                                      around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to 
                                      determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, 
@@ -1413,16 +1414,16 @@ tabPanel("Our Team", value = "overview",
                   fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                            column(4, align = "center",
                                   h4(strong("DSPG Graduate Fellow Member")),
-                                  img(src = "Nandini Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  img(src = "naveen.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                   p("", style = "padding-top:10px;"), 
-                                  p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), "(Bio);"),
+                                  p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), " is a second-year Ph.D. student in Economics at Virginia Tech, specializing in Agricultural and Applied Economics."),
                                   
                                   
                                   p("", style = "padding-top:10px;"), 
                                   img(src = "Nandini_Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                   
                                   p("", style = "padding-top:10px;"), 
-                                  p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), "(Bio)"),
+                                  p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), " Nandini Das is a Ph.D. candidate in Economics at Virginia Tech. "),
                                   
                                   
                                   p("", style = "padding-top:10px;") 
@@ -1430,24 +1431,27 @@ tabPanel("Our Team", value = "overview",
                            column(4, align = "center",
                                   h4(strong("DSPG Undergraduate Members")),
                                   img(src = "Sotaire_Kwizera (1).jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/sotairekwizera', 'Sotaire Kwizera', target = '_blank'), "(Bio);"),
+                                  p(a(href = 'https://www.linkedin.com/in/sotairekwizera', 'Sotaire Kwizera', target = '_blank'), " is a junior at Berea College pursuing an undergraduate degree in Economics & Computer Science with a concentration in Data Analytics & Modeling.
+
+"),
                                   img(src = "Jade_Nguyen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/ngoc-anh-nguyen-a8a590219', 'Jade Nguyen', target = '_blank'), "(Bio) ;"),
+                                  p(a(href = 'https://www.linkedin.com/in/ngoc-anh-nguyen-a8a590219', 'Jade Nguyen', target = '_blank'), " is a junior at Virginia Polytechnic Institute and State University pursuing an undergraduate degree in Business Information Technology with a concentration in Decision Support Systems."),
                                   img(src = "Riya_Pulla.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/riyapulla', 'Riya Pulla', target = '_blank'), "(Bio)."),
+                                  p(a(href = 'https://www.linkedin.com/in/riyapulla', 'Riya Pulla', target = '_blank'), " is a junior at Virginia Commonwealth University pursuing an undergraduate degree in Bioinformatics with a concentration in Computational Sciences."),
                                   
                            ),
                            column(4, align = "center",
                                   h4(strong("Faculty Advisor")),
-                                  img(src = "faculty-chanita.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                  img(src = "dr.chen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                   
                                   p("", style = "padding-top:10px;"), 
-                                  p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), "(Bio)") , 
+                                  p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), ", Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
                                   
                                   p("", style = "padding-top:10px;")
                            )) ,
                   fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                            h4(strong("Project Stakeholder")),
+                           img(src = "dr.bakhtiari.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                            p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
                            
                            p("", style = "padding-top:10px;"),
