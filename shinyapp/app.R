@@ -1160,7 +1160,14 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                       fluidPage(column(12, align = "right",
                                        p("Source:",style = "font-size:12px;"))
                       )
-             )),
+             ),
+  
+  tabPanel("Literature Review",
+           fluidRow(style = "margin: 6px;",
+                    p("", style = "padding-top:10px;"),
+                    column(12, align = "center",h1(strong("Literature Review ")),
+                           p(""),
+                           br(""))))),
   navbarMenu("Methodology",
              tabPanel("Global Food Database",
                       # Overview section
@@ -1360,19 +1367,60 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                       )
              ),
              tabPanel("Mechanisms",
-                      tabsetPanel(
-                        tabPanel("Sub-tab 3.1",
-                                 p("This is sub-tab 3.1.")
-                        ),
-                        tabPanel("Sub-tab 3.2",
-                                 p("This is sub-tab 3.2.")
-                        ),
-                        tabPanel("Sub-tab 2.2",
-                                 p("This is sub-tab 2.2.")
-                        )
-                      )
-             )
-  ),
+                      fluidRow(style = "margin: 2px;",
+                               
+                               column(
+                                 12,align = "center",
+                                 h1(strong("Mechanisms")))),
+                      fluidRow(style = "margin: 2px;",
+                               br(""),
+                               column(
+                                 12,
+                                 # 
+                                 # h4(strong("1. Access to healthcare facilities")), 
+                                 # p(""),
+                                 # br(),
+                                 # br(),
+                                 # h4(strong("2.Consumption patterns and nutrition")),
+                                 # p(""),
+                                 # br(),
+                                 # br(),
+                                 # h4(strong("3. Agricultural and industrial disruptions")), 
+                                 # p(""),
+                                 # br(),
+                                 # br(),
+                                 # h4(strong("4.Water quality and consumption")),
+                                 # p(""),
+                                 # br(),
+                                 # br(),
+                                 # h4(strong("5.Displacement and living substandard conditions")),
+                                 # p("")
+                                 # 
+                                 
+                                 tabsetPanel(
+                                   tabPanel("Access to healthcare facilities",
+                                            p("Description")
+                                   ),
+                                   tabPanel("Consumption patterns and nutrition",
+                                            p("Description")
+                                   ),
+                                   tabPanel("Water quality and consumption",
+                                            p("Description")
+                                   ),
+                                   tabPanel("Other",
+                                            p("Description")
+                                   ))
+                               )
+                               # column(
+                               #   4,
+                               #   align = "justify",
+                               #   h5(strong("Techniques used to fetch groundwater in Bangladesh")),
+                               #   h2(strong("")),
+                               #   img(src = "bangladeshwater.jpg", align = 'right', width = "100%", height = "auto"),
+                               #   p("Source: IAEA/Bangladesh Atomic Energy Commission (BAEC)", style = "font-size:12px;")
+                               #   
+                               
+                      ))),
   tabPanel("Discussion/Conclusion", value = "overview",
            fluidRow(style = "margin: 6px;",
                     p("", style = "padding-top:10px;"),
