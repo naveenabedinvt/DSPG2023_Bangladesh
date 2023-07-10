@@ -1452,9 +1452,9 @@ navbarMenu("Results",
                                         column(
                                           4,
                                           p(h4(strong("Description"))),
-                                          p(" Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined flood data by breaking it down by age and gender to facilitate a more comprehensive interpretation. In contrast to the flood data graphs, the graphs on the left do reveal any noticeable distinctions between children under two years old and those between two and five years old.  However, when observing the effects of medium and low intensity rain, the results were inconclusive."),
+                                          p("Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined flood data by breaking it down by age and gender to facilitate a more comprehensive interpretation. "),
                                           
-                                          p("However, the graphs on the left provided a clearer picture regarding the influence of higher intensity rains on children's development. Regardless of gender, the data presented a consistent and alarming pattern—higher intensity rains exhibited a significantly detrimental impact. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls in particular. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
+                                          p("The graphs on the left do not reveal any noticeable distinctions between children under two and five years old. However, higher intensity rains have a huge effect on children between 2 and 5 y/o from both genders. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls. On the other hand, when observing the effects of medium and low intensity rain, the results were inconclusive. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
 "), 
                                         ),align = "Justify"
                                )),
@@ -2455,7 +2455,7 @@ server <- function(input, output, session) {
     geom_bar(stat = "identity", position = "dodge") +
     labs(title = "Percentage of Stunted Girls <2 y/o by Incidence of a Major Flood Event",
          x = "Trimesters", 
-         y = "% of Stunted Girls, <2 y/o") +
+         y = "% of Stunted Girls <2 y/o") +
     easy_add_legend_title("Flood Events")+
     theme(plot.title = element_text(size = 15)) +
     scale_fill_viridis_d()+
@@ -2496,7 +2496,7 @@ server <- function(input, output, session) {
   
     labs(title = "Percentage of Stunted Boys <2 y/o by Incidence of a Major Flood Event",
          x = "Trimesters", 
-         y = "% of Stunted Boys, <2 y/o") +
+         y = "% of Stunted Boys <2 y/o") +
     easy_add_legend_title("Flood Events")+
     theme(plot.title = element_text(size = 15)) +
     scale_fill_viridis_d()+
@@ -2521,7 +2521,7 @@ server <- function(input, output, session) {
       # Generate graph 3 - Condition: Under 5 years old
     stunt_female_by_Rainfall <- ggplot(female_stunted, aes(x = Trimester, y = Percentage_stunted, fill = z_score_tertile)) +
     
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
     
     labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
          
@@ -2573,7 +2573,7 @@ server <- function(input, output, session) {
       # Generate graph 4 - Condition: Under 5 years old
     stunt_male_by_Rainfall <- ggplot(male_stunted, aes(x = Trimester, y = Percentage_stunted, fill = z_score_tertile)) +
     
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
     
     
     labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
@@ -2652,9 +2652,9 @@ server <- function(input, output, session) {
       # Generate graph 7 - Condition: Under 2 years old
     underw_g <- ggplot(read.csv("data/below2_underwe_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
     geom_bar(stat = "identity", position = "dodge") +
-    labs(title = "Percentage of Underweight Girls <2 y/o by Incidence of a Major Flood Event",
+    labs(title = "Percentage of Underweight Girls < 2 y/o by Incidence of a Major Flood Event",
          x = "Trimesters", 
-         y = "% of Underweight Girls, <2 y/o") +
+         y = "% of Underweight Girls <2 y/o") +
     easy_add_legend_title("Flood Events")+
     theme(plot.title = element_text(size = 15)) +
     scale_fill_viridis_d()+
@@ -2692,7 +2692,7 @@ server <- function(input, output, session) {
         geom_bar(stat = "identity", position = "dodge") +
         labs(title = "Percentage of Underweight Boys <2 y/o by Incidence of a Major Flood Event",
              x = "Trimesters", 
-             y = "% of Underweight Boys, <2 y/o") +
+             y = "% of Underweight Boys < 2 y/o") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -2709,7 +2709,7 @@ server <- function(input, output, session) {
     if (input$agdrop7 == "8under5") {
       # Generate graph 7 - Condition: Under 5 years old
       underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
-        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
         labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
              x = "Trimesters",
              y = "% of Underweight Girls < 5 y/o") +
@@ -2739,7 +2739,7 @@ server <- function(input, output, session) {
     if (input$agdrop7 == "8under5") {
       # Generate graph 8 - Condition: Under 5 years old
       underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
-        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
         labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
              x = "Trimesters",
              y = "% of Underweight Boys < 5 y/o") +
