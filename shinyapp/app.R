@@ -1451,7 +1451,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                              )) ,
                     fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                              h4(strong("Project Stakeholder")),
-                             img(src = "dr.bakhtiari.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                             img(src = "IFPRILogo.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                              p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
                              
                              p("", style = "padding-top:10px;"),
