@@ -768,11 +768,11 @@ ui <- navbarPage(
   selected = "overview",
   theme = shinytheme("lumen"),
   tags$head(
-    tags$style('.selectize-dropdown {z-index: 1000}'),
+    tags$style('.selectize-dropdown {z-index: 2000}'),
     tags$style('
                       .carousel-container {
-                        height: 100%;
-                        overflow-y: auto;
+                        height: auto;
+                        overflow-y: 100%;
                       }
                     ')
   ),
@@ -830,25 +830,25 @@ In addition to the survey data we will use Global Flood Database (GFD), CHIRPS, 
            
            fluidRow(style = "margin: 6px;",
                     
-                    column(8, 
+                    column(6, 
                            ##start of carousel code             
                            h3(strong("Inside Look of Bangladesh")), 
                            carousel(
-                             id = "myCarousel",
+                             id = "myCarousel", width = 80,
                              carouselItem(
-                               img(src = "hh.png")
+                               tags$img(src = "hh.png", width ="100%")
                              ),
                              carouselItem(
-                               img(src = "hh1.png")
+                               tags$img(src = "hh1.png", width ="100%")
                              ),
                              carouselItem (
-                               img(src = "hh2.png")
+                               tags$img(src = "hh2.png", width = "100%")
                              )
                              ##end of carousel code 
                            )
                            
                     ),
-                    column(4,
+                    column(6,
                            h2(strong("Survey")),
                            p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. Each response is assigned to a numerical code which allows for efficient data management and analysis. There are also quality control measures embedded in the survey to ensure accuracy and integrity of the collected information. 
 
@@ -1414,7 +1414,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                     fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                              column(4, align = "center",
                                     h4(strong("DSPG Graduate Fellow Member")),
-                                    img(src = "naveen.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    img(src = "naveennew.jpeg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                     p("", style = "padding-top:10px;"), 
                                     p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), " is a second-year Ph.D. student in Economics at Virginia Tech, specializing in Agricultural and Applied Economics."),
                                     
@@ -1423,7 +1423,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                     img(src = "Nandini_Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                     
                                     p("", style = "padding-top:10px;"), 
-                                    p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), " Nandini Das is a Ph.D. candidate in Economics at Virginia Tech. "),
+                                    p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), " is a third year Ph.D. candidate in Economics at Virginia Tech. "),
                                     
                                     
                                     p("", style = "padding-top:10px;") 
