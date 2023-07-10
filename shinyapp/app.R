@@ -70,6 +70,7 @@ library(plotly)
 #---------------------------data1: Household Memebers---------------------------------------------------------------------
 data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta")) 
 data <- read_dta(paste0(getwd(),"/data/BIHS2018-19MC_Jun4.dta"))
+chirpsdata<- read_dta(paste0(getwd(),"/data/BIHS2018-19_MC_CHIRPS_Jul5_IDFormatted.dta"))
 #Age by Gender
 
 g <- data_mem %>%
@@ -715,7 +716,210 @@ female_stunted <- data.frame(
   
   male_underweight$z_score_tertile <- factor(male_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
   
-
+  stun_female <- chirpsdata %>%
+    filter(stunted_all == 1, childgender == "2. Female", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Total = sum(n),
+           Percentage = round(n / 343 * 100, 2)) %>%
+    rename(stunt_n = n) %>% 
+    ungroup() 
+  
+  
+  # stun_female
+  
+  notstun_female <- chirpsdata %>%
+    filter(stunted_all == 0, childgender == "2. Female", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Tot = sum(n),
+           Percent = round(n / 343 * 100, 2)) %>%
+    rename(nonstunt_n = n, Precip = Precipitation, trimm = Trim) %>% 
+    ungroup() 
+  
+  
+  # notstun_female
+  
+  total_stunt_female <-cbind(stun_female, notstun_female)
+  
+  
+  chirps_stunt_girls <- total_stunt_female %>% 
+    group_by(Trim, Precipitation) %>% 
+    mutate(Total = sum(nonstunt_n, stunt_n),
+           Stunt_percent = round(stunt_n/Total*100, 2))
+  
+  chirps_stunt_girls$Precipitation <- factor(chirps_stunt_girls$Precipitation, levels = c("Low", "Medium", "High"))
+  
+  stun_male <- chirpsdata %>%
+    filter(stunted_all == 1, childgender == "1. Male", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Total = sum(n),
+           Percentage = round(n / 343 * 100, 2)) %>%
+    rename(stunt_n = n) %>% 
+    ungroup() 
+  
+  
+  # stun_male
+  
+  notstun_male <- chirpsdata %>%
+    filter(stunted_all == 0, childgender == "1. Male", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Tot = sum(n),
+           Percent = round(n / 343 * 100, 2)) %>%
+    rename(nonstunt_n = n, Precip = Precipitation, trimm = Trim) %>% 
+    ungroup() 
+  
+  
+  # notstun_male
+  
+  total_stunt_male <-cbind(stun_male, notstun_male)
+  
+  
+  chirps_stunt_boys <- total_stunt_male %>% 
+    group_by(Trim, Precipitation) %>% 
+    mutate(Total = sum(nonstunt_n, stunt_n),
+           Stunt_percent = round(stunt_n/Total*100, 2))
+  
+  
+  chirps_stunt_boys$Precipitation <- factor(chirps_stunt_boys$Precipitation, levels = c("Low", "Medium", "High"))
+  
+  uw_female <- chirpsdata %>%
+    filter(underweight_all == 1, childgender == "2. Female", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Total = sum(n),
+           Percentage = round(n / 343 * 100, 2)) %>%
+    rename(uw_n = n) %>% 
+    ungroup() 
+  
+  
+  # uw_female
+  
+  notuw_female <- chirpsdata %>%
+    filter(underweight_all == 0, childgender == "2. Female", agemonth < 24,) %>% 
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(   
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>% 
+    group_by(Trim, Precipitation)%>%
+    count() %>% 
+    mutate(Tot = sum(n),
+           Percent = round(n / 343 * 100, 2)) %>%
+    rename(nonuw_n = n, Precip = Precipitation, trimm = Trim) %>% 
+    ungroup() 
+  
+  
+  # notuw_female
+  
+  total_uw_female <-cbind(uw_female, notuw_female)
+  
+  
+  chirps_uw_girls <- total_uw_female %>% 
+    group_by(Trim, Precipitation) %>% 
+    mutate(Total = sum(nonuw_n, uw_n),
+           uw_percent = round(uw_n/Total*100, 2))
+  
+  chirps_uw_girls$Precipitation <- factor(chirps_uw_girls$Precipitation, levels = c("Low", "Medium", "High"))
+  
+  uw_male <- chirpsdata %>%
+    filter(underweight_all == 1, childgender == "1. Male", agemonth < 24,) %>%
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>%
+    group_by(Trim, Precipitation)%>%
+    count() %>%
+    mutate(Total = sum(n),
+           Percentage = round(n / 343 * 100, 2)) %>%
+    rename(uw_n = n) %>%
+    ungroup()
+  
+  
+  # uw_male
+  
+  notuw_male <- chirpsdata %>%
+    filter(underweight_all == 0, childgender == "1. Male", agemonth < 24,) %>%
+    rename( Trimester1 = tertile_firsttrim_z, Trimester2 = tertile_secondtrim_z, Trimester3 = tertile_thirdtrim_z, Gender = childgender) %>%
+    
+    pivot_longer(cols = c(Trimester1, Trimester2, Trimester3 ), names_to = "Trim", values_to = "Precipitation") %>%
+    mutate(Precipitation = as.character(haven::zap_labels(Precipitation)),
+           Precipitation = recode(
+             Precipitation,       "3" = "High",
+             "2" = "Medium",
+             "1" = "Low")) %>%
+    group_by(Trim, Precipitation)%>%
+    count() %>%
+    mutate(Tot = sum(n),
+           Percent = round(n / 343 * 100, 2)) %>%
+    rename(nonuw_n = n, Precip = Precipitation, trimm = Trim) %>%
+    ungroup()
+  
+  
+  # notuw_male
+  
+  total_uw_male <-cbind(uw_male, notuw_male)
+  
+  
+  chirps_uw_boys <- total_uw_male %>%
+    group_by(Trim, Precipitation) %>%
+    mutate(Total = sum(nonuw_n, uw_n),
+           uw_percent = round(uw_n/Total*100, 2))
+  
+  
+  chirps_uw_boys$Precipitation <- factor(chirps_uw_boys$Precipitation, levels = c("Low", "Medium", "High"))
+  
+  
+  
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
  # jscode <- '
  #    var x = document.getElementsByClassName("navbar-brand");
@@ -1145,10 +1349,17 @@ navbarMenu("Background",
                                                                textOutput("mctext2")
                                                         )))
                                     ))),
+                    
                     fluidPage(column(12, align = "right",
                                      p("Source:",style = "font-size:12px;"))
                     )
-           )),
+           ),
+          tabPanel("Literature Review",
+                 fluidRow(style = "margin: 6px;",
+                          p("", style = "padding-top:10px;"),
+                          column(12, align = "center",h1(strong("Literature Review ")),
+                                 p(""),
+                                 br(""))))),
 navbarMenu("Methodology",
            tabPanel("Global Food Database",
                     # Content for sub-tab 1
@@ -1167,15 +1378,27 @@ navbarMenu("Methodology",
 ),
 navbarMenu("Results",
            tabPanel("Stunting",
+                    fluidRow(style = "margin: 6px;",
+                             p("", style = "padding-top:10px;"),
+                             column(12, align = "center",h1(strong("Stunting")),
+                                    p("")
+                                   )),
                     tabsetPanel(
                       tabPanel("GFD Results",
                                fluidRow(style = "margin: 2px;",
                                         br(""),
                                         column(
+                                          7,
+                                          selectInput("agdrop2", "Age Categories:", width = "100%",
+                                                      choices = c("Children under 2 yeears old" = "1under2",
+                                                                  "Children under 5 Years old" = "2under5")))
+                                        ,  
+                               
+                                        column(
                                           8,
                                           p(h5("Gender Disaggregation")),
-                               plotlyOutput("graph1"),
-                               plotlyOutput("graph2"),
+                                          withSpinner(plotlyOutput("graph1", height = "500px", width ="100%")),
+                                          withSpinner(plotlyOutput("graph2", height = "500px", width ="100%")),
                               ),
                               
                                br(""),
@@ -1185,24 +1408,41 @@ navbarMenu("Results",
                                br(""),
                                br(""),
                                br(""),
-                      
                     
                                column(
                                  4,
                                  p(h4(strong("Description"))),
-                                 p("Stunting refers to when individuals have low height for their age which can have long-lasting effects even into adulthood. The graphs depict gender-disaggregated data for the percentage of children under five years old who are stunted on the y axis. We look at whether a flood event occurred during each trimester of the mother’s pregnancy given in the x-axis. Stunting prevalence differs across trimesters, with higher rates for children whose mothers experienced flooding during the third trimester. Additionally, the graphs highlight the vulnerability of girls to stunting, as their percentages surpass those of boys. This vulnerability may stem from neglect in rural Bangladesh due to patriarchal societal norms.
+                                 
+                                 p("Stunting, a condition characterized by below-average height for a given age, can have profound and lasting effects on individuals, even extending into adulthood. It is a matter of great concern, and to better understand its dynamics, we turn our attention to the gender-disaggregated graphs for children under two years old on the left, which shed light on the impact of flood events occurring during a mother's pregnancy on the prevalence of stunted children."),
+                                   
+                                 p("The graphs suggest a striking pattern: stunting prevalence shows variations across different trimesters, and it becomes evident that girls are the most adversely affected by flood exposure. This finding emphasizes the need for focused attention on this vulnerable group."),
+                                 
+                                 p("In the top graphs, we observe that girls experience the highest percentage of stunting, reaching a concerning rate of 40.58%, during the third trimester. In contrast, their male counterparts exhibit a slightly lower prevalence of 33.73% during the same trimester. These figures highlight the gender disparity in the impact of flood events, with girls experiencing a disproportionately higher risk of stunting compared to boys."),
+                                 
+                                 p("However, when we shift our focus to children under the age of five, the picture changes slightly. While there isn't a significant difference in stunting prevalence across trimesters, the gender disparity in stunting remains evident. Girls continue to exhibit a higher prevalence of stunting, reaching 39.05%, during the third trimester. On the other hand, boys experience their highest rate of stunting (36.55%) during the second trimester."),
+                                 
+                                 p("Taken together, these findings underscore the critical role of the third trimester in determining the occurrence of stunting among children under the age of two. It becomes increasingly evident that this period of prenatal development is particularly vulnerable to the adverse effects of flood exposure, particularly for girls. This ongoing gender disparity underscores the importance of addressing the underlying factors that contribute to stunting among girls, in order to promote equitable and optimal growth and development for all children.
 "), 
                                ),align = "Justify"
                       )),
                       tabPanel("CHIRPS Results",
                                fluidRow(style = "margin: 2px;",
                                         br(""),
+                                        column(8,
+                                            
+                                               selectInput("agdrop3", "Age Categories:", width = "100%",
+                                                           choices = c("Children under 2 yeears old" = "3under2",
+                                                                       "Children under 5 Years old" = "4under5"))),
+                                        br(""),
                                         column(
                                           8,
                                           p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph3"),
-                                          plotlyOutput("graph4"),
+                                          withSpinner(plotlyOutput("graph3", height = "500px", width ="100%")),
+                                          withSpinner(plotlyOutput("graph4", height = "500px", width ="100%")),
                                         ),
+                                        br(""),
+                                        br(""),
+                                        br(""),
                                         br(""),
                                         br(""),
                                         br(""),
@@ -1212,24 +1452,39 @@ navbarMenu("Results",
                                         column(
                                           4,
                                           p(h4(strong("Description"))),
-                                          p(" we observed a positive correlation between precipitation intensity and stunting. In each trimester, higher rainfall intensities during pregnancy were associated with increased stunting after birth for both genders."), 
+                                          p(" Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined flood data by breaking it down by age and gender to facilitate a more comprehensive interpretation. In contrast to the flood data graphs, the graphs on the left do reveal any noticeable distinctions between children under two years old and those between two and five years old.  However, when observing the effects of medium and low intensity rain, the results were inconclusive."),
+                                          
+                                          p("However, the graphs on the left provided a clearer picture regarding the influence of higher intensity rains on children's development. Regardless of gender, the data presented a consistent and alarming pattern—higher intensity rains exhibited a significantly detrimental impact. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls in particular. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
+"), 
                                         ),align = "Justify"
                                )),
-                      tabPanel("Regression",
+                      tabPanel("Regression Results",
                                p("This is sub-tab 2.2.")
                       )
                     )
            ),
            tabPanel("Underweight",
+                    fluidRow(style = "margin: 6px;",
+                             p("", style = "padding-top:10px;"),
+                             column(12, align = "center",h1(strong("Underweight")),
+                                    p("")
+                             )),
                     tabsetPanel(
                       tabPanel("GFD Results",
                                fluidRow(style = "margin: 2px;",
                                         br(""),
+                                      
+
+                                        column(8,
+                                               selectInput("agdrop5", "Age Categories:", width = "100%",
+                                                           choices = c("Children under 2 yeears old" = "5under2",
+                                                                       "Children under 5 Years old" = "6under5"))),
+                                        br(""),
                                         column(
                                           8,
                                           p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph5"),
-                                          plotlyOutput("graph6"),
+                                          withSpinner(plotlyOutput("graph5", height = "500px", width ="100%")),
+                                          withSpinner(plotlyOutput("graph6", height = "500px", width ="100%")),
                                         ),
                                         column(
                                           4,
@@ -1239,19 +1494,32 @@ navbarMenu("Results",
                                           br(""),
                                           br(""),
                                           br(""),
+                                          br(""),
+                                          br(""),
                                           p(h4(strong("Description"))),
-                                          p("Underweight refers to having a lower weight for their age. The data do not reveal a clear trend in children being underweight based on flood exposure during specific trimesters. The mixed results are expected, as literature suggests, since weight is a short-term indicator of health which can be recovered with proper nutrition over time
+                                          p("Underweight refers to individuals who have a lower weight compared to their age. It is a significant factor in the health and development of children, making it an important birth outcome. Fetal development is among the various factors that can contribute to a child being underweight."),
+                                          
+                                          p("To assess how flooding affects the occurrence of underweight children, we conducted an analysis of our data considering gender and age. The graphs illustrate that there are no noticeable differences observed across semesters for boys and girls under the ages of two and five. This lack of significant variations can be attributed to various additional factors, such as the intake of supplements and other prenatal care measures, which will be further discussed in our mechanisms section. Nevertheless, it is apparent that girls are at a greater risk of experiencing underweight conditions if they are exposed to flooding during prenatal stages. This is evident from their higher rates of underweight in both age groups."),
+
+                                          p("To protect the well-being and future potential of vulnerable populations, particularly young girls who may face disproportionate impacts, it is crucial to comprehend the interconnections among flooding, prenatal exposure, and underweight status in children. This understanding will facilitate the development of more focused strategies aimed at protecting these populations, emphasizing the importance of addressing adverse circumstances.
+
 "), 
                                         ),align = "Justify"
                                )),
                       tabPanel("CHIRPS Results",
                                fluidRow(style = "margin: 2px;",
                                         br(""),
+                                        column(8,
+                                               
+                                               selectInput("agdrop7", "Age Categories:", width = "100%",
+                                                           choices = c("Children under 2 yeears old" = "7under2",
+                                                                       "Children under 5 Years old" = "8under5"))),
+                                        br(""),
                                         column(
                                           8,
                                           p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph7"),
-                                          plotlyOutput("graph8"),
+                                          withSpinner(plotlyOutput("graph7", height = "500px", width ="100%")),
+                                          withSpinner(plotlyOutput("graph8", height = "500px", width ="100%")),
                                         ),
                                         column(
                                           4,
@@ -1261,12 +1529,16 @@ navbarMenu("Results",
                                           br(""),
                                           br(""),
                                           br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
                                           p(h4(strong("Description"))),
-                                          p("When examining the graphs depicting percentages of underweight boys and girls per trimester based on rainfall intensity, no clear trend was evident, except that girls generally exhibited higher levels of underweight.
-"), 
+                                          p("Similarly flood data, rainfall do not reveal any evident correlation between precipitation and the prevalence of underweight among children of both genders throughout all trimesters. Moreover, disaggregating the data by age does not appear to significantly alter the findings. Despite the lack of association between rainfall intensity and underweight, it is alarming to observe high rates of underweight in both genders, surpassing 20 percent as depicted in the graphs on the left. This is a matter of great concern."), 
                                         ),align = "Justify"
                                )),
-                      tabPanel("Regression",
+                      tabPanel("Regression Results",
                                p("This is sub-tab 2.2.")
                       )
                       
@@ -1274,19 +1546,60 @@ navbarMenu("Results",
                     )
            ),
            tabPanel("Mechanisms",
+                    fluidRow(style = "margin: 2px;",
+                  
+                             column(
+                               12,align = "center",
+                               h1(strong("Mechanisms")))),
+                    fluidRow(style = "margin: 2px;",
+                             br(""),
+                             column(
+                               12,
+                    # 
+                    # h4(strong("1. Access to healthcare facilities")), 
+                    # p(""),
+                    # br(),
+                    # br(),
+                    # h4(strong("2.Consumption patterns and nutrition")),
+                    # p(""),
+                    # br(),
+                    # br(),
+                    # h4(strong("3. Agricultural and industrial disruptions")), 
+                    # p(""),
+                    # br(),
+                    # br(),
+                    # h4(strong("4.Water quality and consumption")),
+                    # p(""),
+                    # br(),
+                    # br(),
+                    # h4(strong("5.Displacement and living substandard conditions")),
+                    # p("")
+                    # 
+
                     tabsetPanel(
-                      tabPanel("Sub-tab 3.1",
-                               p("This is sub-tab 3.1.")
+                      tabPanel("Access to healthcare facilities",
+                               p("Description")
                       ),
-                      tabPanel("Sub-tab 3.2",
-                               p("This is sub-tab 3.2.")
+                      tabPanel("Consumption patterns and nutrition",
+                               p("Description")
                       ),
-                      tabPanel("Sub-tab 2.2",
-                               p("This is sub-tab 2.2.")
-                      )
-                    )
+                      tabPanel("Water quality and consumption",
+                               p("Description")
+                      ),
+                      tabPanel("Other",
+                               p("Description")
+                    ))
            )
-),
+           # column(
+           #   4,
+           #   align = "justify",
+           #   h5(strong("Techniques used to fetch groundwater in Bangladesh")),
+           #   h2(strong("")),
+           #   img(src = "bangladeshwater.jpg", align = 'right', width = "100%", height = "auto"),
+           #   p("Source: IAEA/Bangladesh Atomic Energy Commission (BAEC)", style = "font-size:12px;")
+           #   
+          
+))),
 tabPanel("Discussion/Conclusion", value = "overview",
          fluidRow(style = "margin: 6px;",
                   p("", style = "padding-top:10px;"),
@@ -1298,10 +1611,10 @@ tabPanel("References", value = "overview",
                   p("", style = "padding-top:10px;"),
                   column(12, align = "center",h1(strong("References"))),
                   column(12, align = "left",
-                         p("Aggarwal, Shilpa. “The Long Road to Health: Healthcare Utilization Impacts of a Road Pavement Policy in Rural India.” Journal of Development Economics, vol. 151, Elsevier BV, June 2021, p. 102667, doi:10.1016/j.jdeveco.2021.102667."),
-                         p("Del Ninno, Carlo, and Mattias Lundberg. “Treading Water.” Economics and Human Biology, vol. 3, no. 1, Elsevier BV, Mar. 2005, pp. 67–96, doi:10.1016/j.ehb.2004.12.002."),
+                         p("Aggarwal, S. (2021). The long road to health: Healthcare utilization impacts of a road pavement policy in rural India. Journal of Development Economics, 151, 102667. https://doi.org/10.1016/j.jdeveco.2021.102667"),
+                         p("Del Ninno, C., & Lundberg, M. (2005). Treading water. Economics and Human Biology, 3(1), 67–96. https://doi.org/10.1016/j.ehb.2004.12.002"),
                          p("Guiteras, R., Jina, A., & Mobarak, A. M. (2015). Satellites, Self-reports, and Submersion: Exposure to Floods in Bangladesh. The American Economic Review, 105(5), 232–236. https://doi.org/10.1257/aer.p20151095 "),
-                         p("Mallett, Lea H., and Ruth A. Etzel. “Flooding: What Is the Impact on Pregnancy and Child Health?” Disasters, vol. 42, no. 3, Wiley-Blackwell, July 2018, pp. 432–58, doi:10.1111/disa.12256."),
+                         p("Mallett, L. H., & Etzel, R. A. (2017). Flooding: what is the impact on pregnancy and child health? Disasters, 42(3), 432–458. https://doi.org/10.1111/disa.12256"),
                          p(""),
                          p(""),
                          p(""),
@@ -1902,58 +2215,9 @@ server <- function(input, output, session) {
     }
     
   }) 
-  Var_regress <- reactive({
-    input$regressiondrop
-  })
-  
-  output$regression<- renderPlotly({
-    if (Var_regress() == "D") {
-      
-      
-    }
-    
-    else if (Var_regress() == "E") {
-      
-    }
-    
-    else if (Var_regress() == "F") {
-      
-    } 
-    else if (Var_regress() == "F") {
-      
-    }  
-  })
   
   
-  output$desc6 <- renderText({
-    " Description"
-  })
   
-  
-  output$desc6 <- renderText({
-    if (Var_regress() == "D") {
-      
-      " "
-      
-    }
-    
-    else if (Var_regress() == "E") {
-      
-      ""
-      
-    }
-    
-    else if (Var_regress() == "F") {
-      
-      ""
-      
-    } 
-    else if (Var_regress() == "G") {
-      
-      ""
-      
-    }
-  })
   
   Var_FT <- reactive({
     input$floodTimeline
@@ -2160,17 +2424,22 @@ server <- function(input, output, session) {
       "\\This graph shows the percentage distribution of occupations mothers in Bangladesh participate in. Among all divisions, the non-earning occupations category is the highest percentage. Non-earning occupations consist of roles such as primary care givers, maids, street vendors, subsistence farmers, and nannies. The level of education a woman receives and the societal culture will also affect a mother's ability to participate in an occupation that will allow her to earn income for the household.\""}
   })
   
-  output$graph1 <- renderPlotly({
-    stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+  ## Stunting GFD 
+  
+  
+ output$graph1 <- renderPlotly({
+    if (input$agdrop2 == "2under5") {
+      # Generate graph 1 - Condition: Under 5 years old
+    stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
       geom_bar(stat = "identity", position = "dodge") +
 
       labs(title = "Percentage of Stunted Girls < 5 y/o by Incidence of Flood Event",
-           x = "Trimesters", 
+           x = "Trimesters",
            y = "% of Stunted Girls < 5 y/o") +
       easy_add_legend_title("Flood Events")+
       theme(plot.title = element_text(size = 15)) +
       scale_fill_viridis_d()+
-      theme_classic()+ 
+      theme_classic()+
       easy_y_axis_title_size(size = 13)+
       scale_y_continuous(limits = c(0, 100))+
       easy_x_axis_title_size(size = 13)+
@@ -2178,20 +2447,38 @@ server <- function(input, output, session) {
       easy_plot_legend_size(size = 10)+
       easy_plot_title_size(size = 15)+
       coord_cartesian(ylim = c(0, 40))
-      
-    ggplotly(stunt_g)})
+
+    ggplotly(stunt_g)  
+    } else if (input$agdrop2 == "1under2") {
+      # Generate graph 1 - Condition: Under 2 years old
+    stunt_g <- ggplot(read.csv("data/below2_stunt_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Stunted Girls <2 y/o by Incidence of a Major Flood Event",
+         x = "Trimesters", 
+         y = "% of Stunted Girls, <2 y/o") +
+    easy_add_legend_title("Flood Events")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+
+    coord_cartesian(ylim = c(0, 42))
+  
+  ggplotly(stunt_g)  
+    }
+  })
   
   output$graph2 <- renderPlotly({
-    stunt_b <- ggplot(read.csv("data/stunt_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+    if (input$agdrop2 == "2under5") {
+      # Generate graph 2 - Condition: Under 5 years old
+    stunt_b <- ggplot(read.csv("data/stunt_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
       geom_bar(stat = "identity", position = "dodge") +
-      
+
       labs(title = "Percentage of Stunted Boys < 5 y/o by Incidence of Flood Event",
-           x = "Trimesters", 
+           x = "Trimesters",
            y = "% of Stunted Boys < 5 y/o") +
       easy_add_legend_title("Flood Events")+
       theme(plot.title = element_text(size = 15)) +
       scale_fill_viridis_d()+
-      theme_classic()+ 
+      theme_classic()+
       easy_y_axis_title_size(size = 13)+
       scale_y_continuous(limits = c(0, 100))+
       easy_x_axis_title_size(size = 13)+
@@ -2199,10 +2486,150 @@ server <- function(input, output, session) {
       easy_plot_legend_size(size = 10)+
       easy_plot_title_size(size = 15)+
       coord_cartesian(ylim = c(0, 40))
-    
-    ggplotly(stunt_b)})
+
+    ggplotly(stunt_b)
+      
+    } else if (input$agdrop2 == "1under2") {
+      # Generate graph 2 - Condition: Under 2 years old
+     stunt_b <- ggplot(read.csv("data/below2_stunt_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
+    geom_bar(stat = "identity", position = "dodge") +
   
-  output$graph5 <- renderPlotly({ underw_g <- ggplot(read.csv("data/underwe_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+    labs(title = "Percentage of Stunted Boys <2 y/o by Incidence of a Major Flood Event",
+         x = "Trimesters", 
+         y = "% of Stunted Boys, <2 y/o") +
+    easy_add_legend_title("Flood Events")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+
+    coord_cartesian(ylim = c(0, 40))
+  
+  ggplotly(stunt_b)  
+    }
+  }) 
+  
+  
+  
+  
+  
+  
+  
+  
+  ## Stunting CHIRPS
+  
+  output$graph3 <- renderPlotly({
+    if (input$agdrop3 == "4under5") {
+      # Generate graph 3 - Condition: Under 5 years old
+    stunt_female_by_Rainfall <- ggplot(female_stunted, aes(x = Trimester, y = Percentage_stunted, fill = z_score_tertile)) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Stunted Girls < 5 y/o") +
+    theme(plot.title = element_text(size = 14)) +
+    
+    easy_add_legend_title("Precipitation Intensity") +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    coord_cartesian(ylim = c(0, 40))
+  ggplotly(stunt_female_by_Rainfall)  
+    } else if (input$agdrop3 == "3under2") {
+      # Generate graph 3 - Condition: Under 2 years old
+   stunt_g <- ggplot(chirps_stunt_girls, aes(x = Trim, y = Stunt_percent, fill = Precipitation)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Stunted Girls < 2 y/o by Precipitation Intensity",
+         x = "Trimesters", 
+         y = "% of Stunted Girls < 2 y/o") +
+    easy_add_legend_title("Precipitation Intensity")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+ 
+     easy_y_axis_title_size(size = 13)+
+     scale_y_continuous(limits = c(0, 100))+
+     easy_x_axis_title_size(size = 13)+
+     easy_plot_legend_title_size(size = 13)+
+     easy_plot_legend_size(size = 10)+
+     easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    coord_cartesian(ylim = c(0, 35))
+  
+  ggplotly(stunt_g)    
+    }
+  })
+  
+  output$graph4 <- renderPlotly({
+    if (input$agdrop3 == "4under5") {
+      # Generate graph 4 - Condition: Under 5 years old
+    stunt_male_by_Rainfall <- ggplot(male_stunted, aes(x = Trimester, y = Percentage_stunted, fill = z_score_tertile)) +
+    
+    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+    
+    
+    labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
+         
+         x = "Trimesters", 
+         
+         y = "% of Stunted Boys < 5 y/o") +
+    
+    theme(plot.title = element_text(size = 14)) +
+    
+   easy_add_legend_title("Precipitation Intensity") +
+    
+    scale_fill_viridis_d() +
+    
+    theme_classic() +
+      easy_y_axis_title_size(size = 13)+
+      scale_y_continuous(limits = c(0, 100))+
+      easy_x_axis_title_size(size = 13)+
+      easy_plot_legend_title_size(size = 13)+
+      easy_plot_legend_size(size = 10)+
+      easy_plot_title_size(size = 15)+
+    
+    
+    coord_cartesian(ylim = c(0, 40))
+  ggplotly(stunt_male_by_Rainfall)   
+      
+    } else if (input$agdrop3 == "3under2") {
+      # Generate graph 4 - Condition: Under 2 years old
+     stunt_b <- ggplot(chirps_stunt_boys, aes(x = Trim, y = Stunt_percent, fill = Precipitation)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Stunted Boys < 2 y/o by Precipitation Intensity",
+         x = "Trimesters", 
+         y = "% of Stunted Boys < 2 y/o") +
+    easy_add_legend_title("Precipitation Intensity")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+ 
+    easy_y_axis_title_size(size = 13)+
+    scale_y_continuous(limits = c(0, 100))+
+    easy_x_axis_title_size(size = 13)+
+    easy_plot_legend_title_size(size = 13)+
+    easy_plot_legend_size(size = 10)+
+    easy_plot_title_size(size = 15)+
+    # easy_center_title()+
+    coord_cartesian(ylim = c(0, 35))
+  
+ ggplotly(stunt_b)   
+    }
+  }) 
+  
+  ## Underweight GFD 
+  
+  output$graph5 <- renderPlotly({
+    if (input$agdrop5 == "6under5") {
+      # Generate graph 5 - Condition: Under 5 years old
+     underw_g <- ggplot(read.csv("data/underwe_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
     geom_bar(stat = "identity", position = "dodge") +
     labs(title = "Percentage of Underweight Girls < 5 y/o by Incidence of Flood Event",
          x = "Trimesters", 
@@ -2220,11 +2647,27 @@ server <- function(input, output, session) {
     # easy_center_title()+
     coord_cartesian(ylim = c(0, 30))
   
-  ggplotly(underw_g)})
+  ggplotly(underw_g) 
+    } else if (input$agdrop5 == "5under2") {
+      # Generate graph 7 - Condition: Under 2 years old
+    underw_g <- ggplot(read.csv("data/below2_underwe_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Percentage of Underweight Girls <2 y/o by Incidence of a Major Flood Event",
+         x = "Trimesters", 
+         y = "% of Underweight Girls, <2 y/o") +
+    easy_add_legend_title("Flood Events")+
+    theme(plot.title = element_text(size = 15)) +
+    scale_fill_viridis_d()+
+    theme_classic()+
+    coord_cartesian(ylim = c(0, 30))
+  ggplotly(underw_g)  
+    }
+  })
   
-  ## underweight boys
-  
-  output$graph6 <- renderPlotly({underw_b <- ggplot(read.csv("data/underwe_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
+  output$graph6 <- renderPlotly({
+    if (input$agdrop5 == "6under5") {
+      # Generate graph 6 - Condition: Under 5 years old
+    underw_b <- ggplot(read.csv("data/underwe_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
     geom_bar(stat = "identity", position = "dodge") +
     labs(title = "Percentage of Underweight Boys < 5 y/o by Incidence of Flood Event",
          x = "Trimesters", 
@@ -2242,125 +2685,88 @@ server <- function(input, output, session) {
     easy_plot_title_size(size = 15)+
     coord_cartesian(ylim = c(0, 30))
   
-  ggplotly(underw_b)})
+  ggplotly(underw_b)
+    } else if (input$agdrop5 == "5under2") {
+      # Generate graph 6 - Condition: Under 2 years old
+    underw_b <- ggplot(read.csv("data/below2_underwe_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Percentage of Underweight Boys <2 y/o by Incidence of a Major Flood Event",
+             x = "Trimesters", 
+             y = "% of Underweight Boys, <2 y/o") +
+        easy_add_legend_title("Flood Events")+
+        theme(plot.title = element_text(size = 15)) +
+        scale_fill_viridis_d()+
+        theme_classic()+
+        coord_cartesian(ylim = c(0, 30))
+      
+      ggplotly(underw_b)   
+    }
+  })
+ 
+   ## Underweight CHIRPS
+ 
+  output$graph7 <- renderPlotly({
+    if (input$agdrop7 == "8under5") {
+      # Generate graph 7 - Condition: Under 5 years old
+      underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+        labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
+             x = "Trimesters",
+             y = "% of Underweight Girls < 5 y/o") +
+        theme(plot.title = element_text(size = 14)) +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        easy_add_legend_title("Precipitation Intensity") +
+        coord_cartesian(ylim = c(0, 30))
+      
+      ggplotly(underw_female_by_Rainfall)
+    } else if (input$agdrop7 == "7under2") {
+      # Generate graph 7 - Condition: Under 2 years old
+      uw_g <- ggplot(chirps_uw_girls, aes(x = Trim, y = uw_percent, fill = Precipitation)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Percentage of Underweight Girls < 2 y/o by Precipitation Intensity",
+             x = "Trimesters",
+             y = "% of Underweight Girls < 2 y/o") +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        coord_cartesian(ylim = c(0, 25))
+      
+      ggplotly(uw_g)
+    }
+  })
   
+  output$graph8 <- renderPlotly({
+    if (input$agdrop7 == "8under5") {
+      # Generate graph 8 - Condition: Under 5 years old
+      underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+        labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
+             x = "Trimesters",
+             y = "% of Underweight Boys < 5 y/o") +
+        theme(plot.title = element_text(size = 14)) +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        easy_add_legend_title("Precipitation Intensity") +
+        coord_cartesian(ylim = c(0, 30))
+      
+      ggplotly(underw_male_by_Rainfall)
+    } else if (input$agdrop7 == "7under2") {
+      # Generate graph 8 - Condition: Under 2 years old
+      uw_b <- ggplot(chirps_uw_boys, aes(x = Trim, y = uw_percent, fill = Precipitation)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Percentage of Underweight Boys < 2 y/o by Precipitation Intensity",
+             x = "Trimesters",
+             y = "% of Underweight Boys < 2 y/o") +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        coord_cartesian(ylim = c(0, 25))
+      
+      ggplotly(uw_b)
+    }
+  })
   
-  
-  
-  output$graph3 <- renderPlotly({stunt_female_by_Rainfall <- ggplot(female_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
-    
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
-    
-    labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
-         
-         x = "Trimesters", 
-         
-         y = "% of Stunted Girls < 5 y/o") +
-    
-    theme(plot.title = element_text(size = 14)) +
-    
-    guides(fill = guide_legend(title = "Precipitation Intensity")) +
-    
-    scale_fill_viridis_d() +
-    
-    theme_classic() +
-    easy_y_axis_title_size(size = 13)+
-    scale_y_continuous(limits = c(0, 100))+
-    easy_x_axis_title_size(size = 13)+
-    easy_plot_legend_title_size(size = 13)+
-    easy_plot_legend_size(size = 10)+
-    easy_plot_title_size(size = 15)+
-    # easy_center_title()+
-    coord_cartesian(ylim = c(0, 40))
-  ggplotly(stunt_female_by_Rainfall)})
-  
-  output$graph4 <- renderPlotly({stunt_male_by_Rainfall <- ggplot(male_stunted, aes(x = Trimester, y = Percentage_stunted, fill = factor(z_score_tertile))) +
-    
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
-    
-    labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
-         
-         x = "Trimesters", 
-         
-         y = "% of Stunted Boys < 5 y/o") +
-    
-    theme(plot.title = element_text(size = 14)) +
-    
-    guides(fill = guide_legend(title = "Precipitation Intensity")) +
-    
-    scale_fill_viridis_d() +
-    
-    theme_classic() +
-    easy_y_axis_title_size(size = 13)+
-    scale_y_continuous(limits = c(0, 100))+
-    easy_x_axis_title_size(size = 13)+
-    easy_plot_legend_title_size(size = 13)+
-    easy_plot_legend_size(size = 10)+
-    easy_plot_title_size(size = 15)+
-    # easy_center_title()+easy_center_title()+
-    easy_plot_legend_size(size = 13)+
-    
-    
-    coord_cartesian(ylim = c(0, 40))
-  ggplotly(stunt_male_by_Rainfall)})
-  
-  
-  output$graph7 <- renderPlotly({underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
-    
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
-    
-    labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
-         
-         x = "Trimesters", 
-         
-         y = "% of Underweight Girls < 5 y/o") +
-    
-    theme(plot.title = element_text(size = 14)) +
-    
-    guides(fill = guide_legend(title = "Precipitation Intensity")) +
-    
-    scale_fill_viridis_d() +
-    
-    theme_classic() +
-    easy_y_axis_title_size(size = 13)+
-    scale_y_continuous(limits = c(0, 100))+
-    easy_x_axis_title_size(size = 13)+
-    easy_plot_legend_title_size(size = 13)+
-    easy_plot_legend_size(size = 10)+
-    easy_plot_title_size(size = 15)+
-    # easy_center_title()+
-    
-    coord_cartesian(ylim = c(0, 30))
-  ggplotly(underw_female_by_Rainfall)})
-  
-  output$graph8 <- renderPlotly({underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = factor(z_score_tertile))) +
-    
-    geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
-    
-    labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
-         
-         x = "Trimesters", 
-         
-         y = "% of Underweight Boys < 5 y/o") +
-    
-    theme(plot.title = element_text(size = 14)) +
-    
-    guides(fill = guide_legend(title = "Precipitation Intensity")) +
-    
-    scale_fill_viridis_d() +
-    
-    theme_classic() +
-    easy_y_axis_title_size(size = 13)+
-    scale_y_continuous(limits = c(0, 100))+
-    easy_x_axis_title_size(size = 13)+
-    easy_plot_legend_title_size(size = 13)+
-    easy_plot_legend_size(size = 10)+
-    easy_plot_title_size(size = 15)+
-    
-    coord_cartesian(ylim = c(0, 30))
-  ggplotly(underw_male_by_Rainfall)})
 
-    
+   
 }
 
 shinyApp(ui = ui, server = server)
