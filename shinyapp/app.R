@@ -663,58 +663,58 @@ ocudiv <- data %>%
 ocudiv$Ocucategory <- factor(ocudiv$Ocucategory, levels = c("Non-earning occupations", "Farming","Livestock-related work","Production business","Business/trade","Self-employed","Rickshaw/van puller","Salaried","Non-agricultural day labor","Agricultural day labor"))
 
 female_stunted <- data.frame(
-    
-    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
-    
-    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
-    
-    Percentage_stunted = c(33.24, 30.97, 29.44, 30.97, 29.6, 33.15, 35.71, 34.44, 37.5)
-    
-  )
   
+  z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
   
+  Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
   
-  female_stunted$z_score_tertile <- factor(female_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+  Percentage_stunted = c(33.24, 30.97, 29.44, 30.97, 29.6, 33.15, 35.71, 34.44, 37.5)
   
-  male_stunted <- data.frame(
-    
-    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
-    
-    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
-    
-    Percentage_stunted = c(31.28, 31.77, 33.25, 30.13, 28.28, 29.07, 35.31, 36.9, 34.35)
-    
-  )
-  
-  
-  
-  male_stunted$z_score_tertile <- factor(male_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
-  
-  female_underweight <- data.frame(
-    
-    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
-    
-    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
-    
-    Percentage_underweight = c(24.93, 26.48, 21.67, 22.95, 20.63, 22.04, 25.01, 25.82, 29.57)
-    
-  )
-  
-  
-  female_underweight$z_score_tertile <- factor(female_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+)
 
-  male_underweight <- data.frame(
-    
-    z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
-    
-    Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
-    
-    Percentage_underweight = c(24.60, 21.41, 25.07, 19.22, 19.54, 19.52, 24.03, 27.01, 23.16)
-    
-  )
+
+
+female_stunted$z_score_tertile <- factor(female_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+male_stunted <- data.frame(
   
-  male_underweight$z_score_tertile <- factor(male_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+  z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
   
+  Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+  
+  Percentage_stunted = c(31.28, 31.77, 33.25, 30.13, 28.28, 29.07, 35.31, 36.9, 34.35)
+  
+)
+
+
+
+male_stunted$z_score_tertile <- factor(male_stunted$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+female_underweight <- data.frame(
+  
+  z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+  
+  Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+  
+  Percentage_underweight = c(24.93, 26.48, 21.67, 22.95, 20.63, 22.04, 25.01, 25.82, 29.57)
+  
+)
+
+
+female_underweight$z_score_tertile <- factor(female_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+
+male_underweight <- data.frame(
+  
+  z_score_tertile = c("Low", "Low", "Low", "Medium", "Medium", "Medium", "High", "High", "High"),
+  
+  Trimester = c("Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3", "Trimester1", "Trimester2", "Trimester3"),
+  
+  Percentage_underweight = c(24.60, 21.41, 25.07, 19.22, 19.54, 19.52, 24.03, 27.01, 23.16)
+  
+)
+
+male_underweight$z_score_tertile <- factor(male_underweight$z_score_tertile, levels = c("Low", "Medium", "High"))
+
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # jscode <- '
@@ -764,41 +764,41 @@ jscode <- "function getUrlVars() {
 
 # user -------------------------------------------------------------
 ui <- navbarPage(
-                  title = "",
-                  selected = "overview",
-                  theme = shinytheme("lumen"),
-                  tags$head(
-                    tags$style('.selectize-dropdown {z-index: 1000}'),
-                    tags$style('
+  title = "",
+  selected = "overview",
+  theme = shinytheme("lumen"),
+  tags$head(
+    tags$style('.selectize-dropdown {z-index: 1000}'),
+    tags$style('
                       .carousel-container {
                         height: 100%;
                         overflow-y: auto;
                       }
                     ')
-                  ),
-                  useShinyjs(),
-                 
-                 # main tab -----------------------------------------------------------
-                 tabPanel("Project Overview", value = "overview",
-                          fluidRow(style = "margin: 2px;",
-                                   align = "center",
-                                   # br("", style = "padding-top:2px;"),
-                                   # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
-                                   br(""),
-                                   h1(strong("Effects of Prenatal Exposure to Flooding on Child Health Outcomes: Evidence from Bangladesh"),
-                                      #h2("") ,
-                                      br(""),
-                                      h4("Data Science for the Public Good Program 2023"),
-                                      h4("Virginia Polytechnic Institute and State University"),
-                                      #h4("[updat this]"),
-                                      br("")
-                                   )
-                          ),
-                          fluidRow(style = "margin: 6px;",
-                                   column(4,
-                                          h2(strong("Country Profile")),
-                                          
-                                          p("Located in the heart of South Asia, Bangladesh captivates with its rich tapestry of culture, mesmerizing landscapes, and a vibrant population. Bangladesh shares borders with India to the west, north, and east, while Myanmar borders its southeastern regions. Spanning across flatlands, Bangladesh is crisscrossed by a network of over 700 rivers and tributaries (Banglapedia, 2021).
+  ),
+  useShinyjs(),
+  
+  # main tab -----------------------------------------------------------
+  tabPanel("Project Overview", value = "overview",
+           fluidRow(style = "margin: 2px;",
+                    align = "center",
+                    # br("", style = "padding-top:2px;"),
+                    # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
+                    br(""),
+                    h1(strong("Effects of Prenatal Exposure to Flooding on Child Health Outcomes: Evidence from Bangladesh"),
+                       #h2("") ,
+                       br(""),
+                       h4("Data Science for the Public Good Program 2023"),
+                       h4("Virginia Polytechnic Institute and State University"),
+                       #h4("[updat this]"),
+                       br("")
+                    )
+           ),
+           fluidRow(style = "margin: 6px;",
+                    column(4,
+                           h2(strong("Country Profile")),
+                           
+                           p("Located in the heart of South Asia, Bangladesh captivates with its rich tapestry of culture, mesmerizing landscapes, and a vibrant population. Bangladesh shares borders with India to the west, north, and east, while Myanmar borders its southeastern regions. Spanning across flatlands, Bangladesh is crisscrossed by a network of over 700 rivers and tributaries (Banglapedia, 2021).
 
 In addition to its vibrant culture and natural beauty, Bangladesh faces numerous socio-economic challenges. These include high population density, which puts pressure on resources and infrastructure, vulnerability to rising sea levels and frequent flooding, limited access to quality healthcare services, and persistent gender inequality issues that require concerted efforts to overcome.
 
@@ -806,663 +806,663 @@ As of 2023, Bangladesh is the eighth most populous country in the world, with a 
 
 The country is characterized by a multi-tiered administrative structure that helps govern the country effectively. This structure encompasses several levels, including divisions, districts, upazilas (sub-districts), unions, and villages. The country has seven divisions: Barisal, Chittagong, Dhaka, Khulna, Rajshahi, Rangpur, and Sylhet, which serve as the highest level of administrative units. Each division is further divided into 64 districts, comparable to counties in the USA. Within the divisions, multiple upazilas (sub-districts) play a crucial role in implementing government policies. Upazilas are divided into unions, which are composed of several villages and are responsible for local government functions and community well-being. Villages are the smallest unit of administration and are primarily located in rural areas. They accommodate the majority of the population and play a significant role in the socio-economic development of Bangladesh.
 ", align = "justify")),
-column(4,
-       h2(strong("Goals and Objectives")),
-       h3(strong("Research Question:")), 
-       p("Our research focuses on two interconnected questions: (1) Does prenatal exposure to flooding adversely affect child health outcomes, and (2) What are the mechanisms through which floods affect child health outcomes? Floods have been found to have correlations with worsened child health outcomes, such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy affects the severity of fetal growth. The second part of our research aims to examine the mechanisms through which flooding affects societal access to sources of nutrition and healthcare services. When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Street and road access also become inaccessible (Aggarwal, 2018). These factors directly affect mothers and their accessibility to adequate nutrition and healthcare. In this paper, we will further observe the effects of flood exposure during pregnancy on child health outcomes.
+                    column(4,
+                           h2(strong("Goals and Objectives")),
+                           h3(strong("Research Question:")), 
+                           p("Our research focuses on two interconnected questions: (1) Does prenatal exposure to flooding adversely affect child health outcomes, and (2) What are the mechanisms through which floods affect child health outcomes? Floods have been found to have correlations with worsened child health outcomes, such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy affects the severity of fetal growth. The second part of our research aims to examine the mechanisms through which flooding affects societal access to sources of nutrition and healthcare services. When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Street and road access also become inaccessible (Aggarwal, 2018). These factors directly affect mothers and their accessibility to adequate nutrition and healthcare. In this paper, we will further observe the effects of flood exposure during pregnancy on child health outcomes.
 ", align = "justify"),
-       h3(strong("Objectives:")), 
-       p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the BIHS to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
+                           h3(strong("Objectives:")), 
+                           p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the BIHS to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
 ", align = "justify"),
-
-), 
-
-column(4,
-       h2(strong("Research Design")),
-       p("For our research, we will use the Bangladesh Integrated Household Survey (BIHS) data collected by the International Food Policy Research Institute (IFPRI). We utilized cross-sectional data for the years 2018-2019 from round 3 of the BIHS survey, which is the most recent available household survey. The sample design had two main objectives: gathering national representative data from the rural areas of Bangladesh and including all seven administrative divisions for divisional representation. The BIHS sample also included observations from the Feed The Future (FTF) zone of influence, which we will exclude from our sample to avoid over-sampling issues.
+                           
+                    ), 
+                    
+                    column(4,
+                           h2(strong("Research Design")),
+                           p("For our research, we will use the Bangladesh Integrated Household Survey (BIHS) data collected by the International Food Policy Research Institute (IFPRI). We utilized cross-sectional data for the years 2018-2019 from round 3 of the BIHS survey, which is the most recent available household survey. The sample design had two main objectives: gathering national representative data from the rural areas of Bangladesh and including all seven administrative divisions for divisional representation. The BIHS sample also included observations from the Feed The Future (FTF) zone of influence, which we will exclude from our sample to avoid over-sampling issues.
 
 To determine the sample size, the IFPRI survey team used a careful 2-stage stratified statistical sampling method. In the first stage, they selected Primary Sampling Units (PSUs) or villages using probability proportional to size based on the number of households in each stratum or division. The choice of PSUs resulted in the following distribution: 21 PSUs in Barisal, 48 in Chittagong, 87 in Dhaka, 27 in Khulna, 29 in Rajshahi, 27 in Rangpur, 36 in Sylhet, and 50 in the FTF zone. In the second stage, twenty households were randomly selected from each PSU. The IFPRI sample size was 6,500 households across 325 PSUs. However, our sample size is smaller because we excluded 1,000 households from the FTF Zone of Influence. Additionally, it is important to note that several changes occurred within households between 2011-2012 and 2018-2019, such as household mergers or splits. After making all these adjustments, our sample size is 5,604 households.
 
 In addition to the survey data we will use Global Flood Database (GFD), CHIRPS, and Sentinel-1 data to assess  the flood extent. The GFD identifies significant global flood events based on news reports and uses MODIS satellite imagery to capture those flood events to output flood extent data. CHIRPS provides precipitation data with detailed rainfall maps at 5000m resolution. Sentinel-1 is a satellite launched by the European Space Agency in 2014. It uses radar to gather data information from the earth's surface and generates high-resolution images as radar sensors are not sensitive to atmospheric conditions. 
 ", align = "justify"),  
-)), 
-
-
-         fluidRow(style = "margin: 6px;",
-                  
-                  column(8, 
-                         ##start of carousel code             
-                         h3(strong("Inside Look of Bangladesh")), 
-                         carousel(
-                           id = "myCarousel",
-                           carouselItem(
-                             img(src = "hh.png")
-                           ),
-                           carouselItem(
-                             img(src = "hh1.png")
-                           ),
-                           carouselItem (
-                             img(src = "hh2.png")
+                    )), 
+           
+           
+           fluidRow(style = "margin: 6px;",
+                    
+                    column(8, 
+                           ##start of carousel code             
+                           h3(strong("Inside Look of Bangladesh")), 
+                           carousel(
+                             id = "myCarousel",
+                             carouselItem(
+                               img(src = "hh.png")
+                             ),
+                             carouselItem(
+                               img(src = "hh1.png")
+                             ),
+                             carouselItem (
+                               img(src = "hh2.png")
+                             )
+                             ##end of carousel code 
                            )
-                           ##end of carousel code 
-                         )
-                         
-                         ),
-                column(4,
-h2(strong("Survey")),
-p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. Each response is assigned to a numerical code which allows for efficient data management and analysis. There are also quality control measures embedded in the survey to ensure accuracy and integrity of the collected information. 
+                           
+                    ),
+                    column(4,
+                           h2(strong("Survey")),
+                           p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. Each response is assigned to a numerical code which allows for efficient data management and analysis. There are also quality control measures embedded in the survey to ensure accuracy and integrity of the collected information. 
 
 In our study we will focus mainly on modules A, B, W, and Y. Module A will provide insight on the sample households and identification; this includes information on coordinates of the household and the total number of members in the household. Coordinates of the household will be used to locate the proximity of these households to the affected flooded areas. Module B covers the Household Composition and Education. This module entails the education levels, occupation, and source of income for individuals of the household. Module W focuses on the anthropometry, health, and illnesses of each individual of the household. Module Y has sectional portions containing survey data on child and antenatal care, Infant and child feeding practices, immunization and health of children younger than the age of two and service use.
 
 ", align="justify")
-#p("")
-)
-                          ),
-#fluidRow(align = "center",
-# p(tags$small(em('Last updated: August 2021'))))
-                 ),
-
-## Overview--------------------------------------------
-
-navbarMenu("Background",
-           
-           tabPanel("Flood Conditions", value = "Flood Conditions",
-                    fluidRow(
-                      style = "margin: 6px;",
-                      column(
-                        12,
-                        align = "justify",
-                        h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
-                        p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
-                        p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003).")
-                      )
-                    ),
-                    fluidRow(
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Barisal Division")),
-                        p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal.")
-                      ),
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Chittagong Division")),
-                        p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours.")
-                      )
-                    ),
-                    fluidRow(
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Dhaka Division")),
-                        p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak.")
-                      ),
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Khulna Division")),
-                        p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding.")
-                      )
-                    ),
-                    fluidRow(
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Rajshahi Division")),
-                        p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas.")
-                      ),
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Rangpur Division")),
-                        p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India.")
-                      )
-                    ),
-                    fluidRow(
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Sylhet Division")),
-                        p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall.")
-                      ),
-                      column(
-                        6,
-                        align = "justify",
-                        h5(strong("Map of Bangladesh by Division")),
-                        h2(strong("")),
-                        img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
-                      ),
-                    ),
-                    fluidRow(
-                      column(6,
-                             align = "justify",
-                             selectInput(
-                               "floodTimeline", 
-                               label = HTML("<strong>Select Flood Timeline:</strong>"), 
-                               choices = c(
-                                 "2013" = "2013",
-                                 "2014" = "2014",
-                                 "2015" = "2015",
-                                 "2016" = "2016",
-                                 "2017" = "2017",
-                                 "2018" = "2018",
-                                 "2019" = "2019"
-                               ),
-                             ),
-                             #withSpinner(img(src="timeline", height = "500px", width = "100"))
-                             withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
-                             #div(id = "year_timeline")
-                      ),
-                      
-                      column(
-                        width = 6,
-                        align = "justify",
-                        h5(strong("Flood Disasters in Bangladesh (2013-2019)")),
-                        p("The susceptibility to flooding varies across the different divisions of Bangladesh, reflecting the diverse geographic and climatic conditions of the country. There have been several disasters that occurred from 2013-2019. Some notable examples include:"),
-                        tags$ul(
-                          tags$li("In 2013, the cyclone MAHASEN hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
-                          tags$li("In 2014, severe flooding affected 46 districts and 16 million people, making it the most severe flooding since the “mega-flood” of 2007 (CARE, 2014)."),
-                          tags$li("In 2016, tropical storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
-                          tags$li("In 2017, the cyclone storm Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
-                          tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
-                        ),
-                        p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
-                      )),
-                    
-                    fluidRow(
-                      column(
-                        12,
-                        style = "padding: 30px;",
-                        align = "justify",
-                        h5(strong("Flood Write Up and Methodology")),
-                        p("Gathering an accurate assessment of flood impacts is essential for determining the devastating consequences of flooding in Bangladesh. However, relying solely on self-reported data collected through the BIHS survey creates challenges due to underreporting and subjective interpretations of flood shocks and impacts. The variability in individual definitions of “shock” and different acceptance levels of the severity of flood events complicates the accuracy of self-reported data."),
-                        p("To increase consistency, this research paper proposes the use of Sentinel-1 data, a powerful remote sensing satellite that uses synthetic aperture radar (SAR). Unlike self-reported data, which is prone to human errors and cognitive biases, Sentinel-1 data provides an unbiased and measurable representation of flood extents and duration."),
-                        p("In a study done by Guiteras, Jina, and Mobarak in 2015, it was revealed that households reporting being affected by floods actually experienced higher objective flood exposure than what they reported. The team was able to determine this by comparing self-reported data with measurements from satellite data."),
-                        p("There are multiple ways to use Sentinel-1 data for generating precise flood maps. The RGB method takes images before and after a flood event and combines them to create a visual representation of temporal changes. A study done by Conde and Muñoz in 2019 used Sentinel-1 (SAR) images to focus on mapping floods that occurred in the Ebro River in Spain in April 2018. They concluded that Sentinel-1 data should be utilized as a new source of input to enhance the precision of flood mapping, especially in weather conditions where floods occur.")
-                      ),
-                      
-                    ),
-           ),
-           tabPanel("Household Profile",
-                    fluidRow(style = "margin: 4px;",
-                             h1(strong("Household Profile"), align = "center"),
-                             p("", style = "padding-top:10px;"), 
-                             
-                             
-                             
-                             column( 12, 
-                                     tabsetPanel(
-                                       
-                                       tabPanel("Household Formation",
-                                                fluidRow(style = "margin: 4px;",
-                                                         p("", style = "padding-top:10px;"),
-                                                         
-                                                         column(8, align = "left",
-                                                                selectInput("hhformdrop", "Select Household Formation Characteristic:", width = "100%", choices = c(
-                                                                  "Average Household Size" = "household_size_division",
-                                                                  "Dependency Ratio" = "dependency_ratio_division", 
-                                                                  "Household Headship Distribution by Gender" = "household_headship_division"
-                                                                  
-                                                                ),
-                                                                ),   
-                                                                br(""),
-                                                                
-                                                                
-                                                                withSpinner(plotlyOutput("hhform", height = "500px", width ="100%"))
-                                                         ),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         
-                                                         column(4,
-                                                                h4(strong("Description")),
-                                                                textOutput("desc1"))
-                                                         
-                                                )
-                                       ),
-                                       
-                                       
-                                       
-                                       
-                                       tabPanel("Age",
-                                                fluidRow(style = "margin: 4px;",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(8, align = "left",
-                                                                selectInput("demos1drop", "Select Age Characteristic:", width = "100%", choices = c(
-                                                                  "Average Age by Gender" = "age_by_gender",
-                                                                  "Male Age Distribution" = "male_age", 
-                                                                  "Female Age Distribution" = "female_age",
-                                                                  "Household Head Age Distribution" = "head_age"
-                                                                  
-                                                                ),
-                                                                ),   
-                                                                br(""),
-                                                                withSpinner(plotlyOutput("demo1", height = "500px", width ="100%"))
-                                                         ),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         column(width = 4,
-                                                                h4(strong("Description")),
-                                                                textOutput("desc2"))
-                                                )),
-                                       tabPanel("Education",
-                                                fluidRow(style = "margin: 4px;",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(8, align = "left",
-                                                                selectInput("edudrop", "Select Educational Characteristic:", width = "100%", choices = c(
-                                                                  "Male Education Distribution" = "male_education_division",
-                                                                  "Female Education Distribution" = "female_education_division", 
-                                                                  "Highest Household Education Distribution" = "hh_highest_education",
-                                                                  "Household Head Education Distribution" = "hh_ head_education"
-                                                                  
-                                                                ),
-                                                                ),   
-                                                                br(""),
-                                                                withSpinner(plotlyOutput("edu", height = "500px", width ="100%"))
-                                                         ),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         column(width = 4,
-                                                                h4(strong("Description")),
-                                                                textOutput("desc3"))
-                                                )),
-                                       tabPanel("Economic Status",
-                                                fluidRow(style = "margin: 4px;",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(8, align = "left",
-                                                                selectInput("ecodrop", "Select Economic Status Characteristic:", width = "100%", choices = c(
-                                                                  "Households Below Poverty Line" = "households_below_poverty_line",
-                                                                  "Household Farming Activity Distribution" = "households_farming_activities", 
-                                                                  "Cultivable Land Holding" = "cultivable_land",
-                                                                  "Electricity Accessibility " = "electricity_accessibility",
-                                                                  "Water Treatment" = "water_treatment",
-                                                                  "Improved Water Accessibility" = "water_improvement",
-                                                                  "Household Head Occupation" = "hhh_occupation"
-                                                                  
-                                                                  
-                                                                ),
-                                                                ),   
-                                                                br(""),
-                                                                withSpinner(plotlyOutput("eco", height = "500px", width ="100%"))
-                                                         ),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         br(""),
-                                                         column(width = 4,
-                                                                h4(strong("Description")),
-                                                                textOutput("desc4"))
-                                                         
-                                                ))))),
-                    fluidPage(column(12, align = "right",
-                                     p("Source:",style = "font-size:12px;"))
-                    )),
-           tabPanel("Mother and Child Profile", value = "overview",
-                    fluidRow(style = "margin: 6px;",
-                             p("", style = "padding-top:10px;"),
-                             column(12, align = "center",h1(strong("Mother and Child Profile")),
-                                    p(""),
-                                    br("")),
-                             #creating the tab within tab on the left side 
-                             column(12,
-                                    #setting up the tabs
-                                    tabsetPanel(
-                                      #first tab panel child profile
-                                      tabPanel("Child Profile",
-                                               #setting the stuff under the child profile tab
-                                               fluidRow(style = "margin: 4px;",
-                                                        p("", style = "padding-top:10px;"),
-                                                        column(8,
-                                                               selectInput("mcdrop1", "Select Child Health Outcome Characteristic:", width = "100%",
-                                                                           choices = c("Stunting" = "stunt_div",
-                                                                                       "Underweight" = "underweight_div",
-                                                                                       "Average Birth Weight" = "avgbw_div",
-                                                                                       "Wasting" = "wasting_div")),
-                                                               br(""),
-                                                               withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
-                                                        column(4,
-                                                               br(""),
-                                                               br(""),
-                                                               br(""),
-                                                               br(""),
-                                                               h4(strong("Description")),
-                                                               textOutput("mctext1")))),
-                                      tabPanel("Mother Profile",
-                                               #setting the-tbh i dont really know
-                                               fluidRow(style = "margin: 4px;",
-                                                        p("", style = "padding-top:10px;"),
-                                                        column(8,
-                                                               selectInput("mcdrop2", "Select Mother Socioeconomic characteristic:", width = "100%",
-                                                                           choices = c("Age Distribution" = "age_dist",
-                                                                                       "Education" = "edu_dist", 
-                                                                                       "Mother Occupations " = "occu_dist")),
-                                                               br(""),
-                                                               withSpinner(plotlyOutput("mc2", height = "500px", width ="100%"))),
-                                                        column(4,
-                                                               br(""),
-                                                               br(""),
-                                                               br(""),
-                                                               br(""),
-                                                               h4(strong("Description")),
-                                                               textOutput("mctext2")
-                                                        )))
-                                    ))),
-                    fluidPage(column(12, align = "right",
-                                     p("Source:",style = "font-size:12px;"))
+                           #p("")
                     )
-           )),
-navbarMenu("Methodology",
-           tabPanel("Global Food Database",
-                    # Overview section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("What is the Global Flood Database?"),
-                        p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models.
-")
+           ),
+           #fluidRow(align = "center",
+           # p(tags$small(em('Last updated: August 2021'))))
+  ),
+  
+  ## Overview--------------------------------------------
+  
+  navbarMenu("Background",
+             
+             tabPanel("Flood Conditions", value = "Flood Conditions",
+                      fluidRow(
+                        style = "margin: 6px;",
+                        column(
+                          12,
+                          align = "justify",
+                          h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
+                          p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
+                          p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003).")
+                        )
+                      ),
+                      fluidRow(
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Barisal Division")),
+                          p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal.")
+                        ),
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Chittagong Division")),
+                          p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours.")
+                        )
+                      ),
+                      fluidRow(
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Dhaka Division")),
+                          p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak.")
+                        ),
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Khulna Division")),
+                          p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding.")
+                        )
+                      ),
+                      fluidRow(
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Rajshahi Division")),
+                          p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas.")
+                        ),
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Rangpur Division")),
+                          p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India.")
+                        )
+                      ),
+                      fluidRow(
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Sylhet Division")),
+                          p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall.")
+                        ),
+                        column(
+                          6,
+                          align = "justify",
+                          h5(strong("Map of Bangladesh by Division")),
+                          h2(strong("")),
+                          img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
+                        ),
+                      ),
+                      fluidRow(
+                        column(6,
+                               align = "justify",
+                               selectInput(
+                                 "floodTimeline", 
+                                 label = HTML("<strong>Select Flood Timeline:</strong>"), 
+                                 choices = c(
+                                   "2013" = "2013",
+                                   "2014" = "2014",
+                                   "2015" = "2015",
+                                   "2016" = "2016",
+                                   "2017" = "2017",
+                                   "2018" = "2018",
+                                   "2019" = "2019"
+                                 ),
+                               ),
+                               #withSpinner(img(src="timeline", height = "500px", width = "100"))
+                               withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
+                               #div(id = "year_timeline")
+                        ),
+                        
+                        column(
+                          width = 6,
+                          align = "justify",
+                          h5(strong("Flood Disasters in Bangladesh (2013-2019)")),
+                          p("The susceptibility to flooding varies across the different divisions of Bangladesh, reflecting the diverse geographic and climatic conditions of the country. There have been several disasters that occurred from 2013-2019. Some notable examples include:"),
+                          tags$ul(
+                            tags$li("In 2013, the cyclone MAHASEN hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
+                            tags$li("In 2014, severe flooding affected 46 districts and 16 million people, making it the most severe flooding since the “mega-flood” of 2007 (CARE, 2014)."),
+                            tags$li("In 2016, tropical storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
+                            tags$li("In 2017, the cyclone storm Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
+                            tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
+                          ),
+                          p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
+                        )),
+                      
+                      fluidRow(
+                        column(
+                          12,
+                          style = "padding: 30px;",
+                          align = "justify",
+                          h5(strong("Flood Write Up and Methodology")),
+                          p("Gathering an accurate assessment of flood impacts is essential for determining the devastating consequences of flooding in Bangladesh. However, relying solely on self-reported data collected through the BIHS survey creates challenges due to underreporting and subjective interpretations of flood shocks and impacts. The variability in individual definitions of “shock” and different acceptance levels of the severity of flood events complicates the accuracy of self-reported data."),
+                          p("To increase consistency, this research paper proposes the use of Sentinel-1 data, a powerful remote sensing satellite that uses synthetic aperture radar (SAR). Unlike self-reported data, which is prone to human errors and cognitive biases, Sentinel-1 data provides an unbiased and measurable representation of flood extents and duration."),
+                          p("In a study done by Guiteras, Jina, and Mobarak in 2015, it was revealed that households reporting being affected by floods actually experienced higher objective flood exposure than what they reported. The team was able to determine this by comparing self-reported data with measurements from satellite data."),
+                          p("There are multiple ways to use Sentinel-1 data for generating precise flood maps. The RGB method takes images before and after a flood event and combines them to create a visual representation of temporal changes. A study done by Conde and Muñoz in 2019 used Sentinel-1 (SAR) images to focus on mapping floods that occurred in the Ebro River in Spain in April 2018. They concluded that Sentinel-1 data should be utilized as a new source of input to enhance the precision of flood mapping, especially in weather conditions where floods occur.")
+                        ),
+                        
+                      ),
+             ),
+             tabPanel("Household Profile",
+                      fluidRow(style = "margin: 4px;",
+                               h1(strong("Household Profile"), align = "center"),
+                               p("", style = "padding-top:10px;"), 
+                               
+                               
+                               
+                               column( 12, 
+                                       tabsetPanel(
+                                         
+                                         tabPanel("Household Formation",
+                                                  fluidRow(style = "margin: 4px;",
+                                                           p("", style = "padding-top:10px;"),
+                                                           
+                                                           column(8, align = "left",
+                                                                  selectInput("hhformdrop", "Select Household Formation Characteristic:", width = "100%", choices = c(
+                                                                    "Average Household Size" = "household_size_division",
+                                                                    "Dependency Ratio" = "dependency_ratio_division", 
+                                                                    "Household Headship Distribution by Gender" = "household_headship_division"
+                                                                    
+                                                                  ),
+                                                                  ),   
+                                                                  br(""),
+                                                                  
+                                                                  
+                                                                  withSpinner(plotlyOutput("hhform", height = "500px", width ="100%"))
+                                                           ),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           
+                                                           column(4,
+                                                                  h4(strong("Description")),
+                                                                  textOutput("desc1"))
+                                                           
+                                                  )
+                                         ),
+                                         
+                                         
+                                         
+                                         
+                                         tabPanel("Age",
+                                                  fluidRow(style = "margin: 4px;",
+                                                           p("", style = "padding-top:10px;"),
+                                                           column(8, align = "left",
+                                                                  selectInput("demos1drop", "Select Age Characteristic:", width = "100%", choices = c(
+                                                                    "Average Age by Gender" = "age_by_gender",
+                                                                    "Male Age Distribution" = "male_age", 
+                                                                    "Female Age Distribution" = "female_age",
+                                                                    "Household Head Age Distribution" = "head_age"
+                                                                    
+                                                                  ),
+                                                                  ),   
+                                                                  br(""),
+                                                                  withSpinner(plotlyOutput("demo1", height = "500px", width ="100%"))
+                                                           ),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           column(width = 4,
+                                                                  h4(strong("Description")),
+                                                                  textOutput("desc2"))
+                                                  )),
+                                         tabPanel("Education",
+                                                  fluidRow(style = "margin: 4px;",
+                                                           p("", style = "padding-top:10px;"),
+                                                           column(8, align = "left",
+                                                                  selectInput("edudrop", "Select Educational Characteristic:", width = "100%", choices = c(
+                                                                    "Male Education Distribution" = "male_education_division",
+                                                                    "Female Education Distribution" = "female_education_division", 
+                                                                    "Highest Household Education Distribution" = "hh_highest_education",
+                                                                    "Household Head Education Distribution" = "hh_ head_education"
+                                                                    
+                                                                  ),
+                                                                  ),   
+                                                                  br(""),
+                                                                  withSpinner(plotlyOutput("edu", height = "500px", width ="100%"))
+                                                           ),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           column(width = 4,
+                                                                  h4(strong("Description")),
+                                                                  textOutput("desc3"))
+                                                  )),
+                                         tabPanel("Economic Status",
+                                                  fluidRow(style = "margin: 4px;",
+                                                           p("", style = "padding-top:10px;"),
+                                                           column(8, align = "left",
+                                                                  selectInput("ecodrop", "Select Economic Status Characteristic:", width = "100%", choices = c(
+                                                                    "Households Below Poverty Line" = "households_below_poverty_line",
+                                                                    "Household Farming Activity Distribution" = "households_farming_activities", 
+                                                                    "Cultivable Land Holding" = "cultivable_land",
+                                                                    "Electricity Accessibility " = "electricity_accessibility",
+                                                                    "Water Treatment" = "water_treatment",
+                                                                    "Improved Water Accessibility" = "water_improvement",
+                                                                    "Household Head Occupation" = "hhh_occupation"
+                                                                    
+                                                                    
+                                                                  ),
+                                                                  ),   
+                                                                  br(""),
+                                                                  withSpinner(plotlyOutput("eco", height = "500px", width ="100%"))
+                                                           ),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           br(""),
+                                                           column(width = 4,
+                                                                  h4(strong("Description")),
+                                                                  textOutput("desc4"))
+                                                           
+                                                  ))))),
+                      fluidPage(column(12, align = "right",
+                                       p("Source:",style = "font-size:12px;"))
+                      )),
+             tabPanel("Mother and Child Profile", value = "overview",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Mother and Child Profile")),
+                                      p(""),
+                                      br("")),
+                               #creating the tab within tab on the left side 
+                               column(12,
+                                      #setting up the tabs
+                                      tabsetPanel(
+                                        #first tab panel child profile
+                                        tabPanel("Child Profile",
+                                                 #setting the stuff under the child profile tab
+                                                 fluidRow(style = "margin: 4px;",
+                                                          p("", style = "padding-top:10px;"),
+                                                          column(8,
+                                                                 selectInput("mcdrop1", "Select Child Health Outcome Characteristic:", width = "100%",
+                                                                             choices = c("Stunting" = "stunt_div",
+                                                                                         "Underweight" = "underweight_div",
+                                                                                         "Average Birth Weight" = "avgbw_div",
+                                                                                         "Wasting" = "wasting_div")),
+                                                                 br(""),
+                                                                 withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
+                                                          column(4,
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 h4(strong("Description")),
+                                                                 textOutput("mctext1")))),
+                                        tabPanel("Mother Profile",
+                                                 #setting the-tbh i dont really know
+                                                 fluidRow(style = "margin: 4px;",
+                                                          p("", style = "padding-top:10px;"),
+                                                          column(8,
+                                                                 selectInput("mcdrop2", "Select Mother Socioeconomic characteristic:", width = "100%",
+                                                                             choices = c("Age Distribution" = "age_dist",
+                                                                                         "Education" = "edu_dist", 
+                                                                                         "Mother Occupations " = "occu_dist")),
+                                                                 br(""),
+                                                                 withSpinner(plotlyOutput("mc2", height = "500px", width ="100%"))),
+                                                          column(4,
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 br(""),
+                                                                 h4(strong("Description")),
+                                                                 textOutput("mctext2")
+                                                          )))
+                                      ))),
+                      fluidPage(column(12, align = "right",
+                                       p("Source:",style = "font-size:12px;"))
                       )
-                    ),
-                    
-                    # Importance of GFD section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("Why are we using the GFD?"),
-                        p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For example, two divisions, Rangpur and Rajshahi, are missing all flood data in 2016. There are other instances of missing data but due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative. 
+             )),
+  navbarMenu("Methodology",
+             tabPanel("Global Food Database",
+                      # Overview section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("What is the Global Flood Database?"),
+                          p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models.
 ")
-                      )
-                    ),
-                    
-                    # Data Extraction Process section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("How to mapping flood extent using GFD?
+                        )
+                      ),
+                      
+                      # Importance of GFD section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("Why are we using the GFD?"),
+                          p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For example, two divisions, Rangpur and Rajshahi, are missing all flood data in 2016. There are other instances of missing data but due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative. 
+")
+                        )
+                      ),
+                      
+                      # Data Extraction Process section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("How to mapping flood extent using GFD?
 "),
-                        p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the global flood database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods.
+                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the global flood database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods.
 ")
-                      )
-                    ),
-                    
-                    # Benefits of GFD section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("Benefits of using the GFD"),
-                        p("The database has data from 2000 to 2018, which aligns with the timeframe of our study. This coverage allows us to include all of our intended samples without excluding data due to missing data or any other issues.
+                        )
+                      ),
+                      
+                      # Benefits of GFD section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("Benefits of using the GFD"),
+                          p("The database has data from 2000 to 2018, which aligns with the timeframe of our study. This coverage allows us to include all of our intended samples without excluding data due to missing data or any other issues.
 ")
-                      )
-                    ),
-                    
-                    # Challenges and Limitations section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("Challenges and Limitations"),
-                        p("The Global Flood Database has a few limitations when compared to Sentinel-1 satellite data. The spatial resolution of the GFD is 250 meteres which can not capture the details of a smaller-scale area or flood. This resolution is beneficial in capturing large, slow moving flood events while Sentinel-1’s higher resolution allows for more precise and detailed flood mapping. Sentinel-1 offers near-real-time observations with a temporal resolution of 12 days while the Global Flood Database relies on historical records from 2000 to 2018. 
+                        )
+                      ),
+                      
+                      # Challenges and Limitations section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("Challenges and Limitations"),
+                          p("The Global Flood Database has a few limitations when compared to Sentinel-1 satellite data. The spatial resolution of the GFD is 250 meteres which can not capture the details of a smaller-scale area or flood. This resolution is beneficial in capturing large, slow moving flood events while Sentinel-1’s higher resolution allows for more precise and detailed flood mapping. Sentinel-1 offers near-real-time observations with a temporal resolution of 12 days while the Global Flood Database relies on historical records from 2000 to 2018. 
 Another limitation is the sensitivity of the GFD to weather conditions such as cloud cover. Since the database is reliant on earth-observing satellites, there is a potential for missing or incomplete data due to dense could cover while the Sentinel-1’s radar technology allows for precise data collection regardless of weather conditions. 
 Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study.
 ")
-                      )
-                    ),
-                    
-                    # Severity Levels section
-                    fluidRow(
-                      column(
-                        width = 12,
-                        h3("Severity Levels"),
-                        tags$ul(
-                          tags$li("1 - Large flood events, significant damage to structure or agriculture, fatalities, and/or 5-15 year reported interval since the last similar event"),
-                          tags$li("1.5 - Very large events: >15 year but <100 year recurrence interval"),
-                          tags$li("2 - Extreme events: recurrence interval >100 years")
+                        )
+                      ),
+                      
+                      # Severity Levels section
+                      fluidRow(
+                        column(
+                          width = 12,
+                          h3("Severity Levels"),
+                          tags$ul(
+                            tags$li("1 - Large flood events, significant damage to structure or agriculture, fatalities, and/or 5-15 year reported interval since the last similar event"),
+                            tags$li("1.5 - Very large events: >15 year but <100 year recurrence interval"),
+                            tags$li("2 - Extreme events: recurrence interval >100 years")
+                          )
                         )
                       )
-                    )
-           ),
-           tabPanel("CHIRPS",
-                    h3("About CHIRPS"),
-                    p("CHIRPS, known as the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded rainfall dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
+             ),
+             tabPanel("CHIRPS",
+                      h3("About CHIRPS"),
+                      p("CHIRPS, known as the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded rainfall dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
 "),
-                    
-                    h3("Data Integration"),
-                    p("The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed rainfall maps. Satellite imagery is collected at a frequency of every five days, while station data provide ground-based observations. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of rainfall patterns.
+                      
+                      h3("Data Integration"),
+                      p("The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed rainfall maps. Satellite imagery is collected at a frequency of every five days, while station data provide ground-based observations. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of rainfall patterns.
 "),
-                    
-                    h3("Utilization in Research"),
-                    p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.
+                      
+                      h3("Utilization in Research"),
+                      p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.
 "),
-          img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
-           ),
-
-           tabPanel("Sentinel 1",
-                    # Content for sub-tab 2
-                    p("This is sub-tab 3.")
-           )
-           
-           
-),
-navbarMenu("Results",
-           tabPanel("Stunting",
-                    tabsetPanel(
-                      tabPanel("GFD Results",
-                               fluidRow(style = "margin: 2px;",
-                                        br(""),
-                                        column(
-                                          8,
-                                          p(h5("Gender Disaggregation")),
-                               plotlyOutput("graph1"),
-                               plotlyOutput("graph2"),
-                              ),
-                              
-                               br(""),
-                          
-                               br(""),
-                               br(""),
-                               br(""),
-                               br(""),
-                               br(""),
-                      
-                    
-                               column(
-                                 4,
-                                 p(h4(strong("Description"))),
-                                 p("Stunting refers to when individuals have low height for their age which can have long-lasting effects even into adulthood. The graphs depict gender-disaggregated data for the percentage of children under five years old who are stunted on the y axis. We look at whether a flood event occurred during each trimester of the mother’s pregnancy given in the x-axis. Stunting prevalence differs across trimesters, with higher rates for children whose mothers experienced flooding during the third trimester. Additionally, the graphs highlight the vulnerability of girls to stunting, as their percentages surpass those of boys. This vulnerability may stem from neglect in rural Bangladesh due to patriarchal societal norms.
+                      img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
+             ),
+             
+             tabPanel("Sentinel 1",
+                      # Content for sub-tab 2
+                      p("This is sub-tab 3.")
+             )
+             
+             
+  ),
+  navbarMenu("Results",
+             tabPanel("Stunting",
+                      tabsetPanel(
+                        tabPanel("GFD Results",
+                                 fluidRow(style = "margin: 2px;",
+                                          br(""),
+                                          column(
+                                            8,
+                                            p(h5("Gender Disaggregation")),
+                                            plotlyOutput("graph1"),
+                                            plotlyOutput("graph2"),
+                                          ),
+                                          
+                                          br(""),
+                                          
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          
+                                          
+                                          column(
+                                            4,
+                                            p(h4(strong("Description"))),
+                                            p("Stunting refers to when individuals have low height for their age which can have long-lasting effects even into adulthood. The graphs depict gender-disaggregated data for the percentage of children under five years old who are stunted on the y axis. We look at whether a flood event occurred during each trimester of the mother’s pregnancy given in the x-axis. Stunting prevalence differs across trimesters, with higher rates for children whose mothers experienced flooding during the third trimester. Additionally, the graphs highlight the vulnerability of girls to stunting, as their percentages surpass those of boys. This vulnerability may stem from neglect in rural Bangladesh due to patriarchal societal norms.
 "), 
-                               ),align = "Justify"
-                      )),
-                      tabPanel("CHIRPS Results",
-                               fluidRow(style = "margin: 2px;",
-                                        br(""),
-                                        column(
-                                          8,
-                                          p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph3"),
-                                          plotlyOutput("graph4"),
-                                        ),
-                                        br(""),
-                                        br(""),
-                                        br(""),
-                                        br(""),
-                                        br(""),
-                                        br(""),
-                                        column(
-                                          4,
-                                          p(h4(strong("Description"))),
-                                          p(" we observed a positive correlation between precipitation intensity and stunting. In each trimester, higher rainfall intensities during pregnancy were associated with increased stunting after birth for both genders."), 
-                                        ),align = "Justify"
-                               )),
-                      tabPanel("Regression",
-                               p("This is sub-tab 2.2.")
+                                          ),align = "Justify"
+                                 )),
+                        tabPanel("CHIRPS Results",
+                                 fluidRow(style = "margin: 2px;",
+                                          br(""),
+                                          column(
+                                            8,
+                                            p(h5("Gender Disaggregation")),
+                                            plotlyOutput("graph3"),
+                                            plotlyOutput("graph4"),
+                                          ),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          br(""),
+                                          column(
+                                            4,
+                                            p(h4(strong("Description"))),
+                                            p(" we observed a positive correlation between precipitation intensity and stunting. In each trimester, higher rainfall intensities during pregnancy were associated with increased stunting after birth for both genders."), 
+                                          ),align = "Justify"
+                                 )),
+                        tabPanel("Regression",
+                                 p("This is sub-tab 2.2.")
+                        )
                       )
-                    )
-           ),
-           tabPanel("Underweight",
-                    tabsetPanel(
-                      tabPanel("GFD Results",
-                               fluidRow(style = "margin: 2px;",
-                                        br(""),
-                                        column(
-                                          8,
-                                          p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph5"),
-                                          plotlyOutput("graph6"),
-                                        ),
-                                        column(
-                                          4,
+             ),
+             tabPanel("Underweight",
+                      tabsetPanel(
+                        tabPanel("GFD Results",
+                                 fluidRow(style = "margin: 2px;",
                                           br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          p(h4(strong("Description"))),
-                                          p("Underweight refers to having a lower weight for their age. The data do not reveal a clear trend in children being underweight based on flood exposure during specific trimesters. The mixed results are expected, as literature suggests, since weight is a short-term indicator of health which can be recovered with proper nutrition over time
+                                          column(
+                                            8,
+                                            p(h5("Gender Disaggregation")),
+                                            plotlyOutput("graph5"),
+                                            plotlyOutput("graph6"),
+                                          ),
+                                          column(
+                                            4,
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            p(h4(strong("Description"))),
+                                            p("Underweight refers to having a lower weight for their age. The data do not reveal a clear trend in children being underweight based on flood exposure during specific trimesters. The mixed results are expected, as literature suggests, since weight is a short-term indicator of health which can be recovered with proper nutrition over time
 "), 
-                                        ),align = "Justify"
-                               )),
-                      tabPanel("CHIRPS Results",
-                               fluidRow(style = "margin: 2px;",
-                                        br(""),
-                                        column(
-                                          8,
-                                          p(h5("Gender Disaggregation")),
-                                          plotlyOutput("graph7"),
-                                          plotlyOutput("graph8"),
-                                        ),
-                                        column(
-                                          4,
+                                          ),align = "Justify"
+                                 )),
+                        tabPanel("CHIRPS Results",
+                                 fluidRow(style = "margin: 2px;",
                                           br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          p(h4(strong("Description"))),
-                                          p("When examining the graphs depicting percentages of underweight boys and girls per trimester based on rainfall intensity, no clear trend was evident, except that girls generally exhibited higher levels of underweight.
+                                          column(
+                                            8,
+                                            p(h5("Gender Disaggregation")),
+                                            plotlyOutput("graph7"),
+                                            plotlyOutput("graph8"),
+                                          ),
+                                          column(
+                                            4,
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            br(""),
+                                            p(h4(strong("Description"))),
+                                            p("When examining the graphs depicting percentages of underweight boys and girls per trimester based on rainfall intensity, no clear trend was evident, except that girls generally exhibited higher levels of underweight.
 "), 
-                                        ),align = "Justify"
-                               )),
-                      tabPanel("Regression",
-                               p("This is sub-tab 2.2.")
+                                          ),align = "Justify"
+                                 )),
+                        tabPanel("Regression",
+                                 p("This is sub-tab 2.2.")
+                        )
+                        
+                        
                       )
-                      
-                      
-                    )
-           ),
-           tabPanel("Mechanisms",
-                    tabsetPanel(
-                      tabPanel("Sub-tab 3.1",
-                               p("This is sub-tab 3.1.")
-                      ),
-                      tabPanel("Sub-tab 3.2",
-                               p("This is sub-tab 3.2.")
-                      ),
-                      tabPanel("Sub-tab 2.2",
-                               p("This is sub-tab 2.2.")
+             ),
+             tabPanel("Mechanisms",
+                      tabsetPanel(
+                        tabPanel("Sub-tab 3.1",
+                                 p("This is sub-tab 3.1.")
+                        ),
+                        tabPanel("Sub-tab 3.2",
+                                 p("This is sub-tab 3.2.")
+                        ),
+                        tabPanel("Sub-tab 2.2",
+                                 p("This is sub-tab 2.2.")
+                        )
                       )
-                    )
-           )
-),
-tabPanel("Discussion/Conclusion", value = "overview",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("Discussion/Conclusion")),
-                         p(""),
-                         br("")))),
-tabPanel("References", value = "overview",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("References"))),
-                  column(12, align = "left",
-                         p("Aggarwal, Shilpa. “The Long Road to Health: Healthcare Utilization Impacts of a Road Pavement Policy in Rural India.” Journal of Development Economics, vol. 151, Elsevier BV, June 2021, p. 102667, doi:10.1016/j.jdeveco.2021.102667."),
-                         p("Del Ninno, Carlo, and Mattias Lundberg. “Treading Water.” Economics and Human Biology, vol. 3, no. 1, Elsevier BV, Mar. 2005, pp. 67–96, doi:10.1016/j.ehb.2004.12.002."),
-                         p("Guiteras, R., Jina, A., & Mobarak, A. M. (2015). Satellites, Self-reports, and Submersion: Exposure to Floods in Bangladesh. The American Economic Review, 105(5), 232–236. https://doi.org/10.1257/aer.p20151095 "),
-                         p("Mallett, Lea H., and Ruth A. Etzel. “Flooding: What Is the Impact on Pregnancy and Child Health?” Disasters, vol. 42, no. 3, Wiley-Blackwell, July 2018, pp. 432–58, doi:10.1111/disa.12256."),
-                         p(""),
-                         p(""),
-                         p(""),
-                         p(""),
-                         p(""),
-                         p(""),
-                         br("")))),
-tabPanel("Our Team", value = "overview",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("Meet the Team")),
-                         p(""),
-                         br(""),
-                         h4(strong("VT Data Science for the Public Good"), align = "center"),
-                         p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
-                           "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics. '), 
-                           "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
+             )
+  ),
+  tabPanel("Discussion/Conclusion", value = "overview",
+           fluidRow(style = "margin: 6px;",
+                    p("", style = "padding-top:10px;"),
+                    column(12, align = "center",h1(strong("Discussion/Conclusion")),
+                           p(""),
+                           br("")))),
+  tabPanel("References", value = "overview",
+           fluidRow(style = "margin: 6px;",
+                    p("", style = "padding-top:10px;"),
+                    column(12, align = "center",h1(strong("References"))),
+                    column(12, align = "left",
+                           p("Aggarwal, Shilpa. “The Long Road to Health: Healthcare Utilization Impacts of a Road Pavement Policy in Rural India.” Journal of Development Economics, vol. 151, Elsevier BV, June 2021, p. 102667, doi:10.1016/j.jdeveco.2021.102667."),
+                           p("Del Ninno, Carlo, and Mattias Lundberg. “Treading Water.” Economics and Human Biology, vol. 3, no. 1, Elsevier BV, Mar. 2005, pp. 67–96, doi:10.1016/j.ehb.2004.12.002."),
+                           p("Guiteras, R., Jina, A., & Mobarak, A. M. (2015). Satellites, Self-reports, and Submersion: Exposure to Floods in Bangladesh. The American Economic Review, 105(5), 232–236. https://doi.org/10.1257/aer.p20151095 "),
+                           p("Mallett, Lea H., and Ruth A. Etzel. “Flooding: What Is the Impact on Pregnancy and Child Health?” Disasters, vol. 42, no. 3, Wiley-Blackwell, July 2018, pp. 432–58, doi:10.1111/disa.12256."),
+                           p(""),
+                           p(""),
+                           p(""),
+                           p(""),
+                           p(""),
+                           p(""),
+                           br("")))),
+  tabPanel("Our Team", value = "overview",
+           fluidRow(style = "margin: 6px;",
+                    p("", style = "padding-top:10px;"),
+                    column(12, align = "center",h1(strong("Meet the Team")),
+                           p(""),
+                           br(""),
+                           h4(strong("VT Data Science for the Public Good"), align = "center"),
+                           p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
+                             "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics. '), 
+                             "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
                                      around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to 
                                      determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, 
                                      how to apply, and our annual symposium, please visit", 
-                           a(href = 'https://aaec.vt.edu/content/aaec_vt_edu/en/academics/undergraduate/beyond-classroom/dspg.html#select=1.html', 'the official VT DSPG website.', target = "_blank")),
-                         p("", style = "padding-top:10px;")
-                  ),
-                  fluidRow(style = "margin-left: 100px; margin-right: 100px;",
-                           column(4, align = "center",
-                                  h4(strong("DSPG Graduate Fellow Member")),
-                                  img(src = "naveen.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p("", style = "padding-top:10px;"), 
-                                  p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), " is a second-year Ph.D. student in Economics at Virginia Tech, specializing in Agricultural and Applied Economics."),
-                                  
-                                  
-                                  p("", style = "padding-top:10px;"), 
-                                  img(src = "Nandini_Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  
-                                  p("", style = "padding-top:10px;"), 
-                                  p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), " Nandini Das is a Ph.D. candidate in Economics at Virginia Tech. "),
-                                  
-                                  
-                                  p("", style = "padding-top:10px;") 
-                           ),
-                           column(4, align = "center",
-                                  h4(strong("DSPG Undergraduate Members")),
-                                  img(src = "Sotaire_Kwizera (1).jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/sotairekwizera', 'Sotaire Kwizera', target = '_blank'), " is a junior at Berea College pursuing an undergraduate degree in Economics & Computer Science with a concentration in Data Analytics & Modeling.
+                             a(href = 'https://aaec.vt.edu/content/aaec_vt_edu/en/academics/undergraduate/beyond-classroom/dspg.html#select=1.html', 'the official VT DSPG website.', target = "_blank")),
+                           p("", style = "padding-top:10px;")
+                    ),
+                    fluidRow(style = "margin-left: 100px; margin-right: 100px;",
+                             column(4, align = "center",
+                                    h4(strong("DSPG Graduate Fellow Member")),
+                                    img(src = "naveen.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    p("", style = "padding-top:10px;"), 
+                                    p(a(href = 'https://www.linkedin.com/in/naveen-abedin-0ab1089a', 'Naveen Abedin', target = '_blank'), " is a second-year Ph.D. student in Economics at Virginia Tech, specializing in Agricultural and Applied Economics."),
+                                    
+                                    
+                                    p("", style = "padding-top:10px;"), 
+                                    img(src = "Nandini_Das.JPG", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    
+                                    p("", style = "padding-top:10px;"), 
+                                    p(a(href = 'https://www.linkedin.com/in/nandini-das-390577104/', 'Nandini Das', target = '_blank'), " Nandini Das is a Ph.D. candidate in Economics at Virginia Tech. "),
+                                    
+                                    
+                                    p("", style = "padding-top:10px;") 
+                             ),
+                             column(4, align = "center",
+                                    h4(strong("DSPG Undergraduate Members")),
+                                    img(src = "Sotaire_Kwizera (1).jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    p(a(href = 'https://www.linkedin.com/in/sotairekwizera', 'Sotaire Kwizera', target = '_blank'), " is a junior at Berea College pursuing an undergraduate degree in Economics & Computer Science with a concentration in Data Analytics & Modeling.
 
 "),
-                                  img(src = "Jade_Nguyen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/ngoc-anh-nguyen-a8a590219', 'Jade Nguyen', target = '_blank'), " is a junior at Virginia Polytechnic Institute and State University pursuing an undergraduate degree in Business Information Technology with a concentration in Decision Support Systems."),
-                                  img(src = "Riya_Pulla.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "200px"),
-                                  p(a(href = 'https://www.linkedin.com/in/riyapulla', 'Riya Pulla', target = '_blank'), " is a junior at Virginia Commonwealth University pursuing an undergraduate degree in Bioinformatics with a concentration in Computational Sciences."),
-                                  
-                           ),
-                           column(4, align = "center",
-                                  h4(strong("Faculty Advisor")),
-                                  img(src = "dr.chen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                                  
-                                  p("", style = "padding-top:10px;"), 
-                                  p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), ", Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
-                                  
-                                  p("", style = "padding-top:10px;")
-                           )) ,
-                  fluidRow(style = "margin-left: 100px; margin-right: 100px;",
-                           h4(strong("Project Stakeholder")),
-                           img(src = "dr.bakhtiari.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                           p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
-                           
-                           p("", style = "padding-top:10px;"),
-                           h4(strong("Acknowledgments")) ,
-                           p("We would like to thank (---) officials for providing us with data for our project. "),
-                           p("", style = "padding-top:10px;")
-                  )
-         )
-         
-)
-
+                                    img(src = "Jade_Nguyen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    p(a(href = 'https://www.linkedin.com/in/ngoc-anh-nguyen-a8a590219', 'Jade Nguyen', target = '_blank'), " is a junior at Virginia Polytechnic Institute and State University pursuing an undergraduate degree in Business Information Technology with a concentration in Decision Support Systems."),
+                                    img(src = "Riya_Pulla.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "200px"),
+                                    p(a(href = 'https://www.linkedin.com/in/riyapulla', 'Riya Pulla', target = '_blank'), " is a junior at Virginia Commonwealth University pursuing an undergraduate degree in Bioinformatics with a concentration in Computational Sciences."),
+                                    
+                             ),
+                             column(4, align = "center",
+                                    h4(strong("Faculty Advisor")),
+                                    img(src = "dr.chen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                                    
+                                    p("", style = "padding-top:10px;"), 
+                                    p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), ", Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
+                                    
+                                    p("", style = "padding-top:10px;")
+                             )) ,
+                    fluidRow(style = "margin-left: 100px; margin-right: 100px;",
+                             h4(strong("Project Stakeholder")),
+                             img(src = "dr.bakhtiari.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
+                             p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
+                             
+                             p("", style = "padding-top:10px;"),
+                             h4(strong("Acknowledgments")) ,
+                             p("We would like to thank (---) officials for providing us with data for our project. "),
+                             p("", style = "padding-top:10px;")
+                    )
+           )
+           
+  )
+  
 )
 
 
@@ -1494,8 +1494,8 @@ server <- function(input, output, session) {
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         
         ylim(0,7)
-        
-        ggplotly(p_hh, tooltip = c("text"))
+      
+      ggplotly(p_hh, tooltip = c("text"))
       
     }
     
@@ -1516,7 +1516,7 @@ server <- function(input, output, session) {
         easy_remove_legend()+
         ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 0.5)
-    
+      
       ggplotly(p_depr, tooltip = c("text"))
       
     }
@@ -2270,7 +2270,7 @@ server <- function(input, output, session) {
   output$graph1 <- renderPlotly({
     stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
       geom_bar(stat = "identity", position = "dodge") +
-
+      
       labs(title = "Percentage of Stunted Girls < 5 y/o by Incidence of Flood Event",
            x = "Trimesters", 
            y = "% of Stunted Girls < 5 y/o") +
@@ -2285,7 +2285,7 @@ server <- function(input, output, session) {
       easy_plot_legend_size(size = 10)+
       easy_plot_title_size(size = 15)+
       coord_cartesian(ylim = c(0, 40))
-      
+    
     ggplotly(stunt_g)})
   
   output$graph2 <- renderPlotly({
@@ -2466,19 +2466,10 @@ server <- function(input, output, session) {
     
     coord_cartesian(ylim = c(0, 30))
   ggplotly(underw_male_by_Rainfall)})
-
-    
+  
+  
 }
 
 shinyApp(ui = ui, server = server)
-
-
-
-
-
-
-
-
-
 
 
