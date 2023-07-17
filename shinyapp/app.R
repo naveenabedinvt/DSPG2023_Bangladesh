@@ -918,6 +918,7 @@ chirps_uw_boys <- total_uw_male %>%
 
 chirps_uw_boys$Precipitation <- factor(chirps_uw_boys$Precipitation, levels = c("Low", "Medium", "High"))
 
+
 # #DATA FOR ACESS TO HEALTHCARE TAB
 
 # distance data 
@@ -1027,6 +1028,101 @@ ldata_long <- tidyr::pivot_longer(ldata, -Intensity, names_to = "Physician", val
 
 ldata_long$Intensity <- factor(ldata_long$Intensity, levels = c("Low", "Medium", "High"))
 ldata_long$Physician <- factor(ldata_long$Physician, levels = c("NGO", "Public", "Private", "Community"))
+
+# calcium data
+Months <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
+Low <- c(30.65, 44.62, 24.19, .54)
+Medium <- c(30.94, 52.12, 16.61, .33)
+High <- c(33.59, 50.38, 15.52, .51)
+colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
+
+data <- data.frame(Months, Low, Medium, High)
+
+data_long <- tidyr::pivot_longer(data, -Months, names_to = "Tertile", values_to = "Percentage")
+
+data_long$Months <- factor(data_long$Months, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
+data_long$Tertile <- factor(data_long$Tertile, levels = c("High", "Medium", "Low"))
+
+
+#iron data 
+Months <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
+Low <- c(21.51, 50.00, 27.96, .53)
+Medium <- c( 30.07, 50.98, 18.30, .65)
+High <- c( 28.24, 52.67, 18.58, .51)
+colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
+
+data <- data.frame(Months, Low, Medium, High)
+
+data_long <- tidyr::pivot_longer(data, -Months, names_to = "Tertile", values_to = "Percentage")
+
+data_long$Months <- factor(data_long$Months, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
+data_long$Tertile <- factor(data_long$Tertile, levels = c("High", "Medium", "Low"))
+
+
+#vitamin A data 
+vitamin_a_data <- read_dta(paste0(getwd(),"/data/BIHS2018-19_Mechanism_Supplements_CHIRPS.dta"))
+vitA <- vitamin_a_data %>% 
+  group_by(tertile_totalrain_z) %>% 
+  count(vitamina) %>% 
+  mutate(Total = sum(n), Percentage = round(n/Total * 100, 2)) %>% 
+  mutate(vitamina = as.character(haven::zap_labels(vitamina)),
+         vitamina = recode(vitamina, "0" = "Not taken",
+                           "1" = "Taken"),
+         tertile_totalrain_z = as.character(haven::zap_labels(tertile_totalrain_z)),
+         tertile_totalrain_z = recode(tertile_totalrain_z, "1" = "Low",
+                                      "2" = "Medium",
+                                      "3" = "High")) %>% 
+  rename(Intensity = tertile_totalrain_z, Supplement = vitamina)
+
+vitA
+
+vitA$Intensity <- factor(vitA$Intensity, levels = c("Low", "Medium", "High"))
+
+#IYCF cummulaitve data 
+Intensity <- c("Low", "Medium", "High")
+From1to3 <- c(3.87, 2.74, 5.12)
+From4to5 <- c(32.60, 34.59, 35.31)
+From6to8 <- c(63.54, 62.67, 59.57)
+
+cqdata <- data.frame(Intensity, From1to3, From4to5, From6to8)
+
+cqdata_long <- tidyr::pivot_longer(cqdata, -Intensity, names_to = "Questions", values_to = "Percentage")
+
+cqdata_long$Questions <- factor(cqdata_long$Questions, levels = c("From1to3", "From4to5", "From6to8"))
+cqdata_long$Intensity <- factor(cqdata_long$Intensity, levels = c("Low", "Medium", "High"))
+
+#IYCF Per question data 
+Intensity <- c("Low", "Medium", "High")
+Water <- c(68.51, 75.34, 70.62)
+Semisolids <- c(70.17, 68.15, 69.81)
+Breastfeeding<- c(95.58, 95.55, 93.80)
+Colostrum <- c(97.79, 94.86, 92.45)
+HotWeather <- c(49.17, 47.60, 46.36)
+Exclusive <- c(89.50, 91.44, 88.95)
+Iron <- c(100, 100, 100)
+Diarrhea <- c(3.31, 2.05, 2.16)
+
+pqdata <- data.frame(Intensity, Water, Semisolids, Breastfeeding, Colostrum, HotWeather, Exclusive, Iron, Diarrhea)
+
+pqdata_long <- tidyr::pivot_longer(pqdata, -Intensity, names_to = "Question", values_to = "Percentage")
+
+pqdata_long$Intensity <- factor(pqdata_long$Intensity, levels = c("Low", "Medium", "High"))
+
+
+## drinking water sources
+
+drinking_w <- data.frame(
+  
+  water_sources = c("Piped", "Piped", "Piped", "Piped", "Piped", "Piped", "Piped", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Other", "Other", "Other", "Other", "Other", "Other", "Other"),
+  
+  Divisions = c("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet"),
+  
+  Percentage  = c(1.21, 4.11, 3.48, 2.17, 9.74, 1.57, 1.99, 26.46, 38.50, 73.68, 68.90, 81.82, 92.13, 42.29, 72.33, 54.41, 22.26, 28.75, 6.49, 6.12, 53.32, 0.00, 2.98, 0.58, 0.18, 1.95, 0.17, 2.39))
+
+
+
+drinking_w $water_sources <- factor(drinking_w $water_sources, levels = c("Piped", "Tube Wells", "Ponds/Rivers/Canals", "Other"))
+
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # jscode <- '
@@ -1473,13 +1569,13 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                                        p("Source:",style = "font-size:12px;"))
                       )
              ),
-  
-  tabPanel("Literature Review",
-           fluidRow(style = "margin: 6px;",
-                    p("", style = "padding-top:10px;"),
-                    column(12, align = "center",h1(strong("Literature Review ")),
-                           p(""),
-                           br(""))))),
+             
+             tabPanel("Literature Review",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Literature Review ")),
+                                      p(""),
+                                      br(""))))),
   navbarMenu("Methodology",
              tabPanel("Global Food Database",
                       # Overview section
@@ -1508,7 +1604,7 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                           width = 12,
                           h3("How to mapping flood extent using GFD?
 "),
-                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the global flood database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods.
+                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the Global Flood Database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods.
 ")
                         )
                       ),
@@ -1772,6 +1868,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                  
                                  tabsetPanel(
                                    tabPanel("Access to healthcare facilities",
+
                                             #setting the stuff under the child profile tab HERE JADE
                                             fluidRow(style = "margin: 4px;",
                                                      p("", style = "padding-top:10px;"),
@@ -1795,26 +1892,85 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                                             h4(strong("Description")),
                                                             textOutput("ahctext"),
                                                             align = "justify"))),
-                                   tabPanel("Consumption patterns and nutrition",
-                                            p("Description")
-                                   ),
-                                   tabPanel("Water quality and consumption",
-                                            p("Description")
+                                  
+                                   
+                                   tabPanel("Consumption Patterns and Nutrition",
+                                            fluidRow(style = "margin: 4px;",
+                                                     p("", style = "padding=top:10px;"),
+                                                     
+                                                     column(width = 8, align = "left",
+                                                            selectInput("cpndrop", "Select Consumption Patterns and Nutrition Variable Below:", width = "100%", 
+                                                                        choices = c("Duration of Calcium Intake" = "calcium_intake",
+                                                                                    "Duration of Iron Intake" = "iron_intake", 
+                                                                                    "Vitamin A Supplement Intake" = "vitamin_A",
+                                                                                    "Infant and Young Child Feeding Practices Test Score: Cumulative" = "cq_fig",
+                                                                                    "Infant and Young Child Feeding Practices Test Score: Per Question" = "pq_fig"),
+                                                                        
+                                                            ),   
+                                                            br(""),
+                                                            withSpinner(plotlyOutput("cpn", height = "500px", width ="100%"))
+                                                     ),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     
+                                                     column(4,
+                                                            h4(strong("Description")),
+                                                            textOutput("cpntext"), align = "justify")
+                                                     
+                                            )),
+                                   
+                
+                                   
+                                   
+                                   tabPanel("Water Quality and Consumption",
+                                            fluidRow(style = "margin: 4px;",
+                                                     p("", style = "padding-top:10px;"),
+                                                     
+                                                     column(8, align = "justified",
+                                                            selectInput("waterdrop", "Select water quality and consumption:", width = "100%", choices = c(
+                                                              "Sources of Drinking Water" = "source_drinking_water",
+                                                              "Water Treatment" = "water_treatment"
+                                                              
+                                                              
+                                                            ),
+                                                            ),   
+                                                            br(""),
+                                                            
+                                                            
+                                                            withSpinner(plotlyOutput("waters", height = "500px", width ="100%"))
+                                                     ),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     br(""),
+                                                     
+                                                     column(4,
+                                                            h4(strong("Description")),
+                                                            textOutput("descw"), align = "Justify")
+                                                     
+                                            )
+                                            
+                                            
+                                          
                                    ),
                                    tabPanel("Other",
                                             p("Description")
                                    ))
-                               )
-                               # column(
-                               #   4,
-                               #   align = "justify",
-                               #   h5(strong("Techniques used to fetch groundwater in Bangladesh")),
-                               #   h2(strong("")),
-                               #   img(src = "bangladeshwater.jpg", align = 'right', width = "100%", height = "auto"),
-                               #   p("Source: IAEA/Bangladesh Atomic Energy Commission (BAEC)", style = "font-size:12px;")
-                               #   
-                               
-                      ))),
+                                 
+                                 # column(
+                                 #   4,
+                                 #   align = "justify",
+                                 #   h5(strong("Techniques used to fetch groundwater in Bangladesh")),
+                                 #   h2(strong("")),
+                                 #   img(src = "bangladeshwater.jpg", align = 'right', width = "100%", height = "auto"),
+                                 #   p("Source: IAEA/Bangladesh Atomic Energy Commission (BAEC)", style = "font-size:12px;")
+                                 #   
+                                 
+                               )))),
   tabPanel("Discussion/Conclusion", value = "overview",
            fluidRow(style = "margin: 6px;",
                     p("", style = "padding-top:10px;"),
@@ -3246,6 +3402,7 @@ server <- function(input, output, session) {
       
       ggplotly(uw_b)
     }
+    
   })
   
   # drop down output for access to healthcare tab NOW HERE JADE
@@ -3423,7 +3580,7 @@ server <- function(input, output, session) {
       ggplotly(ptype_deliv)}
   })
   #TEXT OUPUT PER GRAPH
-  
+
   output$ahctext <- renderText({
     if (ahc1() == "dist_med_ahc") {
       "The distance people travel to reach the nearest medical facility can vary significantly based on factors like geographic location, seasons, and available infrastructure. Rural areas, on average, face farther distances than urban areas.  Due to the intensity of precipitation, some areas will have more health facilities than others where low precipitation regions will have more facilities. The graphs on the left depict this scenario, showing that in areas with intense precipitation, some individuals may have to travel up to 12 km to access the nearest medical facility."}
@@ -3444,6 +3601,218 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
     else if (ahc1() == "lpp_ahc") {
       "In summary, licensed doctors were consistently present during home deliveries. Data was grouped into Public, Community, NGO, and Private services. Public services, government-funded with doctors from public hospitals, are highly subsidized. Surprisingly, higher precipitation intensity leads to fewer public health workers during deliveries, but NGOs step in to fill the gap. However, NGO services may face quality challenges due to limited funding, equipment, and facilities compared to public doctors. Healthcare access evaluation should consider these factors across regions."}
     })
+
+  
+  
+  
+  
+  
+  
+  Varw <- reactive({
+    input$waterdrop
+  })
+  
+  output$waters <- renderPlotly({
+    
+    if (Varw() == "source_drinking_water") {
+      
+      
+      d_water <- ggplot(drinking_w , aes(x = Divisions, y = Percentage , fill = water_sources)) +
+        geom_bar(stat = "identity", position = "dodge",  aes(text = paste0("Divisions: ", Divisions, "\n", "Percentage: ", Percentage, "\n", "Water Sources: ", water_sources)))+
+        
+        # geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
+        
+        labs(title = "Source of Drinking Water by Division",
+             
+             x = "Divisions", 
+             
+             y = "Percentage") +
+        
+        easy_add_legend_title("Water Sources") +
+        
+        scale_fill_viridis_d() +
+        
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 17)+
+        coord_cartesian(ylim = c(0, 95))
+      ggplotly(d_water, tooltip = c("text"))
+      
+    }
+    
+    else if (Varw() == "water_treatment") {
+      
+      p_h2o<-ggplot (filt_h2o,
+                     aes(Division, Percentage, fill = Untreated_water))+
+        # geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.6), width = 0.6,  aes(text = paste0("Division: ", Division, "\n", "Percentage: ", Percentage, "\n", "Quality: ", Untreated_water)))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        # easy_center_title()+
+        labs(title = "Households Without Treated Drinking Water by Division",
+             x= "Division",
+             y = "Percentage")+
+        scale_fill_viridis_d() +
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        easy_remove_legend()+
+        ylim(0,100)
+      ggplotly(p_h2o, tooltip = c("text"))  
+      
+      
+    }
+    
+  })
+  
+  
+  output$descw <- renderText({
+    " Description"
+  })
+  
+  
+  output$descw <- renderText({
+    if (Varw() == "source_drinking_water") {
+      
+      "The graph above shows that tube wells are the primary source of drinking water in four of the  divisions of Bangladesh, constituting around 80 percent, on average, of their consumed water. In the remaining divisions, ponds, rivers, and canals are the main sources of water. Open water sources like rivers and ponds are particularly vulnerable to floods because floodwaters can directly run into them and contaminate them with pathogens. Conversely, although tube well water is less susceptible to mixing with floodwaters, polluted runoff can enter these supposedly clean underground water sources. Many factors such as the location and depth of the tube well, the type of soil around it, and the level of maintenance it receives dictate the risk of contamination for well water. In fact,  a paper by Luby et al. (2008) revealed that 258 surveyed tube wells in flood prone districts (Comilla, Brahmanbaria and Sirajgan) of Bangladesh had an average depth of of 21 meters and 86 percent of them were located within 10 m of a latrine while 70 percent were within 10 m of other types of pollution sources. Consequently, there is a high likelihood of floodwater breaching tube well structures through unsealed cracks and introducing external pollutants from surrounding pollution sources. 
+"
+      
+    }
+    
+    else if (Varw() == "water_treatment") {
+      
+      "Despite concerns about flood water contaminating drinking water sources the graph to the left suggests that  95.06% of surveyed households across divisions do not treat their drinking water, such as through boiling or filtration.  Water treatment is crucial in rural areas without access to piped water sources to mitigate the exposure to harmful pollutants. Rangpur and Barisal have the highest percentage of households not treating water, while Sylhet has the lowest percentage.
+"
+      
+    }
+    
+  }) 
+  
+  #Consumption and Nutrition output Fart
+  cpn1 <- reactive({input$cpndrop})
+  #matching with ui for cpn
+  output$cpn <- renderPlotly({
+    
+    if (cpn1() == "calcium_intake") {
+      fig_cal <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
+        geom_bar(stat = "identity") +
+        scale_fill_manual(values = colors) +
+        labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
+        ggtitle("Duration of Calcium Intake by Precipitation Intensity") +
+        coord_flip()+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
+        guides(fill = guide_legend(reverse = TRUE))
+      
+      ggplotly(fig_cal)
+    } else if (input$cpndrop == "iron_intake") {
+      #generate iron stacked bar graph
+      fig_iron <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
+        geom_bar(stat = "identity") +
+        scale_fill_manual(values = colors) +
+        labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
+        ggtitle("Duration of Iron Intake by Precipitation Intensity") +
+        coord_flip()+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
+        guides(fill = guide_legend(reverse = TRUE))
+      ggplotly(fig_iron)
+    } else if (input$cpndrop == "vitamin_A") {
+      vit_a_graph <- ggplot(vitA, aes(x= Intensity, y= Percentage, fill = Supplement))+
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Mother's Vitamin A Intake by Preciptation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage of Mothers",
+             fill = "Supplement Consumption") +
+        # geom_text(aes(label = paste0(Percentage, "%")), 
+        #           position = position_dodge(width = 0.9), 
+        #           vjust = -0.5, 
+        #           color = "black",
+        #           size = 4) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 80))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
+        # easy_center_title()+
+        scale_fill_manual(values = c("#440154","#fde725")) 
+      ggplotly(vit_a_graph)
+    } else if (input$cpndrop == "cq_fig") {
+      cq_fig <- ggplot(cqdata_long, aes(x = Intensity, y = Percentage, fill = Questions)) +
+        geom_bar(stat = "identity", position = "dodge",  aes(text = paste0("Cumulative Score : ", Questions, "\n", "Precipitation Intensity: ", Intensity, "\n", "Percentage: ", Percentage))) +
+        labs(title = "Cumulative Score by Precipitation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage") +
+        scale_fill_manual(values = c("From1to3" = "#21918c", 
+                                     "From4to5" = "#3a528b", 
+                                     "From6to8" = "#440154"))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 65))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)
+      ggplotly(cq_fig, tooltip = c("text"))
+    } else if (input$cpndrop == "pq_fig") {
+      
+      pq_fig <- ggplot(pqdata_long, aes(x = Question, y = Percentage, fill = Intensity)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Correct Score by Precipitation Intensity",
+             x = "Question",
+             y = "Percentage") +
+        scale_fill_manual(values = c("High" = "#440154",
+                                     "Medium" = "#3a528b",
+                                     "Low" = "#21918c"))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)
+      ggplotly(pq_fig)
+    }
+    #TEXT OUPUT PER GRAPH
+  })
+  
+  output$cpntext <- renderText({
+    if (cpn1() == "calcium_intake") {
+      "Main sources of dietary calcium include eggs, milk, meat, and green leafy vegetables. However, it is found that young woman in Bangladesh experience significant calcium inadequacy (Bromage, S., Ahmed, T., & Fawzi, W. W., 2016). It is recommended to an average woman to take calcium supplements of at least 1 g daily during mid-pregnancy, as studies have demonstrated their potential to reduce pre-eclampsia which is caused by calcium deficiency (Hofmeyr, G. J., et al., 2017). Another study found that the total body bone mineral content was significantly greater in infants born to calcium-supplemented mothers than the placebo group which prevents stunting and micronutrient deficiencies (Kumar, A., & Kaur, S., 2017). A woman with low calcium should take 600-1000 mg supplements during pregnancy  in order to improve maternal and infant bone health  (Kumar, A., & Kaur, S., 2017)."
+    }
+    else if (cpn1() == "iron_intake") {
+      "Maternal anemia, particularly if severe or long-lasting, can impair the delivery of oxygen and nutrients to the developing fetus. This can result in intrauterine growth restriction (IUGR), which means that the baby may not grow to its full potential in the womb (Sharma, D., Shastri, S., & Sharma, P., 2016). IUGR is associated with an increased risk of low birth weight and developmental complications in the newborn. 
+
+According to BDHS in 2011, nearly half of pregnant (49.6 per cent) and lactating (48 per cent) women in Bangladesh were anemic (Mitra 2011). The appropriate time of a 30 mg/day iron supplementation is after about week 12 of gestation because this is when iron requirements for pregnancy begin to increase (Institute of Medicine (US) Committee on Nutritional Status During Pregnancy and Lactation, 1990). There is a program in Bangladesh, the IFA (Iron and Folic Acid) supplementation program for pregnant women, which provides iron supplements and testing to vulnerable populations and remote areas. 
+"
+    }
+    else if (cpn1() == "vitamin_A") {
+      "Vitamin A deficiency has been recognized as a significant public health issue in Bangladesh since the 1960s (UNICEF, 2015). To address this concern, the Government of Bangladesh mandates the administration of a single high dose of vitamin A (200,000 IU) to all postpartum women within six weeks after delivery. This is crucial for promoting maternal health, ensuring the production of high-quality breast milk, and supporting the development of newborns (UNICEF, 2015). A 2016 study revealed enhanced levels of retinol in the breast milk of mothers who received vitamin A supplementation, enabling them to meet their own nutritional needs as well as those of their breastfed infants (Oliveira et al., 2016). The Bangladeshi government encourages immediate breastfeeding initiation following birth and exclusive breastfeeding until the age of six months. Incorporating vitamin A supplements into the postnatal period significantly contributes to the nutritional support provided during breastfeeding."
+    }
+    else if (cpn1() == "cq_fig") {
+      "In the BIHS, the Infant and Young Child Feeding profile (IYCFP) in Modules Y2 and Y3 assessed the knowledge of mothers through suggested infant and young child feeding practices along with illness recovery practices. In our analysis, we identified eight questions and created a maternal knowledge score. On this relative scale, we see that as precipitation intensity increases, the higher score category declines and disperses among the lower score categories seen through the increase of cumulative score categories “1 to 3” and “4 to 5.”"
+    } else if (cpn1() == "pq_fig") {
+      "This graph contains the eight questions assessed in the maternal knowledge score. On the relative scale, knowledge about proper breastfeeding related questions decreases. This includes the questions about how soon a mother should breastfeed a newborn child, what to do with colostrum, and how long a woman should exclusively breastfeed. A woman should breastfeed her child within the first hour (Khan J., 2015) as delayed breastfeeding of the mother’s colostrum is associated with a higher risk of neonatal mortality. Additionally, the child should be exclusively breastfed six months after birth (Butte N., 2004).
+We also find that the knowledge score about introducing liquids and foods besides breastmilk is relatively lower than other questions. 
+Among the lowest of scores lie the situational questions asking about diarrhea and if a child under 6 months should be given water in hot weather conditions. We see that the general trend in these questions, keeping in mind they are already low, declines as precipitation intensity increases. This becomes a risk for the child’s immune system  as they are already drinking water before the recommended age  and additionally when flooding increases and could contaminate drinking water without proper filtration."
+    }
+  })
 }
 
 shinyApp(ui = ui, server = server)
