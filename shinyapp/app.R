@@ -918,6 +918,116 @@ chirps_uw_boys <- total_uw_male %>%
 
 chirps_uw_boys$Precipitation <- factor(chirps_uw_boys$Precipitation, levels = c("Low", "Medium", "High"))
 
+# #DATA FOR ACESS TO HEALTHCARE TAB
+
+# distance data 
+dis <- read_dta(paste0(getwd(),"/data/distance to health facility by rain tertile.dta"))
+
+dis_from_med <- dis %>% 
+  rename("Tertile" = tertile_totalrain_z) %>% 
+  group_by(Tertile) %>% 
+  mutate(Tertile = factor(Tertile)) %>% 
+  ungroup() %>%
+  mutate(Tertile = as.character(haven::zap_labels(Tertile)),
+         Tertile = recode(Tertile,
+                          "1" = "Low",
+                          "2" = "Medium",
+                          "3" = "High"))
+dis_from_med$Tertile <- factor(dis_from_med$Tertile, levels = c("Low", "Medium", "High" ))
+
+# mode of transport data
+Transportation <- c("Boat", "Foot", "Motor Vehicle", "Rickshaw/Cart", "Other")
+Low <- c(2.26, 5.85, 42.82, 47.61, 1.46)
+Medium <- c(3.59, 5.45, 64.76, 24.47, 1.73)
+High <- c(7.05, 7.18, 67.42, 17.02, 1.33)
+colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
+
+data <- data.frame(Transportation, Low, Medium, High)
+
+data_long <- tidyr::pivot_longer(data, -Transportation, names_to = "Tertile", values_to = "Percentage")
+
+data_long$Transportation <- factor(data_long$Transportation, levels = c("Other", "Foot", "Boat", "Motor Vehicle", "Rickshaw/Cart"))
+# c("Other", "Foot", "Boat", "Motor Vehicle", "Rickshaw/Cart"))
+# c("Rickshaw/Cart", "Motor Vehicle", "Boat", "Foot", "Other"))
+data_long$Tertile <- factor(data_long$Tertile, levels = c("High", "Medium", "Low"))
+
+# antenatal care data
+pct_care <- data.frame(
+  Care = c("Received Care", "Received Care", "Received Care", "Did not Receive Care", "Did not Receive Care", "Did not Receive Care"),
+  rain_intensity = c("Low", "Medium", "High"),
+  
+  pct = c(10.81, 11.73, 9.92, 89.19, 88.27, 90.08)
+)
+
+pct_care$rain_intensity <-  factor(pct_care$rain_intensity, levels = c("Low", "Medium", "High"))
+
+# primary advisor data
+Intensity <- c("Low", "Medium", "High")
+Licensed <- c(84.86, 84.04, 86.51)
+Unlicensed <- c(4.32, 4.23, 3.56)
+Other <- c(10.81, 11.73, 9.92)
+
+padata <- data.frame(Intensity, Licensed, Unlicensed, Other)
+
+padata_long <- tidyr::pivot_longer(padata, -Intensity, names_to = "Advisor", values_to = "Percentage")
+
+padata_long$Intensity <- factor(padata_long$Intensity, levels = c("Low", "Medium", "High"))
+padata_long$Advisor <- factor(padata_long$Advisor, levels = c("Licensed", "Unlicensed", "Other"))
+
+# frequency visits data
+avg_vist <- data.frame(
+  Rain = c("Low", "Medium", "High"),
+  Percent = c(4.08, 3.23, 3.30))
+
+avg_vist$Rain <-  factor(avg_vist$Rain, levels = c("Low", "Medium", "High"))
+
+# delivery location data
+ddata<- read_dta(paste0(getwd(),"/data/BIHS2018-19_Mechanism_Delivery_CHIRPS.dta"))
+                 
+delA <- ddata %>% 
+  group_by(tertile_totalrain_z) %>% 
+  count(delivery) %>% 
+  mutate(Total = sum(n), Percentage = round(n/Total * 100, 2)) %>% 
+  mutate(delivery = as.character(haven::zap_labels(delivery)),
+         delivery = recode(delivery, "0" = "Home/Other",
+                                 "1" = "Hospital/Clinic"),
+         tertile_totalrain_z = as.character(haven::zap_labels(tertile_totalrain_z)),
+         tertile_totalrain_z = recode(tertile_totalrain_z, "1" = "Low",
+                                                           "2" = "Medium",
+                                                           "3" = "High")) %>% 
+  rename(Intensity = tertile_totalrain_z, Location = delivery)
+delA
+
+delA$Intensity <- factor(delA$Intensity, levels = c("Low", "Medium", "High"))
+
+# person present data
+Intensity <- c("Low", "Medium", "High")
+Licensed <- c( 95.79, 93.18,94.7)
+Unlicensed <- c(.53, 0.97, 1.52)
+Family <- c(38.42, 52.60, 60.10)
+Other <- c(1.05, 0.97, 1.26)
+
+pdata <- data.frame(Intensity, Licensed, Unlicensed, Family, Other)
+
+pdata_long <- tidyr::pivot_longer(pdata, -Intensity, names_to = "Person", values_to = "Percentage")
+
+pdata_long$Intensity <- factor(pdata_long$Intensity, levels = c("Low", "Medium", "High"))
+pdata_long$Person <- factor(pdata_long$Person, levels = c("Family", "Licensed", "Unlicensed", "Other"))
+
+# type of licensed professional data
+Intensity <- c("Low", "Medium", "High")
+Public <- c(69.23, 55.40, 48.00)
+Community <- c(.55, .35, 0)
+NGO <- c(32.42, 45.64, 54.93)
+Private <- c(0, .35, .53)
+
+ldata <- data.frame(Intensity, Private, Community, NGO, Public)
+
+ldata_long <- tidyr::pivot_longer(ldata, -Intensity, names_to = "Physician", values_to = "Percentage")
+
+ldata_long$Intensity <- factor(ldata_long$Intensity, levels = c("Low", "Medium", "High"))
+ldata_long$Physician <- factor(ldata_long$Physician, levels = c("NGO", "Public", "Private", "Community"))
+
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # jscode <- '
 #    var x = document.getElementsByClassName("navbar-brand");
@@ -1662,8 +1772,29 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                  
                                  tabsetPanel(
                                    tabPanel("Access to healthcare facilities",
-                                            p("Description")
-                                   ),
+                                            #setting the stuff under the child profile tab HERE JADE
+                                            fluidRow(style = "margin: 4px;",
+                                                     p("", style = "padding-top:10px;"),
+                                                     column(8,
+                                                            selectInput("ahcdrop", "Select Access to Healthcare:", width = "100%",
+                                                                        choices = c("Household Distance from Health Center " = "dist_med_ahc",
+                                                                                    "Mode of Transportation" = "trnsprt_ahc",
+                                                                                    "Antenatal Care" = "ant_care_ahc",
+                                                                                    "Primary Advisor" = "prim_adv_ahc",
+                                                                                    "Frequency of Antenatal Care Visits" = "num_visit_ahc",
+                                                                                    "Delivery Location" = "deliv_loc_ahc",
+                                                                                    "Person Present During Delivery" = "person_present_ahc",
+                                                                                    "Type of Licensed Professional Present During Delivery" = "lpp_ahc")),
+                                                            br(""),
+                                                            withSpinner(plotlyOutput("ahc", height = "500px", width ="100%"))),
+                                                     column(4,
+                                                            br(""),
+                                                            br(""),
+                                                            br(""),
+                                                            br(""),
+                                                            h4(strong("Description")),
+                                                            textOutput("ahctext"),
+                                                            align = "justify"))),
                                    tabPanel("Consumption patterns and nutrition",
                                             p("Description")
                                    ),
@@ -3117,8 +3248,202 @@ server <- function(input, output, session) {
     }
   })
   
+  # drop down output for access to healthcare tab NOW HERE JADE
+  ahc1 <- reactive({input$ahcdrop})
+  #matching with ui for ahc
+  output$ahc <- renderPlotly({
+    
+    if (ahc1() == "dist_med_ahc") {
+      graph_distance <- ggplot(dis_from_med, aes(x = Tertile, y = distance_medical, fill = Tertile)) +
+        geom_boxplot() +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        labs(title = "Household Distance from Health Center/Hospital by Precipitation Intensity",
+             x = "Precipitation Intensity",
+             y = "Distance (Km) ") +
+        ylim(0, 75) +
+        theme(plot.title = element_text(size = 15)) +
+        theme_classic() +
+        easy_y_axis_title_size(size = 13) +
+        easy_x_axis_title_size(size = 13) +
+        easy_plot_title_size(size = 15) +
+        guides(fill = FALSE)
+      
+      graph_distance <- ggplotly(graph_distance)} 
+      
+      # mode of transport
+    else if (ahc1() == "trnsprt_ahc") {
+      # Create the bar plot using ggplot
+      figg <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Transportation)) +
+        geom_bar(stat = "identity") +
+        scale_fill_manual(values = colors) +
+        labs(x = "Precipitation Intensity", y = "Percentage", fill = "Tranportation") +
+        ggtitle("Transportation Distribution by Precipitation Intensity") +
+        coord_flip()+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
+        guides(fill = guide_legend(reverse = TRUE))
+      
+      figgplty <- ggplotly(figg)
+      
+      figgplty <- layout(figgplty, legend = list(traceorder = "reversed"))}
+      #antenatal care
+    else if (ahc1() == "ant_care_ahc") {
+      # Create the bar plot using ggplot
+      carep <- ggplot(pct_care, aes(x = rain_intensity, y = pct, fill = Care)) +
+        geom_bar(stat = "identity", position = "stack") +
+        labs(
+          title = "Percentage of Healthcare Provision by Precipitation Intensity",
+          x = "Precipitation intensity",
+          y = "Percent"
+        ) +
+        easy_add_legend_title("Antenatal Care") +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        easy_y_axis_title_size(size = 13) +
+        scale_y_continuous(limits = c(0, 100)) +
+        easy_x_axis_title_size(size = 13) +
+        easy_plot_title_size(size = 15) +
+        coord_cartesian(ylim = c(0, 100))
+      ggplotly(carep)}
+    else if (ahc1() == "prim_adv_ahc") {
+      Intensity <- c("Low", "Medium", "High")
+      Licensed <- c(84.86, 84.04, 86.51)
+      Unlicensed <- c(4.32, 4.23, 3.56)
+      Other <- c(10.81, 11.73, 9.92)
+      
+      padata <- data.frame(Intensity, Licensed, Unlicensed, Other)
+      
+      padata_long <- tidyr::pivot_longer(padata, -Intensity, names_to = "Advisor", values_to = "Percentage")
+      
+      padata_long$Intensity <- factor(padata_long$Intensity, levels = c("Low", "Medium", "High"))
+      padata_long$Advisor <- factor(padata_long$Advisor, levels = c("Licensed", "Unlicensed", "Other"))
+      
+      pa_fig <- ggplot(padata_long, aes(x = Intensity, y = Percentage, fill = Advisor)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Primary Advisor Type by Precipitation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage") +
+        scale_fill_manual(values = c("Licensed" = "#440154",
+                                     "Other" = "#21918c",
+                                     "Unlicensed" = "#3a528b"))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 90))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)
+      
+      # pa_fig
+      
+      ggplotly(pa_fig)}
+    else if (ahc1() == "num_visit_ahc") {
+      visits <- ggplot(avg_vist , aes(x = Rain, y = Percent , fill = Rain)) +
+        geom_col() +
+        labs(title = "Average Antenatal Care Visits",
+             x = "Rain intensity",
+             y = "Average") +
+        scale_fill_viridis_d() +
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_remove_legend()+
+        easy_plot_title_size(size = 15)+
+        coord_cartesian(ylim = c(0, 5))
+      ggplotly(visits)}
+    else if (ahc1() == "deliv_loc_ahc") {
+      delAplot <- ggplot(delA, aes(x= Intensity, y= Percentage, fill = Location))+
+        geom_bar(stat = "identity", position = "stack") +
+        labs(title = "Delivery Location by Preciptation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage of Children",
+             fill = "Delivery Location") +
+        # geom_text(aes(label = paste0(Percentage, "%")), 
+        #           position = position_stack(vjust = 0.5), 
+        #           vjust = -0.5, 
+        #           color = ifelse( delA$delivery == "Home/Other", "white", "black"),
+        #           size = 4) +
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
+        # easy_center_title()+
+        scale_fill_manual(values = c("#440154","#fde725")) 
+      
+      ggplotly(delAplot)}
+    else if (ahc1() == "person_present_ahc") {
+      person_deliv <- ggplot(pdata_long, aes(x = Intensity, y = Percentage, fill = Person)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Person Present During Delivery by Precipitation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage") +
+        scale_fill_manual(values = c("Family" = "#440154",
+                                     "Other" = "#fde725",
+                                     "Licensed" = "#3a528b",
+                                     "Unlicensed" = "#21918c"))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)
+      
+      ggplotly(person_deliv)}
+    else if (ahc1() == "lpp_ahc") {
+      ptype_deliv <- ggplot(ldata_long, aes(x = Intensity, y = Percentage, fill = Physician)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Licensed Physician Type by Precipitation Intensity",
+             x = "Precipitation Intensity",
+             y = "Percentage") +
+        scale_fill_manual(values = c("NGO" = "#440154",
+                                     "Community" = "#fde725",
+                                     "Public" = "#3a528b",
+                                     "Private" = "#21918c"))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 75))+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)
+      
+      ptype_deliv
+      
+      ggplotly(ptype_deliv)}
+  })
+  #TEXT OUPUT PER GRAPH
   
-  
+  output$ahctext <- renderText({
+    if (ahc1() == "dist_med_ahc") {
+      "The distance people travel to reach the nearest medical facility can vary significantly based on factors like geographic location, seasons, and available infrastructure. Rural areas, on average, face farther distances than urban areas.  Due to the intensity of precipitation, some areas will have more health facilities than others where low precipitation regions will have more facilities. The graphs on the left depict this scenario, showing that in areas with intense precipitation, some individuals may have to travel up to 12 km to access the nearest medical facility."}
+    else if (ahc1() == "trnsprt_ahc") {
+      "Bangladesh's transportation options vary based on location and seasons. In major cities like Dhaka, Chittagong, and Khulna, people primarily use buses, taxis, and ride-sharing services. In rural areas with limited road infrastructure, non-motorized modes like bicycles, cycle rickshaws, and bullock carts are common for local transportation. During the monsoon season (June to September), when heavy flooding occurs, boats become essential for navigating through submerged areas.
+
+The graphs on the left categorize transportation into five groups: Motor vehicles, Rickshaw/cart, Foot, Boat, and other. When examining the data based on precipitation intensity, it is evident that during heavy rain seasons, the usage of motor vehicles increases to 64.4%, while boat usage rises to 7.05%. This trend is due to impassable roads for small and non-motorized vehicles during floods. Consequently, healthcare access becomes more expensive as reliance on motorized vehicles increases."}
+    else if (ahc1() == "ant_care_ahc") {
+      "Our analysis indicates that there is little variation in the frequency of mothers receiving antenatal care across different levels of rainfall intensities. This suggests that women consistently choose to seek antenatal care, regardless of how intense the rain is. Despite potential challenges posed by varying weather conditions, such as heavy rainfall during certain periods, women continue to prioritize their health and the health of their unborn children by seeking antenatal care. This trend underscores the importance of antenatal healthcare among women, reflecting their proactive approach in ensuring the well-being and proper development of their pregnancies."}
+    else if (ahc1() == "prim_adv_ahc") {
+      "Approximately 85% of women consistently select licensed healthcare workers as their primary advisors, a preference unaffected by changes in precipitation intensity. This highlights the significant role licensed professionals play in women's healthcare decisions. It emphasizes the value women place on receiving proper care from these qualified experts."}
+    else if (ahc1() == "num_visit_ahc") {
+      "As precipitation intensity increases, there is a noticeable rise in home or non-facility births. The difficulty in organizing delivery locations and securing skilled personnel during or after disasters contributes to this trend. Consequently, maternal healthcare in rural Bangladesh faces disruptions during flood events. To address this issue, implementing measures for disaster preparedness and ensuring healthcare continuity becomes essential to provide adequate support to expectant mothers and newborns."}
+    else if (ahc1() == "deliv_loc_ahc") {
+      "As precipitation intensity increases, the number of home/other births increase. It is difficult to organize the place and person for delivery especially during or after a disaster period. Maternal healthcare in rural Bangladesh is disrupted during flood events."}
+    else if (ahc1() == "person_present_ahc") {
+      "As rainfall intensity increases, we observe a rise in the number of family members present during deliveries. Despite this increase, licensed healthcare workers remain the most prominent individuals attending these deliveries. Interestingly, when referring to the rise in home births correlating with the consistent percentage of licensed health workers present during deliveries, it suggests that these professionals are being called to homes for deliveries instead of attending to them in health facilities."}
+    else if (ahc1() == "lpp_ahc") {
+      "In summary, licensed doctors were consistently present during home deliveries. Data was grouped into Public, Community, NGO, and Private services. Public services, government-funded with doctors from public hospitals, are highly subsidized. Surprisingly, higher precipitation intensity leads to fewer public health workers during deliveries, but NGOs step in to fill the gap. However, NGO services may face quality challenges due to limited funding, equipment, and facilities compared to public doctors. Healthcare access evaluation should consider these factors across regions."}
+    })
 }
 
 shinyApp(ui = ui, server = server)
