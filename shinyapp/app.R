@@ -918,6 +918,23 @@ chirps_uw_boys <- total_uw_male %>%
 
 chirps_uw_boys$Precipitation <- factor(chirps_uw_boys$Precipitation, levels = c("Low", "Medium", "High"))
 
+
+## drinking water sources
+
+drinking_w <- data.frame(
+  
+  water_sources = c("Piped", "Piped", "Piped", "Piped", "Piped", "Piped", "Piped", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Tube Wells", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Ponds/Rivers/Canals", "Other", "Other", "Other", "Other", "Other", "Other", "Other"),
+  
+  Divisions = c("Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet", "Barisal", "Chittagong", "Dhaka", "Khulna", "Rajshahi", "Rangpur", "Sylhet"),
+  
+  Percentage  = c(1.21, 4.11, 3.48, 2.17, 9.74, 1.57, 1.99, 26.46, 38.50, 73.68, 68.90, 81.82, 92.13, 42.29, 72.33, 54.41, 22.26, 28.75, 6.49, 6.12, 53.32, 0.00, 2.98, 0.58, 0.18, 1.95, 0.17, 2.39))
+
+
+
+drinking_w $water_sources <- factor(drinking_w $water_sources, levels = c("Piped", "Tube Wells", "Ponds/Rivers/Canals", "Other"))
+
+
+
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # jscode <- '
 #    var x = document.getElementsByClassName("navbar-brand");
@@ -1667,8 +1684,36 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                    tabPanel("Consumption patterns and nutrition",
                                             p("Description")
                                    ),
-                                   tabPanel("Water quality and consumption",
-                                            p("Description")
+                                   tabPanel("Water Quality and Consumption",
+                                                     fluidRow(style = "margin: 4px;",
+                                                              p("", style = "padding-top:10px;"),
+                                                              
+                                                              column(8, align = "justified",
+                                                                     selectInput("waterdrop", "Select water quality and consumption:", width = "100%", choices = c(
+                                                                       "Sources of Drinking Water" = "source_drinking_water",
+                                                                       "Water Treatment" = "water_treatment"
+        
+                                                                       
+                                                                     ),
+                                                                     ),   
+                                                                     br(""),
+                                                                     
+                                                                     
+                                                                     withSpinner(plotlyOutput("waters", height = "500px", width ="100%"))
+                                                              ),
+                                                              br(""),
+                                                              br(""),
+                                                              br(""),
+                                                              br(""),
+                                                              br(""),
+                                                              
+                                                              column(4,
+                                                                     h4(strong("Description")),
+                                                                     textOutput("descw"), align = "Justify")
+                                                              
+                                                     )
+                                            
+                                          
                                    ),
                                    tabPanel("Other",
                                             p("Description")
@@ -3117,6 +3162,97 @@ server <- function(input, output, session) {
     }
   })
   
+
+  
+  
+  
+  
+  
+  
+  
+  Varw <- reactive({
+    input$waterdrop
+  })
+  
+  output$waters <- renderPlotly({
+    
+    if (Varw() == "source_drinking_water") {
+      
+      
+      d_water <- ggplot(drinking_w , aes(x = Divisions, y = Percentage , fill = water_sources)) +
+        geom_bar(stat = "identity", position = "dodge",  aes(text = paste0("Divisions: ", Divisions, "\n", "Percentage: ", Percentage, "\n", "Water Sources: ", water_sources)))+
+        
+        # geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
+        
+        labs(title = "Source of Drinking Water by Division",
+             
+             x = "Divisions", 
+             
+             y = "Percentage") +
+        
+        easy_add_legend_title("Water Sources") +
+        
+        scale_fill_viridis_d() +
+        
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 17)+
+        coord_cartesian(ylim = c(0, 95))
+      ggplotly(d_water, tooltip = c("text"))
+      
+    }
+    
+    else if (Varw() == "water_treatment") {
+      
+      p_h2o<-ggplot (filt_h2o,
+                     aes(Division, Percentage, fill = Untreated_water))+
+        # geom_col(position = position_dodge(width = 0.6), width = 0.6) +
+        geom_bar(stat = "identity", position = position_dodge(width = 0.6), width = 0.6,  aes(text = paste0("Division: ", Division, "\n", "Percentage: ", Percentage, "\n", "Quality: ", Untreated_water)))+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        easy_x_axis_title_size(size = 15)+
+        easy_plot_title_size(size = 16)+
+        # easy_center_title()+
+        labs(title = "Households Without Treated Drinking Water by Division",
+             x= "Division",
+             y = "Percentage")+
+        scale_fill_viridis_d() +
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        easy_remove_legend()+
+        ylim(0,100)
+      ggplotly(p_h2o, tooltip = c("text"))  
+      
+     
+    }
+  
+  })
+  
+
+  output$descw <- renderText({
+    " Description"
+  })
+  
+  
+  output$descw <- renderText({
+    if (Varw() == "source_drinking_water") {
+      
+      "The graph above shows that tube wells are the primary source of drinking water in four of the  divisions of Bangladesh, constituting around 80 percent, on average, of their consumed water. In the remaining divisions, ponds, rivers, and canals are the main sources of water. Open water sources like rivers and ponds are particularly vulnerable to floods because floodwaters can directly run into them and contaminate them with pathogens. Conversely, although tube well water is less susceptible to mixing with floodwaters, polluted runoff can enter these supposedly clean underground water sources. Many factors such as the location and depth of the tube well, the type of soil around it, and the level of maintenance it receives dictate the risk of contamination for well water. In fact,  a paper by Luby et al. (2008) revealed that 258 surveyed tube wells in flood prone districts (Comilla, Brahmanbaria and Sirajgan) of Bangladesh had an average depth of of 21 meters and 86 percent of them were located within 10 m of a latrine while 70 percent were within 10 m of other types of pollution sources. Consequently, there is a high likelihood of floodwater breaching tube well structures through unsealed cracks and introducing external pollutants from surrounding pollution sources. 
+"
+      
+    }
+    
+    else if (Varw() == "water_treatment") {
+      
+      "Despite concerns about flood water contaminating drinking water sources the graph to the left suggests that  95.06% of surveyed households across divisions do not treat their drinking water, such as through boiling or filtration.  Water treatment is crucial in rural areas without access to piped water sources to mitigate the exposure to harmful pollutants. Rangpur and Barisal have the highest percentage of households not treating water, while Sylhet has the lowest percentage.
+"
+      
+    }
+    
+  }) 
   
   
 }
