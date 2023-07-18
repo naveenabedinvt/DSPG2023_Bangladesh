@@ -1718,7 +1718,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                             p(h4(strong("Description"))),
                                             p("Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined flood data by breaking it down by age and gender to facilitate a more comprehensive interpretation. "),
                                             
-                                            p("The graphs on the left do not reveal any noticeable distinctions between children under two and five years old. However, higher intensity rains have a huge effect on children between 2 and 5 y/o from both genders. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls. On the other hand, when observing the effects of medium and low intensity rain, the results were inconclusive. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
+                                            p("The graphs on the left do not reveal any noticeable distinctions between children under two and five years old. However, higher intensity rains have a huge effect on children between 2 and 5 year old from both genders. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls. On the other hand, when observing the effects of medium and low intensity rain, the results were inconclusive. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
 "), 
                                           ),align = "Justify"
                                  )),
@@ -2804,9 +2804,9 @@ server <- function(input, output, session) {
     stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
       geom_bar(stat = "identity", position = "dodge") +
       
-      labs(title = "Percentage of Stunted Girls < 5 y/o by Incidence of Flood Event",
+      labs(title = "Percentage of Stunted Girls < 5 Years Old by Incidence of Flood Event",
            x = "Trimesters", 
-           y = "% of Stunted Girls < 5 y/o") +
+           y = "Percentage of Stunted Girls < 5 Years Old") +
       easy_add_legend_title("Flood Events")+
       theme(plot.title = element_text(size = 15)) +
       scale_fill_viridis_d()+
@@ -2825,9 +2825,9 @@ server <- function(input, output, session) {
     stunt_b <- ggplot(read.csv("data/stunt_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
       geom_bar(stat = "identity", position = "dodge") +
       
-      labs(title = "Percentage of Stunted Boys < 5 y/o by Incidence of Flood Event",
+      labs(title = "Percentage of Stunted Boys < 5 Years Old by Incidence of Flood Event",
            x = "Trimesters", 
-           y = "% of Stunted Boys < 5 y/o") +
+           y = "Percentage of Stunted Boys < 5 Years Old") +
       easy_add_legend_title("Flood Events")+
       theme(plot.title = element_text(size = 15)) +
       scale_fill_viridis_d()+
@@ -2844,9 +2844,9 @@ server <- function(input, output, session) {
   
   output$graph5 <- renderPlotly({ underw_g <- ggplot(read.csv("data/underwe_female.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
     geom_bar(stat = "identity", position = "dodge") +
-    labs(title = "Percentage of Underweight Girls < 5 y/o by Incidence of Flood Event",
+    labs(title = "Percentage of Underweight Girls < 5 Years Old by Incidence of Flood Event",
          x = "Trimesters", 
-         y = "% of Underweight Girls < 5 y/o") +
+         y = "Percentage of Underweight Girls < 5 Years Old") +
     easy_add_legend_title("Flood Events")+
     theme(plot.title = element_text(size = 15)) +
     scale_fill_viridis_d()+
@@ -2866,9 +2866,9 @@ server <- function(input, output, session) {
   
   output$graph6 <- renderPlotly({underw_b <- ggplot(read.csv("data/underwe_male.csv"), aes(x = Trim, y = Percentage, fill = factor(Value))) +
     geom_bar(stat = "identity", position = "dodge") +
-    labs(title = "Percentage of Underweight Boys < 5 y/o by Incidence of Flood Event",
+    labs(title = "Percentage of Underweight Boys < 5 Years Old by Incidence of Flood Event",
          x = "Trimesters", 
-         y = "% of Underweight Boys < 5 y/o") +
+         y = "Percentage of Underweight Boys < 5 Years Old") +
     easy_add_legend_title("Flood Events")+
     theme(plot.title = element_text(size = 15)) +
     scale_fill_viridis_d()+
@@ -2891,11 +2891,11 @@ server <- function(input, output, session) {
     
     geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
     
-    labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
+    labs(title = "Percentage of Stunted Girls < 5 Years Old by Precipitation Intensity",
          
          x = "Trimesters", 
          
-         y = "% of Stunted Girls < 5 y/o") +
+         y = "Percentage of Stunted Girls < 5 Years Old") +
     
     theme(plot.title = element_text(size = 14)) +
     
@@ -2918,11 +2918,11 @@ server <- function(input, output, session) {
     
     geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
     
-    labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
+    labs(title = "Percentage of Stunted Boys < 5 Years Old by Precipitation Intensity",
          
          x = "Trimesters", 
          
-         y = "% of Stunted Boys < 5 y/o") +
+         y = "Percentage of Stunted Boys < 5 Years Old") +
     
     theme(plot.title = element_text(size = 14)) +
     
@@ -2949,11 +2949,11 @@ server <- function(input, output, session) {
     
     geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
     
-    labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
+    labs(title = "Percentage of Underweight Girls < 5 Years Old by Precipitation Intensity",
          
          x = "Trimesters", 
          
-         y = "% of Underweight Girls < 5 y/o") +
+         y = "Percentage of Underweight Girls < 5 Years Old") +
     
     theme(plot.title = element_text(size = 14)) +
     
@@ -2977,11 +2977,11 @@ server <- function(input, output, session) {
     
     geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
     
-    labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
+    labs(title = "Percentage of Underweight Boys < 5 Years Old by Precipitation Intensity",
          
          x = "Trimesters", 
          
-         y = "% of Underweight Boys < 5 y/o") +
+         y = "Percentage of Underweight Boys < 5 Years Old") +
     
     theme(plot.title = element_text(size = 14)) +
     
@@ -3007,9 +3007,9 @@ server <- function(input, output, session) {
       stunt_g <- ggplot(read.csv("data/stunt_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
         
-        labs(title = "Percentage of Stunted Girls < 5 y/o by Incidence of Flood Event",
+        labs(title = "Percentage of Stunted Girls < 5 Years Old by Incidence of Flood Event",
              x = "Trimesters",
-             y = "% of Stunted Girls < 5 y/o") +
+             y = "Percentage of Stunted Girls < 5 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3027,9 +3027,9 @@ server <- function(input, output, session) {
       # Generate graph 1 - Condition: Under 2 years old
       stunt_g <- ggplot(read.csv("data/below2_stunt_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Stunted Girls <2 y/o by Incidence of a Major Flood Event",
+        labs(title = "Percentage of Stunted Girls <2 Years Old by Incidence of a Major Flood Event",
              x = "Trimesters", 
-             y = "% of Stunted Girls <2 y/o") +
+             y = "Percentage of Stunted Girls <2 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3046,9 +3046,9 @@ server <- function(input, output, session) {
       stunt_b <- ggplot(read.csv("data/stunt_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
         
-        labs(title = "Percentage of Stunted Boys < 5 y/o by Incidence of Flood Event",
+        labs(title = "Percentage of Stunted Boys < 5 Years Old by Incidence of Flood Event",
              x = "Trimesters",
-             y = "% of Stunted Boys < 5 y/o") +
+             y = "Percentage of Stunted Boys < 5 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3068,9 +3068,9 @@ server <- function(input, output, session) {
       stunt_b <- ggplot(read.csv("data/below2_stunt_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
         
-        labs(title = "Percentage of Stunted Boys <2 y/o by Incidence of a Major Flood Event",
+        labs(title = "Percentage of Stunted Boys <2 Years Old by Incidence of a Major Flood Event",
              x = "Trimesters", 
-             y = "% of Stunted Boys <2 y/o") +
+             y = "Percentage of Stunted Boys <2 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3097,11 +3097,11 @@ server <- function(input, output, session) {
         
         geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
         
-        labs(title = "Percentage of Stunted Girls < 5 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Stunted Girls < 5 Years Old by Precipitation Intensity",
              
              x = "Trimesters", 
              
-             y = "% of Stunted Girls < 5 y/o") +
+             y = "Percentage of Stunted Girls < 5 Years Old") +
         theme(plot.title = element_text(size = 14)) +
         
         easy_add_legend_title("Precipitation Intensity") +
@@ -3122,9 +3122,9 @@ server <- function(input, output, session) {
       # Generate graph 3 - Condition: Under 2 years old
       stunt_g <- ggplot(chirps_stunt_girls, aes(x = Trim, y = Stunt_percent, fill = Precipitation)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Stunted Girls < 2 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Stunted Girls < 2 Years Old by Precipitation Intensity",
              x = "Trimesters", 
-             y = "% of Stunted Girls < 2 y/o") +
+             y = "Percentage of Stunted Girls < 2 Years Old") +
         easy_add_legend_title("Precipitation Intensity")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3150,11 +3150,11 @@ server <- function(input, output, session) {
         geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
         
         
-        labs(title = "Percentage of Stunted Boys < 5 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Stunted Boys < 5 Years Old by Precipitation Intensity",
              
              x = "Trimesters", 
              
-             y = "% of Stunted Boys < 5 y/o") +
+             y = "Percentage of Stunted Boys < 5 Years Old") +
         
         theme(plot.title = element_text(size = 14)) +
         
@@ -3178,9 +3178,9 @@ server <- function(input, output, session) {
       # Generate graph 4 - Condition: Under 2 years old
       stunt_b <- ggplot(chirps_stunt_boys, aes(x = Trim, y = Stunt_percent, fill = Precipitation)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Stunted Boys < 2 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Stunted Boys < 2 Years Old by Precipitation Intensity",
              x = "Trimesters", 
-             y = "% of Stunted Boys < 2 y/o") +
+             y = "Percentage of Stunted Boys < 2 Years Old") +
         easy_add_legend_title("Precipitation Intensity")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3205,9 +3205,9 @@ server <- function(input, output, session) {
       # Generate graph 5 - Condition: Under 5 years old
       underw_g <- ggplot(read.csv("data/underwe_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Girls < 5 y/o by Incidence of Flood Event",
+        labs(title = "Percentage of Underweight Girls < 5 Years Old by Incidence of Flood Event",
              x = "Trimesters", 
-             y = "% of Underweight Girls < 5 y/o") +
+             y = "Percentage of Underweight Girls < 5 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3226,9 +3226,9 @@ server <- function(input, output, session) {
       # Generate graph 7 - Condition: Under 2 years old
       underw_g <- ggplot(read.csv("data/below2_underwe_female.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Girls < 2 y/o by Incidence of a Major Flood Event",
+        labs(title = "Percentage of Underweight Girls < 2 Years Old by Incidence of a Major Flood Event",
              x = "Trimesters", 
-             y = "% of Underweight Girls <2 y/o") +
+             y = "Percentage of Underweight Girls <2 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3243,9 +3243,9 @@ server <- function(input, output, session) {
       # Generate graph 6 - Condition: Under 5 years old
       underw_b <- ggplot(read.csv("data/underwe_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Boys < 5 y/o by Incidence of Flood Event",
+        labs(title = "Percentage of Underweight Boys < 5 Years Old by Incidence of Flood Event",
              x = "Trimesters", 
-             y = "% of Underweight Boys < 5 y/o") +
+             y = "Percentage of Underweight Boys < 5 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3264,9 +3264,9 @@ server <- function(input, output, session) {
       # Generate graph 6 - Condition: Under 2 years old
       underw_b <- ggplot(read.csv("data/below2_underwe_male.csv"), aes(x = Trim, y = Percentage, fill = Value)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Boys <2 y/o by Incidence of a Major Flood Event",
+        labs(title = "Percentage of Underweight Boys <2 Years Old by Incidence of a Major Flood Event",
              x = "Trimesters", 
-             y = "% of Underweight Boys < 2 y/o") +
+             y = "Percentage of Underweight Boys < 2 Years Old") +
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
@@ -3284,9 +3284,9 @@ server <- function(input, output, session) {
       # Generate graph 7 - Condition: Under 5 years old
       underw_female_by_Rainfall <- ggplot(female_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
         geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
-        labs(title = "Percentage of Underweight Girls < 5 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Underweight Girls < 5 Years Old by Precipitation Intensity",
              x = "Trimesters",
-             y = "% of Underweight Girls < 5 y/o") +
+             y = "Percentage of Underweight Girls < 5 Years Old") +
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
@@ -3298,9 +3298,9 @@ server <- function(input, output, session) {
       # Generate graph 7 - Condition: Under 2 years old
       uw_g <- ggplot(chirps_uw_girls, aes(x = Trim, y = uw_percent, fill = Precipitation)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Girls < 2 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Underweight Girls < 2 Years Old by Precipitation Intensity",
              x = "Trimesters",
-             y = "% of Underweight Girls < 2 y/o") +
+             y = "Percentage of Underweight Girls < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
         coord_cartesian(ylim = c(0, 25))
@@ -3314,9 +3314,9 @@ server <- function(input, output, session) {
       # Generate graph 8 - Condition: Under 5 years old
       underw_male_by_Rainfall <- ggplot(male_underweight, aes(x = Trimester, y = Percentage_underweight, fill = z_score_tertile)) +
         geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.9) +
-        labs(title = "Percentage of Underweight Boys < 5 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Underweight Boys < 5 Years Old by Precipitation Intensity",
              x = "Trimesters",
-             y = "% of Underweight Boys < 5 y/o") +
+             y = "Percentage of Underweight Boys < 5 Years Old") +
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
@@ -3328,9 +3328,9 @@ server <- function(input, output, session) {
       # Generate graph 8 - Condition: Under 2 years old
       uw_b <- ggplot(chirps_uw_boys, aes(x = Trim, y = uw_percent, fill = Precipitation)) +
         geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Percentage of Underweight Boys < 2 y/o by Precipitation Intensity",
+        labs(title = "Percentage of Underweight Boys < 2 Years Old by Precipitation Intensity",
              x = "Trimesters",
-             y = "% of Underweight Boys < 2 y/o") +
+             y = "Percentage of Underweight Boys < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
         coord_cartesian(ylim = c(0, 25))
@@ -3526,7 +3526,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
     else if (ahc1() == "ant_care_ahc") {
       "Our analysis indicates that there is little variation in the frequency of mothers receiving antenatal care across different levels of rainfall intensities. This suggests that women consistently choose to seek antenatal care, regardless of how intense the rain is. Despite potential challenges posed by varying weather conditions, such as heavy rainfall during certain periods, women continue to prioritize their health and the health of their unborn children by seeking antenatal care. This trend underscores the importance of antenatal healthcare among women, reflecting their proactive approach in ensuring the well-being and proper development of their pregnancies."}
     else if (ahc1() == "prim_adv_ahc") {
-      "Approximately 85% of women consistently select licensed healthcare workers as their primary advisors, a preference unaffected by changes in precipitation intensity. This highlights the significant role licensed professionals play in women's healthcare decisions. It emphasizes the value women place on receiving proper care from these qualified experts."}
+      "Approximately 85Percentage of women consistently select licensed healthcare workers as their primary advisors, a preference unaffected by changes in precipitation intensity. This highlights the significant role licensed professionals play in women's healthcare decisions. It emphasizes the value women place on receiving proper care from these qualified experts."}
     else if (ahc1() == "num_visit_ahc") {
       "As precipitation intensity increases, there is a noticeable rise in home or non-facility births. The difficulty in organizing delivery locations and securing skilled personnel during or after disasters contributes to this trend. Consequently, maternal healthcare in rural Bangladesh faces disruptions during flood events. To address this issue, implementing measures for disaster preparedness and ensuring healthcare continuity becomes essential to provide adequate support to expectant mothers and newborns."}
     else if (ahc1() == "deliv_loc_ahc") {
