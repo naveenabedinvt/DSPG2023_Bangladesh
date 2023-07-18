@@ -1030,19 +1030,19 @@ ldata_long$Intensity <- factor(ldata_long$Intensity, levels = c("Low", "Medium",
 ldata_long$Physician <- factor(ldata_long$Physician, levels = c("NGO", "Public", "Private", "Community"))
 
 # calcium data
-MonthsC <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
-LowC <- c(30.65, 44.62, 24.19, .54)
-MediumC <- c(30.94, 52.12, 16.61, .33)
-HighC <- c(33.59, 50.38, 15.52, .51)
-colorsC <- c("#fde725", "#21918c", "#3a528b", "#440154")
+Months <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
+LowPI <- c(30.65, 44.62, 24.19, .54) 
+MediumPI <- c(30.94, 52.12, 16.61, .33)
+HighPI <- c(33.59, 50.38, 15.52, .51)
+colorsPI <- c("#fde725", "#21918c", "#3a528b", "#440154")
 LevelsPI <- c("High", "Medium", "Low")
 
-dataC <- data.frame(MonthsC, LowC, MediumC, HighC)
+dataC <- data.frame(Months, LowPI, MediumPI, HighPI)
 
-data_longC <- tidyr::pivot_longer(dataC, -MonthsC, names_to = "Tertile", values_to = "Percentage")
+data_longC <- tidyr::pivot_longer(dataC, -Months, names_to = "Tertile", values_to = "Percentage")
 
-data_longC$MonthsC <- factor(data_longC$MonthsC, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
-data_longC$Tertile <- factor(data_longC$Tertile, levels = c("HighC", "MediumC", "LowC"))
+data_longC$Months <- factor(data_longC$Months, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
+data_longC$Tertile <- factor(data_longC$Tertile, levels = c("HighPI", "MediumPI", "LowPI"))
 
 
 #iron data 
@@ -1957,10 +1957,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                             
                                             
                                           
-                                   ),
-                                   tabPanel("Other",
-                                            p("Description")
-                                   ))
+                                   )
+                                )
                                  
                                  # column(
                                  #   4,
@@ -3699,9 +3697,9 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
   output$cpn <- renderPlotly({
     
     if (cpn1() == "calcium_intake") {
-      fig_cal <- ggplot(data_longC, aes(x = Tertile, y = Percentage, fill = MonthsC)) +
+      fig_cal <- ggplot(data_longC, aes(x = Tertile, y = Percentage, fill = Months)) +
         geom_bar(stat = "identity") +
-        scale_fill_manual(values = colorsC) +
+        scale_fill_manual(values = colorsPI) +
         labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
         ggtitle("Duration of Calcium Intake by Precipitation Intensity") +
         theme_classic()+
@@ -3715,7 +3713,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         scale_x_discrete(labels = LevelsPI)+
         coord_flip()
       
-      ggplotly(fig_cal, legend = list(traceorder = "reversed"))
+      ggplotly(fig_cal)
     } else if (input$cpndrop == "iron_intake") {
       #generate iron stacked bar graph
       fig_iron <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
