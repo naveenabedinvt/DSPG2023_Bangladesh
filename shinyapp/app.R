@@ -1245,18 +1245,17 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                                p("", style = "padding-top:10px;"),
                                column(12, align = "center",h1(strong("Literature Review ")),
                                       br(""))),
-                      column(12, align = "Justify",
-                             p(""),
-                             p(""),
-                             p(""),
-                             p("")
+                      column(6, align = "Justify",
+                             p("Several studies have investigated the impact of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could lead to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the impact of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
+                             p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, In 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gouda, Bangladesh where it experienced flooding. Many of the underweight children suffered chronic diarrhea and had an increased risk of mortality and poor growth(Mallett, 2018).")),
+                      column(6, align = "justify",
+                             p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. They found that women living in flooded areas used maternal healthcare services less than those in non-flooded areas. The same paper suggested that other confounding factors such as low education levels, and lower socioeconomic status contributed to reduced healthcare utilization. Hence, increased deficiencies in iron, vitamin A, and vitamin C are prevalent in flood prone regions due to limited access to healthcare facilities (Oskoorouchi & Sousa-Poza, 2021). De Silva and Kawasaki (2020) highlighted disparity in economic status as a driving force to this unequal healthcare access. Their study found that poor Sri Lankan households experience a 48% greater absolute economic loss due to severe flood events than non-poor households. This is the case because individuals with lower economic status are more likely to reside in highly vulnerable areas, often rural parts, due to their limited resources, thereby increasing their exposure to disasters (De Silva, Akiyuki Kawasaki (2020)."),
+                             p("Another major cause of detrimental health consequences in flood-prevalent areas is the consumption of contaminated drinking water. In 2004, Sirajul Islam et al. conducted a study in Dhaka focusing on fecal pollution and the effectiveness of point-of-use water treatment during and after a flood. The collected water samples revealed significant contamination levels, including coliforms, fecal coliforms, fecal streptococci, and Vibrio cholerae. Vibrio cholera is a bacterium responsible for causing cholera, a disease characterized by severe diarrhea, dehydration, and potentially life-threatening complications if left untreated.  A study by Mashiro H. et al. (2010) found that incidence of cholera cases increases  during monsoon seasons (25%), compared to spring (8%) in Bangladesh. Cholera cases among pregnant women pose adverse effects on their children's health outcomes. A study in Nepal found that women with diarrhea during pregnancy were more likely to have small gestational age (SGA) infants compared to those without diarrhea (Newman et al., 2019).
+                               ")
                              
-                             )
-                      
-                      
-                      
-                      ),
-             
+                             )),
+                             
+      
              tabPanel("Flood Conditions", value = "Flood Conditions",
                       fluidRow(
                         style = "margin: 6px;",
