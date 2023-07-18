@@ -3639,6 +3639,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
         ggtitle("Duration of Calcium Intake by Precipitation Intensity") +
         theme_classic() +
+        theme(legend.position = "right")+
         easy_y_axis_title_size(size = 15) +
         scale_y_continuous(limits = c(0, 100)) +
         easy_x_axis_title_size(size = 15) +
@@ -3649,21 +3650,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         scale_x_discrete(labels = LevelsPI) +
         coord_flip()
       
-      fig_cal <- ggplotly(fig_cal)
-      
-      fig_cal <- fig_cal %>% layout(
-        showlegend = TRUE,
-        legend = list(
-          x = 1.1,
-          y = 0.5,
-          xanchor = "left",
-          bgcolor = "white",
-          bordercolor = "black",
-          borderwidth = 1
-        )
-      )
-      
-      fig_cal
+      ggplotly(fig_cal)
     } else if (input$cpndrop == "iron_intake") {
       #generate iron stacked bar graph
       fig_iron <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
@@ -3681,6 +3668,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         easy_plot_title_size(size = 15)+
         guides(fill = guide_legend(reverse = TRUE))
       ggplotly(fig_iron)
+
     } else if (input$cpndrop == "vitamin_A") {
       vit_a_graph <- ggplot(vitA, aes(x= Intensity, y= Percentage, fill = Supplement))+
         geom_bar(stat = "identity", position = "dodge") +
