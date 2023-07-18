@@ -1245,13 +1245,22 @@ In addition to the survey data we will use Global Flood Database (GFD), CHIRPS, 
                            carousel(
                              id = "myCarousel", width = 80,
                              carouselItem(
-                               tags$img(src = "hh.png", width ="100%")
+                               tags$img(src = "hh.jpg", width ="100%")
                              ),
                              carouselItem(
-                               tags$img(src = "hh1.png", width ="100%")
+                               tags$img(src = "hh1.jpg", width ="100%")
                              ),
                              carouselItem (
-                               tags$img(src = "hh2.png", width = "100%")
+                               tags$img(src = "hh2.jpg", width = "100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh3.jpg", width ="100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh4.jpg", width ="100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh5.jpg", width ="100%")
                              )
                              ##end of carousel code 
                            )
