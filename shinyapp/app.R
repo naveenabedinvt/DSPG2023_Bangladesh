@@ -1274,6 +1274,12 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
   ## Overview--------------------------------------------
   
   navbarMenu("Background",
+             tabPanel("Literature Review",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Literature Review ")),
+                                      p(""),
+                                      br("")))),
              
              tabPanel("Flood Conditions", value = "Flood Conditions",
                       fluidRow(
@@ -1569,14 +1575,9 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                       fluidPage(column(12, align = "right",
                                        p("Source:",style = "font-size:12px;"))
                       )
-             ),
+             )
              
-             tabPanel("Literature Review",
-                      fluidRow(style = "margin: 6px;",
-                               p("", style = "padding-top:10px;"),
-                               column(12, align = "center",h1(strong("Literature Review ")),
-                                      p(""),
-                                      br(""))))),
+             ),
   navbarMenu("Methodology",
              tabPanel("Global Food Database",
                       # Overview section
