@@ -1278,8 +1278,18 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                       fluidRow(style = "margin: 6px;",
                                p("", style = "padding-top:10px;"),
                                column(12, align = "center",h1(strong("Literature Review ")),
-                                      p(""),
-                                      br("")))),
+                                      br(""))),
+                      column(12, align = "Justify",
+                             p(""),
+                             p(""),
+                             p(""),
+                             p("")
+                             
+                             )
+                      
+                      
+                      
+                      ),
              
              tabPanel("Flood Conditions", value = "Flood Conditions",
                       fluidRow(
@@ -1403,8 +1413,6 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                       fluidRow(style = "margin: 4px;",
                                h1(strong("Household Profile"), align = "center"),
                                p("", style = "padding-top:10px;"), 
-                               
-                               
                                
                                column( 12, 
                                        tabsetPanel(
@@ -1682,8 +1690,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                           column(
                                             7,
                                             selectInput("agdrop2", "Age Categories:", width = "100%",
-                                                        choices = c("Children under 2 yeears old" = "1under2",
-                                                                    "Children under 5 Years old" = "2under5")))
+                                                        choices = c("Children Under 2 Years Old" = "1under2",
+                                                                    "Children Under 5 Years Old" = "2under5")))
                                           ,  
                                           
                                           column(
@@ -1723,8 +1731,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                           column(8,
                                                  
                                                  selectInput("agdrop3", "Age Categories:", width = "100%",
-                                                             choices = c("Children under 2 yeears old" = "3under2",
-                                                                         "Children under 5 Years old" = "4under5"))),
+                                                             choices = c("Children Under 2 Years Old" = "3under2",
+                                                                         "Children Under 5 Years Old" = "4under5"))),
                                           br(""),
                                           column(
                                             8,
@@ -1769,8 +1777,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                           
                                           column(8,
                                                  selectInput("agdrop5", "Age Categories:", width = "100%",
-                                                             choices = c("Children under 2 yeears old" = "5under2",
-                                                                         "Children under 5 Years old" = "6under5"))),
+                                                             choices = c("Children Under 2 Years Old" = "5under2",
+                                                                         "Children Under 5 Years Old" = "6under5"))),
                                           br(""),
                                           column(
                                             8,
@@ -1804,8 +1812,8 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                           column(8,
                                                  
                                                  selectInput("agdrop7", "Age Categories:", width = "100%",
-                                                             choices = c("Children under 2 yeears old" = "7under2",
-                                                                         "Children under 5 Years old" = "8under5"))),
+                                                             choices = c("Children Under 2 Years Old" = "7under2",
+                                                                         "Children Under 5 Years Old" = "8under5"))),
                                           br(""),
                                           column(
                                             8,
@@ -3453,7 +3461,7 @@ server <- function(input, output, session) {
     else if (ahc1() == "ant_care_ahc") {
       # Create the bar plot using ggplot
       carep <- ggplot(pct_care, aes(x = rain_intensity, y = pct, fill = Care)) +
-        geom_bar(stat = "identity", position = "stack") +
+        geom_bar(stat = "identity", position = "stack", aes(text = paste0("Rain Intensity: ", rain_intensity, "\n", "Percentage: ", pct, "\n", "Care: ", Care))) +
         labs(
           title = "Percentage of Healthcare Provision by Precipitation Intensity",
           x = "Precipitation intensity",
@@ -3467,7 +3475,7 @@ server <- function(input, output, session) {
         easy_x_axis_title_size(size = 13) +
         easy_plot_title_size(size = 15) +
         coord_cartesian(ylim = c(0, 100))
-      ggplotly(carep)}
+      ggplotly(carep, tooltip = c("text"))}
     else if (ahc1() == "prim_adv_ahc") {
       Intensity <- c("Low", "Medium", "High")
       Licensed <- c(84.86, 84.04, 86.51)
