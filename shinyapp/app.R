@@ -939,18 +939,18 @@ dis_from_med$Tertile <- factor(dis_from_med$Tertile, levels = c("Low", "Medium",
 # mode of transport data
 Transportation <- c("Boat", "Foot", "Motor Vehicle", "Rickshaw/Cart", "Other")
 Low <- c(2.26, 5.85, 42.82, 47.61, 1.46)
-Medium <- c(3.59, 5.45, 64.76, 24.47, 1.73)
+Medium <- c(3.59, 5.45, 64.76, 24.47, 1.72)
 High <- c(7.05, 7.18, 67.42, 17.02, 1.33)
 colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
 
 data <- data.frame(Transportation, Low, Medium, High)
 
-data_long <- tidyr::pivot_longer(data, -Transportation, names_to = "Tertile", values_to = "Percentage")
+trdata_long <- tidyr::pivot_longer(data, -Transportation, names_to = "Tertile", values_to = "Percentage")
 
-data_long$Transportation <- factor(data_long$Transportation, levels = c("Other", "Foot", "Boat", "Motor Vehicle", "Rickshaw/Cart"))
+trdata_long$Transportation <- factor(trdata_long$Transportation, levels = c("Other", "Foot", "Boat", "Motor Vehicle", "Rickshaw/Cart"))
 # c("Other", "Foot", "Boat", "Motor Vehicle", "Rickshaw/Cart"))
 # c("Rickshaw/Cart", "Motor Vehicle", "Boat", "Foot", "Other"))
-data_long$Tertile <- factor(data_long$Tertile, levels = c("High", "Medium", "Low"))
+trdata_long$Tertile <- factor(trdata_long$Tertile, levels = c("High", "Medium", "Low"))
 
 # antenatal care data
 pct_care <- data.frame(
@@ -1030,23 +1030,24 @@ ldata_long$Intensity <- factor(ldata_long$Intensity, levels = c("Low", "Medium",
 ldata_long$Physician <- factor(ldata_long$Physician, levels = c("NGO", "Public", "Private", "Community"))
 
 # calcium data
-Months <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
-Low <- c(30.65, 44.62, 24.19, .54)
-Medium <- c(30.94, 52.12, 16.61, .33)
-High <- c(33.59, 50.38, 15.52, .51)
-colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
+MonthsC <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
+LowC <- c(30.65, 44.62, 24.19, .54)
+MediumC <- c(30.94, 52.12, 16.61, .33)
+HighC <- c(33.59, 50.38, 15.52, .51)
+colorsC <- c("#fde725", "#21918c", "#3a528b", "#440154")
+LevelsPI <- c("High", "Medium", "Low")
 
-data <- data.frame(Months, Low, Medium, High)
+dataC <- data.frame(MonthsC, LowC, MediumC, HighC)
 
-data_long <- tidyr::pivot_longer(data, -Months, names_to = "Tertile", values_to = "Percentage")
+data_longC <- tidyr::pivot_longer(dataC, -MonthsC, names_to = "Tertile", values_to = "Percentage")
 
-data_long$Months <- factor(data_long$Months, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
-data_long$Tertile <- factor(data_long$Tertile, levels = c("High", "Medium", "Low"))
+data_longC$MonthsC <- factor(data_longC$MonthsC, levels = c("No Intake", "1-4 Months", "5-7 Months", "8 or more months"))
+data_longC$Tertile <- factor(data_longC$Tertile, levels = c("HighC", "MediumC", "LowC"))
 
 
 #iron data 
 Months <- c("No Intake", "1-4 Months", "5-7 Months", "8 or more months")
-Low <- c(21.51, 50.00, 27.96, .53)
+Low <- c(21.51, 50.00, 27.96, .52)
 Medium <- c( 30.07, 50.98, 18.30, .65)
 High <- c( 28.24, 52.67, 18.58, .51)
 colors <- c("#cc4778", "#fde725", "#21918c", "#3a528b", "#440154")
@@ -3431,7 +3432,7 @@ server <- function(input, output, session) {
       # mode of transport
     else if (ahc1() == "trnsprt_ahc") {
       # Create the bar plot using ggplot
-      figg <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Transportation)) +
+      figg <- ggplot(trdata_long, aes(x = Tertile, y = Percentage, fill = Transportation)) +
         geom_bar(stat = "identity") +
         scale_fill_manual(values = colors) +
         labs(x = "Precipitation Intensity", y = "Percentage", fill = "Tranportation") +
@@ -3446,9 +3447,9 @@ server <- function(input, output, session) {
         easy_plot_title_size(size = 15)+
         guides(fill = guide_legend(reverse = TRUE))
       
-      figgplty <- ggplotly(figg)
+      figgplty1 <- ggplotly(figg)
       
-      figgplty <- layout(figgplty, legend = list(traceorder = "reversed"))}
+      figgplty <- layout(figgplty1, legend = list(traceorder = "reversed"))}
       #antenatal care
     else if (ahc1() == "ant_care_ahc") {
       # Create the bar plot using ggplot
@@ -3698,12 +3699,11 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
   output$cpn <- renderPlotly({
     
     if (cpn1() == "calcium_intake") {
-      fig_cal <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
+      fig_cal <- ggplot(data_longC, aes(x = Tertile, y = Percentage, fill = MonthsC)) +
         geom_bar(stat = "identity") +
-        scale_fill_manual(values = colors) +
+        scale_fill_manual(values = colorsC) +
         labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
         ggtitle("Duration of Calcium Intake by Precipitation Intensity") +
-        coord_flip()+
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         scale_y_continuous(limits = c(0, 100))+
@@ -3711,9 +3711,11 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         easy_plot_legend_title_size(size = 13)+
         easy_plot_legend_size(size = 10)+
         easy_plot_title_size(size = 15)+
-        guides(fill = guide_legend(reverse = TRUE))
+        guides(fill = guide_legend(reverse = TRUE)) +
+        scale_x_discrete(labels = LevelsPI)+
+        coord_flip()
       
-      ggplotly(fig_cal)
+      ggplotly(fig_cal, legend = list(traceorder = "reversed"))
     } else if (input$cpndrop == "iron_intake") {
       #generate iron stacked bar graph
       fig_iron <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
