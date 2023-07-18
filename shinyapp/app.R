@@ -563,49 +563,6 @@ bwdiv_combined <- bind_rows(bw, bw_gender)
 #factoring for the bar graph to cluster in this order
 bwdiv_combined$Gender <- factor(bwdiv_combined$Gender, levels = c("Total", "Male", "Female"))
 
-#WASTING BY DIVISION BY GENDER
-#create data frame with total percentage of those wasted
-wastediv1 <- data %>%
-  rename("Division" = div_name, 
-         "Waste" = wasting_all0to59) %>% 
-  group_by(Division) %>%
-  count(Waste) %>% 
-  mutate(Total = sum(n), Percentage = round(n/Total * 100, 2)) %>% 
-  ungroup() %>% 
-  mutate(Waste = as.character(haven::zap_labels(Waste)),
-         Waste = recode(Waste, "0" = "Not Wasted",
-                        "1" = "Wasted")) %>% 
-  na.omit() %>% 
-  filter(Waste == "Wasted")
-
-wastediv1 = dplyr::select(wastediv1, Division, Percentage) 
-wastediv1 %>% mutate(Gender = "Total") -> wastediv1
-
-#to get percentage for male and female children affected, must make seperate table
-#create a different data frame divided by children wasted by Gender
-wastediv <- data %>%
-  rename("Division" = div_name, 
-         "Waste" = wasting_all0to59,
-         "Gender" = childgender)%>% 
-  group_by(Division, Gender) %>%
-  count(Waste) %>% 
-  mutate(Total_by_gender = sum(n), Percentage = round(n/Total_by_gender * 100, 2)) %>% 
-  ungroup() %>% 
-  mutate(Waste = as.character(haven::zap_labels(Waste)),
-         Waste = recode(Waste, "0" = "Not Wasted",
-                        "1" = "Wasted"),
-         Gender = as.character(haven::zap_labels(Gender)),
-         Gender = recode(Gender, "1" = "Male",
-                         "2" = "Female")) %>% 
-  na.omit() %>% 
-  filter(Waste == "Wasted")
-# wastediv
-
-#combine tables so that Gender column will contain Total(Male and Female), Male, and Female
-wastediv_combined <- bind_rows(wastediv, wastediv1)
-#factoring for the bar graph to cluster in this order
-wastediv_combined$Gender <- factor(wastediv_combined$Gender, levels = c("Total", "Male", "Female"))
-
 #MOTHER AGE DISTRIBUTION BY DIVISION 
 agediv <- data %>%
   drop_na() %>% 
@@ -1516,7 +1473,6 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                                                                     "Household Farming Activity Distribution" = "households_farming_activities", 
                                                                     "Cultivable Land Holding" = "cultivable_land",
                                                                     "Electricity Accessibility " = "electricity_accessibility",
-                                                                    "Water Treatment" = "water_treatment",
                                                                     "Improved Water Accessibility" = "water_improvement",
                                                                     "Household Head Occupation" = "hhh_occupation"
                                                                     
@@ -1558,8 +1514,7 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                                                                  selectInput("mcdrop1", "Select Child Health Outcome Characteristic:", width = "100%",
                                                                              choices = c("Stunting" = "stunt_div",
                                                                                          "Underweight" = "underweight_div",
-                                                                                         "Average Birth Weight" = "avgbw_div",
-                                                                                         "Wasting" = "wasting_div")),
+                                                                                         "Average Birth Weight" = "avgbw_div")),
                                                                  br(""),
                                                                  withSpinner(plotlyOutput("mc1", height = "500px", width ="100%"))),
                                                           column(4,
@@ -2520,25 +2475,6 @@ server <- function(input, output, session) {
       ggplotly(p_el)
       
     }
-    else if (hheco() == "water_treatment") {
-      
-      p_h2o<-ggplot (filt_h2o,
-                     aes(Division, Percentage, fill = Untreated_water))+
-        geom_bar(position="dodge", stat="identity", aes(text = paste0("Division: ", Division, "\n", "Water Treatment: ", Untreated_water, "\n", "Percentage: ", Percentage)))+
-        theme_classic()+
-        easy_y_axis_title_size(size = 15)+
-        easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 16)+
-        easy_center_title()+
-        labs(title = "Households Without Treated Drinking Water by Division",
-             x= "Division",
-             y = "Percentage")+
-        scale_fill_viridis_d() +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
-        easy_remove_legend()+
-        ylim(0,100)
-      ggplotly(p_h2o, tooltip = c("text"))
-    }
     
     else if (hheco() == "water_improvement") {
       
@@ -2772,34 +2708,16 @@ server <- function(input, output, session) {
         easy_center_title()
       
       bw_gender_div <- ggplotly(bwplot, tooltip = c("text"))}
-    else if (var4() == "wasting_div") {
-      # Create the bar plot using ggplot
-      wasteplot <- ggplot(wastediv_combined, aes(x = Division, y = Percentage, fill = Gender)) +
-        geom_bar(stat = "identity", position = "dodge") +
-        labs(title = "Children Wasted by Division by Gender",
-             x = "Division",
-             y = "Percentage",
-             fill = "Gender") +
-        scale_fill_manual(values = c("#65cb5e", "#21918c", "#cc4778")) +
-        theme_classic()+
-        easy_y_axis_title_size(size = 15)+
-        easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 20)+
-        easy_center_title()
-      
-      waste_gender_div <- ggplotly(wasteplot)}
   })
   #TEXT OUPUT PER GRAPH
   
   output$mctext1 <- renderText({
     if (var4() == "stunt_div") {
-      "The graph shows the percentage of stunting among children under the age of five in Bangladesh by division and gender. Stunting refers to individuals having low height for their age, which can have long-lasting effects. Sylhet has the highest percentage of stunting at 42.12%, followed by Barisal at 33.33%. Rajshahi has the lowest percentage of stunting at 27.04%."}
+      "Stunting, defined by the 2006 World Health Organization growth standards, is having a height-for-age z score (HAZ) that is below two standard deviations. The HAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph shows the percentage of stunting among children under the age of five in Bangladesh by division and gender. Sylhet has the highest percentage of stunting at 42.12%, followed by Barisal at 33.33%. Rajshahi has the lowest percentage of stunting at 27.04%."}
     else if (var4() == "underweight_div") {
-      "The graph depicts the percentage of children under the age of five who are underweight by gender and division in Bangladesh. Underweight refers to individuals having a low weight for their age. Sylhet has the highest percentage of underweight children at 32.27%, followed by Chittagong at 24.19%. Rajshahi has the lowest percentage of underweight children at 16.84%."}
+      "Underweight, defined by the 2006 World Health Organization growth standards, is having a weight-for-age z score (WAZ) that is below two standard deviations. The WAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph depicts the percentage of children under the age of five who are underweight by gender and division in Bangladesh. Sylhet has the highest percentage of underweight children at 32.27%, followed by Chittagong at 24.19%. Rajshahi has the lowest percentage of underweight children at 16.84%."}
     else if (var4() == "avgbw_div") {
       "This graph shows the average birth weight of children born by Division and Gender. Rajshahi has the highest birth weight among the divisions at 3.25kg and Chittagong being the lowest at 2.7kg. Referring back to the percentage of children underweight, Rajshahi has the lowest percentage among the divisions reflected in this graph as it has the highest average birth weight. Similarly, Sylhet has a lower relative birth weight when compared to the other divisions. "}
-    else if (var4() == "wasting_div") {
-      "The graph examines the percentage of children under the age of five who are wasted, categorized by gender and division in Bangladesh. Wasting, as defined by the World Health Organization (WHO), indicates a condition where a person's weight is significantly low for their height, indicating acute malnutrition. Sylhet has the highest percentage of wasted children at 10.59%, followed by Chittagong at 10.58%. Barisal has the lowest percentage at 7.14%."}
   })
   
   # Render maps for mother profile 
