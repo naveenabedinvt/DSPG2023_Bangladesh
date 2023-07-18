@@ -1213,7 +1213,7 @@ In addition to its vibrant culture and natural beauty, Bangladesh faces numerous
 
 As of 2023, Bangladesh is the eighth most populous country in the world, with a population of approximately 169,469,771 people (Country Profile, 2021). In 2016, 13.47% of the population in Bangladesh lived below the international poverty line of $2.15 per day. However, by 2022, the poverty rate declined to 10.44%, showing improvement. However, it is important to recognize that a little over 10% of the population still lives below the national poverty line (World Bank Group, 2023). Agriculture is a significant contributor to the economy (Embassy of the People’s Republic of Bangladesh, 2020).
 
-The country is characterized by a multi-tiered administrative structure that helps govern the country effectively. This structure encompasses several levels, including divisions, districts, upazilas (sub-districts), unions, and villages. The country has seven divisions: Barisal, Chittagong, Dhaka, Khulna, Rajshahi, Rangpur, and Sylhet, which serve as the highest level of administrative units. Each division is further divided into 64 districts, comparable to counties in the USA. Within the divisions, multiple upazilas (sub-districts) play a crucial role in implementing government policies. Upazilas are divided into unions, which are composed of several villages and are responsible for local government functions and community well-being. Villages are the smallest unit of administration and are primarily located in rural areas. They accommodate the majority of the population and play a significant role in the socio-economic development of Bangladesh.
+The country is characterized by a multi-tiered administrative structure that helps govern the country effectively. This structure encompasses several levels, including divisions, districts, upazilas (sub-districts), unions, and villages. The country has seven divisions: Barisal, Chittagong, Dhaka, Khulna, Rajshahi, Rangpur, and Sylhet, which serve as the highest level of administrative units. Each division is further divided into 64 districts, comparable to counties in the USA. Within the divisions, multiple upazilas (sub-districts) play a crucial role in implementing government policies. Upazilas are divided into unions, which are composed of several villages and are responsible for local government functions and community well-being. Villages are the smallest unit of administration and are primarily located in rural areas. They accommodate the majority of the population, and play a significant role in the socio-economic development of Bangladesh.
 ", align = "justify")),
                     column(4,
                            h2(strong("Goals and Objectives")),
@@ -1221,7 +1221,7 @@ The country is characterized by a multi-tiered administrative structure that hel
                            p("Our research focuses on two interconnected questions: (1) Does prenatal exposure to flooding adversely affect child health outcomes, and (2) What are the mechanisms through which floods affect child health outcomes? Floods have been found to have correlations with worsened child health outcomes, such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy affects the severity of fetal growth. The second part of our research aims to examine the mechanisms through which flooding affects societal access to sources of nutrition and healthcare services. When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Street and road access also become inaccessible (Aggarwal, 2018). These factors directly affect mothers and their accessibility to adequate nutrition and healthcare. In this paper, we will further observe the effects of flood exposure during pregnancy on child health outcomes.
 ", align = "justify"),
                            h3(strong("Objectives:")), 
-                           p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the BIHS to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
+                           p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the Bangladesh Integrated Household Survey (BIHS) to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
 ", align = "justify"),
                            
                     ), 
@@ -1245,13 +1245,22 @@ In addition to the survey data we will use Global Flood Database (GFD), CHIRPS, 
                            carousel(
                              id = "myCarousel", width = 80,
                              carouselItem(
-                               tags$img(src = "hh.png", width ="100%")
+                               tags$img(src = "hh.jpg", width ="100%")
                              ),
                              carouselItem(
-                               tags$img(src = "hh1.png", width ="100%")
+                               tags$img(src = "hh1.jpg", width ="100%")
                              ),
                              carouselItem (
-                               tags$img(src = "hh2.png", width = "100%")
+                               tags$img(src = "hh2.jpg", width = "100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh3.jpg", width ="100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh4.jpg", width ="100%")
+                             ),
+                             carouselItem(
+                               tags$img(src = "hh5.jpg", width ="100%")
                              )
                              ##end of carousel code 
                            )
@@ -2051,7 +2060,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                     img(src = "dr.chen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                     
                                     p("", style = "padding-top:10px;"), 
-                                    p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen', target = '_blank'), ", Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
+                                    p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen,', target = '_blank'), " Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
                                     
                                     p("", style = "padding-top:10px;")
                              )) ,
