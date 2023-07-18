@@ -1221,7 +1221,7 @@ The country is characterized by a multi-tiered administrative structure that hel
                            p("Our research focuses on two interconnected questions: (1) Does prenatal exposure to flooding adversely affect child health outcomes, and (2) What are the mechanisms through which floods affect child health outcomes? Floods have been found to have correlations with worsened child health outcomes, such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy affects the severity of fetal growth. The second part of our research aims to examine the mechanisms through which flooding affects societal access to sources of nutrition and healthcare services. When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Street and road access also become inaccessible (Aggarwal, 2018). These factors directly affect mothers and their accessibility to adequate nutrition and healthcare. In this paper, we will further observe the effects of flood exposure during pregnancy on child health outcomes.
 ", align = "justify"),
                            h3(strong("Objectives:")), 
-                           p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the Bangladesh Integrated Household Survey (BIHS) to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
+                           p("Throughout our ten-week study, we conducted a literature review on prenatal exposure to flooding and child health outcomes. We are using Google Earth Engine and the BIHS to collect flood data and birth outcomes in Bangladesh from 2018-2019. To address our two important research questions, we are integrating large-scale household survey data with flood-related remotely sensed satellite data. This allows us to obtain information from affected households and satellite imagery, providing us with a comprehensive understanding of how flooding impacts women at the individual level. Based on our findings, we will present results via a poster shared at the Virginia Tech Symposium. We will also create an interactive Shiny App dashboard so that our research is accessible to the public.
 ", align = "justify"),
                            
                     ), 
@@ -3712,18 +3712,32 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         scale_fill_manual(values = colorsPI) +
         labs(x = "Precipitation Intensity", y = "Percent", fill = "Months") +
         ggtitle("Duration of Calcium Intake by Precipitation Intensity") +
-        theme_classic()+
-        easy_y_axis_title_size(size = 15)+
-        scale_y_continuous(limits = c(0, 100))+
-        easy_x_axis_title_size(size = 15)+
-        easy_plot_legend_title_size(size = 13)+
-        easy_plot_legend_size(size = 10)+
-        easy_plot_title_size(size = 15)+
+        theme_classic() +
+        easy_y_axis_title_size(size = 15) +
+        scale_y_continuous(limits = c(0, 100)) +
+        easy_x_axis_title_size(size = 15) +
+        easy_plot_legend_title_size(size = 13) +
+        easy_plot_legend_size(size = 10) +
+        easy_plot_title_size(size = 15) +
         guides(fill = guide_legend(reverse = TRUE)) +
-        scale_x_discrete(labels = LevelsPI)+
+        scale_x_discrete(labels = LevelsPI) +
         coord_flip()
       
-      ggplotly(fig_cal)
+      fig_cal <- ggplotly(fig_cal)
+      
+      fig_cal <- fig_cal %>% layout(
+        showlegend = TRUE,
+        legend = list(
+          x = 1.1,
+          y = 0.5,
+          xanchor = "left",
+          bgcolor = "white",
+          bordercolor = "black",
+          borderwidth = 1
+        )
+      )
+      
+      fig_cal
     } else if (input$cpndrop == "iron_intake") {
       #generate iron stacked bar graph
       fig_iron <- ggplot(data_long, aes(x = Tertile, y = Percentage, fill = Months)) +
