@@ -1252,7 +1252,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                       br(""))),
                       column(6, align = "Justify",
                              p("Several studies have investigated the impact of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could lead to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the impact of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
-                             p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, In 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gouda, Bangladesh where it experienced flooding. Many of the underweight children suffered chronic diarrhea and had an increased risk of mortality and poor growth(Mallett, 2018)."),
+                             p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, in 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gauda region (Bangladesh-India border) where it experienced flooding. In a comprehensive review study on flood exposures,  Mallett (2018) found that many children suffered from chronic diarrhea, increased risk of mortality, and poor growth."),
                              p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. ")),
                       
                       column(6, align = "justify",
@@ -1277,21 +1277,21 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                           
                           h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
                           p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
-                          p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003)."),
+                          p("Some factors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.)  (Mirza, 2003). River basins near Bangladesh's three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snow melt mentioned earlier (Mirza, 2003)."),
                           h5(strong("Barisal Division")),
-                          p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal."),
+                          p("The Barisal Division located in the south is known for its extensive river networks and vast coastal areas. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal, especially during the monsoon"),
                           h5(strong("Chittagong Division")),
-                          p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours."),
+                          p("The Chittagong Division is located in the southeastern part of the country, and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours."),
                           h5(strong("Dhaka Division")),
-                          p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak."),
+                          p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003)."),
                           h5(strong("Khulna Division")),
-                          p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding."),
+                          p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during monsoon season."),
                           h5(strong("Rajshahi Division")),
-                          p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas."),
+                          p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River."),
                           h5(strong("Rangpur Division")),
-                          p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India."),
+                          p("The Rangpur Division is located in the northern part of the country. This division is characterized by its predominantly rural areas and agricultural importance. The division experiences river flooding during monsoon season. Flash floods and waterlogging are also common due to heavy rainfall."),
                           h5(strong("Sylhet Division")),
-                          p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall."),
+                          p("The Sylhet Division is located in the northeast region of Bangladesh. The division faces various challenges related to flooding such as heavy rainfall and river overflow. The low lying regions are particularly vulnerable to landslides during intense flash floods due to snowmelt from mountainous regions, in India, surrounding Sylhet."),
                           br("")
                           
                           
@@ -1325,10 +1325,8 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                    "2019" = "2019"
                                  ),
                                ),
-                               #withSpinner(img(src="timeline", height = "500px", width = "100"))
-                               withSpinner(plotOutput("timeline", height = "40", width ="40%")),
+                               withSpinner(plotOutput("timeline", height = "40%", width ="40%")),
                                br("")
-                               #div(id = "year_timeline")
                         ),
                         
                         column(
@@ -1337,11 +1335,11 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                           h5(strong("Flood Disasters in Bangladesh (2013-2019)")),
                           p("The susceptibility to flooding varies across the different divisions of Bangladesh, reflecting the diverse geographic and climatic conditions of the country. There have been several disasters that occurred from 2013-2019. Some notable examples include:"),
                           tags$ul(
-                            tags$li("In 2013, the cyclone MAHASEN hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
+                            tags$li("In 2013, Cyclone Mahasen hit the coastal region, killing over 17 people and damaging over 60,000 houses (Government of Bangladesh, 2014)."),
                             tags$li("In 2014, severe flooding affected 46 districts and 16 million people, making it the most severe flooding since the “mega-flood” of 2007 (CARE, 2014)."),
-                            tags$li("In 2016, tropical storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
-                            tags$li("In 2017, the cyclone storm Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
-                            tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
+                            tags$li("In 2016, Tropical Storm Roanu hit southern Bangladesh, resulting in significant damages (IFRC, 2017)."),
+                            tags$li("In 2017, Cyclone Mora caused devastating floods, impacting a large population and vital infrastructure (Shelter Cluster, 2017)."),
+                            tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides affecting 4 million individuals (OCHA, 2019).")
                           ),
                           p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
                         ))
@@ -1446,7 +1444,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                                     "Household Farming Activity Distribution" = "households_farming_activities", 
                                                                     "Cultivable Land Holding" = "cultivable_land",
                                                                     "Electricity Accessibility " = "electricity_accessibility",
-                                                                    "Improved Water Accessibility" = "water_improvement",
+                                                                  
                                                                     "Household Head Occupation" = "hhh_occupation"
                                                                     
                                                                     
@@ -1651,13 +1649,13 @@ tabPanel("CHIRPS",
                                             
                                             p("Stunting, a condition characterized by below-average height for a given age, can have profound and lasting effects on individuals, even extending into adulthood. It is a matter of great concern, and to better understand its dynamics, we turn our attention to the gender-disaggregated graphs for children under two years old on the left, which shed light on the impact of flood events occurring during a mother's pregnancy on the prevalence of stunted children."),
                                             
-                                            p("The graphs suggest a striking pattern: stunting prevalence shows variations across different trimesters, and it becomes evident that girls are the most adversely affected by flood exposure. This finding emphasizes the need for focused attention on this vulnerable group."),
+                                            p("The graphs suggest a striking pattern: stunting prevalence shows variations across different trimesters, and it becomes evident that girls are the most adversely affected by flood exposure. This finding emphasizes the need for focused attention on this vulnerable group"),
                                             
                                             p("In the top graphs, we observe that girls experience the highest percentage of stunting, reaching a concerning rate of 40.58%, during the third trimester. In contrast, their male counterparts exhibit a slightly lower prevalence of 33.73% during the same trimester. These figures highlight the gender disparity in the impact of flood events, with girls experiencing a disproportionately higher risk of stunting compared to boys."),
                                             
-                                            p("However, when we shift our focus to children under the age of five, the picture changes slightly. While there isn't a significant difference in stunting prevalence across trimesters, the gender disparity in stunting remains evident. Girls continue to exhibit a higher prevalence of stunting, reaching 39.05%, during the third trimester. On the other hand, boys experience their highest rate of stunting (36.55%) during the second trimester."),
+                                            p("However, when we shift our focus to all children under five years old, the picture changes slightly. While there isn't a significant difference in stunting prevalence across trimesters, the gender disparity in stunting remains evident. Girls continue to exhibit a higher prevalence of stunting, reaching 39.05%, during the third trimester. On the other hand, boys experience their highest rate of stunting (36.55%) during the second trimester."),
                                             
-                                            p("Taken together, these findings underscore the critical role of the third trimester in determining the occurrence of stunting among children under the age of two. It becomes increasingly evident that this period of prenatal development is particularly vulnerable to the adverse effects of flood exposure, particularly for girls. This ongoing gender disparity underscores the importance of addressing the underlying factors that contribute to stunting among girls, in order to promote equitable and optimal growth and development for all children.
+                                            p("Taken together, these findings underscore the critical role of the third trimester in determining the occurrence of stunting among children. It becomes increasingly evident that this period of prenatal development is particularly vulnerable to the adverse effects of flood exposure, particularly for girls.
 "), 
                                           ),align = "Justify"
                                  )),
@@ -1688,9 +1686,10 @@ tabPanel("CHIRPS",
                                           column(
                                             4,
                                             p(h4(strong("Description"))),
-                                            p("Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined flood data by breaking it down by age and gender to facilitate a more comprehensive interpretation. "),
+                                            p("Considering the correlation between heavy rains and severe flooding, we conducted an analysis to examine the impact of rainfall during pregnancy, categorized by its intensity, on the occurrence of stunting among children. Additionally, we examined precipitation data by breaking it down by age and gender to facilitate a more comprehensive interpretation.
+"),
                                             
-                                            p("The graphs on the left do not reveal any noticeable distinctions between children under two and five years old. However, higher intensity rains have a huge effect on children between 2 and 5 year old from both genders. The adverse effects of these intense rainfall events were evident, with a staggering stunting rate of 37.50% observed among girls. On the other hand, when observing the effects of medium and low intensity rain, the results were inconclusive. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
+                                            p("The graphs on the left do not reveal any noticeable distinctions between children under two years old. However, higher intensity rain is associated with stunting among all children under 5 years old from both genders. High intensity rainfall during pregnancy is associated with a staggering stunting rate of 37.50% observed among girls. Such findings underscore the urgent need for appropriate measures and interventions to mitigate the detrimental consequences of intense rainfall on child health and well-being.
 "), 
                                           ),align = "Justify"
                                  )),
@@ -1733,13 +1732,11 @@ tabPanel("CHIRPS",
                                             br(""),
                                             br(""),
                                             p(h4(strong("Description"))),
-                                            p("Underweight refers to individuals who have a lower weight compared to their age. It is a significant factor in the health and development of children, making it an important birth outcome. Fetal development is among the various factors that can contribute to a child being underweight."),
+                                            p("Underweight refers to individuals who have a lower weight compared to their age. It is a significant factor in the health and development of children, making it an important birth outcome. Poor fetal development is among the various factors that can contribute to a child being underweight."),
                                             
-                                            p("To assess how flooding affects the occurrence of underweight children, we conducted an analysis of our data considering gender and age. The graphs illustrate that there are no noticeable differences observed across semesters for boys and girls under the ages of two and five. This lack of significant variations can be attributed to various additional factors, such as the intake of supplements and other prenatal care measures, which will be further discussed in our mechanisms section. Nevertheless, it is apparent that girls are at a greater risk of experiencing underweight conditions if they are exposed to flooding during prenatal stages. This is evident from their higher rates of underweight in both age groups."),
+                                            p("To assess how flooding affects the occurrence of underweight children, we conducted an analysis of our data considering gender and age. The graphs illustrate that there are no noticeable differences observed across trimesters for boys and girls under the ages of two and as well as under the age of five. Nevertheless, it is apparent that girls are at a greater risk of experiencing underweight conditions if they are exposed to flooding during prenatal stages. This is evident from their higher rates of underweight in both age groups.")
                                             
-                                            p("To protect the well-being and future potential of vulnerable populations, particularly young girls who may face disproportionate impacts, it is crucial to comprehend the interconnections among flooding, prenatal exposure, and underweight status in children. This understanding will facilitate the development of more focused strategies aimed at protecting these populations, emphasizing the importance of addressing adverse circumstances.
-
-"), 
+                                            
                                           ),align = "Justify"
                                  )),
                         tabPanel("CHIRPS Results",
@@ -1771,7 +1768,7 @@ tabPanel("CHIRPS",
                                             br(""),
                                             br(""),
                                             p(h4(strong("Description"))),
-                                            p("Similarly flood data, rainfall do not reveal any evident correlation between precipitation and the prevalence of underweight among children of both genders throughout all trimesters. Moreover, disaggregating the data by age does not appear to significantly alter the findings. Despite the lack of association between rainfall intensity and underweight, it is alarming to observe high rates of underweight in both genders, surpassing 20 percent as depicted in the graphs on the left. This is a matter of great concern."), 
+                                            p("Precipitation intensities during each trimester does not reveal any evident correlation with the prevalence of underweight among children of both genders. Moreover, disaggregating the data by age does not appear to significantly alter the findings. Despite the lack of association between rainfall intensity and underweight, it is alarming to observe high rates of underweight in both genders, surpassing 20 percent as depicted in the graphs on the left. This is a matter of great concern."), 
                                           ),align = "Justify"
                                  )),
                         tabPanel("Regression Results",
@@ -2143,19 +2140,19 @@ server <- function(input, output, session) {
   output$desc1 <- renderText({
     if (Var_hhform() == "household_size_division") {
       
-      "The average household size is around 4.2 people across all divisions. Sylhet has relatively large households with an average household size of 4.93 members."
+      "The average household size is around 4.2 members across all divisions. Sylhet has relatively large households with an average household size of 4.9 members."
       
     }
     
     else if (Var_hhform() == "dependency_ratio_division") {
       
-      "The dependency ratio is a demographic measure that compares the working-age population to the non-working-age population. A higher dependency ratio indicates a greater number of dependents per working-age person who may require support. It is important to note that dependency ratios can vary across different regions or divisions. In our analysis, the dependency ratio is below 40% across all divisions, indicating a relatively lower proportion of dependents. However, it's essential to consider other factors that may affect household composition and the level of independence of household members."
+      "The dependency ratio is a demographic measure that compares the working-age population (15-65 years) to the non-working-age population (<15 and >65 years). A higher dependency ratio indicates a greater number of dependents per working-age person who may require support. In our analysis, the dependency ratio is below 40% across all divisions."
       
     }
     
     else if (Var_hhform() == "household_headship_division") {
       
-      "The predominance of male household heads in rural Bangladesh reflects traditional gender roles and cultural norms, where men are often perceived as the primary decision-makers and main income generators. This gender disparity may have significant implications for women's empowerment and access to resources, as female-headed households might face additional challenges in accessing economic opportunities and social support. It is important to consider gender-specific interventions to promote inclusivity and socioeconomic equality in rural communities. However, it is worth noting that Chittagong stands out with a relatively higher percentage (33.57%) of female household heads, suggesting some regional variation in household leadership dynamics."
+      "The predominance of male household heads in rural Bangladesh reflects traditional gender roles and cultural norms, where men are often perceived as the primary decision-makers and main income generators. This gender disparity may have significant implications for women's empowerment and access to resources, as female-headed households might face additional challenges in accessing economic opportunities and social support.The graph shows Chittagong stands out with a relatively higher percentage (33.57%) of female household heads, suggesting some regional variation in household leadership dynamics."
       
     }  
   })
@@ -2262,23 +2259,23 @@ server <- function(input, output, session) {
   output$desc2 <- renderText({
     if (Var3() == "age_by_gender") {
       
-      "There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years old old, while for females, it is 31.77 years old, making it the division with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years old and females averaging 27.79 years old."
+      "There are no significant age variations between males and females. However, females tend to be slightly older than males. In Khulna, the average age for males is 30.44 years old, while for females, it is 31.77 years, making it the division with the highest average age for both genders. Conversely, in Chittagong, the average age is the lowest, with males averaging 26.13 years and females averaging 27.79 years."
       
     }
     
     else if (Var3() == "male_age") {
       
-      "Across all divisions, the age range with the highest male population is 31-65 years. Khulna has the highest percent of people in that category at 40.76%. It is also important to note that around 15% of the male population consists of children under the age of 5 across all divisions."
+      "Across all divisions, the modal age range is 31-65 years. Khulna has the highest percentage of people in that category at 40.76%. It is also important to note that around 15% of the male population consists of children under the age of 5 across all divisions."
       
     }
     
     else if (Var3() == "female_age") {
       
-      "Similar to their male counterparts, a significant proportion of the female population in rural Bangladesh falls within the 31-65 years age range. Khulna division stands out with the highest percentage (43.74%) of females falling within this age category. Additionally, children aged 5 years constitute approximately 10% of the population across all divisions."
+      "Similar to their male counterparts, a significant proportion of the female population in rural Bangladesh falls within the 31-65 years age range. Khulna division stands out with the highest percentage (43.74%) of females falling within this age category. Additionally, female children aged 5 years constitute approximately 10% of the population across all divisions."
       
     }
     else if(Var3() == "head_age"){
-      "The most frequent household age across all of the divisions is “31-65 yrs”. The least frequent household age is “80+ yrs”. ’ Some factors that contribute to this could be that people under 31 years old migrate to cities or more developed areas in search of better educational and employment opportunities." 
+      "The most frequent household head age range across all of the divisions is 31-65 years, and the least is 80+ years. Some factors that contribute to this could be that people under 31 years old migrate to cities or abroad in search of better educational and employment opportunities." 
     }
   }) 
   
@@ -2386,23 +2383,24 @@ server <- function(input, output, session) {
   output$desc3 <- renderText({
     if (hedu() == "male_education_division") {
       
-      "In general, there are more males with no education than females. Despite this, a higher percentage of males attain higher education when compared to females. Sylhet, a more flood-prone division, has the lowest percentage of males in higher education at 4.16%."
+      "In general, there are more males with no educational attainment than females. Despite this, a higher percentage of males attain higher education when compared to females. Sylhet, a more flood-prone division, has the lowest percentage of males in higher education at 4.16%."
       
     }
     
     else if (hedu() == "female_education_division") {
       
-      "In general across all divisions, most females have no formal education or only completed primary education across. Rangpur has the highest percentage of uneducated females with 42.55%. The percentage range of females who manage to go past secondary school is between 2.83% to 5.15%."
+      "In general across all divisions, most females have no formal education or only completed primary education. Rangpur has the highest percentage of uneducated females with 42.55%. The percentage range of females who manage to go past secondary school is between 2.83% to 5.15%."
       
     }
     
     else if (hedu() == "hh_highest_education") {
       
-      "In this graph, more than half of the sampled households report “Completed primary” as their highest household educational attainment across all divisions. Rangpur, one of the more flood prone divisions, has the highest percentage of households whose members have no formal education."
+      "In this graph, more than half of the sampled households report completing primary education as their highest household educational attainment across all divisions. Rangpur, one of the more flood prone divisions, has the highest percentage of households whose members have no formal education.
+"
       
     }
     else if(hedu() == "hh_ head_education"){
-      "Household heads are primarily responsible for making income for the family and big decisions, but based on the Household educational attainment by division, it is evident that a majority of household heads across all divisions either do not have education or discontinued their education after primary school which is equivalent to the fifth grade in the US.  These low levels of education could potentially have negative impacts on household members." 
+      "Household heads are primarily responsible for making income for the family and major decisions, but based on the head’s educational attainment by division, it is evident that a majority of household heads across all divisions either do not have education or discontinued their education after primary school which is equivalent to the fifth grade in the US. These low levels of education could potentially have negative impacts on household members." 
     }
   }) 
   
@@ -2555,14 +2553,14 @@ server <- function(input, output, session) {
     
     else if (hheco() == "households_farming_activities") {
       
-      "Most households primarily engage in farming activities with approximately 90% of them relying on subsistence farming. Livestock farming is the most prevalent agricultural activity compared to the other agricultural activities listed. Note that some households will participate in more than one agricultural activity.
+      "Most households primarily engage in farming activities with approximately 90% of them relying on subsistence farming. Livestock and crop farming is the most prevalent agricultural activity compared to the other agricultural activities listed. Note that some households will participate in more than one agricultural activity.
 "
       
     }
     
     else if (hheco() == "cultivable_land") {
       
-      "Across divisions, the most relative farm size categories are the “Marginal” and “No cultivable land” categories. Chittagong has the highest percent (44.97%) of households without cultivable land. It is followed by Sylhet at 43.09% without cultivable land."
+      "Across divisions, the most common farm size categories are the “Marginal” and “No cultivable land” categories. Chittagong has the highest percent (44.97%) of households without cultivable land. It is followed by Sylhet at 43.09% without cultivable land."
       
     }
     else if(hheco() == "electricity_accessibility"){
@@ -2575,7 +2573,8 @@ server <- function(input, output, session) {
       "The graph shows that a majority of surveyed households lack access to improved water sources, relying instead on hand pump tube wells that tap into groundwater. However, during flooding, these water sources become unreliable and unsafe for consumption without proper precautions. In Bangladesh, an average of 97.05% of surveyed households reported not having access to improved water sources across all divisions." 
     }
     else if(hheco() == "hhh_occupation"){
-      "In each division, farming is the dominant occupation, with the highest concentration of farmers in Khulna. Non-earning occupations, including subsistence farming, household chores, unpaid family labor, and others, are the second most common occupations across most divisions. Livestock-related work has the lowest frequency, accounting for less than 1% combined across all seven divisions. This is likely due to the prioritization of crop cultivation and the vulnerability of livestock to natural disasters."
+      "In each division, farming is the dominant occupation, with the highest concentration of farmers in Khulna. Non-earning occupations, including household chores, unpaid family labor, and others, are the second most common occupations across most divisions. Livestock-related work has the lowest frequency, accounting for less than 1% combined across all seven divisions. This is likely due to the prioritization of crop cultivation and the vulnerability of livestock to natural disasters.
+"
     }
     
   }) 
@@ -2641,7 +2640,7 @@ server <- function(input, output, session) {
     if (Var_FT() == "2013") { 
       
       # Return a list containing the filename and alt text
-      list(src = paste0(getwd(),"/www/2013.png"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
+      list(src = paste0(getwd(),"/www/new2013.jpg"), align = 'center', width = "650px", height = "320px", deleteFile=FALSE)
       
     }
     
@@ -2735,11 +2734,11 @@ server <- function(input, output, session) {
   
   output$mctext1 <- renderText({
     if (var4() == "stunt_div") {
-      "Stunting, defined by the World Health Organization, is having a height-for-age z score (HAZ) that is more than two standard deviations below the WHO growth standard mean for 2006. The HAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph shows the percentage of stunting among children under the age of five in Bangladesh by division and gender. Sylhet has the highest percentage of stunting at 42.12%, followed by Barisal at 33.33%. Rajshahi has the lowest percentage of stunting at 27.04%."}
+      "Stunting, defined by the World Health Organization, is having a height-for-age z score (HAZ) that is more than 2 SD below the WHO growth standard mean for 2006. The HAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph shows the percentage of stunting among children under the age of five in Bangladesh by division and gender. Sylhet has the highest percentage of stunting at 42.12%, followed by Barisal at 33.33%. Rajshahi has the lowest percentage of stunting at 27.04%."}
     else if (var4() == "underweight_div") {
-      "Underweight, defined by the World Health Organization, is having a weight-for-age z score (WAZ) that is  more than two standard deviations below the WHO growth standard mean for 2006. The WAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph depicts the percentage of children under the age of five who are underweight by gender and division in Bangladesh. Sylhet has the highest percentage of underweight children at 32.27%, followed by Chittagong at 24.19%. Rajshahi has the lowest percentage of underweight children at 16.84%."}
+      "Underweight, defined by the World Health Organization, is having a weight-for-age z score (WAZ) that is more than 2 SD below the WHO growth standard mean for 2006. The WAZ score is calculated by subtracting a median value, adjusted by sex and age, from a standard population and dividing by the standard deviation of the standard population (Leroy & Frongillo, 2019). The graph depicts the percentage of children under the age of five who are underweight by gender and division in Bangladesh. Sylhet has the highest percentage of underweight children at 32.27%, followed by Chittagong at 24.19%. Rajshahi has the lowest percentage of underweight children at 16.84%."}
     else if (var4() == "avgbw_div") {
-      "This graph shows the average birth weight of children born by Division and Gender. Rajshahi has the highest birth weight among the divisions at 3.25kg and Chittagong being the lowest at 2.7kg. Referring back to the percentage of children underweight, Rajshahi has the lowest percentage among the divisions reflected in this graph as it has the highest average birth weight. Similarly, Sylhet has a lower relative birth weight when compared to the other divisions. "}
+      "This graph shows the average birth weight of children born by division and gender.Rajshahi has the highest birth weight among the divisions at 3.25 kg and Chittagong being the lowest at 2.7 kg. Referring back to the percentage of children underweight, Rajshahi has the lowest percentage among the divisions reflected in this graph as it has the highest average birth weight. Similarly, Sylhet has a lower relative birth weight when compared to the other divisions. It is important to note that birth weight information was available for less than 50 percent of the children in the sample. As a result, this variable is not used in subsequent analysis"}
   })
   
   # Render maps for mother profile 
@@ -2817,9 +2816,9 @@ server <- function(input, output, session) {
     if (var5() == "age_dist") {
       "The graph displays the average distribution of mothers' ages across the seven divisions in Bangladesh. Generally, the modal age falls within the range of 18-30 years old. While the percentage of mothers aged 11-17 years old is low, early pregnancy can impact birth outcomes. Younger mothers may face challenges in terms of empowerment and health care for themselves and their children. Insufficient nutrient intake during this stage can pose risks to both the mother and child's growth and development."}
     else if (var5() == "edu_dist") {
-      "Education is an indicator of empowerment and knowledge. Therefore, the more education a woman has, the more likely she will be able to provide for her own and child's health. This graph shows the educational attainment levels among the mothers within the Divisions. In general, the modal category of education is completing primary school. In Bangladesh, primary school ends at the fifth grade in the US. This means that most mothers discontinue their education after achieving fifth grade knowledge."}
+      "Education is an indicator of empowerment and knowledge. Therefore, the more education a woman has, the more likely she will be able to provide for her own and child's health. This graph shows the educational attainment levels among the mothers within the divisions. In general, the modal category of education is completing primary school. In Bangladesh, primary school ends at the fifth grade in the US. This means that most mothers discontinue their education after achieving fifth grade knowledge."}
     else if (var5() == "occu_dist") {
-      "The graph displays the distribution of occupations among mothers in Bangladesh. Non-earning occupations, including roles such as primary caregivers, maids, street vendors, subsistence farmers, and nannies, comprise the largest percentage across all divisions. A mother's level of education and societal norms greatly influence her ability to engage in income-generating occupations that support the household."}
+      "The graph displays the distribution of occupations among mothers in Bangladesh. Non-earning occupations, including roles such as primary caregivers, maids and nannies, comprise the largest percentage across all divisions. A mother's level of education and societal norms greatly influence her ability to engage in income-generating occupations that support the household."}
   })
   
   output$graph1 <- renderPlotly({
