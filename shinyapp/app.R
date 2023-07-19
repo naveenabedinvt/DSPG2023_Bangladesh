@@ -1247,9 +1247,11 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                                       br(""))),
                       column(6, align = "Justify",
                              p("Several studies have investigated the impact of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could lead to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the impact of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
-                             p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, In 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gouda, Bangladesh where it experienced flooding. Many of the underweight children suffered chronic diarrhea and had an increased risk of mortality and poor growth(Mallett, 2018).")),
+                             p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, In 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gouda, Bangladesh where it experienced flooding. Many of the underweight children suffered chronic diarrhea and had an increased risk of mortality and poor growth(Mallett, 2018)."),
+                             p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. ")),
+                      
                       column(6, align = "justify",
-                             p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. They found that women living in flooded areas used maternal healthcare services less than those in non-flooded areas. The same paper suggested that other confounding factors such as low education levels, and lower socioeconomic status contributed to reduced healthcare utilization. Hence, increased deficiencies in iron, vitamin A, and vitamin C are prevalent in flood prone regions due to limited access to healthcare facilities (Oskoorouchi & Sousa-Poza, 2021). De Silva and Kawasaki (2020) highlighted disparity in economic status as a driving force to this unequal healthcare access. Their study found that poor Sri Lankan households experience a 48% greater absolute economic loss due to severe flood events than non-poor households. This is the case because individuals with lower economic status are more likely to reside in highly vulnerable areas, often rural parts, due to their limited resources, thereby increasing their exposure to disasters (De Silva, Akiyuki Kawasaki (2020)."),
+                             p("They found that women living in flooded areas used maternal healthcare services less than those in non-flooded areas. The same paper suggested that other confounding factors such as low education levels and lower socioeconomic status contributed to reduced healthcare utilization. Hence, increased deficiencies in iron, vitamin A, and vitamin C are prevalent in flood prone regions due to limited access to healthcare facilities (Oskoorouchi & Sousa-Poza, 2021). De Silva and Kawasaki (2020) highlighted disparity in economic status as a driving force to this unequal healthcare access. Their study found that poor Sri Lankan households experience a 48% greater absolute economic loss due to severe flood events than non-poor households. This is the case because individuals with lower economic status are more likely to reside in highly vulnerable areas, often rural parts, due to their limited resources, thereby increasing their exposure to disasters (De Silva, Akiyuki Kawasaki (2020)."),
                              p("Another major cause of detrimental health consequences in flood-prevalent areas is the consumption of contaminated drinking water. In 2004, Sirajul Islam et al. conducted a study in Dhaka focusing on fecal pollution and the effectiveness of point-of-use water treatment during and after a flood. The collected water samples revealed significant contamination levels, including coliforms, fecal coliforms, fecal streptococci, and Vibrio cholerae. Vibrio cholera is a bacterium responsible for causing cholera, a disease characterized by severe diarrhea, dehydration, and potentially life-threatening complications if left untreated.  A study by Mashiro H. et al. (2010) found that incidence of cholera cases increases  during monsoon seasons (25%), compared to spring (8%) in Bangladesh. Cholera cases among pregnant women pose adverse effects on their children's health outcomes. A study in Nepal found that women with diarrhea during pregnancy were more likely to have small gestational age (SGA) infants compared to those without diarrhea (Newman et al., 2019).
                                ")
                              
@@ -1554,87 +1556,73 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
                       # Overview section
                       fluidRow(
                         column(
-                          width = 12,
+                          width = 6, align = "justify",
                           h3("What is the Global Flood Database?"),
-                          p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models.
-")
-                        )
-                      ),
-                      
-                      # Importance of GFD section
-                      fluidRow(
-                        column(
-                          width = 12,
+                          p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models."),
                           h3("Why are we using the GFD?"),
-                          p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For example, two divisions, Rangpur and Rajshahi, are missing all flood data in 2016. There are other instances of missing data but due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative. 
-")
-                        )
-                      ),
-                      
-                      # Data Extraction Process section
-                      fluidRow(
-                        column(
-                          width = 12,
-                          h3("How to mapping flood extent using GFD?
-"),
-                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the Global Flood Database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods.
-")
-                        )
-                      ),
-                      
-                      # Benefits of GFD section
-                      fluidRow(
-                        column(
-                          width = 12,
+                          p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For example, two divisions, Rangpur and Rajshahi, are missing all flood data in 2016. There are other instances of missing data but due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative."),
+                          h3("How to mapping flood extent using GFD?"),
+                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the Global Flood Database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods."),
                           h3("Benefits of using the GFD"),
-                          p("The database has data from 2000 to 2018, which aligns with the timeframe of our study. This coverage allows us to include all of our intended samples without excluding data due to missing data or any other issues.
-")
-                        )
-                      ),
-                      
-                      # Challenges and Limitations section
-                      fluidRow(
-                        column(
-                          width = 12,
+                          p("The database has data from 2000 to 2018, which aligns with the timeframe of our study. This coverage allows us to include all of our intended samples without excluding data due to missing data or any other issues."),
                           h3("Challenges and Limitations"),
                           p("The Global Flood Database has a few limitations when compared to Sentinel-1 satellite data. The spatial resolution of the GFD is 250 meteres which can not capture the details of a smaller-scale area or flood. This resolution is beneficial in capturing large, slow moving flood events while Sentinel-1’s higher resolution allows for more precise and detailed flood mapping. Sentinel-1 offers near-real-time observations with a temporal resolution of 12 days while the Global Flood Database relies on historical records from 2000 to 2018. 
 Another limitation is the sensitivity of the GFD to weather conditions such as cloud cover. Since the database is reliant on earth-observing satellites, there is a potential for missing or incomplete data due to dense could cover while the Sentinel-1’s radar technology allows for precise data collection regardless of weather conditions. 
-Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study.
-")
-                        )
-                      ),
-                      
-                      # Severity Levels section
-                      fluidRow(
-                        column(
-                          width = 12,
-                          h3("Severity Levels"),
+Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study."),
+                         h3("Severity Levels"),
                           tags$ul(
                             tags$li("1 - Large flood events, significant damage to structure or agriculture, fatalities, and/or 5-15 year reported interval since the last similar event"),
                             tags$li("1.5 - Very large events: >15 year but <100 year recurrence interval"),
                             tags$li("2 - Extreme events: recurrence interval >100 years")
-                          )
-                        )
-                      )
-             ),
-             tabPanel("CHIRPS",
-                      h3("About CHIRPS"),
-                      p("CHIRPS, known as the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded rainfall dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
-"),
+                          )  
+                           
+                        ),
+column(width = 6, align = "center",
+       img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
+       img(src = 'put image2', align = 'right', width = "100%", height = "auto")
+
+
+                      ))),
                       
-                      h3("Data Integration"),
-                      p("The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed rainfall maps. Satellite imagery is collected at a frequency of every five days, while station data provide ground-based observations. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of rainfall patterns.
-"),
-                      
-                      h3("Utilization in Research"),
-                      p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.
-"),
-                      img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
-             ),
+tabPanel("CHIRPS",
+         fluidRow(
+           column(width = 6, align = "justify",
+                  h3("About CHIRPS"),
+                  p("CHIRPS, known as the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded rainfall dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA)."),
+                  
+                  h3("Data Integration"),
+                  p("The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed rainfall maps. Satellite imagery is collected at a frequency of every five days, while station data provide ground-based observations. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of rainfall patterns."),
+                  
+                  h3("Utilization in Research"),
+                  p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.")
+           ),
+           column(width = 6, align = "center",
+                  img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto"),
+                  img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
+                  
+           )
+         )
+),
              
              tabPanel("Sentinel 1",
-                      # Content for sub-tab 2
-                      p("This is sub-tab 3.")
+                   
+                      fluidRow(
+                        column(6, align = "justify",
+                               h3("What is Sentinel-1?"),
+                               p(""),
+                               h3("How we used Sentinel-1 in our analysis?"),
+                               p(""),
+                               p(""),
+                               h3("Benefits"),
+                               p(""),
+                               h3("Limitations"),
+                               p("")
+                               ),
+                        column(6, align = "center",
+                               img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
+                               img(src = 'put image2', align = 'right', width = "100%", height = "auto")
+                               )
+                      )
              )
              
              
