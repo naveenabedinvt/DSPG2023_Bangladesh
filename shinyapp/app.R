@@ -1302,7 +1302,8 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                               align = "justify",
                               h5(strong("Map of Bangladesh by Division")),
                               h2(strong("")),
-                              img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
+                              img(src = 'new_map2.png', align = 'center', width = "80%", height = "auto"),
+                              p("Map of flood affected areas in Bangladesh, Bairagi et al. (2018)")
                             )
                           
                           
@@ -1325,7 +1326,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                  ),
                                ),
                                #withSpinner(img(src="timeline", height = "500px", width = "100"))
-                               withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
+                               withSpinner(plotOutput("timeline", height = "40", width ="40%")),
                                br("")
                                #div(id = "year_timeline")
                         ),
