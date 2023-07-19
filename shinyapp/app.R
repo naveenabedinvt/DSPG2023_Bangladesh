@@ -1264,72 +1264,49 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                              
       
              tabPanel("Flood Conditions", value = "Flood Conditions",
+                      fluidRow(style = "margin: 6px;",
+                               p(style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Flood Conditions")),
+                                      br(""))),
+                    
+                  
                       fluidRow(
-                        style = "margin: 6px;",
                         column(
-                          12,
+                          6,
                           align = "justify",
+                          
                           h4(strong("Flood Vulnerability in Different Divisions of Bangladesh")),
                           p("Bangladesh is a topographically flat country situated in the delta region of three major rivers: the Ganges, Brahmaputra, and Meghna. With nearly 60% of the country lying below 6 meters above sea level, slow drainage and the risk of overflow are prevalent (Mirza, 2001). Bangladesh experiences a monsoon season every year, spanning from June to September. The Ganges and Brahmaputra rivers originate from the Himalayan region, which experiences heavy snowfall during the winter months. As the snow melts during the warmer seasons, it increases the discharge of water downstream."),
-                          p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003).")
-                        )
-                      ),
-                      fluidRow(
-                        column(
-                          6,
-                          align = "justify",
+                          p("Some facors that determine whether an area is more susceptible to flooding than others include elevation, geography, and infrastructure (drainage systems, water management systems, etc.) (Mirza, 2003). River basins near Bangladesh’s three major rivers are more prone to flooding due to their extensive drainage areas, high sediment loads, and proximity to the Himalayan snowmelt mentioned earlier (Mirza, 2003)."),
                           h5(strong("Barisal Division")),
-                          p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal.")
-                        ),
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Barisal Division is located in the southern part of Bangladesh and is known for its extensive river networks and vast coastal areas. It is prone to river flooding, especially during the monsoon season. The division experiences regular flooding due to heavy rainfall, overflowing rivers, and tidal surges from the Bay of Bengal."),
                           h5(strong("Chittagong Division")),
-                          p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours.")
-                        )
-                      ),
-                      fluidRow(
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Chittagong Division is located in the southeastern part of the country and encompasses both hilly terrain and coastal areas. The division experiences floods caused by heavy rainfall, river overflow, and cyclonic storms coming in from the Bay of Bengal. The hilly regions are also susceptible to landslides during heavy downpours."),
                           h5(strong("Dhaka Division")),
-                          p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak.")
-                        ),
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Dhaka Division includes the capital city, Dhaka, which lies in the central part of Bangladesh. This division experiences river flooding from three major rivers. Urban areas may experience flooding due to insufficient drainage systems and infrastructure (Mirza, 2003). The most severe flooding in Dhaka Division typically occurs from July to September when the monsoon rainfall is at its peak."),
                           h5(strong("Khulna Division")),
-                          p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding.")
-                        )
-                      ),
-                      fluidRow(
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Khulna Division is situated in the southwestern region of Bangladesh. This division is prone to coastal flooding and storm surges caused by cyclones from the Bay of Bengal. River flooding is also common during the monsoon season. This division has its highest flood risk from June to September due to coastal flooding, storm surges, and river flooding."),
                           h5(strong("Rajshahi Division")),
-                          p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas.")
-                        ),
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Rajshahi Division is located in the northwestern part of Bangladesh. This division experiences river flooding, primarily caused by heavy monsoons and overflowing of the Ganges River. The most significant flooding in the region typically occurs during the monsoon season, affecting both rural and urban areas."),
                           h5(strong("Rangpur Division")),
-                          p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India.")
-                        )
-                      ),
-                      fluidRow(
-                        column(
-                          6,
-                          align = "justify",
+                          p("The Rangpur Division is situated in the northern part of Bangladesh. This division experiences river flooding, particularly from the Teesta River and its tributaries. The region is vulnerable to flooding during the monsoon season, with the highest risk occurring from July to August. Flash floods can also occur due to heavy rainfall in the hilly regions of neighboring India."),
                           h5(strong("Sylhet Division")),
-                          p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall.")
+                          p("The Sylhet Division is located in the northeastern part of Bangladesh and is known for its hilly terrain and numerous rivers. The division experiences river flooding, flash floods, and landslides during the monsoon season. The hilly areas are prone to landslides, particularly after heavy rainfall."),
+                          br("")
+                          
+                          
+                          
                         ),
                         column(
-                          6,
-                          align = "justify",
-                          h5(strong("Map of Bangladesh by Division")),
-                          h2(strong("")),
-                          img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
-                        ),
+                              6,
+                              align = "justify",
+                              h5(strong("Map of Bangladesh by Division")),
+                              h2(strong("")),
+                              img(src = 'Bangladesh_map.png', align = 'right', width = "100%", height = "auto")
+                            )
+                          
+                          
+                      
                       ),
                       fluidRow(
                         column(6,
@@ -1349,6 +1326,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                ),
                                #withSpinner(img(src="timeline", height = "500px", width = "100"))
                                withSpinner(plotOutput("timeline", height = "10px", width ="10%")),
+                               br("")
                                #div(id = "year_timeline")
                         ),
                         
@@ -1365,21 +1343,9 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                             tags$li("In 2019, Cyclone Titli caused widespread flooding and landslides, affecting 4 million individuals (OCHA, 2019).")
                           ),
                           p("Considering the threat of climate change, erosion, and rising sea levels, it is crucial to understand that storms are projected to increase in intensity, amplifying their impacts on vulnerable regions.")
-                        )),
+                        ))
                       
-                      fluidRow(
-                        column(
-                          12,
-                          style = "padding: 30px;",
-                          align = "justify",
-                          h5(strong("Flood Write Up and Methodology")),
-                          p("Gathering an accurate assessment of flood impacts is essential for determining the devastating consequences of flooding in Bangladesh. However, relying solely on self-reported data collected through the BIHS survey creates challenges due to underreporting and subjective interpretations of flood shocks and impacts. The variability in individual definitions of “shock” and different acceptance levels of the severity of flood events complicates the accuracy of self-reported data."),
-                          p("To increase consistency, this research paper proposes the use of Sentinel-1 data, a powerful remote sensing satellite that uses synthetic aperture radar (SAR). Unlike self-reported data, which is prone to human errors and cognitive biases, Sentinel-1 data provides an unbiased and measurable representation of flood extents and duration."),
-                          p("In a study done by Guiteras, Jina, and Mobarak in 2015, it was revealed that households reporting being affected by floods actually experienced higher objective flood exposure than what they reported. The team was able to determine this by comparing self-reported data with measurements from satellite data."),
-                          p("There are multiple ways to use Sentinel-1 data for generating precise flood maps. The RGB method takes images before and after a flood event and combines them to create a visual representation of temporal changes. A study done by Conde and Muñoz in 2019 used Sentinel-1 (SAR) images to focus on mapping floods that occurred in the Ebro River in Spain in April 2018. They concluded that Sentinel-1 data should be utilized as a new source of input to enhance the precision of flood mapping, especially in weather conditions where floods occur.")
-                        ),
-                        
-                      ),
+                      
              ),
              tabPanel("Household Profile",
                       fluidRow(style = "margin: 4px;",
