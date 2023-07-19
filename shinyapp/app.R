@@ -1553,7 +1553,11 @@ In our study we will focus mainly on modules A, B, W, and Y. Module A will provi
              ),
   navbarMenu("Methodology",
              tabPanel("Global Food Database",
-                      # Overview section
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Global Flood Database (GFD)"))),
+                               br("")),
+
                       fluidRow(
                         column(
                           width = 6, align = "justify",
@@ -1585,6 +1589,11 @@ column(width = 6, align = "center",
                       ))),
                       
 tabPanel("CHIRPS",
+         fluidRow(style = "margin: 6px;",
+                  p("", style = "padding-top:10px;"),
+                  column(12, align = "center",h1(strong("Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)"))),
+                  br("")),
+      
          fluidRow(
            column(width = 6, align = "justify",
                   h3("About CHIRPS"),
@@ -1605,6 +1614,10 @@ tabPanel("CHIRPS",
 ),
              
              tabPanel("Sentinel 1",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Sentinel-1"))),
+                               br("")),
                    
                       fluidRow(
                         column(6, align = "justify",
