@@ -1553,9 +1553,16 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'gfd_1.jpg', align = 'right', width = "100%", height = "auto"),
-       img(src = 'gfd_2.jpg', align = 'right', width = "100%", height = "auto"),
-       img(src = 'gfd_3.jpg', align = 'right', width = "100%", height = "auto")
+       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
+       p("This image shows households in the survey with at least one child under the age of 5 years old
+"),
+       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016
+"),
+       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto"),
+       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households 
+")
+       
        
 
 
