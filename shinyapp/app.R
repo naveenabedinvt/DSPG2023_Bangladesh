@@ -1153,7 +1153,7 @@ ui <- navbarPage(
                     # br("", style = "padding-top:2px;"),
                     # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
                     br(""),
-                    h1(strong("Effects Prenatal Exposure to Flooding on Child Health Outcomes: Evidence from Bangladesh"),
+                    h1(strong("Association between Prenatal Exposure to Flooding and Child Health Outcomes: Evidence from Bangladesh"),
                        #h2("") ,
                        br(""),
                        h4("Data Science for the Public Good Program 2023"),
@@ -1240,8 +1240,8 @@ In addition to the survey data we will use Global Flood Database (GFD), Climate 
                           
                           
                     column(6,
-                           h2(strong("BIHS 2018-19")),
-                           p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
+                           h2(strong("Bangladesh Integrated Household Survey Data")),
+                           p("The BIHS 2018-19 survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
 
 In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A provides insight on the sample households and identification; this includes information on coordinates of the household and the total number of members in the household. Coordinates of the household will be used to locate the proximity of these households to the affected flooded areas. Module B covers the Household Composition and Education. This module entails the education levels, occupation, and source of income for individuals of the household. Module S contains data on distance to nearest healthcare facilities and Module R contains data on household water and sanitation practices. Module W focuses on the anthropometry, health, and illnesses of each individual of the household. Module Y has sectional portions containing survey data on child and antenatal care, Infant and Young Child Feeding (IYCF) practices, immunization and health of children younger than the age of two and service use.
 ", align="justify")
@@ -3100,7 +3100,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 42))
       
       ggplotly(stunt_g)  
@@ -3141,7 +3147,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 40))
       
       ggplotly(stunt_b)  
@@ -3299,7 +3311,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 30))
       ggplotly(underw_g)  
     }
@@ -3337,7 +3355,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 30))
       
       ggplotly(underw_b)   
@@ -3357,6 +3381,12 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         easy_add_legend_title("Precipitation Intensity") +
         coord_cartesian(ylim = c(0, 30))
       
@@ -3370,6 +3400,12 @@ server <- function(input, output, session) {
              y = "Percentage of Underweight Girls < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 25))
       
       ggplotly(uw_g)
@@ -3387,6 +3423,12 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         easy_add_legend_title("Precipitation Intensity") +
         coord_cartesian(ylim = c(0, 30))
       
@@ -3400,6 +3442,12 @@ server <- function(input, output, session) {
              y = "Percentage of Underweight Boys < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 25))
       
       ggplotly(uw_b)
