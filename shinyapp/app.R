@@ -1259,7 +1259,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                              p("They found that women living in flooded areas used maternal healthcare services less than those in non-flooded areas. The same paper suggested that other confounding factors such as low education levels and lower socioeconomic status contributed to reduced healthcare utilization. Hence, increased deficiencies in iron, vitamin A, and vitamin C are prevalent in flood prone regions due to limited access to healthcare facilities (Oskoorouchi & Sousa-Poza, 2021). De Silva and Kawasaki (2020) highlighted disparity in economic status as a driving force to this unequal healthcare access. Their study found that poor Sri Lankan households experience a 48% greater absolute economic loss due to severe flood events than non-poor households. This is the case because individuals with lower economic status are more likely to reside in highly vulnerable areas, often rural parts, due to their limited resources, thereby increasing their exposure to disasters (De Silva, Akiyuki Kawasaki (2020)."),
                              p("Another major cause of detrimental health consequences in flood-prevalent areas is the consumption of contaminated drinking water. In 2004, Sirajul Islam et al. conducted a study in Dhaka focusing on fecal pollution and the effectiveness of point-of-use water treatment during and after a flood. The collected water samples revealed significant contamination levels, including coliforms, fecal coliforms, fecal streptococci, and Vibrio cholerae. Vibrio cholera is a bacterium responsible for causing cholera, a disease characterized by severe diarrhea, dehydration, and potentially life-threatening complications if left untreated.  A study by Mashiro H. et al. (2010) found that incidence of cholera cases increases  during monsoon seasons (25%), compared to spring (8%) in Bangladesh. Cholera cases among pregnant women pose adverse effects on their children's health outcomes. A study in Nepal found that women with diarrhea during pregnancy were more likely to have small gestational age (SGA) infants compared to those without diarrhea (Newman et al., 2019).
                                ")
-                             
+                            
                              )),
                              
       
@@ -1531,29 +1531,32 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                       fluidRow(
                         column(
                           width = 6, align = "justify",
-                          h3("What is the Global Flood Database?"),
-                          p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models."),
+                          h3("What is the Global Flood Database? "),
+                          p("The Global Flood Database uses earth-observing satellites to measure and understand global flood exposure. It focuses on mapping the maximum extent of surface-water coverage during 913 significant flood events documented by the Dartmouth Flood Observatory between 2000 and 2018. The database serves as a valuable resource by complementing existing surface-water products that provide monthly or daily observations. It achieves this by providing a geospatial event catalog, which helps with the calibration and comparisons of flood models.
+                          "),
                           h3("Why are we using the GFD?"),
-                          p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For example, two divisions, Rangpur and Rajshahi, are missing all flood data in 2016. There are other instances of missing data but due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative."),
-                          h3("How to mapping flood extent using GFD?"),
-                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the Global Flood Database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones in order to represent the average distance a household has to travel to reach the nearest medical facility. By overlaying the buffer zones onto the surveyed households, we were able to identify the flood extent. This allowed us to pinpoint the households that were potentially impacted by the floods."),
+                          p("Originally, the team was going to use Sentinel 1 satellite data to observe flooding in Bangladesh however, there are large amounts of missing data during various years and months. For more information, visit the Sentinel 1 tab. Due to the extent of missing data, the sample size of children under the age of 5 and pregnant mothers would decrease significantly and the sample would no longer be representative.
+                          "),
+                          h3("How to map flood extent using GFD?"),
+                          p("We utilized a two-step process for mapping the flood extent and locating affected households. First, we used data from the Bangladesh Integrated Household Survey (BIHS) to identify all of the surveyed households. These households were represented by dark pink circles in our analysis. Secondly, the global flood database provided us with flood extent during a specific time period which we choose. The flood extent was visualized using bright pink pixels. We created 20 kilometers buffer zones around these flood event pixels in order to put together polygons around the entire flood extent. This allowed us to pinpoint households that were potentially impacted by the floods. We used Google Earth Engine in order to access and visualize GFD data. 
+                          "),
+                          h3("How did we combine CHIRPS and BIHS data?"),
+                          p("We utilized the polygons to categorize households as either 1 (residing within the polygon) or 0 (not within the polygon), representing 'event' or 'no event' in our graphs. Then we used BIHS survey data to analyze child health outcomes by trimester depending on if the mother was located near a flood event during each trimester of their pregnancy. 
+                          "),
                           h3("Benefits of using the GFD"),
                           p("The database has data from 2000 to 2018, which aligns with the timeframe of our study. This coverage allows us to include all of our intended samples without excluding data due to missing data or any other issues."),
                           h3("Challenges and Limitations"),
-                          p("The Global Flood Database has a few limitations when compared to Sentinel-1 satellite data. The spatial resolution of the GFD is 250 meteres which can not capture the details of a smaller-scale area or flood. This resolution is beneficial in capturing large, slow moving flood events while Sentinel-1’s higher resolution allows for more precise and detailed flood mapping. Sentinel-1 offers near-real-time observations with a temporal resolution of 12 days while the Global Flood Database relies on historical records from 2000 to 2018. 
-Another limitation is the sensitivity of the GFD to weather conditions such as cloud cover. Since the database is reliant on earth-observing satellites, there is a potential for missing or incomplete data due to dense could cover while the Sentinel-1’s radar technology allows for precise data collection regardless of weather conditions. 
-Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study."),
-                         h3("Severity Levels"),
-                          tags$ul(
-                            tags$li("1 - Large flood events, significant damage to structure or agriculture, fatalities, and/or 5-15 year reported interval since the last similar event"),
-                            tags$li("1.5 - Very large events: >15 year but <100 year recurrence interval"),
-                            tags$li("2 - Extreme events: recurrence interval >100 years")
-                          )  
-                           
+                          p("The Global Flood Database has a few limitations when compared to Sentinel-1 satellite data. The spatial resolution of the GFD is 250 meters which can not capture the details of a smaller-scale area or flood. This resolution is beneficial in capturing large, slow moving flood events while Sentinel-1’s higher resolution allows for more precise and detailed flood mapping. 
+Sentinel-1 offers near-real-time observations with a temporal resolution of 12 days while the Global Flood Database relies on historical records from 2000 to 2018. 
+Another limitation is the sensitivity of the GFD to weather conditions such as cloud cover. Since the database is reliant on earth-observing satellites, there is a potential for missing or incomplete data due to dense cloud cover while the Sentinel-1’s radar technology allows for precise data collection regardless of weather conditions. 
+Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study.
+                        "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
-       img(src = 'put image2', align = 'right', width = "100%", height = "auto")
+       img(src = 'gfd_1.jpg', align = 'right', width = "100%", height = "auto"),
+       img(src = 'gfd_2.jpg', align = 'right', width = "100%", height = "auto"),
+       img(src = 'gfd_3.jpg', align = 'right', width = "100%", height = "auto")
+       
 
 
                       ))),
@@ -1566,19 +1569,31 @@ tabPanel("CHIRPS",
       
          fluidRow(
            column(width = 6, align = "justify",
-                  h3("About CHIRPS"),
-                  p("CHIRPS, known as the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded rainfall dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA)."),
+                  h3("What is CHIRPS"),
+                  p("CHIRPS, the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded precipitation dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
+The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed precipitation maps. Satellite imagery is collected at a temporal resolution of five days, while station data provide ground-based observations.
+                  "),
                   
-                  h3("Data Integration"),
-                  p("The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed rainfall maps. Satellite imagery is collected at a frequency of every five days, while station data provide ground-based observations. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of rainfall patterns."),
-                  
-                  h3("Utilization in Research"),
-                  p("In our research, we are utilizing CHIRPS to assess rainfall levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh.")
+                  h3("Why are we using CHIRPS?"),
+                  p("As the GFD identified heavy rainfall as the main cause of flooding, we supplemented our analysis with CHIRPS. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of precipitation patterns.
+In our research, we are utilizing CHIRPS to assess precipitation levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh. 
+                  "),
+                  h3("How to map precipitation data using CHIRPS?"),
+                  p("We generated the precipitation maps on the left by creating a 20 km buffer around each sample household. In the first image, the transparent black circles are buffer zones. These zones represent the distance an average household needs to travel to access their nearest medical facility. In the second map, the darker blue pixels indicate more precipitation while the light blue indicates less precipitation. Using 22 years of precipitation data, we derived precipitation z-scores for each HH, which we will use for our subsequent analysis. We used Google Earth Engine in order to access and visualize CHIRPS data. 
+                  "),
+                  h3("How did we combine CHIRPS and BIHS data?"),
+                  p("We associated self-reported stunting, underweight, and trimester period data with low, medium, or high precipitation intensity categories using CHIRPS precipitation data. The three precipitation intensity categories were created by dividing the data into three equal parts (tertiles). For each individual mother, we checked CHIRPS data to determine whether precipitation during their 1st, 2nd, and 3rd trimester was categorized as low, medium, or high. This analysis was conducted for every mother to identify patterns in child health outcomes related to flood exposure during each trimester.
+                  "),
+                  h3("Benefits of using CHIRPS"),
+                  p("CHIRPS allows us to bridge data gaps in localized flood events, making it a valuable tool for assessing and understanding flood occurrences in rural areas like Bangladesh
+                  "),
+                  h3("Challenges and limitations"),
+                  p("CHIRPS relies on station data to complement satellite information. However, in some areas, especially in developing countries or remote regions, station data may be limited or unavailable, leading to data gaps and reduced accuracy in those regions. 
+                  ")
            ),
            column(width = 6, align = "center",
                   img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto"),
-                  img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto")
-                  
+
            )
          )
 ),
@@ -1592,14 +1607,28 @@ tabPanel("CHIRPS",
                       fluidRow(
                         column(6, align = "justify",
                                h3("What is Sentinel-1?"),
-                               p(""),
-                               h3("How we used Sentinel-1 in our analysis?"),
-                               p(""),
-                               p(""),
-                               h3("Benefits"),
-                               p(""),
-                               h3("Limitations"),
-                               p("")
+                               p("Sentinel 1, launched in 2014 by the European Space Agency, uses radar imaging to gather high-resolution images of the Earth's surface at a spatial resolution of 10m and a temporal resolution of 10-15 days. It is used to measure flood extent by employing a change detection algorithm, comparing pre and post-flood images to identify flood pixels represented by blue pixels on a generated map.
+                                "),
+                               h3("Why did we want to use Sentinel 1?
+                              "),
+                               p("With the use of Sentinel 1, we can retrospectively gather data on prenatal flood exposure and child health outcomes at the divisional level (referring to our chosen study period). Its high spatial resolution sets it apart from other satellite imagery, as it can capture flooding at a more granular level, enabling us to better observe localized flooding events. Moreover, the continuous temporal resolution of Sentinel 1 spanning from 2014 to the present day is a significant advantage. This extended time frame allows us to observe changes in flooding levels in a consecutive manner, aligning with pregnancy trimesters and flood exposure data as we analyze them chronologically.
+                             "),
+                               h3("How to map flood extent using Sentinel 1?"),
+                               p("Using Sentinel 1, we identified households within flood-exposed zones by defining buffer areas around surveyed households.
+
+To access satellite images within the borders of Bangladesh, we utilized Google Earth Engine and imported a shapefile of the country creating a base map.
+
+Where then a layer was added to the base map to visualize flood extent by a change detection algorithm that compares pre and post-flood radar images. If the change exceeds a specific threshold, it is considered flooding and is depicted as blue pixels on the map.
+
+To identify flood-exposed houses, we mapped out surveyed households in Google Earth Engine and created 10 km buffer zones around each household with a child under the age of 5 years. This resulted in a total of 1,927 households out of the 5,604 households in the study.
+                              "),
+                               h3("Challenges and limitations"),
+                               p("During our study utilizing Sentinel 1, we encountered several limitations mainly related to missing data, which led to a reduction in our sample size. As we refined our sample to specific trimesters and available flood data, we observed a decrease of approximately 26% in our sample size due to the absence of flood data.
+
+One significant cause of missing data was the mismatch in our study period, which started in May 2013, while Sentinel 1 was not launched until 2014. Consequently, data for the period before the satellite's launch was unavailable, impacting our analysis.
+
+Due to the lack of data, particularly at the divisional level and in substantial areas of Bangladesh, assessing stunting and underweight at that granularity was not feasible. As an alternative approach, we shifted our focus to a national level and utilized the GFD and CHIRPS datasets to obtain flood and precipitation data for our analysis.
+")
                                ),
                         column(6, align = "center",
                                img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
