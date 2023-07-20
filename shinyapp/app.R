@@ -1605,7 +1605,10 @@ In our research, we are utilizing CHIRPS to assess precipitation levels in rural
                   ")
            ),
            column(width = 6, align = "center",
-                  img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto"),
+                  img(src = 'chirps1.png', align = 'center', width = "60%", height = "auto"),
+                  p(""),
+                
+                  img(src = 'chirps2.png', align = 'center', width = "60%", height = "auto"),
 
            )
          )
@@ -1644,8 +1647,10 @@ Due to the lack of data, particularly at the divisional level and in substantial
 ")
                                ),
                         column(6, align = "center",
-                               img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
-                               img(src = 'put image2', align = 'right', width = "100%", height = "auto")
+                               img(src = 'sentinel0.png', align = 'center', width = "60%", height = "auto"),
+                               p(""),
+                               
+                               img(src = 'sentinel3.png', align = 'center', width = "60%", height = "auto")
                                )
                       )
              )
