@@ -1563,16 +1563,12 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
-       p("This image shows households in the survey with at least one child under the age of 5 years old
-"),
-       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016
-"),
-       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto"),
-       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households 
-")
-       
+       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto", id = "img1"),
+       p("This image shows households in the survey with at least one child under the age of 5 years old"),
+       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto", id = "img2"),
+       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016"),
+       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto", id = "img3"),
+       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households")
        
 
 
@@ -3822,6 +3818,16 @@ We also find that the knowledge score about introducing liquids and foods beside
 Among the lowest of scores lie the situational questions asking about diarrhea and if a child under 6 months should be given water in hot weather conditions. We see that the general trend in these questions, keeping in mind they are already low, declines as precipitation intensity increases. This becomes a risk for the child’s immune system  as they are already drinking water before the recommended age  and additionally when flooding increases and could contaminate drinking water without proper filtration."
     }
   })
+  # Execute JavaScript code to add zoom effect on image hover
+  shinyjs::runjs("
+    $(document).ready(function() {
+      $('#img1, #img2, #img3').hover(function() {
+        $(this).css('transform', 'scale(1.5)'); // Zoom in to 150% on hover
+      }, function() {
+        $(this).css('transform', 'scale(1)'); // Reset to original size when not hovering
+      });
+    });
+  ")
 }
 
 shinyApp(ui = ui, server = server)
