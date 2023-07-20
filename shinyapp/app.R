@@ -1224,11 +1224,21 @@ In addition to the survey data we will use Global Flood Database (GFD), Climate 
                              ),
                              carouselItem(
                                tags$img(src = "hh5.jpg", width ="100%")
-                             )
+                             ),
+                             carouselItem(
+                               tags$img(src = "water1.jpg", width ="100%")
                              ##end of carousel code 
-                           )
+                           ),
+                           carouselItem(
+                             tags$img(src = "water2.jpg", width ="100%")
                            
-                    ),
+                          ),
+                          carouselItem(
+                            tags$img(src = "water3.jpg", width ="100%")),
+                          carouselItem(
+                            tags$img(src = "water4.jpg", width ="100%")))),
+                          
+                          
                     column(6,
                            h2(strong("BIHS 2018-19")),
                            p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
