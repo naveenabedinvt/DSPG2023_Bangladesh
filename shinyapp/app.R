@@ -1261,7 +1261,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                column(12, align = "center",h1(strong("Literature Review ")),
                                       br(""))),
                       column(6, align = "Justify",
-                             p("Several studies have investigated the impact of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could lead to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the impact of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
+                             p("Several studies have investigated the association of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could correlate to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the outcomes of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
                              p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, in 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gauda region (Bangladesh-India border) where it experienced flooding. In a comprehensive review study on flood exposures,  Mallett (2018) found that many children suffered from chronic diarrhea, increased risk of mortality, and poor growth."),
                              p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. ")),
                       
@@ -1563,16 +1563,12 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
-       p("This image shows households in the survey with at least one child under the age of 5 years old
-"),
-       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016
-"),
-       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto"),
-       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households 
-")
-       
+       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto", id = "img1"),
+       p("This image shows households in the survey with at least one child under the age of 5 years old"),
+       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto", id = "img2"),
+       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016"),
+       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto", id = "img3"),
+       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households")
        
 
 
@@ -3870,6 +3866,16 @@ We also find that the knowledge score about introducing liquids and foods beside
 Among the lowest of scores lie the situational questions asking about diarrhea and if a child under 6 months should be given water in hot weather conditions. We see that the general trend in these questions, keeping in mind they are already low, declines as precipitation intensity increases. This becomes a risk for the child’s immune system  as they are already drinking water before the recommended age  and additionally when flooding increases and could contaminate drinking water without proper filtration."
     }
   })
+  # Execute JavaScript code to add zoom effect on image hover
+  shinyjs::runjs("
+    $(document).ready(function() {
+      $('#img1, #img2, #img3').hover(function() {
+        $(this).css('transform', 'scale(1.5)'); // Zoom in to 150% on hover
+      }, function() {
+        $(this).css('transform', 'scale(1)'); // Reset to original size when not hovering
+      });
+    });
+  ")
 }
 
 shinyApp(ui = ui, server = server)
