@@ -3104,7 +3104,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 42))
       
       ggplotly(stunt_g)  
@@ -3145,7 +3151,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 40))
       
       ggplotly(stunt_b)  
@@ -3303,7 +3315,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 30))
       ggplotly(underw_g)  
     }
@@ -3341,7 +3359,13 @@ server <- function(input, output, session) {
         easy_add_legend_title("Flood Events")+
         theme(plot.title = element_text(size = 15)) +
         scale_fill_viridis_d()+
-        theme_classic()+
+        theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 30))
       
       ggplotly(underw_b)   
@@ -3361,6 +3385,12 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         easy_add_legend_title("Precipitation Intensity") +
         coord_cartesian(ylim = c(0, 30))
       
@@ -3374,6 +3404,12 @@ server <- function(input, output, session) {
              y = "Percentage of Underweight Girls < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 25))
       
       ggplotly(uw_g)
@@ -3391,6 +3427,12 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(size = 14)) +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         easy_add_legend_title("Precipitation Intensity") +
         coord_cartesian(ylim = c(0, 30))
       
@@ -3404,6 +3446,12 @@ server <- function(input, output, session) {
              y = "Percentage of Underweight Boys < 2 Years Old") +
         scale_fill_viridis_d() +
         theme_classic() +
+        easy_y_axis_title_size(size = 13)+
+        scale_y_continuous(limits = c(0, 100))+
+        easy_x_axis_title_size(size = 13)+
+        easy_plot_legend_title_size(size = 13)+
+        easy_plot_legend_size(size = 10)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 25))
       
       ggplotly(uw_b)
