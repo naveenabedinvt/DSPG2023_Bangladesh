@@ -1532,6 +1532,46 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
              
              ),
   navbarMenu("Methodology",
+             tabPanel("Study Period",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Study Period"))),
+                               br("")),
+                      
+                      fluidRow(
+                        column(
+                          width = 12, align = "justify",
+                          h3("What was our time period and why?"),
+                          p("We carefully selected our study's time period to encompass the conception of the oldest child, assuming a full-term pregnancy, and the birth of the youngest child. This approach allows us to match prenatal flooding exposure to child health outcomes effectively. 
+
+In the BIHS 2018-19 survey, specific questions were asked about children under the age of five, making them the focus of our study. This age group is particularly relevant as they are still in the critical development phase and are more susceptible to health risks, especially during flooding events, as observed in other studies like Mallet (2018) and Del Ninno (2005).
+
+Therefore, our study period spans from May 2013 to February 2019, capturing the youngest child born in the survey that concluded in 2019, enabling us to examine the association between prenatal flooding exposure and child health outcomes in this vulnerable age group.
+"),
+column(width = 12, align = "center",
+       img(src = 'timeline.jpg', align = 'center', width = "60%", height = "auto"),
+))),
+fluidRow(
+column(
+  width = 12, align = "justify",
+                          h3("What is our gestational period duration?"),
+                          p(" In this study we assume that every pregnancy reported by the woman was carried to full term. In our study, we define a full term as 40 weeks, but because the date of conception is unknown we added two additional weeks to both the first and third trimester making our assumed pregnancy period 44 weeks.  
+"),
+                          h3("Why did we analyze some of our data by trimester?"),
+                          p("	Our project concentrates on prenatal exposure to flooding, and to gain more insights into how flooding during different stages of pregnancy impacts child health outcomes, we divided pregnancies into trimesters. Our aim was to identify if specific trimesters have a more significant effect on a child's health through data visualizations.
+"),
+                          h3("Why did we analyze some of our data by precipitation intensity? 
+"),
+                          p("According to GFD reports, precipitation was identified as the main cause of flooding. To investigate child health outcomes associated with prenatal flood exposure, we supplemented GFD flood extent data with precipitation data from CHIRPS. The entire country was then stratified into three intensity categories (low, medium, and high) based on precipitation intensity z-scores. It's important to clarify that these categories were determined by the intensity of precipitation to which each household was exposed, rather than being based on regional distinctions.
+")
+                  
+                        ),
+  
+       
+       
+       
+)),
+             
              tabPanel("Global Food Database",
                       fluidRow(style = "margin: 6px;",
                                p("", style = "padding-top:10px;"),
