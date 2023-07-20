@@ -1153,7 +1153,7 @@ ui <- navbarPage(
                     # br("", style = "padding-top:2px;"),
                     # img(src = "uva-dspg-logo.jpg", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
                     br(""),
-                    h1(strong("Effects Prenatal Exposure to Flooding on Child Health Outcomes: Evidence from Bangladesh"),
+                    h1(strong("Association between Prenatal Exposure to Flooding and Child Health Outcomes: Evidence from Bangladesh"),
                        #h2("") ,
                        br(""),
                        h4("Data Science for the Public Good Program 2023"),
@@ -1240,8 +1240,8 @@ In addition to the survey data we will use Global Flood Database (GFD), Climate 
                           
                           
                     column(6,
-                           h2(strong("BIHS 2018-19")),
-                           p("The survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
+                           h2(strong("Bangladesh Integrated Household Survey Data")),
+                           p("The BIHS 2018-19 survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
 
 In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A provides insight on the sample households and identification; this includes information on coordinates of the household and the total number of members in the household. Coordinates of the household will be used to locate the proximity of these households to the affected flooded areas. Module B covers the Household Composition and Education. This module entails the education levels, occupation, and source of income for individuals of the household. Module S contains data on distance to nearest healthcare facilities and Module R contains data on household water and sanitation practices. Module W focuses on the anthropometry, health, and illnesses of each individual of the household. Module Y has sectional portions containing survey data on child and antenatal care, Infant and Young Child Feeding (IYCF) practices, immunization and health of children younger than the age of two and service use.
 ", align="justify")
@@ -1563,16 +1563,12 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
-       p("This image shows households in the survey with at least one child under the age of 5 years old
-"),
-       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016
-"),
-       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto"),
-       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households 
-")
-       
+       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto", id = "img1"),
+       p("This image shows households in the survey with at least one child under the age of 5 years old"),
+       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto", id = "img2"),
+       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016"),
+       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto", id = "img3"),
+       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households")
        
 
 
@@ -3870,6 +3866,16 @@ We also find that the knowledge score about introducing liquids and foods beside
 Among the lowest of scores lie the situational questions asking about diarrhea and if a child under 6 months should be given water in hot weather conditions. We see that the general trend in these questions, keeping in mind they are already low, declines as precipitation intensity increases. This becomes a risk for the child’s immune system  as they are already drinking water before the recommended age  and additionally when flooding increases and could contaminate drinking water without proper filtration."
     }
   })
+  # Execute JavaScript code to add zoom effect on image hover
+  shinyjs::runjs("
+    $(document).ready(function() {
+      $('#img1, #img2, #img3').hover(function() {
+        $(this).css('transform', 'scale(1.5)'); // Zoom in to 150% on hover
+      }, function() {
+        $(this).css('transform', 'scale(1)'); // Reset to original size when not hovering
+      });
+    });
+  ")
 }
 
 shinyApp(ui = ui, server = server)
