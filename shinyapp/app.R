@@ -1603,15 +1603,13 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
-       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto", id = "img1"),
-       p("This image shows households in the survey with at least one child under the age of 5 years old"),
-       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto", id = "img2"),
-       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016"),
-       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto", id = "img3"),
-       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households")
+       img(src = 'gfd_map1.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows sampled households with at least one child under 5 y/o"),
+       img(src = 'gfd_map2.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows flood extent for a flood event from April - May 2016"),
+       img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows buffers, highlighting affected households")
        
-
-
                       ))),
                       
 tabPanel("CHIRPS",
@@ -1645,10 +1643,11 @@ In our research, we are utilizing CHIRPS to assess precipitation levels in rural
                   ")
            ),
            column(width = 6, align = "center",
-                  img(src = 'chirps2.png', align = 'center', width = "60%", height = "auto"),
-                  p(""),
+                  img(src = 'chirpsmap2.png', align = 'center', width = "60%", height = "auto"),
+                  p("The map shows buffers around sampled households"),
                 
-                  img(src = 'chirps1.png', align = 'center', width = "60%", height = "auto"),
+                  img(src = 'chirpsmap1.png', align = 'center', width = "60%", height = "auto"),
+                  p("The show recorded rain data for the year 2017")
 
            )
          )
@@ -1687,10 +1686,11 @@ Due to the lack of data, particularly at the divisional level and in substantial
 ")
                                ),
                         column(6, align = "center",
-                               img(src = 'sentinel0.png', align = 'center', width = "60%", height = "auto"),
-                               p(""),
+                               img(src = 'sentinelmap0.png', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows missing data for Northwestern divisions"),
                                
-                               img(src = 'sentinel3.png', align = 'center', width = "60%", height = "auto")
+                               img(src = 'sentinelmap3.png', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows missing data for central divisions"),
                                )
                       )
              )
