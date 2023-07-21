@@ -1897,13 +1897,13 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  # 
                                  
                                  tabsetPanel(
-                                   tabPanel("Access to healthcare facilities",
+                                   tabPanel("Access to Healthcare Facilities",
 
                                             #setting the stuff under the child profile tab HERE JADE
                                             fluidRow(style = "margin: 4px;",
                                                      p("", style = "padding-top:10px;"),
                                                      column(8,
-                                                            selectInput("ahcdrop", "Select Access to Healthcare:", width = "100%",
+                                                            selectInput("ahcdrop", "Select Access to Healthcare Variable Below:", width = "100%",
                                                                         choices = c("Household Distance from Health Center " = "dist_med_ahc",
                                                                                     "Mode of Transportation" = "trnsprt_ahc",
                                                                                     "Antenatal Care" = "ant_care_ahc",
@@ -1960,7 +1960,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                      p("", style = "padding-top:10px;"),
                                                      
                                                      column(8, align = "justified",
-                                                            selectInput("waterdrop", "Select water quality and consumption:", width = "100%", choices = c(
+                                                            selectInput("waterdrop", "Select Water Quality and Consumption Variable Below:", width = "100%", choices = c(
                                                               "Sources of Drinking Water" = "source_drinking_water",
                                                               "Water Treatment" = "water_treatment"
                                                               
@@ -3732,14 +3732,13 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         
         scale_fill_viridis_d() +
         
-        theme_classic() +
-        easy_y_axis_title_size(size = 13)+
-        scale_y_continuous(limits = c(0, 100))+
-        easy_x_axis_title_size(size = 13)+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 75))+
+        easy_x_axis_title_size(size = 15)+
         easy_plot_legend_title_size(size = 13)+
         easy_plot_legend_size(size = 10)+
-        easy_plot_title_size(size = 17)+
-        coord_cartesian(ylim = c(0, 95))
+        easy_plot_title_size(size = 15)
       ggplotly(d_water, tooltip = c("text"))
       
     }
@@ -3753,7 +3752,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 16)+
+        easy_plot_title_size(size = 15)+
         # easy_center_title()+
         labs(title = "Households Without Treated Drinking Water by Division",
              x= "Division",
