@@ -3738,8 +3738,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         easy_x_axis_title_size(size = 15)+
         easy_plot_legend_title_size(size = 13)+
         easy_plot_legend_size(size = 10)+
-        easy_plot_title_size(size = 15)+
-        coord_cartesian(ylim = c(0, 95))
+        easy_plot_title_size(size = 15)
       ggplotly(d_water, tooltip = c("text"))
       
     }
@@ -3753,7 +3752,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 16)+
+        easy_plot_title_size(size = 15)+
         # easy_center_title()+
         labs(title = "Households Without Treated Drinking Water by Division",
              x= "Division",
