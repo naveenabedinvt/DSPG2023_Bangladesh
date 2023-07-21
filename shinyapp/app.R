@@ -1641,12 +1641,9 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
                         column(width = 6, align = "center",
-                               img(src = 'gfd_map1.jpg', align = 'center', width = "60%", height = "auto"),
-                               p("The map shows sampled households with at least one child under 5 y/o"),
-                               img(src = 'gfd_map2.jpg', align = 'center', width = "60%", height = "auto"),
-                               p("The map shows flood extent for a flood event from April - May 2016"),
-                               img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
-                               p("The map shows buffers, highlighting affected households")
+                               img(src = 'GFD_Apr-May2016.png', align = 'center', width = "100%", height = "auto"),
+                               p("The map shows flood extent for a flood event from April - May 2016")
+                            
                                
                         )
                         ), 
@@ -1831,7 +1828,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  br(""),
                                  fluidRow(
                                  column(width = 6, align = "center",
-                                        img(src = 'stuntingR.png', align = 'center', width = "100%", height = "auto"),
+                                        img(src = 'StuntingR.png', align = 'center', width = "100%", height = "auto"),
                                        ),
                                         column(6, 
                                         img(src = 'stunting1.png', align = 'center', width = "100%", height = "auto")
@@ -1919,7 +1916,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  br(""),
                                  fluidRow(
                                    column(width = 6, align = "center",
-                                          img(src = 'underweightR.png', align = 'center', width = "100%", height = "auto"),
+                                          img(src = 'UnderweightR.png', align = 'center', width = "100%", height = "auto"),
                                           ),
                                    column(6, 
                                           img(src = 'underweight1.png', align = 'center', width = "100%", height = "auto")
