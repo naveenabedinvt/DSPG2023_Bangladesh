@@ -1651,8 +1651,12 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         )
                         ), 
                       fluidRow(  
-                          column(11, align = "left",
-                                 withSpinner(leafletOutput("flood", height = "400px", width = "70%"))),
+                        column(12, 
+                               h3("Flood Events"))),
+                         fluidRow(
+                           column(11, align = "center",
+                                 
+                                 withSpinner(leafletOutput("flood", height = "600px", width = "60%"))),
                         )),
              
              tabPanel("CHIRPS",
