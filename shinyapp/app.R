@@ -71,8 +71,6 @@ library(plotly)
 data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta")) 
 data <- read_dta(paste0(getwd(),"/data/BIHS2018-19MC_Jun4.dta"))
 chirpsdata<- read_dta(paste0(getwd(),"/data/BIHS2018-19_MC_CHIRPS_Jul5_IDFormatted.dta"))
-flood_coordinates1 <- read.csv(paste0(getwd(),"/data/leaflet_graphs/flood_coordinates1.csv"))
-
 
 
 #Age by Gender
@@ -945,18 +943,18 @@ avg_vist$Rain <-  factor(avg_vist$Rain, levels = c("Low", "Medium", "High"))
 
 # delivery location data
 ddata<- read_dta(paste0(getwd(),"/data/BIHS2018-19_Mechanism_Delivery_CHIRPS.dta"))
-                 
+
 delA <- ddata %>% 
   group_by(tertile_totalrain_z) %>% 
   count(delivery) %>% 
   mutate(Total = sum(n), Percentage = round(n/Total * 100, 2)) %>% 
   mutate(delivery = as.character(haven::zap_labels(delivery)),
          delivery = recode(delivery, "0" = "Home/Other",
-                                 "1" = "Hospital/Clinic"),
+                           "1" = "Hospital/Clinic"),
          tertile_totalrain_z = as.character(haven::zap_labels(tertile_totalrain_z)),
          tertile_totalrain_z = recode(tertile_totalrain_z, "1" = "Low",
-                                                           "2" = "Medium",
-                                                           "3" = "High")) %>% 
+                                      "2" = "Medium",
+                                      "3" = "High")) %>% 
   rename(Intensity = tertile_totalrain_z, Location = delivery)
 delA
 
@@ -1085,28 +1083,6 @@ drinking_w <- data.frame(
 
 drinking_w $water_sources <- factor(drinking_w $water_sources, levels = c("Piped", "Tube Wells", "Ponds/Rivers/Canals", "Other"))
 
-#####leaflet
-pal <- colorFactor(c("red", "navy"), domain = c("All Households", "Flood Affected")) 
-
-popups <- lapply(
-  paste("<strong>Start: </strong>",
-        flood_coordinates1$start,
-        "<br />",
-        "<strong>End:</strong>",
-        flood_coordinates1$end ,
-        "<br />",
-        "<strong>Severity:</strong>",
-        flood_coordinates1$severity, 
-        "<br />",
-        "<strong>Cause:</strong>",
-        flood_coordinates1$cause,
-        "<br />"),
-  
-  
-  htmltools::HTML
-)
-
-
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
 # jscode <- '
@@ -1219,7 +1195,7 @@ Our research focuses on two interconnected questions: (1) Is prenatal exposure t
 
 To determine the sample size, IFPRI used a two-stage stratified sampling method. In the first stage, they selected Primary Sampling Units (PSUs) or villages using probability proportional to size based on the number of households in each stratum or division. The choice of PSUs resulted in the following distribution: 21 PSUs in Barisal, 48 in Chittagong, 87 in Dhaka, 27 in Khulna, 29 in Rajshahi, 27 in Rangpur, 36 in Sylhet, and 50 in the FTF zone. In the second stage, twenty households were randomly selected from each PSU. The IFPRI sample size was 6,500 households across 325 PSUs. However, our sample size is smaller because we excluded 1,000 households from the FTF Zone of Influence. Additionally, it is important to note that several changes occurred within households between 2011-2012 and 2018-2019, such as household merges or splits. After making all these adjustments, our sample size is 5,604 households.
 
-In addition to the survey data we will use  (GFD), Climate Hazards Group InfraRed Precipitation with Station Data (CHIRPS), and Sentinel-1 data to assess the flood extent. The GFD identifies significant global flood events based on news reports and uses MODIS satellite imagery to capture those flood events at 250 m resolution. CHIRPS provides precipitation data at 5000 m resolution. Sentinel-1 uses radar to gather data on flood extent at 10 m spatial resolution. 
+In addition to the survey data we will use Global Flood Database (GFD), Climate Hazards Group InfraRed Precipitation with Station Data (CHIRPS), and Sentinel-1 data to assess the flood extent. The GFD identifies significant global flood events based on news reports and uses MODIS satellite imagery to capture those flood events at 250 m resolution. CHIRPS provides precipitation data at 5000 m resolution. Sentinel-1 uses radar to gather data on flood extent at 10 m spatial resolution. 
 ", align = "justify"),  
                     )), 
            
@@ -1251,18 +1227,18 @@ In addition to the survey data we will use  (GFD), Climate Hazards Group InfraRe
                              ),
                              carouselItem(
                                tags$img(src = "water1.jpg", width ="100%")
-                             ##end of carousel code 
-                           ),
-                           carouselItem(
-                             tags$img(src = "water2.jpg", width ="100%")
-                           
-                          ),
-                          carouselItem(
-                            tags$img(src = "water3.jpg", width ="100%")),
-                          carouselItem(
-                            tags$img(src = "water4.jpg", width ="100%")))),
-                          
-                          
+                               ##end of carousel code 
+                             ),
+                             carouselItem(
+                               tags$img(src = "water2.jpg", width ="100%")
+                               
+                             ),
+                             carouselItem(
+                               tags$img(src = "water3.jpg", width ="100%")),
+                             carouselItem(
+                               tags$img(src = "water4.jpg", width ="100%")))),
+                    
+                    
                     column(6,
                            h2(strong("Bangladesh Integrated Household Survey Data")),
                            p("The BIHS 2018-19 survey includes a wide range of questions about demographic characteristics, socioeconomic status, household assets, employment, income, expenditures, education, health, etc. The survey is structured into 29 modules that correspond to different areas. Each module consists of a series of questions designed to collect specific information related to that area. 
@@ -1285,7 +1261,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                column(12, align = "center",h1(strong("Literature Review ")),
                                       br(""))),
                       column(6, align = "Justify",
-                             p("Several studies have investigated the impact of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could lead to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the impact of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
+                             p("Several studies have investigated the association of prenatal exposure to flooding on child birth outcomes and the underlying mechanisms involved. Additionally, other papers have used other environmental hazards such as cyclones, tropical storms, and major monsoons which could correlate to negative child health outcomes. One study by Ochani et al. (2022) conducted in Pakistan, revealed that unexpected intense floods have negative impacts on pregnant women, including psycho-physiological stress and disruptions in prenatal care. This can have repercussions on fetal development and child health outcomes. Furthermore, the outcomes of exposure can vary based on sex of the child as a result of differences in hormonal responses and epigenetic mechanisms (Sutherland & Brunwasser, 2018)."),
                              p("A study by Del Ninno, et al. (2005) found that flooding negatively impacts children’s physical and physiological development. The children that were exposed to floods were found to be more stunted than those who were not; these effects were long-lasting as these children were not able to recover after the temporary shock. According to Rosales-Rueda (2018), the impact of flood exposure during pregnancy varies depending on the trimester. When mothers are exposed to floods during the third trimester, their children tend to be shorter. On the other hand, cognitive function deficits are more common among children whose mothers were exposed to floods during the first trimester of pregnancy. Furthermore, in 2008, malnutrition of mothers and poor feeding practices led to 60.9% of children being underweight in Gauda region (Bangladesh-India border) where it experienced flooding. In a comprehensive review study on flood exposures,  Mallett (2018) found that many children suffered from chronic diarrhea, increased risk of mortality, and poor growth."),
                              p("Several papers have also examined the possible reasons why flooding is related to poorer health outcomes for mothers and children. Orderud, H. et al. (2022)'s study investigated the association between flood exposure and maternal healthcare utilization in Bangladesh. ")),
                       
@@ -1293,17 +1269,17 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                              p("They found that women living in flooded areas used maternal healthcare services less than those in non-flooded areas. The same paper suggested that other confounding factors such as low education levels and lower socioeconomic status contributed to reduced healthcare utilization. Hence, increased deficiencies in iron, vitamin A, and vitamin C are prevalent in flood prone regions due to limited access to healthcare facilities (Oskoorouchi & Sousa-Poza, 2021). De Silva and Kawasaki (2020) highlighted disparity in economic status as a driving force to this unequal healthcare access. Their study found that poor Sri Lankan households experience a 48% greater absolute economic loss due to severe flood events than non-poor households. This is the case because individuals with lower economic status are more likely to reside in highly vulnerable areas, often rural parts, due to their limited resources, thereby increasing their exposure to disasters (De Silva, Akiyuki Kawasaki (2020)."),
                              p("Another major cause of detrimental health consequences in flood-prevalent areas is the consumption of contaminated drinking water. In 2004, Sirajul Islam et al. conducted a study in Dhaka focusing on fecal pollution and the effectiveness of point-of-use water treatment during and after a flood. The collected water samples revealed significant contamination levels, including coliforms, fecal coliforms, fecal streptococci, and Vibrio cholerae. Vibrio cholera is a bacterium responsible for causing cholera, a disease characterized by severe diarrhea, dehydration, and potentially life-threatening complications if left untreated.  A study by Mashiro H. et al. (2010) found that incidence of cholera cases increases  during monsoon seasons (25%), compared to spring (8%) in Bangladesh. Cholera cases among pregnant women pose adverse effects on their children's health outcomes. A study in Nepal found that women with diarrhea during pregnancy were more likely to have small gestational age (SGA) infants compared to those without diarrhea (Newman et al., 2019).
                                ")
-                            
-                             )),
                              
-      
+                      )),
+             
+             
              tabPanel("Flood Conditions", value = "Flood Conditions",
                       fluidRow(style = "margin: 6px;",
                                p(style = "padding-top:10px;"),
                                column(12, align = "center",h1(strong("Flood Conditions")),
                                       br(""))),
-                    
-                  
+                      
+                      
                       fluidRow(
                         column(
                           6,
@@ -1332,16 +1308,16 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                           
                         ),
                         column(
-                              6,
-                              align = "justify",
-                              h5(strong("Map of Bangladesh by Division")),
-                              h2(strong("")),
-                              img(src = 'new_map2.png', align = 'center', width = "80%", height = "auto"),
-                              p("Map of flood affected areas in Bangladesh, Bairagi et al. (2018)")
-                            )
-                          
-                          
-                      
+                          6,
+                          align = "justify",
+                          h5(strong("Map of Bangladesh by Division")),
+                          h2(strong("")),
+                          img(src = 'new_map2.png', align = 'center', width = "80%", height = "auto"),
+                          p("Map of flood affected areas in Bangladesh, Bairagi et al. (2018)")
+                        )
+                        
+                        
+                        
                       ),
                       fluidRow(
                         column(6,
@@ -1478,7 +1454,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                                     "Household Farming Activity Distribution" = "households_farming_activities", 
                                                                     "Cultivable Land Holding" = "cultivable_land",
                                                                     "Electricity Accessibility " = "electricity_accessibility",
-                                                                  
+                                                                    
                                                                     "Household Head Occupation" = "hhh_occupation"
                                                                     
                                                                     
@@ -1554,14 +1530,54 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                       )
              )
              
-             ),
+  ),
   navbarMenu("Methodology",
+             tabPanel("Study Period",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Study Period"))),
+                               br("")),
+                      
+                      fluidRow(
+                        column(
+                          width = 12, align = "justify",
+                          h3("What was our time period and why?"),
+                          p("We carefully selected our study's time period to encompass the conception of the oldest child, assuming a full-term pregnancy, and the birth of the youngest child. This approach allows us to match prenatal flooding exposure to child health outcomes effectively. 
+
+In the BIHS 2018-19 survey, specific questions were asked about children under the age of five, making them the focus of our study. This age group is particularly relevant as they are still in the critical development phase and are more susceptible to health risks, especially during flooding events, as observed in other studies like Mallet (2018) and Del Ninno (2005).
+
+Therefore, our study period spans from May 2013 to February 2019, capturing the youngest child born in the survey that concluded in 2019, enabling us to examine the association between prenatal flooding exposure and child health outcomes in this vulnerable age group.
+"),
+                          column(width = 12, align = "center",
+                                 img(src = 'timeline.jpg', align = 'center', width = "60%", height = "auto"),
+                          ))),
+                      fluidRow(
+                        column(
+                          width = 12, align = "justify",
+                          h3("What is our gestational period duration?"),
+                          p(" In this study we assume that every pregnancy reported by the woman was carried to full term. In our study, we define a full term as 40 weeks, but because the date of conception is unknown we added two additional weeks to both the first and third trimester making our assumed pregnancy period 44 weeks.  
+"),
+                          h3("Why did we analyze some of our data by trimester?"),
+                          p("	Our project concentrates on prenatal exposure to flooding, and to gain more insights into how flooding during different stages of pregnancy impacts child health outcomes, we divided pregnancies into trimesters. Our aim was to identify if specific trimesters have a more significant effect on a child's health through data visualizations.
+"),
+                          h3("Why did we analyze some of our data by precipitation intensity? 
+"),
+                          p("According to GFD reports, precipitation was identified as the main cause of flooding. To investigate child health outcomes associated with prenatal flood exposure, we supplemented GFD flood extent data with precipitation data from CHIRPS. The entire country was then stratified into three intensity categories (low, medium, and high) based on precipitation intensity z-scores. It's important to clarify that these categories were determined by the intensity of precipitation to which each household was exposed, rather than being based on regional distinctions.
+")
+                          
+                        ),
+                        
+                        
+                        
+                        
+                      )),
+             
              tabPanel("Global Food Database",
                       fluidRow(style = "margin: 6px;",
                                p("", style = "padding-top:10px;"),
                                column(12, align = "center",h1(strong("Global Flood Database (GFD)"))),
                                br("")),
-
+                      
                       fluidRow(
                         column(
                           width = 6, align = "justify",
@@ -1586,85 +1602,63 @@ Another limitation is the sensitivity of the GFD to weather conditions such as c
 Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only 23 fall within the timeframe of our study.
                         "),
                         ),
-column(width = 6, align = "center",
-<<<<<<< HEAD
-       img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
-       p("This image shows households in the survey with at least one child under the age of 5 years old
-"),
-       img(src = 'gfd_2.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The bright pink pixels show flood extent for a flood event that occurred on April 20th - May 1st 2016
-"),
-       img(src = 'gfd_3.jpg', align = 'center', width = "60%", height = "auto"),
-       p("20 km buffer zones around the flood extent pixels make up a polygon to represent affected households 
-")
-       
-       
-
-
-                      )),
-fluidRow(  
-  column(11, align = "left",
-                  withSpinner(leafletOutput("flood", height = "400px", width = "70%"))),
-)
-),
-=======
-       img(src = 'gfd_map1.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The map shows sampled households with at least one child under 5 y/o"),
-       img(src = 'gfd_map2.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The map shows flood extent for a flood event from April - May 2016"),
-       img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
-       p("The map shows buffers, highlighting affected households")
-       
-                      ))),
->>>>>>> c7a356844c6d827d760efb4888891a84732cf742
+                        column(width = 6, align = "center",
+                               img(src = 'gfd_map1.jpg', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows sampled households with at least one child under 5 y/o"),
+                               img(src = 'gfd_map2.jpg', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows flood extent for a flood event from April - May 2016"),
+                               img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows buffers, highlighting affected households")
+                               
+                        ))),
+             
+             tabPanel("CHIRPS",
+                      fluidRow(style = "margin: 6px;",
+                               p("", style = "padding-top:10px;"),
+                               column(12, align = "center",h1(strong("Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)"))),
+                               br("")),
                       
-tabPanel("CHIRPS",
-         fluidRow(style = "margin: 6px;",
-                  p("", style = "padding-top:10px;"),
-                  column(12, align = "center",h1(strong("Climate Hazards Group InfraRed Precipitation with Station data (CHIRPS)"))),
-                  br("")),
-      
-         fluidRow(
-           column(width = 6, align = "justify",
-                  h3("What is CHIRPS"),
-                  p("CHIRPS, the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded precipitation dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
+                      fluidRow(
+                        column(width = 6, align = "justify",
+                               h3("What is CHIRPS"),
+                               p("CHIRPS, the Climate Hazards Group InfraRed Precipitation with Station data, is a globally gridded precipitation dataset. This dataset, originating in 1981, was developed by scientists from the United States Geological Survey (USGS) and the Climate Hazards Center (CHC). It continues to be actively supported by prominent organizations such as the United States Agency for International Development (USAID), National Aeronautics and Space Administration (NASA), and National Oceanic and Atmospheric Administration (NOAA).
 The CHIRPS dataset integrates satellite imagery and station data, to generate comprehensive and detailed precipitation maps. Satellite imagery is collected at a temporal resolution of five days, while station data provide ground-based observations.
                   "),
-                  
-                  h3("Why are we using CHIRPS?"),
-                  p("As the GFD identified heavy rainfall as the main cause of flooding, we supplemented our analysis with CHIRPS. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of precipitation patterns.
+                               
+                               h3("Why are we using CHIRPS?"),
+                               p("As the GFD identified heavy rainfall as the main cause of flooding, we supplemented our analysis with CHIRPS. By combining these sources, CHIRPS effectively covers regions where station data is scarce, ensuring a more complete representation of precipitation patterns.
 In our research, we are utilizing CHIRPS to assess precipitation levels in rural areas of Bangladesh, recognizing the strong correlation between precipitation and flood occurrences. Although CHIRPS exhibits a relatively lower spatial resolution of 5566 meters per pixel, in contrast to the finer 10-meter pixel resolution of Sentinel 1, it allows us to address the limitations associated with capturing localized flood events in rural Bangladesh. By employing CHIRPS, we can bridge the data gaps left by Sentinel 1, particularly in terms of flood-related observations within rural regions of Bangladesh. 
                   "),
-                  h3("How to map precipitation data using CHIRPS?"),
-                  p("We generated the precipitation maps on the left by creating a 20 km buffer around each sample household. In the first image, the transparent black circles are buffer zones. These zones represent the distance an average household needs to travel to access their nearest medical facility. In the second map, the darker blue pixels indicate more precipitation while the light blue indicates less precipitation. Using 22 years of precipitation data, we derived precipitation z-scores for each HH, which we will use for our subsequent analysis. We used Google Earth Engine in order to access and visualize CHIRPS data. 
+                               h3("How to map precipitation data using CHIRPS?"),
+                               p("We generated the precipitation maps on the left by creating a 20 km buffer around each sample household. In the first image, the transparent black circles are buffer zones. These zones represent the distance an average household needs to travel to access their nearest medical facility. In the second map, the darker blue pixels indicate more precipitation while the light blue indicates less precipitation. Using 22 years of precipitation data, we derived precipitation z-scores for each HH, which we will use for our subsequent analysis. We used Google Earth Engine in order to access and visualize CHIRPS data. 
                   "),
-                  h3("How did we combine CHIRPS and BIHS data?"),
-                  p("We associated self-reported stunting, underweight, and trimester period data with low, medium, or high precipitation intensity categories using CHIRPS precipitation data. The three precipitation intensity categories were created by dividing the data into three equal parts (tertiles). For each individual mother, we checked CHIRPS data to determine whether precipitation during their 1st, 2nd, and 3rd trimester was categorized as low, medium, or high. This analysis was conducted for every mother to identify patterns in child health outcomes related to flood exposure during each trimester.
+                               h3("How did we combine CHIRPS and BIHS data?"),
+                               p("We associated self-reported stunting, underweight, and trimester period data with low, medium, or high precipitation intensity categories using CHIRPS precipitation data. The three precipitation intensity categories were created by dividing the data into three equal parts (tertiles). For each individual mother, we checked CHIRPS data to determine whether precipitation during their 1st, 2nd, and 3rd trimester was categorized as low, medium, or high. This analysis was conducted for every mother to identify patterns in child health outcomes related to flood exposure during each trimester.
                   "),
-                  h3("Benefits of using CHIRPS"),
-                  p("CHIRPS allows us to bridge data gaps in localized flood events, making it a valuable tool for assessing and understanding flood occurrences in rural areas like Bangladesh
+                               h3("Benefits of using CHIRPS"),
+                               p("CHIRPS allows us to bridge data gaps in localized flood events, making it a valuable tool for assessing and understanding flood occurrences in rural areas like Bangladesh
                   "),
-                  h3("Challenges and limitations"),
-                  p("CHIRPS relies on station data to complement satellite information. However, in some areas, especially in developing countries or remote regions, station data may be limited or unavailable, leading to data gaps and reduced accuracy in those regions. 
+                               h3("Challenges and limitations"),
+                               p("CHIRPS relies on station data to complement satellite information. However, in some areas, especially in developing countries or remote regions, station data may be limited or unavailable, leading to data gaps and reduced accuracy in those regions. 
                   ")
-           ),
-           column(width = 6, align = "center",
-                  img(src = 'chirpsmap2.png', align = 'center', width = "60%", height = "auto"),
-                  p("The map shows buffers around sampled households"),
-                
-                  img(src = 'chirpsmap1.png', align = 'center', width = "60%", height = "auto"),
-                  p("The show recorded rain data for the year 2017")
-
-           )
-         )
-),
+                        ),
+                        column(width = 6, align = "center",
+                               img(src = 'chirpsmap2.png', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows buffers around sampled households"),
+                               
+                               img(src = 'chirpsmap1.png', align = 'center', width = "60%", height = "auto"),
+                               p("The show recorded rain data for the year 2017")
+                               
+                        )
+                      )
+             ),
              
              tabPanel("Sentinel 1",
                       fluidRow(style = "margin: 6px;",
                                p("", style = "padding-top:10px;"),
                                column(12, align = "center",h1(strong("Sentinel-1"))),
                                br("")),
-                   
+                      
                       fluidRow(
                         column(6, align = "justify",
                                h3("What is Sentinel-1?"),
@@ -1690,14 +1684,14 @@ One significant cause of missing data was the mismatch in our study period, whic
 
 Due to the lack of data, particularly at the divisional level and in substantial areas of Bangladesh, assessing stunting and underweight at that granularity was not feasible. As an alternative approach, we shifted our focus to a national level and utilized the GFD and CHIRPS datasets to obtain flood and precipitation data for our analysis.
 ")
-                               ),
+                        ),
                         column(6, align = "center",
                                img(src = 'sentinelmap0.png', align = 'center', width = "60%", height = "auto"),
                                p("The map shows missing data for Northwestern divisions"),
                                
                                img(src = 'sentinelmap3.png', align = 'center', width = "60%", height = "auto"),
                                p("The map shows missing data for central divisions"),
-                               )
+                        )
                       )
              )
              
@@ -1740,7 +1734,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                             4,
                                             p(h4(strong("Description"))),
                                             
-                                            p("Stunting, a condition characterized by below-average height for a given age, can have profound and lasting effects on individuals, even extending into adulthood. It is a matter of great concern, and to better understand its dynamics, we turn our attention to the gender-disaggregated graphs for children under two years old on the left, which shed light on the impact of flood events occurring during a mother's pregnancy on the prevalence of stunted children."),
+                                            p("Stunting, a condition characterized by below-average height for a given age, can have profound and lasting consequences on affected individuals, even extending into adulthood. It is a matter of great concern, and to better understand its dynamics, we turn our attention to the gender-disaggregated graphs for children under two years old on the left, which shed light on the impact of flood events occurring during a mother's pregnancy on the prevalence of stunted children."),
                                             
                                             p("The graphs suggest a striking pattern: stunting prevalence shows variations across different trimesters, and it becomes evident that girls are the most adversely affected by flood exposure. This finding emphasizes the need for focused attention on this vulnerable group"),
                                             
@@ -1748,7 +1742,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                             
                                             p("However, when we shift our focus to all children under five years old, the picture changes slightly. While there isn't a significant difference in stunting prevalence across trimesters, the gender disparity in stunting remains evident. Girls continue to exhibit a higher prevalence of stunting, reaching 39.05%, during the third trimester. On the other hand, boys experience their highest rate of stunting (36.55%) during the second trimester."),
                                             
-                                            p("Taken together, these findings underscore the critical role of the third trimester in determining the occurrence of stunting among children. It becomes increasingly evident that this period of prenatal development is particularly vulnerable to the adverse effects of flood exposure, particularly for girls.
+                                            p("Taken together, these findings underscore the critical role of the third trimester in determining the occurrence of stunting among children. It becomes increasingly evident that this period of prenatal development is associated with flood exposure, particularly for girls.
 "), 
                                           ),align = "Justify"
                                  )),
@@ -1827,7 +1821,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                             p(h4(strong("Description"))),
                                             p("Underweight refers to individuals who have a lower weight compared to their age. It is a significant factor in the health and development of children, making it an important birth outcome. Poor fetal development is among the various factors that can contribute to a child being underweight."),
                                             
-                                            p("To assess how flooding affects the occurrence of underweight children, we conducted an analysis of our data considering gender and age. The graphs illustrate that there are no noticeable differences observed across trimesters for boys and girls under the ages of two and as well as under the age of five. Nevertheless, it is apparent that girls are at a greater risk of experiencing underweight conditions if they are exposed to flooding during prenatal stages. This is evident from their higher rates of underweight in both age groups.")
+                                            p("To assess the association between flooding and underweight prevelence among children, we disagregated our data by gender and age. The graphs illustrate that there are no noticeable differences observed across trimesters for boys and girls under the ages of two and as well as under the age of five. Nevertheless, it is apparent that girls are at a greater risk of experiencing underweight conditions if they are exposed to flooding during prenatal stages. This is evident from their higher rates of underweight in both age groups.")
                                             
                                             
                                           ),align = "Justify"
@@ -1904,7 +1898,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  
                                  tabsetPanel(
                                    tabPanel("Access to Healthcare Facilities",
-
+                                            
                                             #setting the stuff under the child profile tab HERE JADE
                                             fluidRow(style = "margin: 4px;",
                                                      p("", style = "padding-top:10px;"),
@@ -1928,7 +1922,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                             h4(strong("Description")),
                                                             textOutput("ahctext"),
                                                             align = "justify"))),
-                                  
+                                   
                                    
                                    tabPanel("Consumption Patterns and Nutrition",
                                             fluidRow(style = "margin: 4px;",
@@ -1958,7 +1952,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                      
                                             )),
                                    
-                
+                                   
                                    
                                    
                                    tabPanel("Water Quality and Consumption",
@@ -1991,9 +1985,9 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                             )
                                             
                                             
-                                          
+                                            
                                    )
-                                )
+                                 )
                                  
                                  # column(
                                  #   4,
@@ -2008,17 +2002,22 @@ Due to the lack of data, particularly at the divisional level and in substantial
   tabPanel("Discussion/Conclusion", value = "overview",
            fluidRow(style = "margin: 6px;",
                     p("", style = "padding-top:10px;"),
-                    column(12, align = "center",h1(strong("Discussion/Conclusion")),
-                           p("In this study, we examined the effects of flood exposure on child health outcomes in Bangladesh. By combining BIHS data with GFD and CHIRPS data, we unveiled the extent of household flood exposure and its impact on child health outcomes. Our findings indicate that if a mother is exposed to flooding during her first and third trimester during pregnancy, her child is more likely to be stunted. These results align with several other studies, including (Del Ninno, et al., 2005), which reached similar conclusions. However, the association between prenatal flood exposure and underweight prevalence among children was somewhat ambiguous. This weak association was attributed to many other confounding factors, such as the mother's educational attainment and the household's economic status, which can also influence child health outcomes.
-The second partof our study was to investigate the mechanisms through which floods affect child health outcomes. We identified three primary mechanisms: water quality and contamination, consumption patterns and nutrition, and access to healthcare facilities and services. Firstly, since most of the population relies on tube wells and open water sources for drinking water, pregnant mothers and children are exposed to waterborne diseases during and after flood events, as treating water is not a common practice in Bangladesh. Secondly, floods disrupt mothers' consumption patterns and nutrition, as part of our results showed a decline in the percentage of mothers taking critical nutritional supplements like vitamin A, Iron, and Calcium among households facing high-intensity rainfall. Lastly, access to healthcare facilities and services is another defining factor in child health outcomes. In Bangladesh, rural households lack access to healthcare services due to the absence of medical infrastructures and proper roads, making it difficult for them to reach hospitals. Some individuals may have to travel up to 12 km to access the nearest medical facility, which poses significant barriers to timely and adequate healthcare.
-Flood exposure and its impact on child health outcomes are real problems that require initiatives to improve drinking water quality and access to healthcare services during and after flood events. Short-term initiatives can include promoting water treatment practices, such as boiling or filtration, and raising community awareness about the importance of maternal healthcare. Long-term plans involve investing in medical infrastructure and services and improving road connectivity in rural areas, significantly enhancing access to healthcare services. This will facilitate timely medical interventions and improve child health outcomes during floods. Finally, as an ongoing project, we hope to extend our analysis to explore other mechanisms like agricultural and industrial disruptions, displacement, and substandard living conditions that we could not include in this study due to our project’s time constraints.
-
-"),
+                    column(12, align = "Center",h1(strong("Discussion/Conclusion")), br("")),
+                    column(6, align = "justify",
+                           
+                           p("In this study, we examined the effects of flood exposure on child health outcomes in Bangladesh. By combining BIHS data with GFD and CHIRPS data, we unveiled the extent of household flood exposure and its impact on child health outcomes. Our findings indicate that if a mother is exposed to flooding during her first and third trimester during pregnancy, her child is more likely to be stunted. These results align with several other studies, including (Del Ninno, et al., 2005), which reached similar conclusions. However, the association between prenatal flood exposure and underweight prevalence among children was somewhat ambiguous. This weak association was attributed to many other confounding factors, such as the mother's educational attainment and the household's economic status, which can also influence child health outcomes."),
+                           p("The second part of our study was to investigate the mechanisms through which floods affect child health outcomes. We identified three primary mechanisms: water quality and contamination, consumption patterns and nutrition, and access to healthcare facilities and services. Firstly, since most of the population relies on tube wells and open water sources for drinking water, pregnant mothers and children are exposed to waterborne diseases during and after flood events, as treating water is not a common practice in Bangladesh. Secondly, floods disrupt mothers' consumption patterns and nutrition, as part of our results showed a decline in the percentage of mothers taking critical nutritional supplements like vitamin A, Iron, and Calcium among households facing high-intensity rainfall. Thirdly, access to healthcare facilities and services is another defining factor in child health outcomes."),
+                    ),
+                    column(6, align = "justify",
+                           
+                           p("In Bangladesh, rural households lack access to healthcare services due to the absence of medical infrastructures and proper roads, making it difficult for them to reach hospitals. Some individuals may have to travel up to 12 km to access the nearest medical facility, which poses significant barriers to timely and adequate healthcare. Lastly, other mechanisms through which floods affect child health outcomes include agricultural and industrial disruptions, displacement, and substandard living conditions. For example, 69 % of Aus rice production, 82 % of deep water Aman and 91% of transplanted Aman werendestroyed in the 1998 Bangladesh flood, leaving the whole country food insecure ( Del Ninno et al., 2001). Flood related displacement can also lead to unexpected child health outcomes. The  Bangladesh Flood Plan Coordination Organization (1995) estimated that river swellings displaced over 728 000 people between 1981 and 1993 along the Jamuna, Granges-Padma and Meghna rivers. "),
+                           p("Flood exposure and its impact on child health outcomes are real problems that require initiatives to improve drinking water quality and access to healthcare services during and after flood events. Short-term initiatives can include promoting water treatment practices, such as boiling or filtration, and raising community awareness about the importance of maternal healthcare. Long-term plans involve investing in medical infrastructure and services and improving road connectivity in rural areas, significantly enhancing access to healthcare services. This will facilitate timely medical interventions and improve child health outcomes during floods. Finally, as an ongoing project, we hope to extend our analysis to explore the other mechanisms like agricultural disruptions, displacement, and substandard living conditions that we could not include in this study due to our project’s time constraints."),
+                           
                            br("")))),
   tabPanel("References", value = "overview",
            fluidRow(style = "margin: 6px;",
                     p("", style = "padding-top:10px;"),
-                    column(12, align = "center",h1(strong("References"))),
+                    column(12, align = "center",h1(strong("References")), br("")),
                     column(6, align = "justify",
                            
                            p("Abiona, O., & Ajefu, J. B. (2022). The impact of timing of in utero drought shocks on birth outcomes in rural households: evidence from Sierra Leone. Journal of Population Economics, 36(3), 1333–1362. https://doi.org/10.1007/s00148-022-00926-w"),
@@ -2080,7 +2079,7 @@ Flood exposure and its impact on child health outcomes are real problems that re
                            p("Wai, K. M., Mar, O., Kosaka, S., Umemura, M., & Watanabe, C. (2017). Prenatal Heavy Metal Exposure and Adverse Birth Outcomes in Myanmar: A Birth-Cohort Study. International journal of environmental research and public health, 14(11), 1339. https://doi.org/10.3390/ijerph14111339"),
                            p("Yusof, A., Siddique, A. K., Baqui, A. H., Eusof, A., & Zaman, K. (1991). 1988 floods in Bangladesh: pattern of illness and causes of death. Journal of diarrhoeal diseases research, 310-314."),
                            
-                           ))),
+                    ))),
   tabPanel("Our Team", value = "overview",
            fluidRow(style = "margin: 6px;",
                     p("", style = "padding-top:10px;"),
@@ -3528,8 +3527,8 @@ server <- function(input, output, session) {
         guides(fill = FALSE)
       
       graph_distance <- ggplotly(graph_distance)} 
-      
-      # mode of transport
+    
+    # mode of transport
     else if (ahc1() == "trnsprt_ahc") {
       # Create the bar plot using ggplot
       figg <- ggplot(trdata_long, aes(x = Tertile, y = Percentage, fill = Transportation)) +
@@ -3550,7 +3549,7 @@ server <- function(input, output, session) {
       figgplty1 <- ggplotly(figg)
       
       figgplty <- layout(figgplty1, legend = list(traceorder = "reversed"))}
-      #antenatal care
+    #antenatal care
     else if (ahc1() == "ant_care_ahc") {
       # Create the bar plot using ggplot
       carep <- ggplot(pct_care, aes(x = rain_intensity, y = pct, fill = Care)) +
@@ -3681,7 +3680,7 @@ server <- function(input, output, session) {
       ggplotly(ptype_deliv)}
   })
   #TEXT OUPUT PER GRAPH
-
+  
   output$ahctext <- renderText({
     if (ahc1() == "dist_med_ahc") {
       "The distance people travel to reach the nearest medical facility can vary significantly based on factors like geographic location, seasons, and available infrastructure. Rural areas, on average, face farther distances than urban areas.  Due to the intensity of precipitation, some areas will have more health facilities than others where low precipitation regions will have more facilities. The graphs on the left depict this scenario, showing that in areas with intense precipitation, some individuals may have to travel up to 12 km to access the nearest medical facility."}
@@ -3692,7 +3691,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
     else if (ahc1() == "ant_care_ahc") {
       "Our analysis indicates that there is little variation in the frequency of mothers receiving antenatal care across different levels of rainfall intensities. This suggests that women consistently choose to seek antenatal care, regardless of how intense the rain is. Despite potential challenges posed by varying weather conditions, such as heavy rainfall during certain periods, women continue to prioritize their health and the health of their unborn children by seeking antenatal care. This trend underscores the importance of antenatal healthcare among women, reflecting their proactive approach in ensuring the well-being and proper development of their pregnancies."}
     else if (ahc1() == "prim_adv_ahc") {
-      "Approximately 85Percentage of women consistently select licensed healthcare workers as their primary advisors, a preference unaffected by changes in precipitation intensity. This highlights the significant role licensed professionals play in women's healthcare decisions. It emphasizes the value women place on receiving proper care from these qualified experts."}
+      "Approximately 85 percentage of women consistently select licensed healthcare workers as their primary advisors, a preference unaffected by changes in precipitation intensity. This highlights the significant role licensed professionals play in women's healthcare decisions. It emphasizes the value women place on receiving proper care from these qualified experts."}
     else if (ahc1() == "num_visit_ahc") {
       "As precipitation intensity increases, there is a noticeable rise in home or non-facility births. The difficulty in organizing delivery locations and securing skilled personnel during or after disasters contributes to this trend. Consequently, maternal healthcare in rural Bangladesh faces disruptions during flood events. To address this issue, implementing measures for disaster preparedness and ensuring healthcare continuity becomes essential to provide adequate support to expectant mothers and newborns."}
     else if (ahc1() == "deliv_loc_ahc") {
@@ -3701,8 +3700,8 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
       "As rainfall intensity increases, we observe a rise in the number of family members present during deliveries. Despite this increase, licensed healthcare workers remain the most prominent individuals attending these deliveries. Interestingly, when referring to the rise in home births correlating with the consistent percentage of licensed health workers present during deliveries, it suggests that these professionals are being called to homes for deliveries instead of attending to them in health facilities."}
     else if (ahc1() == "lpp_ahc") {
       "In summary, licensed doctors were consistently present during home deliveries. Data was grouped into Public, Community, NGO, and Private services. Public services, government-funded with doctors from public hospitals, are highly subsidized. Surprisingly, higher precipitation intensity leads to fewer public health workers during deliveries, but NGOs step in to fill the gap. However, NGO services may face quality challenges due to limited funding, equipment, and facilities compared to public doctors. Healthcare access evaluation should consider these factors across regions."}
-    })
-
+  })
+  
   
   
   
@@ -3833,7 +3832,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         easy_plot_title_size(size = 15)+
         guides(fill = guide_legend(reverse = TRUE))
       ggplotly(fig_iron)
-
+      
     } else if (input$cpndrop == "vitamin_A") {
       vit_a_graph <- ggplot(vitA, aes(x= Intensity, y= Percentage, fill = Supplement))+
         geom_bar(stat = "identity", position = "dodge") +
@@ -3916,22 +3915,16 @@ We also find that the knowledge score about introducing liquids and foods beside
 Among the lowest of scores lie the situational questions asking about diarrhea and if a child under 6 months should be given water in hot weather conditions. We see that the general trend in these questions, keeping in mind they are already low, declines as precipitation intensity increases. This becomes a risk for the child’s immune system  as they are already drinking water before the recommended age  and additionally when flooding increases and could contaminate drinking water without proper filtration."
     }
   })
-  
-  output$flood <- renderLeaflet({
-    
-    
-    flood1<- leaflet(flood_coordinates1)%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
-      addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = ~popups, group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
-      addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
-      setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
-    
-    
-    flood1
-    
-  })
+  # Execute JavaScript code to add zoom effect on image hover
+  shinyjs::runjs("
+    $(document).ready(function() {
+      $('#img1, #img2, #img3').hover(function() {
+        $(this).css('transform', 'scale(1.5)'); // Zoom in to 150% on hover
+      }, function() {
+        $(this).css('transform', 'scale(1)'); // Reset to original size when not hovering
+      });
+    });
+  ")
 }
 
-
 shinyApp(ui = ui, server = server)
-
-
