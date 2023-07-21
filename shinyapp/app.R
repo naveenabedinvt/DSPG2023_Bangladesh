@@ -3732,13 +3732,13 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         
         scale_fill_viridis_d() +
         
-        theme_classic() +
-        easy_y_axis_title_size(size = 13)+
-        scale_y_continuous(limits = c(0, 100))+
-        easy_x_axis_title_size(size = 13)+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 75))+
+        easy_x_axis_title_size(size = 15)+
         easy_plot_legend_title_size(size = 13)+
         easy_plot_legend_size(size = 10)+
-        easy_plot_title_size(size = 17)+
+        easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 95))
       ggplotly(d_water, tooltip = c("text"))
       
