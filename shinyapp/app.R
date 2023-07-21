@@ -1205,7 +1205,7 @@ The country is characterized by a multi-tiered administrative structure that hel
 
 Pregnant women face greater disadvantages when floods strike, increasing health risks, limiting access to healthcare, and causing inadequate nutrition. These factors further jeopardize their well-being and the well being of their unborn child. Studies have shown that prenatal exposure to natural disasters can cause significant health effects on the child such as stunting and underweight. With climate change influencing flooding prevalence, child health outcomes may become worsened if not addressed now. 
 
-Our research focuses on two interconnected questions: (1) Does prenatal exposure to flooding adversely affect child health outcomes, and (2) What are the mechanisms through which floods affect child health outcomes. Floods have been found to have correlations with worsened child health outcomes such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy can have varying effects on fetal development. The second part of our research aims to examine the mechanisms through which flooding affects access to nutrition and healthcare services as street and road access become limited (Aggarwal, 2018). When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Therefore, in this study, we will observe the effects of flood exposure during pregnancy on child health outcomes.
+Our research focuses on two interconnected questions: (1) Is prenatal exposure to flooding associated with child health outcomes?, and (2) What are the mechanisms through which floods affect child health outcomes. Floods have been found to have correlations with worsened child health outcomes such as lower birth weight, cognitive functions, and height (Mallett, 2017). Additionally, the timing of flood exposure during pregnancy can have varying effects on fetal development. The second part of our research aims to examine the mechanisms through which flooding affects access to nutrition and healthcare services as street and road access become limited (Aggarwal, 2018). When flooding occurs, accessing clean water becomes increasingly more difficult as water gets contaminated. Therefore, in this study, we will observe the effects of flood exposure during pregnancy on child health outcomes.
 ", align = "justify"),
                            h3(strong("Objectives:")), 
                            p("During our 10-week program, our objective was to complete a preliminary study of prenatal exposure to flooding and child health outcomes. We accomplished this by combining flood statistics, from remotely sensed satellite data, with household-level survey data to produce a collection of descriptive statistics detecting trends. This allowed us to gain a comprehensive understanding of how flooding impacts a woman at the individual level. Our team also explored the mechanisms through which floods affect child health outcomes by identifying possible channels from past research work. 
@@ -1587,6 +1587,7 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         "),
                         ),
 column(width = 6, align = "center",
+<<<<<<< HEAD
        img(src = 'gfd_1.jpg', align = 'center', width = "60%", height = "auto"),
        p("This image shows households in the survey with at least one child under the age of 5 years old
 "),
@@ -1606,6 +1607,16 @@ fluidRow(
                   withSpinner(leafletOutput("flood", height = "400px", width = "70%"))),
 )
 ),
+=======
+       img(src = 'gfd_map1.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows sampled households with at least one child under 5 y/o"),
+       img(src = 'gfd_map2.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows flood extent for a flood event from April - May 2016"),
+       img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
+       p("The map shows buffers, highlighting affected households")
+       
+                      ))),
+>>>>>>> c7a356844c6d827d760efb4888891a84732cf742
                       
 tabPanel("CHIRPS",
          fluidRow(style = "margin: 6px;",
@@ -1638,7 +1649,11 @@ In our research, we are utilizing CHIRPS to assess precipitation levels in rural
                   ")
            ),
            column(width = 6, align = "center",
-                  img(src = 'CHIRPS.png', align = 'right', width = "100%", height = "auto"),
+                  img(src = 'chirpsmap2.png', align = 'center', width = "60%", height = "auto"),
+                  p("The map shows buffers around sampled households"),
+                
+                  img(src = 'chirpsmap1.png', align = 'center', width = "60%", height = "auto"),
+                  p("The show recorded rain data for the year 2017")
 
            )
          )
@@ -1677,8 +1692,11 @@ Due to the lack of data, particularly at the divisional level and in substantial
 ")
                                ),
                         column(6, align = "center",
-                               img(src = 'put image1', align = 'right', width = "100%", height = "auto"),
-                               img(src = 'put image2', align = 'right', width = "100%", height = "auto")
+                               img(src = 'sentinelmap0.png', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows missing data for Northwestern divisions"),
+                               
+                               img(src = 'sentinelmap3.png', align = 'center', width = "60%", height = "auto"),
+                               p("The map shows missing data for central divisions"),
                                )
                       )
              )
@@ -1885,13 +1903,13 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  # 
                                  
                                  tabsetPanel(
-                                   tabPanel("Access to healthcare facilities",
+                                   tabPanel("Access to Healthcare Facilities",
 
                                             #setting the stuff under the child profile tab HERE JADE
                                             fluidRow(style = "margin: 4px;",
                                                      p("", style = "padding-top:10px;"),
                                                      column(8,
-                                                            selectInput("ahcdrop", "Select Access to Healthcare:", width = "100%",
+                                                            selectInput("ahcdrop", "Select Access to Healthcare Variable Below:", width = "100%",
                                                                         choices = c("Household Distance from Health Center " = "dist_med_ahc",
                                                                                     "Mode of Transportation" = "trnsprt_ahc",
                                                                                     "Antenatal Care" = "ant_care_ahc",
@@ -1948,7 +1966,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                      p("", style = "padding-top:10px;"),
                                                      
                                                      column(8, align = "justified",
-                                                            selectInput("waterdrop", "Select water quality and consumption:", width = "100%", choices = c(
+                                                            selectInput("waterdrop", "Select Water Quality and Consumption Variable Below:", width = "100%", choices = c(
                                                               "Sources of Drinking Water" = "source_drinking_water",
                                                               "Water Treatment" = "water_treatment"
                                                               
@@ -3715,14 +3733,13 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         
         scale_fill_viridis_d() +
         
-        theme_classic() +
-        easy_y_axis_title_size(size = 13)+
-        scale_y_continuous(limits = c(0, 100))+
-        easy_x_axis_title_size(size = 13)+
+        theme_classic()+
+        easy_y_axis_title_size(size = 15)+
+        scale_y_continuous(limits = c(0, 75))+
+        easy_x_axis_title_size(size = 15)+
         easy_plot_legend_title_size(size = 13)+
         easy_plot_legend_size(size = 10)+
-        easy_plot_title_size(size = 17)+
-        coord_cartesian(ylim = c(0, 95))
+        easy_plot_title_size(size = 15)
       ggplotly(d_water, tooltip = c("text"))
       
     }
@@ -3736,7 +3753,7 @@ The graphs on the left categorize transportation into five groups: Motor vehicle
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         easy_x_axis_title_size(size = 15)+
-        easy_plot_title_size(size = 16)+
+        easy_plot_title_size(size = 15)+
         # easy_center_title()+
         labs(title = "Households Without Treated Drinking Water by Division",
              x= "Division",
