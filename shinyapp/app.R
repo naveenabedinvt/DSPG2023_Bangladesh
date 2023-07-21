@@ -72,6 +72,44 @@ data_mem <- read_dta(paste0(getwd(),"/data/BIHS2018-19Members_Jun3.dta"))
 data <- read_dta(paste0(getwd(),"/data/BIHS2018-19MC_Jun4.dta"))
 chirpsdata<- read_dta(paste0(getwd(),"/data/BIHS2018-19_MC_CHIRPS_Jul5_IDFormatted.dta"))
 
+#LEAFLET
+
+# Create an empty list to store the data frames
+all_flood_coordinates <- list()
+
+for (i in 1:24) {
+  file_path <- paste0(getwd(), "/data/leaflet_graphs/flood_coordinates", i, ".csv")
+  all_flood_coordinates[[i]] <- read.csv(file_path)
+}
+
+# Assuming you have already created the `all_flood_coordinates` list with the data frames
+
+# Create an empty list to store the popups
+all_popups <- list()
+
+for (i in 1:24) {
+  popup <- lapply(
+    paste("<strong>Start: </strong>",
+          all_flood_coordinates[[i]]$start,
+          "<br />",
+          "<strong>End:</strong>",
+          all_flood_coordinates[[i]]$end,
+          "<br />",
+          "<strong>Severity:</strong>",
+          all_flood_coordinates[[i]]$severity,
+          "<br />",
+          "<strong>Cause:</strong>",
+          all_flood_coordinates[[i]]$cause,
+          "<br />"),
+    htmltools::HTML
+  )
+  
+  # Store the popup in the list
+  all_popups[[i]] <- popup
+}
+
+pal <- colorFactor(c("red", "navy"), domain = c("All Households", "Flood Affected")) 
+
 
 #Age by Gender
 
@@ -1610,7 +1648,12 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                                img(src = 'gfd_map3.jpg', align = 'center', width = "60%", height = "auto"),
                                p("The map shows buffers, highlighting affected households")
                                
-                        ))),
+                        )
+                        ), 
+                      fluidRow(  
+                          column(11, align = "left",
+                                 withSpinner(leafletOutput("flood", height = "400px", width = "70%"))),
+                        )),
              
              tabPanel("CHIRPS",
                       fluidRow(style = "margin: 6px;",
@@ -3925,6 +3968,19 @@ Among the lowest of scores lie the situational questions asking about diarrhea a
       });
     });
   ")
-}
+  output$flood <- renderLeaflet({
+    
+    
+    flood1<- leaflet(all_flood_coordinates[[1]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+      addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[1]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+      addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+      setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+    
+    
+    flood1
+    
+  })
+  
+  }
 
 shinyApp(ui = ui, server = server)
