@@ -1645,10 +1645,10 @@ In our research, we are utilizing CHIRPS to assess precipitation levels in rural
                   ")
            ),
            column(width = 6, align = "center",
-                  img(src = 'chirps1.png', align = 'center', width = "60%", height = "auto"),
+                  img(src = 'chirps2.png', align = 'center', width = "60%", height = "auto"),
                   p(""),
                 
-                  img(src = 'chirps2.png', align = 'center', width = "60%", height = "auto"),
+                  img(src = 'chirps1.png', align = 'center', width = "60%", height = "auto"),
 
            )
          )
