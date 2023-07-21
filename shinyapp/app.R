@@ -1828,7 +1828,17 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           ),align = "Justify"
                                  )),
                         tabPanel("Regression Results",
-                                 p("This is sub-tab 2.2.")
+                                 br(""),
+                                 fluidRow(
+                                 column(width = 6, align = "center",
+                                        img(src = 'stuntingR.png', align = 'center', width = "100%", height = "auto"),
+                                       ),
+                                        column(6, 
+                                        img(src = 'stunting1.png', align = 'center', width = "100%", height = "auto")
+                                       
+                                        
+                                 ))
+                                 
                         )
                       )
              ),
@@ -1906,7 +1916,17 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           ),align = "Justify"
                                  )),
                         tabPanel("Regression Results",
-                                 p("This is sub-tab 2.2.")
+                                 br(""),
+                                 fluidRow(
+                                   column(width = 6, align = "center",
+                                          img(src = 'underweightR.png', align = 'center', width = "100%", height = "auto"),
+                                          ),
+                                   column(6, 
+                                          img(src = 'underweight1.png', align = 'center', width = "100%", height = "auto")
+                                          
+                                          
+                                   ))
+                                 
                         )
                         
                         
