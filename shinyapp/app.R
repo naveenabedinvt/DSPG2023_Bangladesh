@@ -1214,7 +1214,7 @@ The country is characterized by a multi-tiered administrative structure that hel
 ", align = "justify")),
                     column(4,
                            h2(strong("Goals and Objectives")),
-                           h3(strong("Research Question:")), 
+                           h3(strong("Research Questions:")), 
                            p("Bangladesh is one of the most flood-prone countries in the world. Around 60% of the population reside in rural areas. With limited infrastructure and access to resources flooding poses significant threats to their livelihood and well-being. 
 
 Pregnant women face greater disadvantages when floods strike, increasing health risks, limiting access to healthcare, and causing inadequate nutrition. These factors further jeopardize their well-being and the well being of their unborn child. Studies have shown that prenatal exposure to natural disasters can cause significant health effects on the child such as stunting and underweight. With climate change influencing flooding prevalence, child health outcomes may become worsened if not addressed now. 
@@ -1246,35 +1246,48 @@ In addition to the survey data we will use Global Flood Database (GFD), Climate 
                            carousel(
                              id = "myCarousel", width = 80,
                              carouselItem(
-                               tags$img(src = "hh.jpg", width ="100%")
+                               tags$img(src = "hh.jpg", width ="100%"),
+                               p("Field in Bangladesh, fotomatik (2018)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh1.jpg", width ="100%")
+                               tags$img(src = "hh1.jpg", width ="100%"),
+                               p("Rice Paddy in Bangladesh, fotomatik (2018)")
                              ),
                              carouselItem (
-                               tags$img(src = "hh2.jpg", width = "100%")
+                               tags$img(src = "hh2.jpg", width = "100%"),
+                               p("Woman Protest in Bangladesh, 19661338 (2021)")
+                              
                              ),
                              carouselItem(
-                               tags$img(src = "hh3.jpg", width ="100%")
+                               tags$img(src = "hh3.jpg", width ="100%"),
+                               p("Workers in a Field in Bangladesh, 19661338 (2021)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh4.jpg", width ="100%")
+                               tags$img(src = "water12.jpg", width ="100%"),
+                               p("A woman Drinking Safe Water in Gazipur, Bangladesh, Sakib Imtiaz (unknown date)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh5.jpg", width ="100%")
+                               tags$img(src = "hh5.jpg", width ="100%"),
+                               p("Family in Front of Their Flooded House in Bangladesh, 19661338 (2021)")
                              ),
                              carouselItem(
-                               tags$img(src = "water1.jpg", width ="100%")
+                               tags$img(src = "dhaka.jpg", width ="100%"),
+                               p("CNG scooters in Dhaka, Bangladesh, Volunteer Marek (2012)")
                                ##end of carousel code 
                              ),
                              carouselItem(
-                               tags$img(src = "water2.jpg", width ="100%")
+                               tags$img(src = "rickshaw.jpg", width ="100%"),
+                               p("Delivery rickshaw in Dhaka, Bangladesh, David Brewer (2013)")
                                
                              ),
                              carouselItem(
-                               tags$img(src = "water3.jpg", width ="100%")),
+                               tags$img(src = "Washing.png", width ="100%"),
+                             p("Women at a Village Pond in Matlab, Bangladesh, Washing Utensils and Vegetables, Anwar Huq (2003)")
+                              ),
                              carouselItem(
-                               tags$img(src = "water4.jpg", width ="100%")))),
+                               tags$img(src = "tricicrcle.jpg", width ="100%"),
+                               p("Two Passengers Tricircle Rickshaw in Daka, Bangladesh,  Isabelle Ducas (2011)")
+                               ))),
                     
                     
                     column(6,
@@ -1512,7 +1525,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                            
                                                   ))))),
                       fluidPage(column(12, align = "right",
-                                       p("Source:",style = "font-size:12px;"))
+                                       p("",style = "font-size:12px;"))
                       )),
              tabPanel("Mother and Child Profile", value = "overview",
                       fluidRow(style = "margin: 6px;",
@@ -1564,7 +1577,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                           )))
                                       ))),
                       fluidPage(column(12, align = "right",
-                                       p("Source:",style = "font-size:12px;"))
+                                       p("",style = "font-size:12px;"))
                       )
              )
              
@@ -1792,13 +1805,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           ),
                                           
                                           br(""),
-                                          
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          
+                                      
                                           column(
                                             4,
                                             p(h4(strong("Description"))),
@@ -1831,14 +1838,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                             withSpinner(plotlyOutput("graph4", height = "500px", width ="100%")),
                                           ),
                                           br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
-                                          br(""),
+                                         
                                           column(
                                             4,
                                             p(h4(strong("Description"))),
@@ -1890,13 +1890,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           column(
                                             4,
                                             br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
+                                           
                                             p(h4(strong("Description"))),
                                             p("Underweight refers to individuals who have a lower weight compared to their age. It is a significant factor in the health and development of children, making it an important birth outcome. Poor fetal development is among the various factors that can contribute to a child being underweight."),
                                             
@@ -1923,16 +1917,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           column(
                                             4,
                                             br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
-                                            br(""),
+                                           
                                             p(h4(strong("Description"))),
                                             p("Precipitation intensities during each trimester does not reveal any evident correlation with the prevalence of underweight among children of both genders. Moreover, disaggregating the data by age does not appear to significantly alter the findings. Despite the lack of association between rainfall intensity and underweight, it is alarming to observe high rates of underweight in both genders, surpassing 20 percent as depicted in the graphs on the left. This is a matter of great concern."), 
                                           ),align = "Justify"
@@ -2005,9 +1990,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                             withSpinner(plotlyOutput("ahc", height = "500px", width ="100%"))),
                                                      column(4,
                                                             br(""),
-                                                            br(""),
-                                                            br(""),
-                                                            br(""),
+                                                            
                                                             h4(strong("Description")),
                                                             textOutput("ahctext"),
                                                             align = "justify"))),
@@ -2030,11 +2013,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                             withSpinner(plotlyOutput("cpn", height = "500px", width ="100%"))
                                                      ),
                                                      br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     
+                                                  
                                                      column(4,
                                                             h4(strong("Description")),
                                                             textOutput("cpntext"), align = "justify")
@@ -2062,11 +2041,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                                             withSpinner(plotlyOutput("waters", height = "500px", width ="100%"))
                                                      ),
                                                      br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     br(""),
-                                                     
+                                                   
                                                      column(4,
                                                             h4(strong("Description")),
                                                             textOutput("descw"), align = "Justify")
@@ -2176,13 +2151,13 @@ Due to the lack of data, particularly at the divisional level and in substantial
                            p(""),
                            br(""),
                            h4(strong("VT Data Science for the Public Good"), align = "center"),
-                           p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
+                           p("The", a(href = 'https://datascienceforthepublicgood.org/', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
                              "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics. '), 
                              "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
                                      around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to 
                                      determine how information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, 
                                      how to apply, and our annual symposium, please visit", 
-                             a(href = 'https://aaec.vt.edu/content/aaec_vt_edu/en/academics/undergraduate/beyond-classroom/dspg.html#select=1.html', 'the official VT DSPG website.', target = "_blank")),
+                             a(href = 'https://aaec.vt.edu/academics/undergraduate/dspg.html', 'the official VT DSPG website.', target = "_blank")),
                            p("", style = "padding-top:10px;")
                     ),
                     fluidRow(style = "margin-left: 100px; margin-right: 100px;",
@@ -2219,19 +2194,19 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                     img(src = "dr.chen.jpg", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
                                     
                                     p("", style = "padding-top:10px;"), 
-                                    p(a(href = "https://aaec.vt.edu/people/faculty/holmes-chanita.html", 'Dr. Susan Chen,', target = '_blank'), " Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
+                                    p(a(href = "https://aaec.vt.edu/people/faculty/chen-susan.html", 'Dr. Susan Chen,', target = '_blank'), " Ph.D., is an Associate Professor in the Department of Agricultural and Applied Economics (AAEC) at Virginia Tech. She serves as the Director of the Data Science for Public Good (DSPG) program, overseeing its operations and initiatives. Additionally, she holds the position of Graduate Program Director, guiding and supporting students in their academic and research endeavors. ") , 
                                     
                                     p("", style = "padding-top:10px;")
                              )) ,
                     fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                              h4(strong("Project Stakeholder")),
                              img(src = "IFPRILogo.png", style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;", width = "200px"),
-                             p(a(href = 'https://www.lcps.org/outreachservices', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
+                             p(a(href = 'https://www.linkedin.com/in/mehrab-bakhtiar-phd-93762012?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BPeDz5pGXRMyN59xZnNyRrA%3D%3D', 'Dr. Mehrab Bakhtiar', target = '_blank'), "(International Food Policy Research Institute (IFPRI))"),
                              
-                             p("", style = "padding-top:10px;"),
-                             h4(strong("Acknowledgments")) ,
-                             p("We would like to thank (---) officials for providing us with data for our project. "),
-                             p("", style = "padding-top:10px;")
+                             # p("", style = "padding-top:10px;"),
+                             # h4(strong("Acknowledgments")) ,
+                             # p("We would like to thank (---) officials for providing us with data for our project. "),
+                             # p("", style = "padding-top:10px;")
                     )
            )
            
@@ -2265,7 +2240,7 @@ server <- function(input, output, session) {
              y = "Average Household Size")+
         easy_remove_legend()+
         scale_fill_viridis_d() +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         
         ylim(0,7)
       
@@ -2288,7 +2263,7 @@ server <- function(input, output, session) {
              y = "Dependency Ratio")+
         scale_fill_viridis_d() + 
         easy_remove_legend()+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 0.5)
       
       ggplotly(p_depr, tooltip = c("text"))
@@ -2309,7 +2284,7 @@ server <- function(input, output, session) {
              x= "Division",
              y = "Percentage")+
         scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0,100)
       ggplotly(p_h2o)
       
@@ -2362,7 +2337,7 @@ server <- function(input, output, session) {
              x= "Division",
              y = "Average Age")+
         scale_fill_manual(values = c("Male" = "#21918c", "Female" = "#cc4778")) +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0, 35)
       
       ggplotly(pgg, tooltip = c("text"))
@@ -2388,7 +2363,7 @@ server <- function(input, output, session) {
         labs(title = "Male Age Distribution by Division",
              x= "Division",
              y = "Percentage")+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,50)
       ggplotly(p_ma, tooltip = c("text"))
@@ -2410,7 +2385,7 @@ server <- function(input, output, session) {
                                      "#5ec962", "80+ yrs" = "#f6c2f8"))+
         # easy_all_text_colour("#630031") +
         labs(title = "Female Age Distribution by Division", x = "Division", y = "Percentage") +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0, 50)
       ggplotly(p_fe, tooltip = c("text"))
@@ -2431,7 +2406,7 @@ server <- function(input, output, session) {
                                      "11-17 yrs" = "#3a528b", "18-30 yrs" = "#21918c", 
                                      "31-65 yrs" = "#ff7f00","66-80 yrs" = "#bd93f5", 
                                      "#5ec962", "80+ yrs" = "#f6c2f8"))+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ggeasy::easy_add_legend_title("Age Range")+
         ylim(0,100)
       ggplotly(p_hhh, tooltip = c("text"))
@@ -2534,7 +2509,7 @@ server <- function(input, output, session) {
         easy_x_axis_title_size(size = 15)+
         easy_plot_title_size(size = 16)+
         easy_center_title()+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 70)
       
@@ -2557,7 +2532,7 @@ server <- function(input, output, session) {
         scale_fill_manual(values = c("No education" = "#440154", "Less than primary" = "#fde725",
                                      "Completed primary" = "#3a528b", "Completed secondary" = "#21918c", 
                                      "Higher" = "#ff7f00"))+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300) +
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
         ggeasy::easy_add_legend_title("Education Level")+
         ylim(0, 50)  
       
@@ -2610,7 +2585,7 @@ server <- function(input, output, session) {
              x= "Division",
              y = "Percentage")+
         scale_fill_viridis_d() +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         easy_remove_legend()+
         ylim(0,20)
       ggplotly(p_ppp, tooltip = c("text")) 
@@ -2656,9 +2631,9 @@ server <- function(input, output, session) {
                                      "Large: 2.5+ acres" = "#ff7f00"))+
         ggeasy::easy_add_legend_title("Farm Size")+
         # ggeasy::easy_rotate_labels(which = "x", angle = 300) +
-        ylim(0, 50, tooltip = c("text"))  
+        ylim(0, 50 )  
       
-      ggplotly(p_land)
+      ggplotly(p_land, tooltip = c("text"))
     }
     else if (hheco() == "electricity_accessibility") {
       p_el<-ggplot (eletri,
@@ -2674,7 +2649,7 @@ server <- function(input, output, session) {
              y = "Percentage")+
         
         scale_fill_viridis_d() +
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         easy_remove_legend()+
         ylim(0,30)
       ggplotly(p_el)
@@ -2696,7 +2671,7 @@ server <- function(input, output, session) {
              x= "Division",
              y = "Percentage")+
         easy_remove_legend()+
-        ggeasy::easy_rotate_labels(which = "x", angle = 300)+
+        # ggeasy::easy_rotate_labels(which = "x", angle = 300)+
         ylim(0,100)
       ggplotly(p_ih2o, tooltip = c("text"))
     }
@@ -3621,11 +3596,11 @@ server <- function(input, output, session) {
     else if (ahc1() == "trnsprt_ahc") {
       # Create the bar plot using ggplot
       figg <- ggplot(trdata_long, aes(x = Tertile, y = Percentage, fill = Transportation)) +
-        geom_bar(stat = "identity") +
+        geom_bar(stat = "identity", positon = "stack") +
         scale_fill_manual(values = colors) +
         labs(x = "Precipitation Intensity", y = "Percentage", fill = "Tranportation") +
         ggtitle("Transportation Distribution by Precipitation Intensity") +
-        coord_flip()+
+        # coord_flip()+
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         scale_y_continuous(limits = c(0, 100))+
