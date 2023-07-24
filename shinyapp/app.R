@@ -1651,9 +1651,34 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         column(12, 
                                h3("Flood Events"))),
                          fluidRow(
-                           column(11, align = "center",
-                                 
-                                 withSpinner(leafletOutput("flood", height = "600px", width = "60%"))),
+                           column(12, align = "center", 
+                                  selectInput("leafletdrop", "Select Flood Event:", width = "60%",
+                                              choices = c("October - November, 2013" = "flood_start_date1",
+                                                          "June 2014" = "flood_start_date2",
+                                                          "August - September, 2014 - Event 1" = "flood_start_date3",
+                                                          "August - September, 2014 - Event 2" = "flood_start_date4",
+                                                          "August - September, 2014 - Event 3" = "flood_start_date5",
+                                                          "August - September, 2014 - Event 4" = "flood_start_date6",
+                                                          "September - October, 2014" = "flood_start_date7",
+                                                          "June 2015" = "flood_start_date8", 
+                                                          "July - August, 2015 - Event 1" = "flood_start_date9",
+                                                          "July - August, 2015 - Event 2" = "flood_start_date10",
+                                                          "August - September, 2015" = "flood_start_date11",
+                                                          "April - May, 2016" = "flood_start_date12",
+                                                          "June - August, 2016" = "flood_start_date13",
+                                                          "July - August, 2016 - Event 1" = "flood_start_date14",
+                                                          "July - August, 2016 - Event 2" = "flood_start_date15",
+                                                          "March - April, 2017" = "flood_start_date16", 
+                                                          "June - July, 2017" = "flood_start_date17",
+                                                          "July - August, 2017" = "flood_start_date18",
+                                                          "August, 2017 - Event 1" = "flood_start_date19",
+                                                          "August, 2017 - Event 2" = "flood_start_date20",
+                                                          "June, 2018" = "flood_start_date21",
+                                                          "August, 2018" = "flood_start_date22",
+                                                          "July - August, 2018" = "flood_start_date23",
+                                                          "September, 2018" = "flood_start_date24")),
+                                  br(""),
+                                  withSpinner(leafletOutput("flood", height = "500px", width ="60%"))),
                         )),
              
              tabPanel("CHIRPS",
@@ -3989,18 +4014,233 @@ Among the lowest of scores lie the situational questions asking about diarrhea a
       });
     });
   ")
+ # output$flood <- renderLeaflet({
+    
+    
+  #  flood1<- leaflet(all_flood_coordinates[[1]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+  #    addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[1]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+  #    addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+ #     setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+    
+    
+  #  flood1
+    
+ # })
+  
+  flood_e <- reactive({input$leafletdrop})
+  #matching with ui for ahc
   output$flood <- renderLeaflet({
     
+    if (flood_e() == "flood_start_date1") {
+      
+      flood1<- leaflet(all_flood_coordinates[[1]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[1]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood1
+      } 
     
-    flood1<- leaflet(all_flood_coordinates[[1]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
-      addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[1]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
-      addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
-      setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+    # mode of transport
+    else if (flood_e() == "flood_start_date2") {
+      # Create the bar plot using ggplot
+      flood2<- leaflet(all_flood_coordinates[[2]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[2]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood2}
+    #antenatal care
+    else if (flood_e() == "flood_start_date3") {
+      # Create the bar plot using ggplot
+      flood3<- leaflet(all_flood_coordinates[[3]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[3]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood3}
+    else if (flood_e() == "flood_start_date4") {
+      flood4 <- leaflet(all_flood_coordinates[[4]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[4]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood4}
     
+    else if (flood_e() == "flood_start_date5") {
+      flood5 <- leaflet(all_flood_coordinates[[5]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[5]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood5}
+    else if (flood_e() == "flood_start_date6") {
+      flood6 <- leaflet(all_flood_coordinates[[6]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[6]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood6}
+    else if (flood_e() == "flood_start_date7") {
+      flood7 <- leaflet(all_flood_coordinates[[7]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[7]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood7}
+    else if (flood_e() == "flood_start_date8") {
+      flood8 <- leaflet(all_flood_coordinates[[8]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[8]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood8}
     
-    flood1
+    else if (flood_e() == "flood_start_date9") {
+      flood9 <- leaflet(all_flood_coordinates[[9]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[9]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood9}    
+    
+    else if (flood_e() == "flood_start_date10") {
+        flood10 <- leaflet(all_flood_coordinates[[10]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+          addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[10]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+          addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+          setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+        
+        
+        flood10}
+    else if (flood_e() == "flood_start_date11") {
+          flood11 <- leaflet(all_flood_coordinates[[11]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+            addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[11]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+            addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+            setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+          
+          
+          flood11}    
+    
+    else if (flood_e() == "flood_start_date12") {
+            flood12 <- leaflet(all_flood_coordinates[[12]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+              addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[12]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+              addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+              setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+            
+            
+            flood12}    
+    
+    else if (flood_e() == "flood_start_date13") {
+              flood13 <- leaflet(all_flood_coordinates[[13]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[13]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+              
+              
+              flood13}    
+    
+    else if (flood_e() == "flood_start_date14") {
+                flood14 <- leaflet(all_flood_coordinates[[14]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                  addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[14]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                  addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                  setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                
+                
+                flood14}
+    else if (flood_e() == "flood_start_date15") {
+                  flood15 <- leaflet(all_flood_coordinates[[15]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                    addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[15]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                    addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                    setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                  
+                  
+                  flood15}
+    else if (flood_e() == "flood_start_date16") {
+                    flood16 <- leaflet(all_flood_coordinates[[16]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                      addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[16]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                      addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                      setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                    
+                    
+                    flood16}    
+    else if (flood_e() == "flood_start_date17") {
+                      flood17 <- leaflet(all_flood_coordinates[[17]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[17]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                      
+                      
+                      flood17}    
+    else if (flood_e() == "flood_start_date18") {
+                        flood18 <- leaflet(all_flood_coordinates[[18]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                          addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[18]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                          addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                          setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                        
+                        
+                        flood18}    
+    else if (flood_e() == "flood_start_date19") {
+                          flood19 <- leaflet(all_flood_coordinates[[19]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                            addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[19]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                            addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                            setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                          
+                          
+                          flood19}    
+    else if (flood_e() == "flood_start_date20") {
+                            flood20 <- leaflet(all_flood_coordinates[[20]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+                              addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[20]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+                              addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+                              setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+                            
+                            
+                            flood20}
+    
+    else if (flood_e() == "flood_start_date21") {
+      flood21 <- leaflet(all_flood_coordinates[[21]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[21]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood21}
+    
+    else if (flood_e() == "flood_start_date22") {
+      flood22 <- leaflet(all_flood_coordinates[[22]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[22]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood22}
+    else if (flood_e() == "flood_start_date23") {
+      flood23 <- leaflet(all_flood_coordinates[[23]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[23]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood23}
+    else if (flood_e() == "flood_start_date24") {
+      flood24 <- leaflet(all_flood_coordinates[[24]])%>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>% 
+        addCircleMarkers(lng = ~`longnum`, lat = ~`latnum`, popup = all_popups[[24]], group = ~as.factor(flood), radius = 2, color = ~as.factor(pal(flood))) %>%
+        addLayersControl(overlayGroups = ~as.factor(flood) , options= layersControlOptions(collapsed = FALSE)) %>%
+        setView(89.8, 23.7, zoom = 6.5) %>% addLegend("bottomright",colors=c("red","navy"),labels=c("All Households","Flood Affected"))
+      
+      
+      flood24}
     
   })
+  
   
   }
 
