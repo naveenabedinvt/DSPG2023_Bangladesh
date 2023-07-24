@@ -1214,7 +1214,7 @@ The country is characterized by a multi-tiered administrative structure that hel
 ", align = "justify")),
                     column(4,
                            h2(strong("Goals and Objectives")),
-                           h3(strong("Research Question:")), 
+                           h3(strong("Research Questions:")), 
                            p("Bangladesh is one of the most flood-prone countries in the world. Around 60% of the population reside in rural areas. With limited infrastructure and access to resources flooding poses significant threats to their livelihood and well-being. 
 
 Pregnant women face greater disadvantages when floods strike, increasing health risks, limiting access to healthcare, and causing inadequate nutrition. These factors further jeopardize their well-being and the well being of their unborn child. Studies have shown that prenatal exposure to natural disasters can cause significant health effects on the child such as stunting and underweight. With climate change influencing flooding prevalence, child health outcomes may become worsened if not addressed now. 
@@ -1525,7 +1525,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                            
                                                   ))))),
                       fluidPage(column(12, align = "right",
-                                       p("Source:",style = "font-size:12px;"))
+                                       p("",style = "font-size:12px;"))
                       )),
              tabPanel("Mother and Child Profile", value = "overview",
                       fluidRow(style = "margin: 6px;",
@@ -1577,7 +1577,7 @@ In our study we will focus mainly on modules A, B, S, R, W, and Y. Module A prov
                                                           )))
                                       ))),
                       fluidPage(column(12, align = "right",
-                                       p("Source:",style = "font-size:12px;"))
+                                       p("",style = "font-size:12px;"))
                       )
              )
              
