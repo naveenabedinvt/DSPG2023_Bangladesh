@@ -2194,7 +2194,6 @@ Due to the lack of data, particularly at the divisional level and in substantial
 server <- function(input, output, session) {
   # Run JavaScript Code
   runjs(jscode)
-  
   Var_hhform <- reactive({
     input$hhformdrop
   })
