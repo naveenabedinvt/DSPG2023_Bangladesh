@@ -1246,35 +1246,48 @@ In addition to the survey data we will use Global Flood Database (GFD), Climate 
                            carousel(
                              id = "myCarousel", width = 80,
                              carouselItem(
-                               tags$img(src = "hh.jpg", width ="100%")
+                               tags$img(src = "hh.jpg", width ="100%"),
+                               p("Field in Bangladesh, fotomatik (2018)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh1.jpg", width ="100%")
+                               tags$img(src = "hh1.jpg", width ="100%"),
+                               p("Rice Paddy in Bangladesh, fotomatik (2018)")
                              ),
                              carouselItem (
-                               tags$img(src = "hh2.jpg", width = "100%")
+                               tags$img(src = "hh2.jpg", width = "100%"),
+                               p("Woman Protest in Bangladesh, 19661338 (2021)")
+                              
                              ),
                              carouselItem(
-                               tags$img(src = "hh3.jpg", width ="100%")
+                               tags$img(src = "hh3.jpg", width ="100%"),
+                               p("Workers in a Field in Bangladesh, 19661338 (2021)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh4.jpg", width ="100%")
+                               tags$img(src = "water12.jpg", width ="100%"),
+                               p("A woman Drinking Safe Water in Gazipur, Bangladesh, Sakib Imtiaz (unknown date)")
                              ),
                              carouselItem(
-                               tags$img(src = "hh5.jpg", width ="100%")
+                               tags$img(src = "hh5.jpg", width ="100%"),
+                               p("Family in Front of Their Flooded House in Bangladesh, 19661338 (2021)")
                              ),
                              carouselItem(
-                               tags$img(src = "water1.jpg", width ="100%")
+                               tags$img(src = "dhaka.jpg", width ="100%"),
+                               p("CNG scooters in Dhaka, Bangladesh, Volunteer Marek (2012)")
                                ##end of carousel code 
                              ),
                              carouselItem(
-                               tags$img(src = "water2.jpg", width ="100%")
+                               tags$img(src = "rickshaw.jpg", width ="100%"),
+                               p("Delivery rickshaw in Dhaka, Bangladesh, David Brewer (2013)")
                                
                              ),
                              carouselItem(
-                               tags$img(src = "water3.jpg", width ="100%")),
+                               tags$img(src = "Washing.png", width ="100%"),
+                             p("Women at a Village Pond in Matlab, Bangladesh, Washing Utensils and Vegetables, Anwar Huq (2003)")
+                              ),
                              carouselItem(
-                               tags$img(src = "water4.jpg", width ="100%")))),
+                               tags$img(src = "tricicrcle.jpg", width ="100%"),
+                               p("Two Passengers Tricircle Rickshaw in Daka, Bangladesh,  Isabelle Ducas (2011)")
+                               ))),
                     
                     
                     column(6,
