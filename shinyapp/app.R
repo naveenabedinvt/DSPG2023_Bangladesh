@@ -1662,10 +1662,11 @@ Out of the 913 recorded flood events globally, 134 involved Bangladesh, but only
                         ), 
                       fluidRow(  
                         column(12, 
-                               h3("Flood Events"))),
+                               h3("Flood Events"))), 
+                               #p("Select flood events from the dropdown box, based on when they took place in our study period, to see the affected households (marked in blue) and all the households in the BIHS survey (marked in red).", align = "center"))),
                          fluidRow(
                            column(12, align = "center", 
-                                  selectInput("leafletdrop", "Select Flood Event:", width = "60%",
+                                  selectInput("leafletdrop", "Select flood events based on when they took place to see the affected households (marked in blue) and all the households in the BIHS survey (marked in red).", width = "60%",
                                               choices = c("October - November, 2013" = "flood_start_date1",
                                                           "June 2014" = "flood_start_date2",
                                                           "August - September, 2014 - Event 1" = "flood_start_date3",
