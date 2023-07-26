@@ -2153,7 +2153,7 @@ Due to the lack of data, particularly at the divisional level and in substantial
                            p(""),
                            br(""),
                            h4(strong("VT Data Science for the Public Good"), align = "center"),
-                           p("The", a(href = 'https://datascienceforthepublicgood.org/', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
+                           p("The", a(href = 'https://dspg.aaec.vt.edu/', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
                              "is a summer immersive program offered by the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural and Applied Economics. '), 
                              "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges 
                                      around critical social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to 
