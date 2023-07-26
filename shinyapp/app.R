@@ -1856,8 +1856,10 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                  column(width = 6, align = "center",
                                         img(src = 'StuntingR.png', align = 'center', width = "100%", height = "auto"),
                                        ),
-                                        column(6, 
-                                        img(src = 'stunting1.png', align = 'center', width = "100%", height = "auto")
+                                        column(6,
+                                               h4(strong(" Description"),
+                                                  align = "Justify"),
+                                        img(src = 'stunting1.png', width = "100%", height = "auto",  align = "left")
                                        
                                         
                                  ))
@@ -1930,6 +1932,8 @@ Due to the lack of data, particularly at the divisional level and in substantial
                                           img(src = 'UnderweightR.png', align = 'center', width = "100%", height = "auto"),
                                           ),
                                    column(6, 
+                                                 h4(strong("Description"),
+                                                  align = "Justify"),
                                           img(src = 'underweight1.png', align = 'center', width = "100%", height = "auto")
                                           
                                           
@@ -3666,7 +3670,7 @@ server <- function(input, output, session) {
       ggplotly(pa_fig)}
     else if (ahc1() == "num_visit_ahc") {
       visits <- ggplot(avg_vist , aes(x = Rain, y = Percent , fill = Rain)) +
-        geom_col() +
+        geom_bar(stat = "identity", aes(text = paste0("Rain: ", Rain, "\n", "Average: ", Percent))) +
         labs(title = "Average Antenatal Care Visits",
              x = "Rain intensity",
              y = "Average") +
@@ -3678,7 +3682,7 @@ server <- function(input, output, session) {
         easy_remove_legend()+
         easy_plot_title_size(size = 15)+
         coord_cartesian(ylim = c(0, 5))
-      ggplotly(visits)}
+      ggplotly(visits, tooltip = c("text"))}
     else if (ahc1() == "deliv_loc_ahc") {
       delAplot <- ggplot(delA, aes(x= Intensity, y= Percentage, fill = Location))+
         geom_bar(stat = "identity", position = "stack") +
