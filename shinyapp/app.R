@@ -3600,7 +3600,7 @@ server <- function(input, output, session) {
         scale_fill_manual(values = colors) +
         labs(x = "Precipitation Intensity", y = "Percentage", fill = "Tranportation") +
         ggtitle("Transportation Distribution by Precipitation Intensity") +
-        # coord_flip()+
+        coord_flip()+
         theme_classic()+
         easy_y_axis_title_size(size = 15)+
         scale_y_continuous(limits = c(0, 100))+
