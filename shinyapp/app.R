@@ -1761,7 +1761,7 @@ Where then a layer was added to the base map to visualize flood extent by a chan
 To identify flood-exposed houses, we mapped out surveyed households in Google Earth Engine and created 10 km buffer zones around each household with a child under the age of 5 years. This resulted in a total of 1,927 households out of the 5,604 households in the study.
                               "),
                                h3("Challenges and limitations"),
-                               p("During our study utilizing Sentinel 1, we encountered several limitations mainly related to missing data, which led to a reduction in our sample size. As we refined our sample to specific trimesters and available flood data, we observed a decrease of approximately 26% in our sample size due to the absence of flood data.
+                               p("During our study utilizing Sentinel 1, we encountered several limitations mainly related to missing data, which led to a reduction in our sample size. As we refined our sample to specific trimesters and available flood data, we observed a decrease of approximately 30% in our sample size due to the absence of flood data.
 
 One significant cause of missing data was the mismatch in our study period, which started in May 2013, while Sentinel 1 was not launched until 2014. Consequently, data for the period before the satellite's launch was unavailable, impacting our analysis.
 
